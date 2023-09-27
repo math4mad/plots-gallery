@@ -3,3 +3,4 @@ title: "Course Title"
 ---
 
 Course info & details here
+commit  chage  gh-pages
