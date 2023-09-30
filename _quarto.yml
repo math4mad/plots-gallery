@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Course Title"
+  title: "GLMakie Gallery"
   sidebar:
     background: primary
     # logo: "images/logo.png"
@@ -11,18 +11,21 @@ website:
     align: center
     tools:
       - icon: github
-        href: https://github.com/Pakillo/quarto-course-website-template
-        text: GitHub
+        href: https://math4mad.github.io/plots-gallery/
+        text: Github
     style: docked
     contents:
       - href: index.qmd
         text: Home
+      - section: "Math"
+        contents: math/*
+      - section: "Statistics"
+        contents: statistics/*
       - href: schedule.qmd
         text: Schedule
       - href: materials.qmd
         text: Materials
-      - href: https://github.com/Pakillo/quarto-course-website-template/discussions
-        text: Forum
+      
 
 format:
   html:

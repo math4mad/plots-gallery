@@ -1,0 +1,11 @@
+{
+  "hash": "18ded4d8494c61502100856a77f6a7ba",
+  "result": {
+    "markdown": "---\ntitle: 3-oval-sphere-params-equation\nformat:\n  html:\n    code-fold: true\n    theme: cosmo\n    fontsize: 1.1em\n    linestretch: 1.7\n    max-width: '1200'\nexecute:\n  cache: false\n---\n\n> [`球体参数方程`](https://mathworld.wolfram.com/Spheroid.html)\n> \n> 球体可以看做是二元球面的连续积分,这里的离散球面图和二元函数的分解道理相同\n\n::: {.cell execution_count=1}\n``` {.julia .cell-code}\n  using GLMakie,LinearAlgebra\nlet\nuspan=0:0.01:1.82pi  #  不要到 2pi, 留出空隙, 可以观察内部\nvspan=0:0.01:1pi\nf = Figure()\nax = Axis3(f[1, 1];azimuth=-0.1pi,elevation=-0.05pi)\ncol = repeat([1:50;50:-1:1],outer=2)\n\n\nfunction plot_sphere(r::Int)\n    xs=[r*cos(u)*sin(v) for u in uspan,v in vspan]\n    ys=[r*sin(u)*sin(v) for u in uspan,v in vspan]\n    zs=[r*cos(v) for u in uspan,v in vspan]\n    surface!(xs,ys,zs,color=color=col)\nend\n\n\nfor  r in [2,5,8]\n    plot_sphere(r)\nend\n\n\nf\nend\n```\n\n::: {.cell-output .cell-output-display execution_count=98}\n![](3-oval-spere_files/figure-html/cell-2-output-1.png){}\n:::\n:::\n\n\n",
+    "supporting": [
+      "3-oval-spere_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

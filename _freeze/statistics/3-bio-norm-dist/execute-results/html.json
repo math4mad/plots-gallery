@@ -1,0 +1,11 @@
+{
+  "hash": "88459d845aefc28df1e57b65cb41274a",
+  "result": {
+    "markdown": "---\ntitle: \"3-biovariate-normal-dist\"\nauthor: \"math4mads\"\ncode-fold: true\n---\n\n## 1. load package\n\n::: {.cell execution_count=1}\n``` {.julia .cell-code}\n  using GLMakie, Distributions\n  using FileIO\n```\n:::\n\n\n## 2. plot\n\n::: {.cell execution_count=2}\n``` {.julia .cell-code}\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" => Σ₁, \"diagonal\" => Σ₂, \"spherical\" => Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig\n```\n\n::: {.cell-output .cell-output-display execution_count=27}\n![](3-bio-norm-dist_files/figure-html/cell-3-output-1.png){}\n:::\n:::\n\n\n",
+    "supporting": [
+      "3-bio-norm-dist_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

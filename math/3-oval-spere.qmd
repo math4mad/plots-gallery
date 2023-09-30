@@ -1,0 +1,49 @@
+---
+title: "3-oval-sphere-params-equation"
+format:
+  html: 
+    code-fold: true
+    theme: cosmo
+    fontsize: 1.1em
+    linestretch: 1.7
+    max-width: "1200"
+execute: 
+  cache: false
+jupyter: julia-1.9
+---
+
+
+
+
+> [`球体参数方程`](https://mathworld.wolfram.com/Spheroid.html)
+> 
+> 球体可以看做是二元球面的连续积分,这里的离散球面图和二元函数的分解道理相同
+
+
+```{julia}
+  using GLMakie,LinearAlgebra
+let
+uspan=0:0.01:1.82pi  #  不要到 2pi, 留出空隙, 可以观察内部
+vspan=0:0.01:1pi
+f = Figure()
+ax = Axis3(f[1, 1];azimuth=-0.1pi,elevation=-0.05pi)
+col = repeat([1:50;50:-1:1],outer=2)
+
+
+function plot_sphere(r::Int)
+    xs=[r*cos(u)*sin(v) for u in uspan,v in vspan]
+    ys=[r*sin(u)*sin(v) for u in uspan,v in vspan]
+    zs=[r*cos(v) for u in uspan,v in vspan]
+    surface!(xs,ys,zs,color=color=col)
+end
+
+
+for  r in [2,5,8]
+    plot_sphere(r)
+end
+
+
+f
+end
+
+```

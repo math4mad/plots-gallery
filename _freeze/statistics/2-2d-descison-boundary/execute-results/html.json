@@ -1,0 +1,11 @@
+{
+  "hash": "af520c96ccd8b9966c3fc17515b27fd7",
+  "result": {
+    "markdown": "---\ntitle: \"2-2dimension decision boundary \"\nauthor: \"math4mads\"\ncode-fold: true\n---\n\n## 2. load package\n\n::: {.cell execution_count=1}\n``` {.julia .cell-code}\nusing GLMakie\nusing StatsFuns: logistic\n```\n:::\n\n\n## 3. plots\n\n::: {.cell execution_count=2}\n``` {.julia .cell-code}\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n![2d-decision-boundary](2-2d-descison-boundary_files/figure-html/fig-2d-decision-boundary-output-1.png){#fig-2d-decision-boundary}\n:::\n:::\n\n\n",
+    "supporting": [
+      "2-2d-descison-boundary_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

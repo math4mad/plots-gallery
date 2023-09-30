@@ -1,0 +1,45 @@
+---
+title: "2-2dimension decision boundary "
+author: "math4mads"
+code-fold: true
+---
+
+
+
+## 2. load package
+```{julia}
+using GLMakie
+using StatsFuns: logistic
+```
+## 3. plots
+```{julia}
+#| label: fig-2d-decision-boundary
+#| fig-cap: "2d-decision-boundary"
+#| echo: true
+
+fontsize_theme = Theme(fontsize=16)
+set_theme!(fontsize_theme)
+
+fig = Figure(resolution=(900,900))
+
+function surface_data(w)
+    fun(x, y) = logistic(w' * [x, y])
+    span = range(-10, 10, 100)
+    zs = [fun(x, y) for x in span, y in span]
+    return span, span, zs
+end
+
+ws = [3, 0, -3]
+let
+    for (idx, x) in enumerate(ws)
+        for (idy, y) in enumerate(ws)
+            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])
+            xs, ys, zs = surface_data(w)
+            ax = Axis3(fig[idx, idy], title="w=($(w[1]),$(w[2]))")
+            surface!(ax, xs, ys, zs)
+        end
+    end
+end
+
+fig
+```

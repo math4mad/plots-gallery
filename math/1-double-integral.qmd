@@ -1,0 +1,96 @@
+---
+title: "1-double integral picture"
+format:
+  html: 
+    code-fold: true
+    theme: cosmo
+    fontsize: 1.1em
+    linestretch: 1.7
+    
+execute: 
+  cache: true
+jupyter: julia-1.9
+---
+
+:::{.callout-note title="二元函数积分示意"}
+   利用小立方体来近似二元函数曲线下面积
+
+   为了增强效果使用了 [`GLMakie ssao 方法`](https://docs.makie.org/stable/explanations/lighting/)
+
+:::
+
+## 1. load package
+> 配置 `ssao`
+```{julia}
+  using GLMakie
+  GLMakie.activate!(ssao=true)
+  GLMakie.closeall() 
+  fig = Figure(resolution = (800, 800))
+  ssao = Makie.SSAO(radius = 5.0, blur = 3)
+  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)
+  ax.scene.ssao.bias[] = 0.025
+```
+
+
+## 2  define bio-variate funciton 
+
+### 2.1   配置函数
+
+> 1. `make_cubic`: plot 小立方体函数
+> 2.  `mack_z` : 根据传入函数的(x,y)坐标返回值, 即 z坐标值
+```{julia}
+  make_cubic(;x=0,y=0,h,w)=Rect3f(Vec3f(x,y,0), Vec3f(w,w,h))
+
+  function make_z(func)
+   return (x,y)->func(x,y)
+  end
+  
+```
+
+### 2.2  二元函数
+> 不限于此
+```{julia}
+  f1(x,y)=ℯ^(−(x^2)−(y^2))
+  f5(x,y)=x^2+y^2
+```
+
+## 3  plot
+> 1. 可以改变 `xs,ys` step的值, 增加后, 立方体会变小
+> 2. `box_width=0.19` 设置比`xs,ys` 的间隔小一点, 留出空隙
+```{julia}
+    xs=range(-2,2,20)
+    ys=range(-2,2,20) 
+    box_width=0.19
+    function plot_double_integ(funcz)
+      local box = [make_cubic(;x=x,y=y,h=funcz(x,y),w=box_width) for x in xs  for y in ys]
+      local zs=  [funcz(x,y) for x in xs , y in ys]
+      for  i in eachindex(box)
+      mesh!(ax, box[i], ssao=true,color=:lightblue)
+      wireframe!(ax, box[i]; color = :black, transparency=true)
+    end
+
+    #wireframe!(ax,xs,ys,zs,color=(:red,0.8),linewidth=1)
+    fig
+  end
+
+  make_z(f1)|>plot_double_integ
+```
+
+```julia
+  二元函数
+  f1(x,y)=ℯ^(−(x^2)−(y^2))
+  f2(x,y)=y^2
+  f3(x,y)=2+2x-y
+  f4(x,y)=x+2y+3
+  f5(x,y)=x^2+y^2
+  f6(x,y)=-f5(x,y)+3
+  f7(x,y)=-f5(x,y)
+  f8(x,y)=ℯ^((x^2)+(y^2))
+  f9(x,y)=sqrt(x^2+y^2)
+```
+
+
+
+
+
+

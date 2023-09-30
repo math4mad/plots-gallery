@@ -1,0 +1,11 @@
+{
+  "hash": "09867db1a7a42d7e08ce930736d64ab6",
+  "result": {
+    "markdown": "---\ntitle: \"6-bio-normal-dist\"\nauthor: \"math4mads\"\ncode-fold: true\n---\n\n::: {.cell execution_count=1}\n``` {.julia .cell-code}\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)\n```\n\n::: {.cell-output .cell-output-display execution_count=2}\n![](6-mutli-variable-distributions_files/figure-html/cell-2-output-1.png){}\n:::\n:::\n\n\n",
+    "supporting": [
+      "6-mutli-variable-distributions_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
