@@ -1,5 +1,5 @@
 ---
-title: "4-pari-plots"
+title: "4-pair-plots"
 author: "math4mads"
 code-fold: true
 ---
@@ -79,9 +79,21 @@ function plot_cor(i,j)
        fig
        #save("./imgs/iris-corner-plot2.png",fig)
      end
-   #save("./imgs/iris-corner-plot.png",fig)
+     #save("./imgs/iris-corner-plot.png",fig)
 
+
+```
+
+
+::: {.panel-tabset}
+##  Plot
+```{julia}
 with_theme(fontsize_theme, fontsize = 25) do
     main()
 end
 ```
+##  Data
+```{julia}
+  first(iris,10)
+```
+:::
