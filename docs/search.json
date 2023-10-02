@@ -21,90 +21,6 @@
     "text": "Figure 1: 1\n\n\n\n\n\n\nFigure 2: 3\n\n\n\n\n\n\nFigure 3: 4\n\n\n\n\n\n\nFigure 4: 5\n\n\n\n\n\n\nFigure 5: 6\n\n\n\n\n\n\nFigure 6: 7\n\n\n\n\n\n\nFigure 7: 8\n\n\n\n\n\n\nFigure 8: 9\n\n\n\n\n\n\nFigure 9: 10"
   },
   {
-    "objectID": "math/3-oval-spere.html",
-    "href": "math/3-oval-spere.html",
-    "title": "3-oval-sphere-params-equation",
-    "section": "",
-    "text": "球体参数方程\n球体可以看做是二元球面的连续积分,这里的离散球面图和二元函数的分解道理相同\n\n\n\nCode\n  using GLMakie,LinearAlgebra\nlet\nuspan=0:0.01:1.82pi  #  不要到 2pi, 留出空隙, 可以观察内部\nvspan=0:0.01:1pi\nf = Figure()\nax = Axis3(f[1, 1];azimuth=-0.1pi,elevation=-0.05pi)\ncol = repeat([1:50;50:-1:1],outer=2)\n\n\nfunction plot_sphere(r::Int)\n    xs=[r*cos(u)*sin(v) for u in uspan,v in vspan]\n    ys=[r*sin(u)*sin(v) for u in uspan,v in vspan]\n    zs=[r*cos(v) for u in uspan,v in vspan]\n    surface!(xs,ys,zs,color=color=col)\nend\n\n\nfor  r in [2,5,8]\n    plot_sphere(r)\nend\n\n\nf\nend"
-  },
-  {
-    "objectID": "statistics/1-normaldist.html",
-    "href": "statistics/1-normaldist.html",
-    "title": "1-normal-distributions",
-    "section": "",
-    "text": "gaussian distributions\n\n\n\n目的: 增强显示效果\n\n\n\n\nCode\n  using GLMakie, Distributions, Random\n  Random.seed!(124)\n\n  colors = [\"#FF410D\", \"#6EE2FF\", \"#F7C530\", \"#95CC5E\", \"#D0DFE6\", \"#F79D1E\"]\n  μσpairs = [[-3, 1], [-0.3, 1], [0, 1], [1.2, 1], [4, 1], [5, 1]] #方差相同, 均值变化\n  μσpairs2 = [[0, 0.8], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]   # 均值相同, 方差变化\n\n  ts = range(-10, 10, 200)\n  fig = Figure(resolution=(1000, 600))\n  ax1 = Axis(fig[1, 1:2], xlabel=\"μ change, σ=1\")\n  ax2 = Axis(fig[1, 3], xlabel=\"μ=0,σ change\")\n\n  for (p, p2, c) in zip(μσpairs, μσpairs2, colors)\n      local pdf1(x) = pdf(Normal(p...), x)\n      local pdf2(x) = pdf(Normal(p2...), x)\n      lines!(ax1, ts, pdf1.(ts), label=\"$(p[1]),  $(p[2])\", color=c, linewidth=3)\n      band!(ax1, ts, fill(0, length(ts)), pdf1.(ts); color=(c, 0.1)) #半透明区域\n      lines!(ax2, ts, pdf2.(ts), label=\"$(p2[1]),  $(p2[2])\", color=c, linewidth=3)\n      band!(ax2, ts, fill(0, length(ts)), pdf2.(ts); color=(c, 0.1)) #半透明区域\n  end\n  axislegend(ax1)\n  axislegend(ax2)\n  fig"
-  },
-  {
-    "objectID": "statistics/5-2d-decision-boundary.html",
-    "href": "statistics/5-2d-decision-boundary.html",
-    "title": "5-2d-decision-boundary",
-    "section": "",
-    "text": "\"\"\"\nprobml page 84,figure 2.13\n概率值预测方法 参见: https://discourse.julialang.org/t/extracting-values-from-univariatefinite/62794/3\n\"\"\"\n\n\nCode\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nfunction eval_model()\n    classifier = @load LogisticClassifier pkg=MLJLinearModels\n    mach = fit!(machine(classifier(), X, y))\n    \nend\n\nyhat,probs_res=eval_model()"
-  },
-  {
-    "objectID": "statistics/3-bio-norm-dist.html",
-    "href": "statistics/3-bio-norm-dist.html",
-    "title": "3-biovariate-normal-dist",
-    "section": "",
-    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
-  },
-  {
-    "objectID": "statistics/3-bio-norm-dist.html#load-package",
-    "href": "statistics/3-bio-norm-dist.html#load-package",
-    "title": "3-biovariate-normal-dist",
-    "section": "",
-    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
-  },
-  {
-    "objectID": "statistics/3-bio-norm-dist.html#plot",
-    "href": "statistics/3-bio-norm-dist.html#plot",
-    "title": "3-biovariate-normal-dist",
-    "section": "2. plot",
-    "text": "2. plot\n\n\nCode\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" =&gt; Σ₁, \"diagonal\" =&gt; Σ₂, \"spherical\" =&gt; Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig"
-  },
-  {
-    "objectID": "statistics/4-pair-plots.html",
-    "href": "statistics/4-pair-plots.html",
-    "title": "4-pair-plots",
-    "section": "",
-    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa"
-  },
-  {
-    "objectID": "statistics/6-mutli-variable-distributions.html",
-    "href": "statistics/6-mutli-variable-distributions.html",
-    "title": "6-bio-normal-dist",
-    "section": "",
-    "text": "Code\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)"
-  },
-  {
-    "objectID": "statistics/2-2d-descison-boundary.html",
-    "href": "statistics/2-2d-descison-boundary.html",
-    "title": "2-2dimension decision boundary",
-    "section": "",
-    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
-  },
-  {
-    "objectID": "statistics/2-2d-descison-boundary.html#load-package",
-    "href": "statistics/2-2d-descison-boundary.html#load-package",
-    "title": "2-2dimension decision boundary",
-    "section": "",
-    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
-  },
-  {
-    "objectID": "statistics/2-2d-descison-boundary.html#plots",
-    "href": "statistics/2-2d-descison-boundary.html#plots",
-    "title": "2-2dimension decision boundary",
-    "section": "3. plots",
-    "text": "3. plots\n\n\nCode\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n\n\n\n\n\nFigure 1: 2d-decision-boundary"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "内容简介",
-    "section": "",
-    "text": "介绍\n\n\n\nGLMakie 方法\n\n\nCourse info & details here\ncommit chage gh-pages"
-  },
-  {
     "objectID": "math/1-double-integral.html",
     "href": "math/1-double-integral.html",
     "title": "1-double integral picture",
@@ -133,11 +49,88 @@
     "text": "3 plot\n\n\n可以改变 xs,ys step的值, 增加后, 立方体会变小\nbox_width=0.19 设置比xs,ys 的间隔小一点, 留出空隙\n\n\n\n\nCode\n    xs=range(-2,2,20)\n    ys=range(-2,2,20) \n    box_width=0.19\n    function plot_double_integ(funcz)\n      local box = [make_cubic(;x=x,y=y,h=funcz(x,y),w=box_width) for x in xs  for y in ys]\n      local zs=  [funcz(x,y) for x in xs , y in ys]\n      for  i in eachindex(box)\n      mesh!(ax, box[i], ssao=true,color=:lightblue)\n      wireframe!(ax, box[i]; color = :black, transparency=true)\n    end\n\n    #wireframe!(ax,xs,ys,zs,color=(:red,0.8),linewidth=1)\n    fig\n  end\n\n  make_z(f1)|&gt;plot_double_integ\n\n\n\n\n\n  二元函数\n  f1(x,y)=ℯ^(−(x^2)−(y^2))\n  f2(x,y)=y^2\n  f3(x,y)=2+2x-y\n  f4(x,y)=x+2y+3\n  f5(x,y)=x^2+y^2\n  f6(x,y)=-f5(x,y)+3\n  f7(x,y)=-f5(x,y)\n  f8(x,y)=ℯ^((x^2)+(y^2))\n  f9(x,y)=sqrt(x^2+y^2)"
   },
   {
-    "objectID": "materials.html",
-    "href": "materials.html",
-    "title": "Course Materials",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "内容简介",
     "section": "",
-    "text": "Datasets\nSlides"
+    "text": "介绍\n\n\n\nGLMakie 方法\n\n\nCourse info & details here\ncommit chage gh-pages"
+  },
+  {
+    "objectID": "statistics/2-2d-descison-boundary.html",
+    "href": "statistics/2-2d-descison-boundary.html",
+    "title": "2-2dimension decision boundary",
+    "section": "",
+    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
+  },
+  {
+    "objectID": "statistics/2-2d-descison-boundary.html#load-package",
+    "href": "statistics/2-2d-descison-boundary.html#load-package",
+    "title": "2-2dimension decision boundary",
+    "section": "",
+    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
+  },
+  {
+    "objectID": "statistics/2-2d-descison-boundary.html#plots",
+    "href": "statistics/2-2d-descison-boundary.html#plots",
+    "title": "2-2dimension decision boundary",
+    "section": "3. plots",
+    "text": "3. plots\n\n\nCode\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n\n\n\n\n\nFigure 1: 2d-decision-boundary"
+  },
+  {
+    "objectID": "statistics/6-mutli-variable-distributions.html",
+    "href": "statistics/6-mutli-variable-distributions.html",
+    "title": "6-bio-normal-dist",
+    "section": "",
+    "text": "Code\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)"
+  },
+  {
+    "objectID": "statistics/4-pair-plots.html",
+    "href": "statistics/4-pair-plots.html",
+    "title": "4-pair-plots",
+    "section": "",
+    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa"
+  },
+  {
+    "objectID": "statistics/3-bio-norm-dist.html",
+    "href": "statistics/3-bio-norm-dist.html",
+    "title": "3-biovariate-normal-dist",
+    "section": "",
+    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
+  },
+  {
+    "objectID": "statistics/3-bio-norm-dist.html#load-package",
+    "href": "statistics/3-bio-norm-dist.html#load-package",
+    "title": "3-biovariate-normal-dist",
+    "section": "",
+    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
+  },
+  {
+    "objectID": "statistics/3-bio-norm-dist.html#plot",
+    "href": "statistics/3-bio-norm-dist.html#plot",
+    "title": "3-biovariate-normal-dist",
+    "section": "2. plot",
+    "text": "2. plot\n\n\nCode\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" =&gt; Σ₁, \"diagonal\" =&gt; Σ₂, \"spherical\" =&gt; Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig"
+  },
+  {
+    "objectID": "statistics/5-2d-decision-boundary.html",
+    "href": "statistics/5-2d-decision-boundary.html",
+    "title": "5-2d-decision-boundary",
+    "section": "",
+    "text": "\"\"\"\nprobml page 84,figure 2.13\n概率值预测方法 参见: https://discourse.julialang.org/t/extracting-values-from-univariatefinite/62794/3\n\"\"\"\n\n\nCode\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nfunction eval_model()\n    classifier = @load LogisticClassifier pkg=MLJLinearModels\n    mach = fit!(machine(classifier(), X, y))\n    \nend\n\nyhat,probs_res=eval_model()"
+  },
+  {
+    "objectID": "statistics/1-normaldist.html",
+    "href": "statistics/1-normaldist.html",
+    "title": "1-normal-distributions",
+    "section": "",
+    "text": "gaussian distributions\n\n\n\n目的: 增强显示效果\n\n\n\n\nCode\n  using GLMakie, Distributions, Random\n  Random.seed!(124)\n\n  colors = [\"#FF410D\", \"#6EE2FF\", \"#F7C530\", \"#95CC5E\", \"#D0DFE6\", \"#F79D1E\"]\n  μσpairs = [[-3, 1], [-0.3, 1], [0, 1], [1.2, 1], [4, 1], [5, 1]] #方差相同, 均值变化\n  μσpairs2 = [[0, 0.8], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]   # 均值相同, 方差变化\n\n  ts = range(-10, 10, 200)\n  fig = Figure(resolution=(1000, 600))\n  ax1 = Axis(fig[1, 1:2], xlabel=\"μ change, σ=1\")\n  ax2 = Axis(fig[1, 3], xlabel=\"μ=0,σ change\")\n\n  for (p, p2, c) in zip(μσpairs, μσpairs2, colors)\n      local pdf1(x) = pdf(Normal(p...), x)\n      local pdf2(x) = pdf(Normal(p2...), x)\n      lines!(ax1, ts, pdf1.(ts), label=\"$(p[1]),  $(p[2])\", color=c, linewidth=3)\n      band!(ax1, ts, fill(0, length(ts)), pdf1.(ts); color=(c, 0.1)) #半透明区域\n      lines!(ax2, ts, pdf2.(ts), label=\"$(p2[1]),  $(p2[2])\", color=c, linewidth=3)\n      band!(ax2, ts, fill(0, length(ts)), pdf2.(ts); color=(c, 0.1)) #半透明区域\n  end\n  axislegend(ax1)\n  axislegend(ax2)\n  fig"
+  },
+  {
+    "objectID": "math/3-oval-spere.html",
+    "href": "math/3-oval-spere.html",
+    "title": "3-oval-sphere-params-equation",
+    "section": "",
+    "text": "球体参数方程\n球体可以看做是二元球面的连续积分,这里的离散球面图和二元函数的分解道理相同\n\n\n\nCode\n  using GLMakie,LinearAlgebra\nlet\nuspan=0:0.01:1.82pi  #  不要到 2pi, 留出空隙, 可以观察内部\nvspan=0:0.01:1pi\nf = Figure()\nax = Axis3(f[1, 1];azimuth=-0.1pi,elevation=-0.05pi)\ncol = repeat([1:50;50:-1:1],outer=2)\n\n\nfunction plot_sphere(r::Int)\n    xs=[r*cos(u)*sin(v) for u in uspan,v in vspan]\n    ys=[r*sin(u)*sin(v) for u in uspan,v in vspan]\n    zs=[r*cos(v) for u in uspan,v in vspan]\n    surface!(xs,ys,zs,color=color=col)\nend\n\n\nfor  r in [2,5,8]\n    plot_sphere(r)\nend\n\n\nf\nend"
   },
   {
     "objectID": "math/4-one-variable-integral.html",
@@ -145,5 +138,12 @@
     "title": "4-single-variable-integral",
     "section": "",
     "text": "一元函数积分示意\n\n\n\n欧拉方法, 改变Δx, 提高近似精度\n使用 rect = Rect(start-x,start-y,width,height)方法 绘制线性近似的矩形\n\nstart-x: 初始的点的 x 坐标\nstart-y 初始的点的 y 坐标 这里为 0 矩形初始点都在 x轴上\nwidth Δx\nheight 函数值\n\nfig[fldmod1(idx,3)...] fldmod1 方法来生成 plot layout\n\n\n\n\nCode\nusing GLMakie,Distributions,Pipe\n\nws=[1,0.8,0.5,0.3,0.2,0.1] #Δx 数组\nd=Normal()\nxs=-3:0.1:3 \nys=pdf.(d,xs)\n\n\"\"\"\n## define Rect\nrect = Rect(start-x,start-y,width,height)\n\"\"\"\nfunction  rect(;x=0,w=0.5)\n    return  Rect(x,0,w,pdf.(d,x))\nend\n\n\nfunction plot_hist(ax,box)\n    mesh!(ax, box, color=(:lightblue,0.4))\n    wireframe!(ax, box; color = :black, transparency=true)\nend\n\nfunction plot_res()\n    fig=Figure()\n    for (idx,w) in enumerate(ws)\n        local ax=Axis(fig[fldmod1(idx,3)...],title=L\"Δx=%$(w)\")\n        lines!(ax,xs,ys)\n        @pipe  Vector(-3:w:3).|&gt;rect(;x=_,w=w).|&gt;plot_hist(ax,_)\n    end\n    fig\n    #save(\"one-single-variable-euler-method-2.png\",fig)\nend\n\nplot_res()"
+  },
+  {
+    "objectID": "materials.html",
+    "href": "materials.html",
+    "title": "Course Materials",
+    "section": "",
+    "text": "Datasets\nSlides"
   }
 ]
