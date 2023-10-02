@@ -1,0 +1,11 @@
+{
+  "hash": "d9153e893c32a7d312e1f82c538eeebf",
+  "result": {
+    "markdown": "---\ntitle: \"4-single-variable-integral\"\nformat:\n  html: \n    code-fold: true\n    theme: cosmo\n    fontsize: 1.1em\n    linestretch: 1.7\n    \nexecute: \n jupyter: julia-1.9\n---\n\n:::{.callout-note title=\"一元函数积分示意\"}\n   欧拉方法, 改变Δx, 提高近似精度\n\n   使用 `rect = Rect(start-x,start-y,width,height)`方法\n   绘制线性近似的矩形\n   \n   - `start-x`:  初始的点的 x 坐标\n   - `start-y`   初始的点的 y 坐标  这里为 0 矩形初始点都在 x轴上\n   - `width`     Δx\n   - `height`    函数值\n\n   `fig[fldmod1(idx,3)...]` fldmod1 方法来生成 plot layout\n\n:::\n\n::: {.cell execution_count=1}\n``` {.julia .cell-code}\nusing GLMakie,Distributions,Pipe\n\nws=[1,0.8,0.5,0.3,0.2,0.1] #Δx 数组\nd=Normal()\nxs=-3:0.1:3 \nys=pdf.(d,xs)\n\n\"\"\"\n## define Rect\nrect = Rect(start-x,start-y,width,height)\n\"\"\"\nfunction  rect(;x=0,w=0.5)\n    return  Rect(x,0,w,pdf.(d,x))\nend\n\n\nfunction plot_hist(ax,box)\n    mesh!(ax, box, color=(:lightblue,0.4))\n    wireframe!(ax, box; color = :black, transparency=true)\nend\n\nfunction plot_res()\n    fig=Figure()\n    for (idx,w) in enumerate(ws)\n        local ax=Axis(fig[fldmod1(idx,3)...],title=L\"Δx=%$(w)\")\n        lines!(ax,xs,ys)\n        @pipe  Vector(-3:w:3).|>rect(;x=_,w=w).|>plot_hist(ax,_)\n    end\n    fig\n    #save(\"one-single-variable-euler-method-2.png\",fig)\nend\n\nplot_res()\n```\n\n::: {.cell-output .cell-output-display execution_count=5}\n![](4-one-variable-integral_files/figure-html/cell-2-output-1.png){}\n:::\n:::\n\n\n",
+    "supporting": [
+      "4-one-variable-integral_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
