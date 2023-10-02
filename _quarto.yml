@@ -21,6 +21,8 @@ website:
         contents: math/*
       - section: "Statistics"
         contents: statistics/*
+      - section: "Machine Learning"
+        contents: machinelearning/*
       - href: schedule.qmd
         text: Schedule
       - href: materials.qmd
