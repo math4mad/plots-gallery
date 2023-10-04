@@ -187,5 +187,33 @@
     "title": "Course Materials",
     "section": "",
     "text": "Datasets\nSlides"
+  },
+  {
+    "objectID": "statistics/7-mvnormal-sampling.html",
+    "href": "statistics/7-mvnormal-sampling.html",
+    "title": "7-mv-normal-sampling",
+    "section": "",
+    "text": "通过contour:levels参数控制曲线的范围\nlevels=1 则只绘制出一条等位线"
+  },
+  {
+    "objectID": "statistics/7-mvnormal-sampling.html#load-package",
+    "href": "statistics/7-mvnormal-sampling.html#load-package",
+    "title": "7-mv-normal-sampling",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing Distributions,GLMakie,Random\nRandom.seed!(343434)\n\n\nTaskLocalRNG()"
+  },
+  {
+    "objectID": "statistics/7-mvnormal-sampling.html#define-distributions-params",
+    "href": "statistics/7-mvnormal-sampling.html#define-distributions-params",
+    "title": "7-mv-normal-sampling",
+    "section": "2. define distributions params",
+    "text": "2. define distributions params\n\n\nCode\nμ=[3,2]\nΣ=[1 -1.5;-1.5 4]\nd=MvNormal(μ,Σ)\nxs=range(0,6,100)\nys=range(-4,7,100)\ndens_mvnormal = [pdf(d, [i, j]) for i in xs, j in ys]\nrand_sample=rand(d,100)\n\n\n2×100 Matrix{Float64}:\n 2.04893  3.14939  2.04006  2.96766  3.14777  …  2.9465   2.47969   3.17612\n 3.31172  2.04522  2.43717  1.83891  1.69139     2.44297  0.862216  0.327061"
+  },
+  {
+    "objectID": "statistics/7-mvnormal-sampling.html#plot-res",
+    "href": "statistics/7-mvnormal-sampling.html#plot-res",
+    "title": "7-mv-normal-sampling",
+    "section": "3. plot res",
+    "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(1000,600))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()"
   }
 ]

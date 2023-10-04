@@ -1,0 +1,44 @@
+---
+title: "7-mv-normal-sampling"
+author: "math4mads"
+code-fold: true
+---
+
+:::{.callout-note,title="方法"}
+通过`contour:levels`参数控制曲线的范围
+
+`levels=1` 则只绘制出一条等位线
+:::
+
+## 1. load package
+```{julia}
+using Distributions,GLMakie,Random
+Random.seed!(343434)
+```
+## 2. define distributions params
+```{julia}
+μ=[3,2]
+Σ=[1 -1.5;-1.5 4]
+d=MvNormal(μ,Σ)
+xs=range(0,6,100)
+ys=range(-4,7,100)
+dens_mvnormal = [pdf(d, [i, j]) for i in xs, j in ys]
+rand_sample=rand(d,100)
+```
+
+## 3. plot res
+```{julia}
+function plot_func(fig,idx,levels=1)
+    ax=Axis(fig[1,idx], xlabel=L"X", ylabel=L"Y")
+    Box(fig[1,idx];color = (:orange,0.1))
+    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),
+             strokewidth=1,strokecolor=:black)
+    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)
+end
+function plot_mvnormal()
+    fig=Figure(resolution=(1000,600))
+    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]
+    fig
+end
+plot_mvnormal()
+```
