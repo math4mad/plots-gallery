@@ -215,5 +215,33 @@
     "title": "7-mv-normal-sampling",
     "section": "3. plot res",
     "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(1000,600))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()"
+  },
+  {
+    "objectID": "statistics/8-dotplot.html",
+    "href": "statistics/8-dotplot.html",
+    "title": "8-dotplot",
+    "section": "",
+    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2"
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#load-package",
+    "href": "statistics/8-dotplot.html#load-package",
+    "title": "8-dotplot",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()"
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#make-data",
+    "href": "statistics/8-dotplot.html#make-data",
+    "title": "8-dotplot",
+    "section": "2. make data",
+    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted"
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#plot",
+    "href": "statistics/8-dotplot.html#plot",
+    "title": "8-dotplot",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\nRObject{VecSxp}"
   }
 ]

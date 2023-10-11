@@ -1,0 +1,42 @@
+---
+title: "8-dotplot"
+author: "math4mads"
+code-fold: true
+---
+
+:::{.callout-note title="简介"}
+ 用于单一属性的频数统计
+
+ - from [Creating Stacked Dot Plots in R](https://www.r-bloggers.com/2023/10/creating-stacked-dot-plots-in-r-a-guide-with-base-r-and-ggplot2/)
+ - 使用 RCall.jl,ggplot2 
+:::
+
+## 1. load package
+```{julia}
+using TidierPlots,RCall
+using DataFrames,Random
+Random.seed!(121212)
+```
+
+## 2.  make data
+```{julia}
+raw=rand(1:20,100)
+df=DataFrame(x=raw)
+show(df)
+```
+## 3. plot
+```{julia}
+    @rput df
+    R"""
+    library(ggplot2)
+   ggplot(df, aes(x = x)) + 
+  geom_dotplot(dotsize = .75, stackratio = 1.2, 
+               fill = "steelblue") + 
+  scale_y_continuous(NULL, breaks = NULL) + 
+  labs(title = "Stacked Dot Plot", x = "Data Values") +
+  theme_minimal()
+    """
+```
+
+
+
