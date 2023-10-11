@@ -165,7 +165,7 @@
     "href": "statistics/8-dotplot.html",
     "title": "8-dotplot",
     "section": "",
-    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2"
+    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法"
   },
   {
     "objectID": "statistics/8-dotplot.html#load-package",

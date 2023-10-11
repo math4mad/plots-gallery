@@ -9,6 +9,7 @@ code-fold: true
 
  - from [Creating Stacked Dot Plots in R](https://www.r-bloggers.com/2023/10/creating-stacked-dot-plots-in-r-a-guide-with-base-r-and-ggplot2/)
  - 使用 RCall.jl,ggplot2 
+ - 在 lock5 stat 中会大量使用这个方法
 :::
 
 ## 1. load package
