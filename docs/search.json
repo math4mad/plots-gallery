@@ -88,7 +88,7 @@
     "href": "statistics/7-mvnormal-sampling.html",
     "title": "7-mv-normal-sampling",
     "section": "",
-    "text": "通过contour:levels参数控制曲线的范围\nlevels=1 则只绘制出一条等位线"
+    "text": "方法\n\n\n\n通过contour:levels参数控制曲线的范围\nlevels=1 则只绘制出一条等位线"
   },
   {
     "objectID": "statistics/7-mvnormal-sampling.html#load-package",
@@ -109,7 +109,7 @@
     "href": "statistics/7-mvnormal-sampling.html#plot-res",
     "title": "7-mv-normal-sampling",
     "section": "3. plot res",
-    "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(1000,600))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()"
+    "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(800,400))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()"
   },
   {
     "objectID": "statistics/2-2d-descison-boundary.html",

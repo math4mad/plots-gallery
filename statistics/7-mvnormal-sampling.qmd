@@ -4,7 +4,7 @@ author: "math4mads"
 code-fold: true
 ---
 
-:::{.callout-note,title="方法"}
+:::{.callout-note title="方法"}
 通过`contour:levels`参数控制曲线的范围
 
 `levels=1` 则只绘制出一条等位线
@@ -36,7 +36,7 @@ function plot_func(fig,idx,levels=1)
     contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)
 end
 function plot_mvnormal()
-    fig=Figure(resolution=(1000,600))
+    fig=Figure(resolution=(800,400))
     [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]
     fig
 end

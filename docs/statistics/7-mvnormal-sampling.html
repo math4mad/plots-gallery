@@ -305,9 +305,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="{.callout-note,title=&quot;方法&quot;}">
+<div class="callout callout-style-default callout-note callout-titled" title="方法">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+方法
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>通过<code>contour:levels</code>参数控制曲线的范围</p>
 <p><code>levels=1</code> 则只绘制出一条等位线</p>
+</div>
 </div>
 <section id="load-package" class="level2">
 <h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
@@ -317,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span>,<span class="bu">GLMakie</span>,<span class="bu">Random</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">343434</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>TaskLocalRNG()</code></pre>
 </div>
 </div>
@@ -335,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dens_mvnormal <span class="op">=</span> [<span class="fu">pdf</span>(d, [i, j]) for i <span class="kw">in</span> xs, j <span class="kw">in</span> ys]</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>rand_sample<span class="op">=</span><span class="fu">rand</span>(d,<span class="fl">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>2×100 Matrix{Float64}:
  2.04893  3.14939  2.04006  2.96766  3.14777  …  2.9465   2.47969   3.17612
  3.31172  2.04522  2.43717  1.83891  1.69139     2.44297  0.862216  0.327061</code></pre>
@@ -355,13 +365,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">contour!</span>(ax,xs, ys,dens_mvnormal;levels<span class="op">=</span>levels,linewidth<span class="op">=</span><span class="fl">1</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_mvnormal</span>()</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1000</span>,<span class="fl">600</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">400</span>))</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fu">plot_func</span>(fig,idx,levels) for (idx,levels) <span class="kw">in</span> <span class="fu">enumerate</span>([<span class="fl">1</span>,<span class="fl">16</span>])]</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    fig</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mvnormal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <p><img src="7-mvnormal-sampling_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
