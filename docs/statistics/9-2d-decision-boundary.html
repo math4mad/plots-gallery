@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 4-pair-plots</title>
+<title>GLMakie Gallery - 9-2d-descision-boundary</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/4-pair-plots.html">4-pair-plots</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/9-2d-decision-boundary.html">9-2d-descision-boundary</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/4-pair-plots.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/4-pair-plots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4-pair-plots</span></a>
   </div>
 </li>
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/9-2d-decision-boundary.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistics/9-2d-decision-boundary.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">9-2d-descision-boundary</span></a>
   </div>
 </li>
@@ -290,14 +290,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
+  <li><a href="#process-data" id="toc-process-data" class="nav-link" data-scroll-target="#process-data">2 process data</a>
+  <ul class="collapse">
+  <li><a href="#import-iris-datset" id="toc-import-iris-datset" class="nav-link" data-scroll-target="#import-iris-datset">2.1 import iris datset</a></li>
+  <li><a href="#make-desc-boundary-data" id="toc-make-desc-boundary-data" class="nav-link" data-scroll-target="#make-desc-boundary-data">2.2 make desc boundary data</a></li>
+  </ul></li>
+  <li><a href="#logisitcs-model" id="toc-logisitcs-model" class="nav-link" data-scroll-target="#logisitcs-model">3. Logisitcs model</a>
+  <ul class="collapse">
+  <li><a href="#training-model" id="toc-training-model" class="nav-link" data-scroll-target="#training-model">3.1 training model</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">4-pair-plots</h1>
+<h1 class="title">9-2d-descision-boundary</h1>
 </div>
 
 
@@ -307,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -318,110 +333,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st"> probml page 35 fig1.3</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st"> findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled" title="简介">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+简介
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>ref: probml page84 figure 2.13</li>
+<li>dataset:iris</li>
+<li>plots:使用 <a href="https://docs.makie.org/stable/reference/plots/contourf/"><code>GLMakie:contourf 方法</code></a></li>
+</ol>
+</div>
+</div>
+<section id="load-package" class="level2">
+<h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MLJ</span>,<span class="bu">DataFrames</span>,<span class="bu">GLMakie</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    fontsize_theme <span class="op">=</span> <span class="fu">Theme</span>(fontsize <span class="op">=</span> <span class="fl">10</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_theme!</span>(fontsize_theme)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> <span class="fu">load_iris</span>(); </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    iris <span class="op">=</span> DataFrames.<span class="fu">DataFrame</span>(iris);</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#y, X = unpack(iris, ==(:target); rng=123);</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    byCat <span class="op">=</span> iris.target</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    categ <span class="op">=</span> <span class="fu">unique</span>(byCat)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span>[<span class="st">"sepal_length"</span>,<span class="st">"sepal_width"</span>,<span class="st">"petal_length"</span>,<span class="st">"petal_width"</span>]</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    axs<span class="op">=</span>[]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    colors1 <span class="op">=</span> [<span class="op">:</span>orange,<span class="op">:</span>lightgreen,<span class="op">:</span>purple]</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1400</span>,<span class="fl">1400</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_diag</span>(i,j)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                ax <span class="op">=</span> <span class="fu">Axis</span>(fig[i, i])</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="fu">push!</span>(axs,ax)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (j, c) <span class="kw">in</span> <span class="fu">enumerate</span>(categ)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                    indc <span class="op">=</span> <span class="fu">findall</span>(x <span class="op">-&gt;</span> x <span class="op">==</span> c, byCat)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">density!</span>(ax, iris[<span class="op">:</span>,i][indc]; color <span class="op">=</span> (colors1[j], <span class="fl">0.5</span>), label <span class="op">=</span> <span class="st">"</span><span class="sc">$</span>(c)<span class="st">"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                        strokewidth <span class="op">=</span> <span class="fl">1.25</span>, strokecolor <span class="op">=</span> colors1[j])</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="st">    plot_cor(i,j)</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">    生成非对角列的散点图</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="st">TBW</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_cor</span>(i,j)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> <span class="fu">Axis</span>(fig[i, j])</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">#push!(axs,ax)</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> (k, c) <span class="kw">in</span> <span class="fu">enumerate</span>(categ)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                indc <span class="op">=</span> <span class="fu">findall</span>(x <span class="op">-&gt;</span> x <span class="op">==</span> c, byCat)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                <span class="co">#@show indc</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                <span class="fu">scatter!</span>(ax, iris[<span class="op">:</span>,i][indc],iris[<span class="op">:</span>,j][indc];color<span class="op">=</span>colors1[k])</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_pair</span>()</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        [( i<span class="op">==</span>j ? <span class="fu">plot_diag</span>(i,j) <span class="op">:</span> <span class="fu">plot_cor</span>(i,j)) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>]</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">add_xy_label</span>()</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>         axx<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">4</span>, i], xlabel <span class="op">=</span>label[i],)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>         axy<span class="op">=</span><span class="fu">Axis</span>(fig[i, <span class="fl">1</span>], ylabel <span class="op">=</span>label[i],)</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span>  <span class="fu">add_legend</span>()</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Legend</span>(fig[<span class="fl">2</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span>], axs[<span class="fl">1</span>],<span class="st">"Label"</span>;width<span class="op">=</span><span class="fl">100</span>,height<span class="op">=</span><span class="fl">200</span>)</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>     <span class="kw">function</span> <span class="fu">main</span>()</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>       <span class="fu">plot_pair</span>()</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>       <span class="fu">add_xy_label</span>()</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>       <span class="fu">add_legend</span>()</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>       fig</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>       <span class="co">#save("./imgs/iris-corner-plot2.png",fig)</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>     <span class="kw">end</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>   <span class="co">#save("./imgs/iris-corner-plot.png",fig)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> <span class="bu">MLJ</span>:fit!,fitted_params</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">using</span> <span class="bu">GLMakie</span>,<span class="bu">MLJ</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>main (generic function with 1 method)</code></pre>
 </div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Data</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+</section>
+<section id="process-data" class="level2">
+<h2 class="anchored" data-anchor-id="process-data">2 process data</h2>
+<section id="import-iris-datset" class="level3">
+<h3 class="anchored" data-anchor-id="import-iris-datset">2.1 import iris datset</h3>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_theme</span>(fontsize_theme, fontsize <span class="op">=</span> <span class="fl">25</span>) <span class="cf">do</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">main</span>()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> <span class="fu">load_iris</span>();</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#selectrows(iris, 1:3)  |&gt; pretty</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> DataFrames.<span class="fu">DataFrame</span>(iris);</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(iris,<span class="fl">5</span>)<span class="op">|&gt;</span>display</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> <span class="fu">unpack</span>(iris, <span class="op">==</span>(<span class="op">:</span>target); rng<span class="op">=</span><span class="fl">123</span>);</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span><span class="fu">select!</span>(X,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>byCat <span class="op">=</span> iris.target</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>categ <span class="op">=</span> <span class="fu">unique</span>(byCat)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="op">:</span>orange,<span class="op">:</span>lightgreen,<span class="op">:</span>purple];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<p><img src="4-pair-plots_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell" data-execution_count="3">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">first</span>(iris,<span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div><div style="float: left;"><span>10×5 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<div class="cell-output cell-output-display">
+<div><div style="float: left;"><span>5×5 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header header">
@@ -482,56 +443,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: right;">0.2</td>
 <td style="text-align: left;">setosa</td>
 </tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">5.4</td>
-<td style="text-align: right;">3.9</td>
-<td style="text-align: right;">1.7</td>
-<td style="text-align: right;">0.4</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: right;">4.6</td>
-<td style="text-align: right;">3.4</td>
-<td style="text-align: right;">1.4</td>
-<td style="text-align: right;">0.3</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: right;">5.0</td>
-<td style="text-align: right;">3.4</td>
-<td style="text-align: right;">1.5</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: right;">4.4</td>
-<td style="text-align: right;">2.9</td>
-<td style="text-align: right;">1.4</td>
-<td style="text-align: right;">0.2</td>
-<td style="text-align: left;">setosa</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: right;">4.9</td>
-<td style="text-align: right;">3.1</td>
-<td style="text-align: right;">1.5</td>
-<td style="text-align: right;">0.1</td>
-<td style="text-align: left;">setosa</td>
-</tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
+</section>
+<section id="make-desc-boundary-data" class="level3">
+<h3 class="anchored" data-anchor-id="make-desc-boundary-data">2.2 make desc boundary data</h3>
+<blockquote class="blockquote">
+<p>生成决策边界实际是利用训练模型对区间内的每个点都做出预测,利用两个属性的最大值和最小值 生成 grid 数据,这是 <code>test</code>数据</p>
+</blockquote>
+<div class="cell" data-execution_count="3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grid data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   n1 <span class="op">=</span> n2 <span class="op">=</span> <span class="fl">20</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>   tx <span class="op">=</span> <span class="fu">LinRange</span>(<span class="fl">0</span>, <span class="fl">8</span>, <span class="fl">40</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>   ty <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">40</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>   X_test <span class="op">=</span> <span class="fu">mapreduce</span>(collect, hcat, <span class="bu">Iterators</span>.<span class="fu">product</span>(tx, ty))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>   X_test <span class="op">=</span> MLJ.<span class="fu">table</span>(X_test<span class="op">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>Tables.MatrixTable{LinearAlgebra.Adjoint{Float64, Matrix{Float64}}} with 1600 rows, 2 columns, and schema:
+ :x1  Float64
+ :x2  Float64</code></pre>
 </div>
+</div>
+</section>
+</section>
+<section id="logisitcs-model" class="level2">
+<h2 class="anchored" data-anchor-id="logisitcs-model">3. Logisitcs model</h2>
+<section id="training-model" class="level3">
+<h3 class="anchored" data-anchor-id="training-model">3.1 training model</h3>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>   LogisticClassifier <span class="op">=</span> <span class="pp">@load</span> LogisticClassifier pkg<span class="op">=</span>MLJLinearModels</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   <span class="co">#X, y = make_blobs(centers = 2)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>   mach <span class="op">=</span> <span class="fu">fit!</span>(<span class="fu">machine</span>(<span class="fu">LogisticClassifier</span>(), X, y))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">predict</span>(mach, X)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">fitted_params</span>(mach)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>   probs<span class="op">=</span><span class="fu">predict</span>(mach, X_test)<span class="op">|&gt;</span><span class="dt">Array</span> <span class="co">#返回分类概率值</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>   probres<span class="op">=</span>[<span class="fu">broadcast</span>(pdf, probs,cat) for cat <span class="kw">in</span> categ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>import MLJLinearModels ✔</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[ Info: For silent loading, specify `verbosity=0`. 
+[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).
+┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}
+│   optim_options: Optim.Options{Float64, Nothing}
+└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>3-element Vector{Vector{Float64}}:
+ [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0  …  9.671834765600391e-132, 7.370874765820906e-135, 5.617320408186208e-138, 4.2809421636823794e-141, 3.2624925190464766e-144, 2.4863352574885955e-147, 1.8948282567827453e-150, 1.4440426374071983e-153, 1.1005003388488668e-156, 8.38687836794779e-160]
+ [2.6707314921073497e-56, 1.0760270944086094e-53, 4.335270360659973e-51, 1.7466631832673993e-48, 7.037236485793986e-46, 2.835274587075858e-43, 1.142320852844153e-40, 4.6023652763324474e-38, 1.8542746623291115e-35, 7.470798854313656e-33  …  1.3627080472304016e-14, 4.184137656019423e-15, 1.2847218419308875e-15, 3.9446842977544977e-16, 1.2111986969540427e-16, 3.718934578207533e-17, 1.1418831965200673e-17, 3.5061042539858484e-18, 1.0765345419987361e-18, 3.305453963038536e-19]
+ [1.6814079540479983e-80, 2.2062917118777524e-77, 2.8950280068446543e-74, 3.798766552624987e-71, 4.9846244275441556e-68, 6.540670593853871e-65, 8.582466430351137e-62, 1.1261648017760677e-58, 1.4777187549191659e-55, 1.9390170205959138e-52  …  0.9999999999999865, 0.9999999999999958, 0.9999999999999987, 0.9999999999999996, 0.9999999999999998, 1.0, 1.0, 1.0, 1.0, 1.0]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_res_contour</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], xlabel<span class="op">=</span><span class="st">"petal-length"</span>, ylabel<span class="op">=</span><span class="st">"petal-width"</span>, title<span class="op">=</span><span class="st">"2d3class-contour"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx,cat) <span class="kw">in</span> <span class="fu">enumerate</span>(categ)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        indc <span class="op">=</span> <span class="fu">findall</span>(x <span class="op">-&gt;</span> x <span class="op">==</span> cat, byCat)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scatter!</span>(ax,iris[<span class="op">:</span>,<span class="fl">3</span>][indc],iris[<span class="op">:</span>,<span class="fl">4</span>][indc];color<span class="op">=</span>(colors[idx], <span class="fl">0.8</span>), markersize<span class="op">=</span>probres[idx]<span class="op">.*</span><span class="fl">10</span>, strokewidth<span class="op">=</span><span class="fl">1</span>, strokecolor<span class="op">=:</span>black, label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>cat<span class="st">"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>   fig</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_res_contour</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="62">
+
 </div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
