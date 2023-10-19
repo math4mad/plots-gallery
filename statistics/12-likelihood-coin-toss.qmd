@@ -1,0 +1,82 @@
+---
+title: "12-likelihood of coin toss"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="简介"}
+    
+likelihook解释 参见:[understanding-bayes-a-look-at-the-likelihood](https://alexanderetz.com/2015/04/15/understanding-bayes-a-look-at-the-likelihood/)
+    
+### 硬币试验似然率的流程
+1. 问题:硬币的$p(head)=?$
+2. 模型:二项式分布
+3. 搜索所有$p(head)$ 产生观测结果的概率, 选出最有可能的一个 $p(head)$
+
+似然率要解决的问题
+对于投掷 10 次硬币, 获取 7 次正面的结果
+   `pdf(Binomial(10,0.5),data=7)`
+
+   `pdf(Binomial(10,0.7),data=7)`
+
+   `pdf(Binomial(10,0.1),data=7)`
+
+   返回值都不为 0,意思是`p(head)=[0.1,0.5,0.7]`的硬币都有机会获得这个观测结果
+   在这种硬币`P(head)`参数未知的情况下, 我们挑选出最有可能的一个参数值,这就是最大似然率估计
+
+
+    
+:::
+
+## 1. load package
+```{julia}
+using Distributions,GLMakie,Random,Pipe
+Random.seed!(123)
+
+```
+## 2. 基本概率模型:二项式分布
+```{julia}
+@doc(Binomial)
+```
+
+## 3. 硬币试验的不同观测值概率模型定义
+定义`input_data` 函数接受`data`观测值,返回一个新的函数,
+参数是概率值, 返回值为概率密度
+```{julia}
+@kwdef struct CoinToss
+    total::Int=10
+    success::Int=7
+end
+function input_data(params::CoinToss)
+   total,success=params.total,params.success
+   return  (p::Real)-> @pipe Binomial(total,p)|>pdf(_,success)
+end
+```
+
+## 4. 10次试验,不同正面观察结果下的概率密度图
+```{julia}
+probrange=range(0.0,1.0,50)
+success_arr=0:10  #不同正面次数
+fig=Figure(resolution=(600,600))
+for i in success_arr
+    params=CoinToss(success=i)
+    local row= div(i,3)
+    local col=rem(i,3)
+    local ax=Axis(fig[row+1,col])
+    
+    local likelihood=input_data(params)
+    max_likelihood=likelihood.(probrange)|>maximum
+    x=undef
+    for i in probrange
+        if likelihood(i)==max_likelihood
+            x=round(i,digits=2)
+           
+        end
+    end
+    lines!(ax,probrange,likelihood.(probrange),label="head=$(i)")
+    vlines!(ax,[x],label="p=$(x)")
+    ax.title="head=$(i),p=$(x)"
+   
+end
+fig
+```

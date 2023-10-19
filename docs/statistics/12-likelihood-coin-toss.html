@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 7-mv-normal-sampling</title>
+<title>GLMakie Gallery - 12-likelihood of coin toss</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,6 +94,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -106,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/7-mvnormal-sampling.html">7-mv-normal-sampling</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/12-likelihood-coin-toss.html">12-likelihood of coin toss</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -204,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/12-likelihood-coin-toss.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistics/12-likelihood-coin-toss.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">12-likelihood of coin toss</span></a>
   </div>
 </li>
@@ -240,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/7-mvnormal-sampling.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/7-mvnormal-sampling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7-mv-normal-sampling</span></a>
   </div>
 </li>
@@ -298,8 +300,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
-  <li><a href="#define-distributions-params" id="toc-define-distributions-params" class="nav-link" data-scroll-target="#define-distributions-params">2. define distributions params</a></li>
-  <li><a href="#plot-res" id="toc-plot-res" class="nav-link" data-scroll-target="#plot-res">3. plot res</a></li>
+  <li><a href="#基本概率模型二项式分布" id="toc-基本概率模型二项式分布" class="nav-link" data-scroll-target="#基本概率模型二项式分布">2. 基本概率模型:二项式分布</a></li>
+  <li><a href="#硬币试验的不同观测值概率模型定义" id="toc-硬币试验的不同观测值概率模型定义" class="nav-link" data-scroll-target="#硬币试验的不同观测值概率模型定义">3. 硬币试验的不同观测值概率模型定义</a></li>
+  <li><a href="#次试验不同正面观察结果下的概率密度图" id="toc-次试验不同正面观察结果下的概率密度图" class="nav-link" data-scroll-target="#次试验不同正面观察结果下的概率密度图">4. 10次试验,不同正面观察结果下的概率密度图</a></li>
   </ul>
 </nav>
     </div>
@@ -308,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">7-mv-normal-sampling</h1>
+<h1 class="title">12-likelihood of coin toss</h1>
 </div>
 
 
@@ -318,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -329,18 +332,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="callout callout-style-default callout-note callout-titled" title="方法">
+<div class="callout callout-style-default callout-note callout-titled" title="简介">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-方法
+简介
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>通过<code>contour:levels</code>参数控制曲线的范围</p>
-<p><code>levels=1</code> 则只绘制出一条等位线</p>
+<p>likelihook解释 参见:<a href="https://alexanderetz.com/2015/04/15/understanding-bayes-a-look-at-the-likelihood/">understanding-bayes-a-look-at-the-likelihood</a></p>
+<section id="硬币试验似然率的流程" class="level3">
+<h3 class="anchored" data-anchor-id="硬币试验似然率的流程">硬币试验似然率的流程</h3>
+<ol type="1">
+<li>问题:硬币的<span class="math inline">\(p(head)=?\)</span></li>
+<li>模型:二项式分布</li>
+<li>搜索所有<span class="math inline">\(p(head)\)</span> 产生观测结果的概率, 选出最有可能的一个 <span class="math inline">\(p(head)\)</span></li>
+</ol>
+<p>似然率要解决的问题 对于投掷 10 次硬币, 获取 7 次正面的结果 <code>pdf(Binomial(10,0.5),data=7)</code></p>
+<p><code>pdf(Binomial(10,0.7),data=7)</code></p>
+<p><code>pdf(Binomial(10,0.1),data=7)</code></p>
+<p>返回值都不为 0,意思是<code>p(head)=[0.1,0.5,0.7]</code>的硬币都有机会获得这个观测结果 在这种硬币<code>P(head)</code>参数未知的情况下, 我们挑选出最有可能的一个参数值,这就是最大似然率估计</p>
+</section>
 </div>
 </div>
 <section id="load-package" class="level2">
@@ -348,55 +362,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span>,<span class="bu">GLMakie</span>,<span class="bu">Random</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">343434</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span>,<span class="bu">GLMakie</span>,<span class="bu">Random</span>,<span class="bu">Pipe</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>TaskLocalRNG()</code></pre>
 </div>
 </div>
 </section>
-<section id="define-distributions-params" class="level2">
-<h2 class="anchored" data-anchor-id="define-distributions-params">2. define distributions params</h2>
+<section id="基本概率模型二项式分布" class="level2">
+<h2 class="anchored" data-anchor-id="基本概率模型二项式分布">2. 基本概率模型:二项式分布</h2>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>μ<span class="op">=</span>[<span class="fl">3</span>,<span class="fl">2</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Σ<span class="op">=</span>[<span class="fl">1</span> <span class="op">-</span><span class="fl">1.5</span>;<span class="op">-</span><span class="fl">1.5</span> <span class="fl">4</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="fu">MvNormal</span>(μ,Σ)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xs<span class="op">=</span><span class="fu">range</span>(<span class="fl">0</span>,<span class="fl">6</span>,<span class="fl">100</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ys<span class="op">=</span><span class="fu">range</span>(<span class="op">-</span><span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">100</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dens_mvnormal <span class="op">=</span> [<span class="fu">pdf</span>(d, [i, j]) for i <span class="kw">in</span> xs, j <span class="kw">in</span> ys]</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>rand_sample<span class="op">=</span><span class="fu">rand</span>(d,<span class="fl">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span>(Binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>2×100 Matrix{Float64}:
- 2.04893  3.14939  2.04006  2.96766  3.14777  …  2.9465   2.47969   3.17612
- 3.31172  2.04522  2.43717  1.83891  1.69139     2.44297  0.862216  0.327061</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>Binomial(n,p)</code></pre>
+<p>A <em>Binomial distribution</em> characterizes the number of successes in a sequence of independent trials. It has two parameters: <code>n</code>, the number of trials, and <code>p</code>, the probability of success in an individual trial, with the distribution:</p>
+<p><span class="math display">\[
+P(X = k) = {n \choose k}p^k(1-p)^{n-k},  \quad \text{ for } k = 0,1,2, \ldots, n.
+\]</span></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Binomial</span>()      <span class="co"># Binomial distribution with n = 1 and p = 0.5</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Binomial</span>(n)     <span class="co"># Binomial distribution for n trials with success rate p = 0.5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Binomial</span>(n, p)  <span class="co"># Binomial distribution for n trials with success rate p</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">params</span>(d)       <span class="co"># Get the parameters, i.e. (n, p)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ntrials</span>(d)      <span class="co"># Get the number of trials, i.e. n</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">succprob</span>(d)     <span class="co"># Get the success rate, i.e. p</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">failprob</span>(d)     <span class="co"># Get the failure rate, i.e. 1 - p</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>External links:</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Binomial_distribution">Binomial distribution on Wikipedia</a></li>
+</ul>
 </div>
 </div>
 </section>
-<section id="plot-res" class="level2">
-<h2 class="anchored" data-anchor-id="plot-res">3. plot res</h2>
+<section id="硬币试验的不同观测值概率模型定义" class="level2">
+<h2 class="anchored" data-anchor-id="硬币试验的不同观测值概率模型定义">3. 硬币试验的不同观测值概率模型定义</h2>
+<p>定义<code>input_data</code> 函数接受<code>data</code>观测值,返回一个新的函数, 参数是概率值, 返回值为概率密度</p>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_func</span>(fig,idx,levels<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,idx], xlabel<span class="op">=</span>L<span class="st">"X"</span>, ylabel<span class="op">=</span>L<span class="st">"Y"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Box</span>(fig[<span class="fl">1</span>,idx];color <span class="op">=</span> (<span class="op">:</span>orange,<span class="fl">0.1</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>(ax,rand_sample;marker<span class="op">=:</span>circle,markersize<span class="op">=</span><span class="fl">10</span>,color<span class="op">=</span>(<span class="op">:</span>green,<span class="fl">0.1</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             strokewidth<span class="op">=</span><span class="fl">1</span>,strokecolor<span class="op">=:</span>black)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">contour!</span>(ax,xs, ys,dens_mvnormal;levels<span class="op">=</span>levels,linewidth<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_mvnormal</span>()</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">400</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fu">plot_func</span>(fig,idx,levels) for (idx,levels) <span class="kw">in</span> <span class="fu">enumerate</span>([<span class="fl">1</span>,<span class="fl">16</span>])]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    fig</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mvnormal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@kwdef</span> <span class="kw">struct</span> CoinToss</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    total<span class="op">::</span><span class="dt">Int</span>=<span class="fl">10</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    success<span class="op">::</span><span class="dt">Int</span>=<span class="fl">7</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">input_data</span>(params<span class="op">::</span><span class="dt">CoinToss</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>   total,success<span class="op">=</span>params.total,params.success</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>   <span class="cf">return</span>  (p<span class="op">::</span><span class="dt">Real</span>)<span class="op">-&gt;</span> <span class="pp">@pipe</span> <span class="fu">Binomial</span>(total,p)<span class="op">|&gt;</span><span class="fu">pdf</span>(_,success)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<p><img src="7-mvnormal-sampling_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>input_data (generic function with 1 method)</code></pre>
+</div>
+</div>
+</section>
+<section id="次试验不同正面观察结果下的概率密度图" class="level2">
+<h2 class="anchored" data-anchor-id="次试验不同正面观察结果下的概率密度图">4. 10次试验,不同正面观察结果下的概率密度图</h2>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>probrange<span class="op">=</span><span class="fu">range</span>(<span class="fl">0.0</span>,<span class="fl">1.0</span>,<span class="fl">50</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>success_arr<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>  <span class="co">#不同正面次数</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">600</span>,<span class="fl">600</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> success_arr</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span><span class="fu">CoinToss</span>(success<span class="op">=</span>i)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> row<span class="op">=</span> <span class="fu">div</span>(i,<span class="fl">3</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> col<span class="op">=</span><span class="fu">rem</span>(i,<span class="fl">3</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> ax<span class="op">=</span><span class="fu">Axis</span>(fig[row<span class="op">+</span><span class="fl">1</span>,col])</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> likelihood<span class="op">=</span><span class="fu">input_data</span>(params)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    max_likelihood<span class="op">=</span><span class="fu">likelihood</span>.(probrange)<span class="op">|&gt;</span>maximum</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="cn">undef</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> probrange</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">likelihood</span>(i)<span class="op">==</span>max_likelihood</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="fu">round</span>(i,digits<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines!</span>(ax,probrange,<span class="fu">likelihood</span>.(probrange),label<span class="op">=</span><span class="st">"head=</span><span class="sc">$</span>(i)<span class="st">"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vlines!</span>(ax,[x],label<span class="op">=</span><span class="st">"p=</span><span class="sc">$</span>(x)<span class="st">"</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    ax.title<span class="op">=</span><span class="st">"head=</span><span class="sc">$</span>(i)<span class="st">,p=</span><span class="sc">$</span>(x)<span class="st">"</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<p><img src="12-likelihood-coin-toss_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 

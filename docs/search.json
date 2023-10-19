@@ -70,88 +70,46 @@
     "text": "gaussian distributions\n\n\n\n目的: 增强显示效果\n\n\n\n\nCode\n  using GLMakie, Distributions, Random\n  Random.seed!(124)\n\n  colors = [\"#FF410D\", \"#6EE2FF\", \"#F7C530\", \"#95CC5E\", \"#D0DFE6\", \"#F79D1E\"]\n  μσpairs = [[-3, 1], [-0.3, 1], [0, 1], [1.2, 1], [4, 1], [5, 1]] #方差相同, 均值变化\n  μσpairs2 = [[0, 0.8], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]   # 均值相同, 方差变化\n\n  ts = range(-10, 10, 200)\n  fig = Figure(resolution=(1000, 600))\n  ax1 = Axis(fig[1, 1:2], xlabel=\"μ change, σ=1\")\n  ax2 = Axis(fig[1, 3], xlabel=\"μ=0,σ change\")\n\n  for (p, p2, c) in zip(μσpairs, μσpairs2, colors)\n      local pdf1(x) = pdf(Normal(p...), x)\n      local pdf2(x) = pdf(Normal(p2...), x)\n      lines!(ax1, ts, pdf1.(ts), label=\"$(p[1]),  $(p[2])\", color=c, linewidth=3)\n      band!(ax1, ts, fill(0, length(ts)), pdf1.(ts); color=(c, 0.1)) #半透明区域\n      lines!(ax2, ts, pdf2.(ts), label=\"$(p2[1]),  $(p2[2])\", color=c, linewidth=3)\n      band!(ax2, ts, fill(0, length(ts)), pdf2.(ts); color=(c, 0.1)) #半透明区域\n  end\n  axislegend(ax1)\n  axislegend(ax2)\n  fig"
   },
   {
-    "objectID": "statistics/10-dirichlet-dist.html",
-    "href": "statistics/10-dirichlet-dist.html",
-    "title": "10-dirichlet-dist",
+    "objectID": "statistics/2-2d-descison-boundary.html",
+    "href": "statistics/2-2d-descison-boundary.html",
+    "title": "2-2dimension decision boundary",
     "section": "",
-    "text": "简介\n\n\n\ndirichlet分布是Beta 分布的多元泛化\n参照 :Visualizing Dirichlet Distributions with Matplotlib"
+    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
   },
   {
-    "objectID": "statistics/10-dirichlet-dist.html#load-package",
-    "href": "statistics/10-dirichlet-dist.html#load-package",
-    "title": "10-dirichlet-dist",
-    "section": "1. load package",
-    "text": "1. load package\n\n\nCode\nusing Distributions, GLMakie, Random, Pipe\nRandom.seed!(34343)\n\n\nTaskLocalRNG()"
-  },
-  {
-    "objectID": "statistics/10-dirichlet-dist.html#beta-分布",
-    "href": "statistics/10-dirichlet-dist.html#beta-分布",
-    "title": "10-dirichlet-dist",
-    "section": "2. Beta 分布",
-    "text": "2. Beta 分布\n\n2.1 定义\nBeta分布的定义:\n\n\nCode\n@doc(Beta)\n\n\nBeta(α, β)\nThe Beta distribution has probability density function\n\\[\nf(x; \\alpha, \\beta) = \\frac{1}{B(\\alpha, \\beta)}\nx^{\\alpha - 1} (1 - x)^{\\beta - 1}, \\quad x \\in [0, 1]\n\\]\nThe Beta distribution is related to the Gamma distribution via the property that if \\(X \\sim \\operatorname{Gamma}(\\alpha)\\) and \\(Y \\sim \\operatorname{Gamma}(\\beta)\\) independently, then \\(X / (X + Y) \\sim \\operatorname{Beta}(\\alpha, \\beta)\\).\nBeta()        # equivalent to Beta(1, 1)\nBeta(α)       # equivalent to Beta(α, α)\nBeta(α, β)    # Beta distribution with shape parameters α and β\n\nparams(d)     # Get the parameters, i.e. (α, β)\nExternal links\n\nBeta distribution on Wikipedia\n\n\n\nBeta分布有两个参数α,β, 当两个参数取不同值的时候, 分布的概率密度函数变现不同.\n\n\n2.2 不同参数的 pdf曲线\n\n\nCode\nxs=range(0,1,100)\nparams=[[.1,.1],[.5,.5],[1,1],[5,5],[10,10],[50,50]]\n#sas1 = @pipe params1.|&gt;(pdf(Beta(_...),xs))\nfunction plot_res()\n    fig = Figure(resolution=(900,900))\n    axs = [Axis(fig[i, j]) for i in 1:2, j in 1:3]\n\n    for (ax,vec) in zip(axs,params)\n        ax.title=\"$vec\"\n       lines!(ax,Beta(vec...),color=(:orange, 0.8))\n    end\n    fig\nend\nplot_res()"
-  },
-  {
-    "objectID": "statistics/10-dirichlet-dist.html#dirichlet分布",
-    "href": "statistics/10-dirichlet-dist.html#dirichlet分布",
-    "title": "10-dirichlet-dist",
-    "section": "3 Dirichlet分布",
-    "text": "3 Dirichlet分布\n\n3.1 定义\n\n\nCode\n@doc(Dirichlet)\n\n\nDirichlet\nThe Dirichlet distribution is often used as the conjugate prior for Categorical or Multinomial distributions. The probability density function of a Dirichlet distribution with parameter \\(\\alpha = (\\alpha_1, \\ldots, \\alpha_k)\\) is:\n\\[\nf(x; \\alpha) = \\frac{1}{B(\\alpha)} \\prod_{i=1}^k x_i^{\\alpha_i - 1}, \\quad \\text{ with }\nB(\\alpha) = \\frac{\\prod_{i=1}^k \\Gamma(\\alpha_i)}{\\Gamma \\left( \\sum_{i=1}^k \\alpha_i \\right)},\n\\quad x_1 + \\cdots + x_k = 1\n\\]\n# Let alpha be a vector\nDirichlet(alpha)         # Dirichlet distribution with parameter vector alpha\n\n# Let a be a positive scalar\nDirichlet(k, a)          # Dirichlet distribution with parameter a * ones(k)\n\n\n\n\n3.2 Dirichlet sampling plot\n\n\nCode\nlet\n    vecs = [[0.1,0.1,0.1],[0.2,0.2,0.2],[1, 1, 1], [2, 2, 2], [6, 6, 6], [10, 10, 10],[20,20,20],[50,50,50],[100,100,100]]\n    sas = @pipe vecs |&gt; Dirichlet.(_) |&gt; rand.(_, 1000)\n\n    xs = ys = zs = range(0, 1, 100)\n    function plot_res()\n        fig = Figure(resolution=(900,900))\n        axs = [Axis3(fig[i, j];azimuth=0.2pi) for i in 1:3, j in 1:3]\n\n        for (ax, sa,vec) in zip(axs, sas,vecs)\n            ax.title=\"$vec\"\n            lines!(ax, [1, 0, 0,1], [0, 1, 0,0], [0, 0, 1,0];color=(:lightgreen,0.5),linewidth=3)\n            scatter!(ax, eachrow(sa)...; markersize=4, color=(:orange, 0.9))\n        end\n\n        fig\n    end\n    plot_res()\n\nend"
-  },
-  {
-    "objectID": "statistics/3-bio-norm-dist.html",
-    "href": "statistics/3-bio-norm-dist.html",
-    "title": "3-biovariate-normal-dist",
+    "objectID": "statistics/2-2d-descison-boundary.html#load-package",
+    "href": "statistics/2-2d-descison-boundary.html#load-package",
+    "title": "2-2dimension decision boundary",
     "section": "",
-    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
+    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
   },
   {
-    "objectID": "statistics/3-bio-norm-dist.html#load-package",
-    "href": "statistics/3-bio-norm-dist.html#load-package",
-    "title": "3-biovariate-normal-dist",
+    "objectID": "statistics/2-2d-descison-boundary.html#plots",
+    "href": "statistics/2-2d-descison-boundary.html#plots",
+    "title": "2-2dimension decision boundary",
+    "section": "3. plots",
+    "text": "3. plots\n\n\nCode\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n\n\n\n\n\nFigure 1: 2d-decision-boundary"
+  },
+  {
+    "objectID": "statistics/6-mutli-variable-distributions.html",
+    "href": "statistics/6-mutli-variable-distributions.html",
+    "title": "6-bio-normal-dist",
     "section": "",
-    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
+    "text": "Code\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)"
   },
   {
-    "objectID": "statistics/3-bio-norm-dist.html#plot",
-    "href": "statistics/3-bio-norm-dist.html#plot",
-    "title": "3-biovariate-normal-dist",
-    "section": "2. plot",
-    "text": "2. plot\n\n\nCode\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" =&gt; Σ₁, \"diagonal\" =&gt; Σ₂, \"spherical\" =&gt; Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig"
-  },
-  {
-    "objectID": "statistics/4-pair-plots.html",
-    "href": "statistics/4-pair-plots.html",
-    "title": "4-pair-plots",
+    "objectID": "statistics/5-2d-decision-boundary.html",
+    "href": "statistics/5-2d-decision-boundary.html",
+    "title": "5-2d-decision-boundary",
     "section": "",
-    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa"
+    "text": "Code\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nusing MLJ\nLogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n#X, y = make_blobs(centers = 2)\nmach = fit!(machine(LogisticClassifier(), X, y))\npredict(mach, X)\nfitted_params(mach)\nprobs=predict(mach, x_test)|&gt;Array #返回分类概率值\nprobs_res=broadcast(pdf, probs, 1.0).|&gt;(d-&gt;round(d,digits=2))|&gt;d-&gt;reshape(d,nums,nums) #返回概率为1.0(\"virginica\")的概率值\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\nimport MLJLinearModels ✔\n\n\n100×100 Matrix{Float64}:\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n ⋮                             ⋮     ⋱            ⋮                   \n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0"
   },
   {
-    "objectID": "statistics/8-dotplot.html",
-    "href": "statistics/8-dotplot.html",
-    "title": "8-dotplot",
-    "section": "",
-    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法"
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#load-package",
-    "href": "statistics/8-dotplot.html#load-package",
-    "title": "8-dotplot",
-    "section": "1. load package",
-    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()"
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#make-data",
-    "href": "statistics/8-dotplot.html#make-data",
-    "title": "8-dotplot",
-    "section": "2. make data",
-    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted"
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#plot",
-    "href": "statistics/8-dotplot.html#plot",
-    "title": "8-dotplot",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\nRObject{VecSxp}"
+    "objectID": "statistics/5-2d-decision-boundary.html#plot-results",
+    "href": "statistics/5-2d-decision-boundary.html#plot-results",
+    "title": "5-2d-decision-boundary",
+    "section": "plot results",
+    "text": "plot results\n\n\nCode\n    fig=Figure(resolution=(1600,800))\n\n    function plot_res_contour()\n\n        ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contour\")\n        contour!(ax, tx, ty, probs_res; labels=true)\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    function plot_res_contourf()\n\n        ax = Axis(fig[1, 2], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contourf\")\n        contourf!(ax, tx, ty, probs_res; levels=6, colormap=(:heat, 0.5))\n        #contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1.0 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    plot_res_contourf()\n    plot_res_contour()"
   },
   {
     "objectID": "statistics/9-2d-decision-boundary.html",
@@ -182,46 +140,123 @@
     "text": "3. Logisitcs model\n\n3.1 training model\n\n\nCode\n   LogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n   #X, y = make_blobs(centers = 2)\n   mach = fit!(machine(LogisticClassifier(), X, y))\n   predict(mach, X)\n   fitted_params(mach)\n   probs=predict(mach, X_test)|&gt;Array #返回分类概率值\n   probres=[broadcast(pdf, probs,cat) for cat in categ]\n\n\nimport MLJLinearModels ✔\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\n3-element Vector{Vector{Float64}}:\n [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0  …  9.671834765600391e-132, 7.370874765820906e-135, 5.617320408186208e-138, 4.2809421636823794e-141, 3.2624925190464766e-144, 2.4863352574885955e-147, 1.8948282567827453e-150, 1.4440426374071983e-153, 1.1005003388488668e-156, 8.38687836794779e-160]\n [2.6707314921073497e-56, 1.0760270944086094e-53, 4.335270360659973e-51, 1.7466631832673993e-48, 7.037236485793986e-46, 2.835274587075858e-43, 1.142320852844153e-40, 4.6023652763324474e-38, 1.8542746623291115e-35, 7.470798854313656e-33  …  1.3627080472304016e-14, 4.184137656019423e-15, 1.2847218419308875e-15, 3.9446842977544977e-16, 1.2111986969540427e-16, 3.718934578207533e-17, 1.1418831965200673e-17, 3.5061042539858484e-18, 1.0765345419987361e-18, 3.305453963038536e-19]\n [1.6814079540479983e-80, 2.2062917118777524e-77, 2.8950280068446543e-74, 3.798766552624987e-71, 4.9846244275441556e-68, 6.540670593853871e-65, 8.582466430351137e-62, 1.1261648017760677e-58, 1.4777187549191659e-55, 1.9390170205959138e-52  …  0.9999999999999865, 0.9999999999999958, 0.9999999999999987, 0.9999999999999996, 0.9999999999999998, 1.0, 1.0, 1.0, 1.0, 1.0]\n\n\n\n\nCode\nfunction plot_res_contour()\n    fig=Figure()\n    ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d3class-contour\")\n    \n    \n    for (idx,cat) in enumerate(categ)\n        indc = findall(x -&gt; x == cat, byCat)\n        scatter!(ax,iris[:,3][indc],iris[:,4][indc];color=(colors[idx], 0.8), markersize=probres[idx].*10, strokewidth=1, strokecolor=:black, label=\"$cat\")\n        \n    end\n   fig\nend\nplot_res_contour()"
   },
   {
-    "objectID": "statistics/5-2d-decision-boundary.html",
-    "href": "statistics/5-2d-decision-boundary.html",
-    "title": "5-2d-decision-boundary",
+    "objectID": "statistics/8-dotplot.html",
+    "href": "statistics/8-dotplot.html",
+    "title": "8-dotplot",
     "section": "",
-    "text": "Code\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nusing MLJ\nLogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n#X, y = make_blobs(centers = 2)\nmach = fit!(machine(LogisticClassifier(), X, y))\npredict(mach, X)\nfitted_params(mach)\nprobs=predict(mach, x_test)|&gt;Array #返回分类概率值\nprobs_res=broadcast(pdf, probs, 1.0).|&gt;(d-&gt;round(d,digits=2))|&gt;d-&gt;reshape(d,nums,nums) #返回概率为1.0(\"virginica\")的概率值\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\nimport MLJLinearModels ✔\n\n\n100×100 Matrix{Float64}:\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n ⋮                             ⋮     ⋱            ⋮                   \n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0"
+    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法"
   },
   {
-    "objectID": "statistics/5-2d-decision-boundary.html#plot-results",
-    "href": "statistics/5-2d-decision-boundary.html#plot-results",
-    "title": "5-2d-decision-boundary",
-    "section": "plot results",
-    "text": "plot results\n\n\nCode\n    fig=Figure(resolution=(1600,800))\n\n    function plot_res_contour()\n\n        ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contour\")\n        contour!(ax, tx, ty, probs_res; labels=true)\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    function plot_res_contourf()\n\n        ax = Axis(fig[1, 2], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contourf\")\n        contourf!(ax, tx, ty, probs_res; levels=6, colormap=(:heat, 0.5))\n        #contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1.0 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    plot_res_contourf()\n    plot_res_contour()"
+    "objectID": "statistics/8-dotplot.html#load-package",
+    "href": "statistics/8-dotplot.html#load-package",
+    "title": "8-dotplot",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()"
   },
   {
-    "objectID": "statistics/6-mutli-variable-distributions.html",
-    "href": "statistics/6-mutli-variable-distributions.html",
-    "title": "6-bio-normal-dist",
+    "objectID": "statistics/8-dotplot.html#make-data",
+    "href": "statistics/8-dotplot.html#make-data",
+    "title": "8-dotplot",
+    "section": "2. make data",
+    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted"
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#plot",
+    "href": "statistics/8-dotplot.html#plot",
+    "title": "8-dotplot",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\nRObject{VecSxp}"
+  },
+  {
+    "objectID": "statistics/4-pair-plots.html",
+    "href": "statistics/4-pair-plots.html",
+    "title": "4-pair-plots",
     "section": "",
-    "text": "Code\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)"
+    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa"
   },
   {
-    "objectID": "statistics/2-2d-descison-boundary.html",
-    "href": "statistics/2-2d-descison-boundary.html",
-    "title": "2-2dimension decision boundary",
+    "objectID": "statistics/3-bio-norm-dist.html",
+    "href": "statistics/3-bio-norm-dist.html",
+    "title": "3-biovariate-normal-dist",
     "section": "",
-    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
+    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
   },
   {
-    "objectID": "statistics/2-2d-descison-boundary.html#load-package",
-    "href": "statistics/2-2d-descison-boundary.html#load-package",
-    "title": "2-2dimension decision boundary",
+    "objectID": "statistics/3-bio-norm-dist.html#load-package",
+    "href": "statistics/3-bio-norm-dist.html#load-package",
+    "title": "3-biovariate-normal-dist",
     "section": "",
-    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic"
+    "text": "Code\n  using GLMakie, Distributions\n  using FileIO"
   },
   {
-    "objectID": "statistics/2-2d-descison-boundary.html#plots",
-    "href": "statistics/2-2d-descison-boundary.html#plots",
-    "title": "2-2dimension decision boundary",
-    "section": "3. plots",
-    "text": "3. plots\n\n\nCode\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n\n\n\n\n\nFigure 1: 2d-decision-boundary"
+    "objectID": "statistics/3-bio-norm-dist.html#plot",
+    "href": "statistics/3-bio-norm-dist.html#plot",
+    "title": "3-biovariate-normal-dist",
+    "section": "2. plot",
+    "text": "2. plot\n\n\nCode\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" =&gt; Σ₁, \"diagonal\" =&gt; Σ₂, \"spherical\" =&gt; Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig"
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html",
+    "href": "statistics/10-dirichlet-dist.html",
+    "title": "10-dirichlet-dist",
+    "section": "",
+    "text": "简介\n\n\n\ndirichlet分布是Beta 分布的多元泛化\n参照 :Visualizing Dirichlet Distributions with Matplotlib"
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html#load-package",
+    "href": "statistics/10-dirichlet-dist.html#load-package",
+    "title": "10-dirichlet-dist",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing Distributions, GLMakie, Random, Pipe\nRandom.seed!(34343)\n\n\nTaskLocalRNG()"
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html#beta-分布",
+    "href": "statistics/10-dirichlet-dist.html#beta-分布",
+    "title": "10-dirichlet-dist",
+    "section": "2. Beta 分布",
+    "text": "2. Beta 分布\n\n2.1 定义\nBeta分布的定义:\n\n\nCode\n@doc(Beta)\n\n\nBeta(α, β)\nThe Beta distribution has probability density function\n\\[\nf(x; \\alpha, \\beta) = \\frac{1}{B(\\alpha, \\beta)}\nx^{\\alpha - 1} (1 - x)^{\\beta - 1}, \\quad x \\in [0, 1]\n\\]\nThe Beta distribution is related to the Gamma distribution via the property that if \\(X \\sim \\operatorname{Gamma}(\\alpha)\\) and \\(Y \\sim \\operatorname{Gamma}(\\beta)\\) independently, then \\(X / (X + Y) \\sim \\operatorname{Beta}(\\alpha, \\beta)\\).\nBeta()        # equivalent to Beta(1, 1)\nBeta(α)       # equivalent to Beta(α, α)\nBeta(α, β)    # Beta distribution with shape parameters α and β\n\nparams(d)     # Get the parameters, i.e. (α, β)\nExternal links\n\nBeta distribution on Wikipedia\n\n\n\nBeta分布有两个参数α,β, 当两个参数取不同值的时候, 分布的概率密度函数变现不同.\n\n\n2.2 不同参数的 pdf曲线\n\n\nCode\nxs=range(0,1,100)\nparams=[[.1,.1],[.5,.5],[1,1],[5,5],[10,10],[50,50]]\n#sas1 = @pipe params1.|&gt;(pdf(Beta(_...),xs))\nfunction plot_res()\n    fig = Figure(resolution=(900,900))\n    axs = [Axis(fig[i, j]) for i in 1:2, j in 1:3]\n\n    for (ax,vec) in zip(axs,params)\n        ax.title=\"$vec\"\n       lines!(ax,Beta(vec...),color=(:orange, 0.8))\n    end\n    fig\nend\nplot_res()"
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html#dirichlet分布",
+    "href": "statistics/10-dirichlet-dist.html#dirichlet分布",
+    "title": "10-dirichlet-dist",
+    "section": "3 Dirichlet分布",
+    "text": "3 Dirichlet分布\n\n3.1 定义\n\n\nCode\n@doc(Dirichlet)\n\n\nDirichlet\nThe Dirichlet distribution is often used as the conjugate prior for Categorical or Multinomial distributions. The probability density function of a Dirichlet distribution with parameter \\(\\alpha = (\\alpha_1, \\ldots, \\alpha_k)\\) is:\n\\[\nf(x; \\alpha) = \\frac{1}{B(\\alpha)} \\prod_{i=1}^k x_i^{\\alpha_i - 1}, \\quad \\text{ with }\nB(\\alpha) = \\frac{\\prod_{i=1}^k \\Gamma(\\alpha_i)}{\\Gamma \\left( \\sum_{i=1}^k \\alpha_i \\right)},\n\\quad x_1 + \\cdots + x_k = 1\n\\]\n# Let alpha be a vector\nDirichlet(alpha)         # Dirichlet distribution with parameter vector alpha\n\n# Let a be a positive scalar\nDirichlet(k, a)          # Dirichlet distribution with parameter a * ones(k)\n\n\n\n\n3.2 Dirichlet sampling plot\n\n\nCode\nlet\n    vecs = [[0.1,0.1,0.1],[0.2,0.2,0.2],[1, 1, 1], [2, 2, 2], [6, 6, 6], [10, 10, 10],[20,20,20],[50,50,50],[100,100,100]]\n    sas = @pipe vecs |&gt; Dirichlet.(_) |&gt; rand.(_, 1000)\n\n    xs = ys = zs = range(0, 1, 100)\n    function plot_res()\n        fig = Figure(resolution=(900,900))\n        axs = [Axis3(fig[i, j];azimuth=0.2pi) for i in 1:3, j in 1:3]\n\n        for (ax, sa,vec) in zip(axs, sas,vecs)\n            ax.title=\"$vec\"\n            lines!(ax, [1, 0, 0,1], [0, 1, 0,0], [0, 0, 1,0];color=(:lightgreen,0.5),linewidth=3)\n            scatter!(ax, eachrow(sa)...; markersize=4, color=(:orange, 0.9))\n        end\n\n        fig\n    end\n    plot_res()\n\nend"
+  },
+  {
+    "objectID": "statistics/12-likelihood-coin-toss.html",
+    "href": "statistics/12-likelihood-coin-toss.html",
+    "title": "12-likelihood of coin toss",
+    "section": "",
+    "text": "简介\n\n\n\nlikelihook解释 参见:understanding-bayes-a-look-at-the-likelihood\n\n\n\n问题:硬币的\\(p(head)=?\\)\n模型:二项式分布\n搜索所有\\(p(head)\\) 产生观测结果的概率, 选出最有可能的一个 \\(p(head)\\)\n\n似然率要解决的问题 对于投掷 10 次硬币, 获取 7 次正面的结果 pdf(Binomial(10,0.5),data=7)\npdf(Binomial(10,0.7),data=7)\npdf(Binomial(10,0.1),data=7)\n返回值都不为 0,意思是p(head)=[0.1,0.5,0.7]的硬币都有机会获得这个观测结果 在这种硬币P(head)参数未知的情况下, 我们挑选出最有可能的一个参数值,这就是最大似然率估计"
+  },
+  {
+    "objectID": "statistics/12-likelihood-coin-toss.html#load-package",
+    "href": "statistics/12-likelihood-coin-toss.html#load-package",
+    "title": "12-likelihood of coin toss",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing Distributions,GLMakie,Random,Pipe\nRandom.seed!(123)\n\n\nTaskLocalRNG()"
+  },
+  {
+    "objectID": "statistics/12-likelihood-coin-toss.html#基本概率模型二项式分布",
+    "href": "statistics/12-likelihood-coin-toss.html#基本概率模型二项式分布",
+    "title": "12-likelihood of coin toss",
+    "section": "2. 基本概率模型:二项式分布",
+    "text": "2. 基本概率模型:二项式分布\n\n\nCode\n@doc(Binomial)\n\n\nBinomial(n,p)\nA Binomial distribution characterizes the number of successes in a sequence of independent trials. It has two parameters: n, the number of trials, and p, the probability of success in an individual trial, with the distribution:\n\\[\nP(X = k) = {n \\choose k}p^k(1-p)^{n-k},  \\quad \\text{ for } k = 0,1,2, \\ldots, n.\n\\]\nBinomial()      # Binomial distribution with n = 1 and p = 0.5\nBinomial(n)     # Binomial distribution for n trials with success rate p = 0.5\nBinomial(n, p)  # Binomial distribution for n trials with success rate p\n\nparams(d)       # Get the parameters, i.e. (n, p)\nntrials(d)      # Get the number of trials, i.e. n\nsuccprob(d)     # Get the success rate, i.e. p\nfailprob(d)     # Get the failure rate, i.e. 1 - p\nExternal links:\n\nBinomial distribution on Wikipedia"
+  },
+  {
+    "objectID": "statistics/12-likelihood-coin-toss.html#硬币试验的不同观测值概率模型定义",
+    "href": "statistics/12-likelihood-coin-toss.html#硬币试验的不同观测值概率模型定义",
+    "title": "12-likelihood of coin toss",
+    "section": "3. 硬币试验的不同观测值概率模型定义",
+    "text": "3. 硬币试验的不同观测值概率模型定义\n定义input_data 函数接受data观测值,返回一个新的函数, 参数是概率值, 返回值为概率密度\n\n\nCode\n@kwdef struct CoinToss\n    total::Int=10\n    success::Int=7\nend\nfunction input_data(params::CoinToss)\n   total,success=params.total,params.success\n   return  (p::Real)-&gt; @pipe Binomial(total,p)|&gt;pdf(_,success)\nend\n\n\ninput_data (generic function with 1 method)"
+  },
+  {
+    "objectID": "statistics/12-likelihood-coin-toss.html#次试验不同正面观察结果下的概率密度图",
+    "href": "statistics/12-likelihood-coin-toss.html#次试验不同正面观察结果下的概率密度图",
+    "title": "12-likelihood of coin toss",
+    "section": "4. 10次试验,不同正面观察结果下的概率密度图",
+    "text": "4. 10次试验,不同正面观察结果下的概率密度图\n\n\nCode\nprobrange=range(0.0,1.0,50)\nsuccess_arr=0:10  #不同正面次数\nfig=Figure(resolution=(600,600))\nfor i in success_arr\n    params=CoinToss(success=i)\n    local row= div(i,3)\n    local col=rem(i,3)\n    local ax=Axis(fig[row+1,col])\n    \n    local likelihood=input_data(params)\n    max_likelihood=likelihood.(probrange)|&gt;maximum\n    x=undef\n    for i in probrange\n        if likelihood(i)==max_likelihood\n            x=round(i,digits=2)\n           \n        end\n    end\n    lines!(ax,probrange,likelihood.(probrange),label=\"head=$(i)\")\n    vlines!(ax,[x],label=\"p=$(x)\")\n    ax.title=\"head=$(i),p=$(x)\"\n   \nend\nfig"
   },
   {
     "objectID": "statistics/7-mvnormal-sampling.html",
