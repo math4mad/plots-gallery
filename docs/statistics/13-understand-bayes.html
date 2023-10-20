@@ -8,7 +8,7 @@
 
 <meta name="author" content="math4mads">
 
-<title>GLMakie Gallery - 5-2d-decision-boundary</title>
+<title>GLMakie Gallery - 13-understanding-bayes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,6 +94,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -106,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/5-2d-decision-boundary.html">5-2d-decision-boundary</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/13-understand-bayes.html">13-understanding-bayes</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -210,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/13-understand-bayes.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistics/13-understand-bayes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">13-understanding-bayes</span></a>
   </div>
 </li>
@@ -234,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/5-2d-decision-boundary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/5-2d-decision-boundary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5-2d-decision-boundary</span></a>
   </div>
 </li>
@@ -303,7 +305,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#plot-results" id="toc-plot-results" class="nav-link active" data-scroll-target="#plot-results">plot results</a></li>
+  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
+  <li><a href="#define-likelihood-function" id="toc-define-likelihood-function" class="nav-link" data-scroll-target="#define-likelihood-function">2. define likelihood function</a></li>
+  <li><a href="#plot-results" id="toc-plot-results" class="nav-link" data-scroll-target="#plot-results">3. plot results</a>
+  <ul class="collapse">
+  <li><a href="#次硬币试验6-次正面" id="toc-次硬币试验6-次正面" class="nav-link" data-scroll-target="#次硬币试验6-次正面">3.1 10 次硬币试验,6 次正面</a></li>
+  <li><a href="#次试验-60-次正面" id="toc-次试验-60-次正面" class="nav-link" data-scroll-target="#次试验-60-次正面">3.2 100次试验 60 次正面</a></li>
+  <li><a href="#次试验300-次正面" id="toc-次试验300-次正面" class="nav-link" data-scroll-target="#次试验300-次正面">3.3 500次试验,300 次正面</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -312,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">5-2d-decision-boundary</h1>
+<h1 class="title">13-understanding-bayes</h1>
 </div>
 
 
@@ -333,148 +342,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-note callout-titled" title="决策边界图">
+<div class="callout callout-style-default callout-note callout-titled" title="简介">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-决策边界图
+简介
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>probml page 84,figure 2.13</p>
-<ul>
-<li><p>概率值预测方法 参见: https://discourse.julialang.org/t/extracting-values-from-univariatefinite/62794/3</p></li>
-<li><p>平面上每个点作为预测数据集</p></li>
-<li><p>通过学习的模型对平面上每个点给出概率值</p></li>
-<li><p>利用 <code>contour</code>方法绘出概率值</p></li>
-</ul>
+<p>下面我们考察一下一枚硬币真实参数为:<code>p(head)=0.6</code>的硬币在不同观察结果(<code>obs</code>)下的似然率估计</p>
+<p>估计两个点<code>p(head)=[a=0.5,b=0.8]</code></p>
+<p>在这两个点的最大似然率的估计可以表示为赔率(odds), 注意这不是概率</p>
+<p>可以直观的在概率密度图上观察到两者的差异</p>
+<p>当 观测值逐渐增加以后, 两个点的条件概率会趋近于 0, 赔率会趋近于 1 <span class="math display">\[L(a,b)=\frac{p(obs|a)}{p(obs|b)}\]</span></p>
 </div>
 </div>
+<section id="load-package" class="level2">
+<h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
 <div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">MLJ</span>:fit!,predict,predict_mode,predict_mean,machine</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MLJ</span>,<span class="bu">GLMakie</span>,<span class="bu">Random</span>,<span class="bu">DataFrames</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> <span class="fu">load_iris</span>(); </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span><span class="fu">DataFrame</span>(iris);</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>nums<span class="op">=</span><span class="fl">100</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>iris[!, <span class="op">:</span>target] <span class="op">=</span> [r.target <span class="op">==</span> <span class="st">"virginica"</span> ? <span class="fl">1.0</span> <span class="op">:</span> <span class="fl">0.0</span> for r <span class="kw">in</span> <span class="fu">eachrow</span>(iris)]</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>iris<span class="op">=</span><span class="fu">coerce</span>(iris, <span class="op">:</span>target<span class="op">=&gt;</span> Multiclass )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>gdf<span class="op">=</span><span class="fu">groupby</span>(iris, <span class="op">:</span>target)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>X,y<span class="op">=</span>iris[<span class="op">:</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span>],iris[<span class="op">:</span>,<span class="op">:</span>target]</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>cats<span class="op">=</span><span class="fu">levels</span>(y)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">boundary_data</span>(df,;n<span class="op">=</span>nums)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    n1<span class="op">=</span>n2<span class="op">=</span>n</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    xlow,xhigh<span class="op">=</span><span class="fu">extrema</span>(df[<span class="op">:</span>,<span class="fl">1</span>])</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    ylow,yhigh<span class="op">=</span><span class="fu">extrema</span>(df[<span class="op">:</span>,<span class="fl">2</span>])</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    tx <span class="op">=</span> <span class="fu">LinRange</span>(xlow,xhigh,n1)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    ty <span class="op">=</span> <span class="fu">LinRange</span>(ylow,yhigh,n2)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    x_test <span class="op">=</span> <span class="fu">mapreduce</span>(collect, hcat, <span class="bu">Iterators</span>.<span class="fu">product</span>(tx, ty));</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    x_test<span class="op">=</span>MLJ.<span class="fu">table</span>(x_test<span class="op">'</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tx,ty,x_test</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>tx,ty,x_test<span class="op">=</span><span class="fu">boundary_data</span>(X)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MLJ</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>LogisticClassifier <span class="op">=</span> <span class="pp">@load</span> LogisticClassifier pkg<span class="op">=</span>MLJLinearModels</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#X, y = make_blobs(centers = 2)</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>mach <span class="op">=</span> <span class="fu">fit!</span>(<span class="fu">machine</span>(<span class="fu">LogisticClassifier</span>(), X, y))</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mach, X)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">fitted_params</span>(mach)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>probs<span class="op">=</span><span class="fu">predict</span>(mach, x_test)<span class="op">|&gt;</span><span class="dt">Array</span> <span class="co">#返回分类概率值</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>probs_res<span class="op">=</span><span class="fu">broadcast</span>(pdf, probs, <span class="fl">1.0</span>)<span class="op">.|&gt;</span>(<span class="fu">d-&gt;round</span>(d,digits<span class="op">=</span><span class="fl">2</span>))<span class="op">|&gt;</span><span class="fu">d-&gt;reshape</span>(d,nums,nums) <span class="co">#返回概率为1.0("virginica")的概率值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>[ Info: For silent loading, specify `verbosity=0`. 
-[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).
-┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}
-│   optim_options: Optim.Options{Float64, Nothing}
-└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="im">using</span> <span class="bu">Distributions</span>,<span class="bu">GLMakie</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>import MLJLinearModels ✔</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>100×100 Matrix{Float64}:
- 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0
- ⋮                             ⋮     ⋱            ⋮                   
- 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0
- 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0</code></pre>
-</div>
-</div>
-<section id="plot-results" class="level2">
-<h2 class="anchored" data-anchor-id="plot-results">plot results</h2>
+</section>
+<section id="define-likelihood-function" class="level2">
+<h2 class="anchored" data-anchor-id="define-likelihood-function">2. define likelihood function</h2>
 <div class="cell" data-execution_count="2">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1600</span>,<span class="fl">800</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_res_contour</span>()</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], xlabel<span class="op">=</span><span class="st">"petal-length"</span>, ylabel<span class="op">=</span><span class="st">"petal-width"</span>, title<span class="op">=</span><span class="st">"2d2class-contour"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">contour!</span>(ax, tx, ty, probs_res; labels<span class="op">=</span><span class="cn">true</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        colors <span class="op">=</span> [<span class="op">:</span>red, <span class="op">:</span>blue]</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scatter!</span>(ax, gdf[i][<span class="op">:</span>, <span class="fl">3</span>], gdf[i][<span class="op">:</span>, <span class="fl">4</span>], color<span class="op">=</span>(colors[i], <span class="fl">0.8</span>), marker<span class="op">=:</span>circle, markersize<span class="op">=</span><span class="fl">10</span>, strokewidth<span class="op">=</span><span class="fl">1</span>, strokecolor<span class="op">=:</span>black, label<span class="op">=</span>gdf[i][<span class="fl">1</span>, <span class="fl">5</span>] <span class="op">==</span> <span class="fl">1</span> ? <span class="st">"virginica"</span> <span class="op">:</span> <span class="st">"non-virginica"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">axislegend</span>(ax, position<span class="op">=:</span>lt)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">#save("./imgs/iris-logreg-2d-2class-contourf.png",fig)</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        fig</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_res_contourf</span>()</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">2</span>], xlabel<span class="op">=</span><span class="st">"petal-length"</span>, ylabel<span class="op">=</span><span class="st">"petal-width"</span>, title<span class="op">=</span><span class="st">"2d2class-contourf"</span>)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">contourf!</span>(ax, tx, ty, probs_res; levels<span class="op">=</span><span class="fl">6</span>, colormap<span class="op">=</span>(<span class="op">:</span>heat, <span class="fl">0.5</span>))</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="co">#contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        colors <span class="op">=</span> [<span class="op">:</span>red, <span class="op">:</span>blue]</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">scatter!</span>(ax, gdf[i][<span class="op">:</span>, <span class="fl">3</span>], gdf[i][<span class="op">:</span>, <span class="fl">4</span>], color<span class="op">=</span>(colors[i], <span class="fl">0.8</span>), marker<span class="op">=:</span>circle, markersize<span class="op">=</span><span class="fl">10</span>, strokewidth<span class="op">=</span><span class="fl">1</span>, strokecolor<span class="op">=:</span>black, label<span class="op">=</span>gdf[i][<span class="fl">1</span>, <span class="fl">5</span>] <span class="op">==</span> <span class="fl">1.0</span> ? <span class="st">"virginica"</span> <span class="op">:</span> <span class="st">"non-virginica"</span>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">axislegend</span>(ax, position<span class="op">=:</span>lt)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="co">#save("./imgs/iris-logreg-2d-2class-contourf.png",fig)</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        fig</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_res_contourf</span>()</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_res_contour</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<p><img src="5-2d-decision-boundary_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>xc<span class="op">=</span>[<span class="fl">0.5</span>,<span class="fl">0.8</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_likelihood</span>(;p<span class="op">=</span><span class="fl">0.6</span>,n<span class="op">=</span><span class="fl">10</span>,s<span class="op">=</span><span class="fl">6</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    probrange<span class="op">=</span><span class="fu">range</span>(<span class="fl">0.0</span>,<span class="fl">1.0</span>,<span class="fl">50</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">500</span>,<span class="fl">300</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>(p)<span class="op">=</span><span class="fu">Binomial</span>(n,p)<span class="op">|&gt;</span><span class="fu">d-&gt;pdf</span>(d,s)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span><span class="dt">Float64</span>[<span class="fu">fun</span>(p) for p <span class="kw">in</span> probrange]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    pdf1<span class="op">=</span><span class="fu">fun</span>(xc[<span class="fl">1</span>]);pdf2<span class="op">=</span><span class="fu">fun</span>(xc[<span class="fl">2</span>])</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines!</span>(ax,probrange,data,label<span class="op">=</span><span class="st">"n=</span><span class="sc">$</span>(n)<span class="st">,success=</span><span class="sc">$</span>(s)<span class="st">"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>(ax,xc,[pdf1,pdf2];color<span class="op">=</span>[<span class="op">:</span>red,<span class="op">:</span>green],markersize<span class="op">=</span><span class="fl">20</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines!</span>(ax,[xc[<span class="fl">1</span>],xc[<span class="fl">2</span>],xc[<span class="fl">2</span>]],[pdf1,pdf1,pdf2];linestyle<span class="op">=:</span>dot)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axislegend</span>(halign <span class="op">=:</span>left, valign <span class="op">=:</span>top)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    fig</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>plot_likelihood (generic function with 1 method)</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="plot-results" class="level2">
+<h2 class="anchored" data-anchor-id="plot-results">3. plot results</h2>
+<section id="次硬币试验6-次正面" class="level3">
+<h3 class="anchored" data-anchor-id="次硬币试验6-次正面">3.1 10 次硬币试验,6 次正面</h3>
+<p>两个点的高度相除就是基于实验观察的赔率</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_likelihood</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<p><img src="13-understand-bayes_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="次试验-60-次正面" class="level3">
+<h3 class="anchored" data-anchor-id="次试验-60-次正面">3.2 100次试验 60 次正面</h3>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_likelihood</span>(;p<span class="op">=</span><span class="fl">0.6</span>,n<span class="op">=</span><span class="fl">100</span>,s<span class="op">=</span><span class="fl">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<p><img src="13-understand-bayes_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="次试验300-次正面" class="level3">
+<h3 class="anchored" data-anchor-id="次试验300-次正面">3.3 500次试验,300 次正面</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_likelihood</span>(;p<span class="op">=</span><span class="fl">0.6</span>,n<span class="op">=</span><span class="fl">500</span>,s<span class="op">=</span><span class="fl">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<p><img src="13-understand-bayes_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

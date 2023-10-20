@@ -80,3 +80,15 @@ for i in success_arr
 end
 fig
 ```
+
+### 5. 最大似然率估计的正式方法
+`Distributions.jl`提供了`fit_mle`函数
+```{julia}
+@doc(fit_mle)
+```
+
+```{julia}
+for i in 1:10
+@info "total=10,success=$i mle"=> fit_mle(Binomial, 10,[i])
+end
+```
