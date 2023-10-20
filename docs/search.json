@@ -221,7 +221,7 @@
     "href": "statistics/13-understand-bayes.html#plot-results",
     "title": "13-understanding-bayes",
     "section": "3. plot results",
-    "text": "3. plot results\n\n3.1 10 次硬币试验,6 次正面\n两个点的高度相除就是基于实验观察的赔率\n\nplot_likelihood()\n\n\n\n\n\n\n3.2 100次试验 60 次正面\n\nplot_likelihood(;p=0.6,n=100,s=60)\n\n\n\n\n\n\n3.3 500次试验,300 次正面\n\nplot_likelihood(;p=0.6,n=500,s=300)"
+    "text": "3. plot results\n\n3.1 10 次硬币试验,6 次正面\n两个点的高度相除就是基于实验观察的赔率\n\nplot_likelihood()\n\n\n\n\n\n\n3.2 100次试验 60 次正面\n\nplot_likelihood(;p=0.6,n=100,s=60)\n\n\n\n\n\n\n3.3 500次试验,300 次正面\n\nplot_likelihood(;p=0.6,n=500,s=300)\n\n\n\n\n\n在上述实验中模型参数是事先知道的:p(head)=0.6,但是对于很多问题, 参数未知. 在这种情况下, 如果给定两个参数, 优先选择赔率最大的参数作为估计"
   },
   {
     "objectID": "statistics/10-dirichlet-dist.html",

@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">axislegend</span>(halign <span class="op">=:</span>left, valign <span class="op">=:</span>top)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    fig</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>plot_likelihood (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -397,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>两个点的高度相除就是基于实验观察的赔率</p>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_likelihood</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <p><img src="13-understand-bayes_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
@@ -406,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="次试验-60-次正面">3.2 100次试验 60 次正面</h3>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_likelihood</span>(;p<span class="op">=</span><span class="fl">0.6</span>,n<span class="op">=</span><span class="fl">100</span>,s<span class="op">=</span><span class="fl">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <p><img src="13-understand-bayes_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
@@ -415,9 +415,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="次试验300-次正面">3.3 500次试验,300 次正面</h3>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_likelihood</span>(;p<span class="op">=</span><span class="fl">0.6</span>,n<span class="op">=</span><span class="fl">500</span>,s<span class="op">=</span><span class="fl">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <p><img src="13-understand-bayes_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
+</div>
+<div class="callout-info" title="讨论">
+<p>在上述实验中模型参数是事先知道的:<code>p(head)=0.6</code>,但是对于很多问题, 参数未知. 在这种情况下, 如果给定两个参数, 优先选择赔率最大的参数作为估计</p>
 </div>
 
 
