@@ -63,6 +63,34 @@
     "text": "介绍\n\n\n\nGLMakie 方法\n\n\nCourse info & details here\ncommit chage gh-pages"
   },
   {
+    "objectID": "statistics/15-bubble-plot.html",
+    "href": "statistics/15-bubble-plot.html",
+    "title": "15-bubble-plot",
+    "section": "",
+    "text": "简介\n\n\n\n\nref csv"
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html#load-pacakge",
+    "href": "statistics/15-bubble-plot.html#load-pacakge",
+    "title": "15-bubble-plot",
+    "section": "1. load pacakge",
+    "text": "1. load pacakge\n\n\nCode\nusing GLMakie,CSV,DataFrames,GLMakie,LinearAlgebra,Pipe"
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html#load-data-dataframe",
+    "href": "statistics/15-bubble-plot.html#load-data-dataframe",
+    "title": "15-bubble-plot",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndata=@pipe CSV.File(\"./data/BodyFat.csv\")|&gt;DataFrame|&gt;dropmissing|&gt;select(_,feature)\nfirst(data,10)\n\n\n10×3 DataFrame\n\n\n\nRow\nHeight\nWeight\nBodyfat\n\n\n\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n73.5\n247.25\n32.3\n\n\n2\n71.5\n177.25\n22.5\n\n\n3\n69.0\n156.25\n22.0\n\n\n4\n67.75\n154.25\n12.3\n\n\n5\n70.0\n177.0\n20.5\n\n\n6\n72.0\n198.0\n22.6\n\n\n7\n71.5\n200.5\n28.7\n\n\n8\n70.25\n163.0\n21.3\n\n\n9\n71.5\n241.25\n29.9\n\n\n10\n71.0\n218.5\n21.3"
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html#plot-bubble-img",
+    "href": "statistics/15-bubble-plot.html#plot-bubble-img",
+    "title": "15-bubble-plot",
+    "section": "3. plot bubble img",
+    "text": "3. plot bubble img\n\n\nCode\n    function plot_bubble()\n        fig=Figure()\n        ax=Axis(fig[1,1];title=\"Bubble size: BodyFat\",xlabel=\"$(feature[1])\",ylabel=\"$(feature[2])\")\n        Box(fig[1,1];color = (:orange,0.1),strokewidth=0.5)\n        scatter!(ax,data[!,1],data[!,2],markersize=data[!,3].*2,color=(:blue,0.2),strokewidth=3,strokecolor=:black)\n        fig\n        #save(\"Bubble-size-BodyFat.png\",fig)\n    end\n\n    plot_bubble()"
+  },
+  {
     "objectID": "statistics/1-normaldist.html",
     "href": "statistics/1-normaldist.html",
     "title": "1-normal-distributions",
@@ -313,6 +341,13 @@
     "title": "7-mv-normal-sampling",
     "section": "3. plot res",
     "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(800,400))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()"
+  },
+  {
+    "objectID": "statistics/14-unicode-plot.html",
+    "href": "statistics/14-unicode-plot.html",
+    "title": "14-unicode-plot-method",
+    "section": "",
+    "text": "简介\n\n\n\n使用Readme ·UnicodePlots.jl 以字符形式作图\n\n\n\n\nCode\nusing Plots,UnicodePlots\ndata=[21, 17, 21, 18, 22, 31, 31, 34, 34, 35, 35, 36, 39, 36,35]\nplt=scatterplot(data)\nshow(plt)\n\n\n      ┌────────────────────────────────────────┐ \n   40 │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⡀⠀⠂⠀⠂⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠄⠀⠀⠀⠄⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠄⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n   10 │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      └────────────────────────────────────────┘ \n      ⠀0⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀20⠀ \n\n\n(18, 49)"
   },
   {
     "objectID": "machinelearning/1-classfication-comparison.html",

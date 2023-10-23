@@ -1,0 +1,37 @@
+---
+title: "15-bubble-plot"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="简介"}
+### Bubble plot 
+ref [csv](https://www.lock5stat.com/datasets3e/BodyFat.csv)
+
+:::
+
+## 1. load pacakge
+```{julia}
+using GLMakie,CSV,DataFrames,GLMakie,LinearAlgebra,Pipe
+```
+
+## 2. load data->dataframe
+```{julia}
+feature=["Height","Weight","Bodyfat"]
+data=@pipe CSV.File("./data/BodyFat.csv")|>DataFrame|>dropmissing|>select(_,feature)
+first(data,10)
+```
+
+## 3. plot bubble img
+```{julia}
+    function plot_bubble()
+        fig=Figure()
+        ax=Axis(fig[1,1];title="Bubble size: BodyFat",xlabel="$(feature[1])",ylabel="$(feature[2])")
+        Box(fig[1,1];color = (:orange,0.1),strokewidth=0.5)
+        scatter!(ax,data[!,1],data[!,2],markersize=data[!,3].*2,color=(:blue,0.2),strokewidth=3,strokecolor=:black)
+        fig
+        #save("Bubble-size-BodyFat.png",fig)
+    end
+
+    plot_bubble()
+```

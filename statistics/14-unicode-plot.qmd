@@ -1,0 +1,17 @@
+---
+title: "14-unicode-plot-method"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="简介"}
+ 使用[Readme ·UnicodePlots.jl](https://docs.juliahub.com/UnicodePlots/Ctj9q/2.7.0/)
+ 以字符形式作图
+:::
+
+```{julia}
+using Plots,UnicodePlots
+data=[21, 17, 21, 18, 22, 31, 31, 34, 34, 35, 35, 36, 39, 36,35]
+plt=scatterplot(data)
+show(plt)
+```
