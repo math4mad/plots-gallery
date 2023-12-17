@@ -1,0 +1,26 @@
+---
+title: "16-rotate-plots"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="参考"}
+[Makie: how to make a vertical (rotated by 90deg) lines! plot](https://discourse.julialang.org/t/makie-how-to-make-a-vertical-rotated-by-90deg-lines-plot/94207)
+:::
+
+```{julia}
+using GLMakie
+
+with_theme(theme_light()) do 
+    fig = Figure()
+    ax_main = Axis(fig[1,1:2])
+    ax_side = Axis(fig[1,3], xlabel = "y label", ylabel = "x label") # well, just flip these ones
+    Xs = Ys = -10:0.1:10
+    contour!(ax_main, Xs, Ys, exp.((-Xs'.^2 .- Ys.^2)/25))
+
+    obj = lines!(ax_side, Xs, exp.(-Xs.^2/25))
+    rotate!(obj, -π/2) # rotates your plotted object
+    ax_side.yreversed = true
+    fig
+end
+```

@@ -1,0 +1,54 @@
+---
+title: "f1 2019 drivers  statistics"
+author: math4mad
+code-fold: true
+---
+
+```
+feature :["Drivers", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"]
+```
+## 1. load pacakge
+```{julia}
+using CairoMakie,CSV,DataFrames,Pipe,Tidier
+```
+
+## 2. load data->dataframe
+```{julia}
+feature=["Height","Weight","Bodyfat"]
+df=@pipe CSV.File("./data/f1_2019_drivers_data.csv")|>DataFrame|>dropmissing
+row,cor=size(df)
+name=df.Drivers
+score=df[:,2:end]
+first(df,10)
+
+```
+
+
+## 3. plot 
+```{julia}
+
+f1 = ByRow(hidedecorations!)
+f2 =ByRow(hidedecorations!)
+with_theme(theme_black()) do
+ fig=Figure(resolution=(600,900))
+ supertitle = Label(fig[0, :], "Formula One Drivers 2019 Season Points", fontsize = 24)
+ grids =[fig[idx, 1] = GridLayout() for idx in 1:row]
+ 
+ for idx  in eachindex(grids)
+     name=df[idx,:].Drivers
+     score=Vector(df[idx,2:end])
+     sum_score=sum(score)
+     al=Axis(grids[idx][1,1])
+     ac=Axis(grids[idx][1,2])
+     ar=Axis(grids[idx][1,3])
+     text!(al,0,0;text=name,align=(:center,:center),fontsize = 16)
+     barplot!(ac, 1:21,score;color=:red,strokewidth=0.3,strokecolor=(:white))
+     text!(ar,0,0,text="$(sum_score)",align=(:center,:center),fontsize = 16)
+     f1([al,ac,ar])
+     hidespines!(al)
+     hidespines!(ar)
+     hidespines!(ac, :t, :r,:l)
+ end
+ fig
+end
+```

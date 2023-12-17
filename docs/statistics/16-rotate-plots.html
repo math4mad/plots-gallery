@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 7-mv-normal-sampling</title>
+<title>GLMakie Gallery - 16-rotate-plots</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/7-mvnormal-sampling.html">7-mv-normal-sampling</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/16-rotate-plots.html">16-rotate-plots</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/16-rotate-plots.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistics/16-rotate-plots.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">16-rotate-plots</span></a>
   </div>
 </li>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/7-mvnormal-sampling.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/7-mvnormal-sampling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7-mv-normal-sampling</span></a>
   </div>
 </li>
@@ -323,22 +323,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
-  <li><a href="#define-distributions-params" id="toc-define-distributions-params" class="nav-link" data-scroll-target="#define-distributions-params">2. define distributions params</a></li>
-  <li><a href="#plot-res" id="toc-plot-res" class="nav-link" data-scroll-target="#plot-res">3. plot res</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/7-mvnormal-sampling.html">7-mv-normal-sampling</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/16-rotate-plots.html">16-rotate-plots</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">7-mv-normal-sampling</h1>
+<h1 class="title">16-rotate-plots</h1>
 </div>
 
 
@@ -348,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -361,83 +353,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="方法">
+<div class="callout callout-style-default callout-note callout-titled" title="参考">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-方法
+参考
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>通过<code>contour:levels</code>参数控制曲线的范围</p>
-<p><code>levels=1</code> 则只绘制出一条等位线</p>
+<p><a href="https://discourse.julialang.org/t/makie-how-to-make-a-vertical-rotated-by-90deg-lines-plot/94207">Makie: how to make a vertical (rotated by 90deg) lines! plot</a></p>
 </div>
 </div>
-<section id="load-package" class="level2">
-<h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
 <div class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Distributions</span>,<span class="bu">GLMakie</span>,<span class="bu">Random</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">343434</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">with_theme</span>(<span class="fu">theme_light</span>()) <span class="cf">do</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ax_main <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ax_side <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">3</span>], xlabel <span class="op">=</span> <span class="st">"y label"</span>, ylabel <span class="op">=</span> <span class="st">"x label"</span>) <span class="co"># well, just flip these ones</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    Xs <span class="op">=</span> Ys <span class="op">=</span> <span class="op">-</span><span class="fl">10</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">10</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">contour!</span>(ax_main, Xs, Ys, <span class="fu">exp</span>.((<span class="op">-</span>Xs<span class="op">'.^</span><span class="fl">2</span> <span class="op">.-</span> Ys<span class="op">.^</span><span class="fl">2</span>)<span class="op">/</span><span class="fl">25</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    obj <span class="op">=</span> <span class="fu">lines!</span>(ax_side, Xs, <span class="fu">exp</span>.(<span class="op">-</span>Xs<span class="op">.^</span><span class="fl">2</span><span class="op">/</span><span class="fl">25</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rotate!</span>(obj, <span class="op">-</span><span class="cn">π</span><span class="op">/</span><span class="fl">2</span>) <span class="co"># rotates your plotted object</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    ax_side.yreversed <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    fig</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>TaskLocalRNG()</code></pre>
-</div>
-</div>
-</section>
-<section id="define-distributions-params" class="level2">
-<h2 class="anchored" data-anchor-id="define-distributions-params">2. define distributions params</h2>
-<div class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>μ<span class="op">=</span>[<span class="fl">3</span>,<span class="fl">2</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Σ<span class="op">=</span>[<span class="fl">1</span> <span class="op">-</span><span class="fl">1.5</span>;<span class="op">-</span><span class="fl">1.5</span> <span class="fl">4</span>]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="fu">MvNormal</span>(μ,Σ)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xs<span class="op">=</span><span class="fu">range</span>(<span class="fl">0</span>,<span class="fl">6</span>,<span class="fl">100</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ys<span class="op">=</span><span class="fu">range</span>(<span class="op">-</span><span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">100</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>dens_mvnormal <span class="op">=</span> [<span class="fu">pdf</span>(d, [i, j]) for i <span class="kw">in</span> xs, j <span class="kw">in</span> ys]</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>rand_sample<span class="op">=</span><span class="fu">rand</span>(d,<span class="fl">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>2×100 Matrix{Float64}:
- 2.04893  3.14939  2.04006  2.96766  3.14777  …  2.9465   2.47969   3.17612
- 3.31172  2.04522  2.43717  1.83891  1.69139     2.44297  0.862216  0.327061</code></pre>
-</div>
-</div>
-</section>
-<section id="plot-res" class="level2">
-<h2 class="anchored" data-anchor-id="plot-res">3. plot res</h2>
-<div class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_func</span>(fig,idx,levels<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,idx], xlabel<span class="op">=</span>L<span class="st">"X"</span>, ylabel<span class="op">=</span>L<span class="st">"Y"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Box</span>(fig[<span class="fl">1</span>,idx];color <span class="op">=</span> (<span class="op">:</span>orange,<span class="fl">0.1</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>(ax,rand_sample;marker<span class="op">=:</span>circle,markersize<span class="op">=</span><span class="fl">10</span>,color<span class="op">=</span>(<span class="op">:</span>green,<span class="fl">0.1</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             strokewidth<span class="op">=</span><span class="fl">1</span>,strokecolor<span class="op">=:</span>black)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">contour!</span>(ax,xs, ys,dens_mvnormal;levels<span class="op">=</span>levels,linewidth<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_mvnormal</span>()</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">400</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fu">plot_func</span>(fig,idx,levels) for (idx,levels) <span class="kw">in</span> <span class="fu">enumerate</span>([<span class="fl">1</span>,<span class="fl">16</span>])]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    fig</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mvnormal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <figure class="figure">
-<p><img src="7-mvnormal-sampling_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="16-rotate-plots_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
