@@ -23,6 +23,8 @@ website:
         contents: statistics/*
       - section: "Machine Learning"
         contents: machinelearning/*
+      - section: "Data Viz"
+        contents: vis/*
       - href: schedule.qmd
         text: Schedule
       - href: materials.qmd
