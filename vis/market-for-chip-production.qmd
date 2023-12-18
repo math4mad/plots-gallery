@@ -1,0 +1,58 @@
+---
+title: "Market share for logic chip production, by manufacturing stage, 2021"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Market share for logic chip production, by manufacturing
+stage, 2021](https://ourworldindata.org/grapher/market-share-logic-chip-production-manufacturing-stage)
+:::
+
+
+load pacakge
+```{julia}
+using CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral
+using MakieThemes
+using StatsBase
+Makie.set_theme!(ggthemr(:dust))
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/market-share-logic-chip-production-manufacturing-stage.csv")|>DataFrame
+df=coalesce.(df, 0.0)
+```
+
+
+## 3. plot bar plot
+```{julia}
+cats=names(df)
+row,_=size(df)
+function plot_barplt(df)
+ fig=Figure()
+ axs=[Axis(fig[1,1]),Axis(fig[1,2]),Axis(fig[2,1])]
+ 
+ for (idx, ax) in enumerate(axs)
+     df=sort(df,cats[3+idx];rev=false)
+     ax.title="$(cats[3+idx])"
+     ax.yticks=(1:row,df.Entity)
+     ax.xgridvisible=false
+     ax.ygridvisible=false
+     xs=df.Entity
+     ys=@pipe select(df,3+idx)|>_[:,1]|>map(x->(x/sum(_))*100,_)|>round.(_,digits=0)
+     #@info ys
+     barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,flip_labels_at=20,
+     color_over_background=:dodgerblue3,
+     color_over_bar=:white,
+     )
+
+ end
+
+ supertitle = Label(fig[0, :], "Market share for logic chip production, by manufacturing
+stage, 2021", fontsize = 20)
+ fig
+ 
+end
+plot_barplt(df)
+```

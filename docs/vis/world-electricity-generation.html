@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 1-normal-distributions</title>
+<title>GLMakie Gallery - Total electricity generation”</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -99,6 +99,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -112,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">1-normal-distributions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/world-electricity-generation.html">Total electricity generation”</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -198,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1-normal-distributions</span></a>
   </div>
 </li>
@@ -340,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/world-electricity-generation.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/world-electricity-generation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Total electricity generation”</span></a>
   </div>
 </li>
@@ -364,14 +367,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link active" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">1-normal-distributions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/world-electricity-generation.html">Total electricity generation”</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1-normal-distributions</h1>
+<h1 class="title">Total electricity generation”</h1>
 </div>
 
 
@@ -381,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -394,56 +403,346 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="gaussian distributions">
+<div class="callout callout-style-default callout-note callout-titled" title="info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-gaussian distributions
+info
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>目的: 增强显示效果</p>
+<ul>
+<li>ref:<a href="https://ourworldindata.org/grapher/electricity-generation?tab=chart">Total electricity generation</a></li>
+</ul>
 </div>
 </div>
-<div class="cell" data-execution_count="1">
+<p>load pacakge</p>
+<div id="03c1bc60" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">GLMakie</span>, <span class="bu">Distributions</span>, <span class="bu">Random</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">124</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  colors <span class="op">=</span> [<span class="st">"#FF410D"</span>, <span class="st">"#6EE2FF"</span>, <span class="st">"#F7C530"</span>, <span class="st">"#95CC5E"</span>, <span class="st">"#D0DFE6"</span>, <span class="st">"#F79D1E"</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  μσpairs <span class="op">=</span> [[<span class="op">-</span><span class="fl">3</span>, <span class="fl">1</span>], [<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1</span>], [<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">1.2</span>, <span class="fl">1</span>], [<span class="fl">4</span>, <span class="fl">1</span>], [<span class="fl">5</span>, <span class="fl">1</span>]] <span class="co">#方差相同, 均值变化</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  μσpairs2 <span class="op">=</span> [[<span class="fl">0</span>, <span class="fl">0.8</span>], [<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">0</span>, <span class="fl">2</span>], [<span class="fl">0</span>, <span class="fl">3</span>], [<span class="fl">0</span>, <span class="fl">4</span>], [<span class="fl">0</span>, <span class="fl">5</span>]]   <span class="co"># 均值相同, 方差变化</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ts <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">200</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1000</span>, <span class="fl">600</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ax1 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], xlabel<span class="op">=</span><span class="st">"μ change, σ=1"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ax2 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">3</span>], xlabel<span class="op">=</span><span class="st">"μ=0,σ change"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (p, p2, c) <span class="kw">in</span> <span class="fu">zip</span>(μσpairs, μσpairs2, colors)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="fu">pdf1</span>(x) <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Normal</span>(p<span class="op">...</span>), x)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="fu">pdf2</span>(x) <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Normal</span>(p2<span class="op">...</span>), x)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines!</span>(ax1, ts, <span class="fu">pdf1</span>.(ts), label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(p[<span class="fl">1</span>])<span class="st">,  </span><span class="sc">$</span>(p[<span class="fl">2</span>])<span class="st">"</span>, color<span class="op">=</span>c, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">band!</span>(ax1, ts, <span class="fu">fill</span>(<span class="fl">0</span>, <span class="fu">length</span>(ts)), <span class="fu">pdf1</span>.(ts); color<span class="op">=</span>(c, <span class="fl">0.1</span>)) <span class="co">#半透明区域</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines!</span>(ax2, ts, <span class="fu">pdf2</span>.(ts), label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(p2[<span class="fl">1</span>])<span class="st">,  </span><span class="sc">$</span>(p2[<span class="fl">2</span>])<span class="st">"</span>, color<span class="op">=</span>c, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">band!</span>(ax2, ts, <span class="fu">fill</span>(<span class="fl">0</span>, <span class="fu">length</span>(ts)), <span class="fu">pdf2</span>.(ts); color<span class="op">=</span>(c, <span class="fl">0.1</span>)) <span class="co">#半透明区域</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axislegend</span>(ax1)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axislegend</span>(ax2)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span>,<span class="bu">Pipe</span>,<span class="bu">Tidier</span>,<span class="bu">HypertextLiteral</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MakieThemes</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">AlgebraOfGraphics</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Makie.<span class="fu">set_theme!</span>(<span class="fu">ggthemr</span>(<span class="op">:</span>dust))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+</div>
+<section id="load-data-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
+<div id="d92c8c9d" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/electricity-generation.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span><span class="fu">rename</span>(_,<span class="st">"Electricity generation - TWh"</span><span class="op">=&gt;:</span>EGtwh)<span class="op">|&gt;</span><span class="fu">coalesce</span>.(_, <span class="fl">0.0</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(<span class="fu">levels</span>(df.Entity))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(df,<span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>["ASEAN (Ember)", "Afghanistan", "Africa", "Africa (EI)", "Africa (Ember)", "Albania", "Algeria", "American Samoa", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Asia", "Asia (Ember)", "Asia Pacific (EI)", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "CIS (EI)", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Central America (EI)", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czechia", "Democratic Republic of Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Eastern Africa (EI)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Europe", "Europe (EI)", "Europe (Ember)", "European Union (27)", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "G20 (Ember)", "G7 (Ember)", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "High-income countries", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latin America and Caribbean (Ember)", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Lithuania", "Low-income countries", "Lower-middle-income countries", "Luxembourg", "Macao", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Martinique", "Mauritania", "Mauritius", "Mexico", "Middle Africa (EI)", "Middle East (EI)", "Middle East (Ember)", "Moldova", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Non-OECD (EI)", "North America", "North America (EI)", "North America (Ember)", "North Korea", "North Macedonia", "Norway", "OECD (EI)", "OECD (Ember)", "Oceania", "Oceania (Ember)", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South America", "South Korea", "South Sudan", "South and Central America (EI)", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Virgin Islands", "Upper-middle-income countries", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Western Africa (EI)", "Western Sahara", "World", "Yemen", "Zambia", "Zimbabwe"]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><div style="float: left;"><span>5×4 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">EGtwh</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Any">Any</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">ASEAN (Ember)</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">368.08</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">ASEAN (Ember)</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">396.6</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">ASEAN (Ember)</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">423.11</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">ASEAN (Ember)</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">447.7</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">ASEAN (Ember)</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">485.55</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="cdc8ad84" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>list<span class="op">=</span>(<span class="st">"United States"</span>,<span class="st">"United Kingdom"</span>,<span class="st">"France"</span>,<span class="st">"India"</span>,<span class="st">"Sweden"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@eval</span>(<span class="bu">Main</span>, myvars <span class="op">=</span>list )</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@filter</span>(Entity <span class="kw">in</span> !!myvars)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><div style="float: left;"><span>190×4 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">165 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">EGtwh</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Any">Any</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1985</td>
+<td style="text-align: right;">344.465</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1986</td>
+<td style="text-align: right;">362.995</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1987</td>
+<td style="text-align: right;">378.486</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1988</td>
+<td style="text-align: right;">392.087</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1989</td>
+<td style="text-align: right;">404.85</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">417.2</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">451.62</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1992</td>
+<td style="text-align: right;">460.02</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">469.66</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">474.6</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">491.2</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: right;">509.16</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">FRA</td>
+<td style="text-align: right;">1997</td>
+<td style="text-align: right;">500.96</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">179</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">4088.87</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">180</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">4040.67</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">181</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">4055.61</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">182</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">4096.01</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">183</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">4083.99</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">184</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">4087.56</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">185</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">4052.31</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">186</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">4201.55</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">187</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">4158.38</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">188</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">4043.18</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">189</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">4153.62</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">190</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">4286.91</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>## 3. plot</p>
+<div id="e7f28e44" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> (width <span class="op">=</span> <span class="fl">1000</span>, height <span class="op">=</span><span class="fl">500</span>,xticklabelrotation <span class="op">=</span> <span class="cn">pi</span><span class="op">/</span><span class="fl">8</span>,title<span class="op">=</span><span class="st">"Electricity generation"</span>,subtitle<span class="op">=</span><span class="st">"Measured in terawatt-hours."</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_layer <span class="op">=</span> <span class="fu">data</span>(df2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mapping_layer<span class="op">=</span><span class="fu">mapping</span>(<span class="op">:</span>Year,<span class="op">:</span>EGtwh,color<span class="op">=:</span>Entity)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>visual_layer <span class="op">=</span> <span class="fu">visual</span>(ScatterLines;stroke<span class="op">=</span><span class="fl">1</span>,strokecolor<span class="op">=</span>(<span class="op">:</span>red,<span class="fl">0.8</span>),markersize<span class="op">=</span><span class="fl">4</span>,linewidth<span class="op">=</span><span class="fl">5</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(data_layer <span class="op">*</span> mapping_layer <span class="op">*</span> visual_layer,axis<span class="op">=</span>axis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.
+└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 <figure class="figure">
-<p><img src="1-normaldist_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="world-electricity-generation_files/figure-html/cell-5-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

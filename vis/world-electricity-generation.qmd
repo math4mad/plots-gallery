@@ -1,0 +1,48 @@
+---
+title: Total electricity generation"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Total electricity generation](https://ourworldindata.org/grapher/electricity-generation?tab=chart)
+:::
+
+
+load pacakge
+```{julia}
+using CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral
+using MakieThemes
+using StatsBase
+using AlgebraOfGraphics
+Makie.set_theme!(ggthemr(:dust))
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/electricity-generation.csv")|>DataFrame|>rename(_,"Electricity generation - TWh"=>:EGtwh)|>coalesce.(_, 0.0)
+
+show(levels(df.Entity))
+first(df,5)
+
+```
+
+
+```{julia}
+
+list=("United States","United Kingdom","France","India","Sweden")
+@eval(Main, myvars =list )
+df2=@chain df begin
+    @filter(Entity in !!myvars)
+end
+
+```
+
+ ## 3. plot
+```{julia}
+axis = (width = 1000, height =500,xticklabelrotation = pi/8,title="Electricity generation",subtitle="Measured in terawatt-hours.")
+data_layer = data(df2)
+mapping_layer=mapping(:Year,:EGtwh,color=:Entity)
+visual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=4,linewidth=5)
+draw(data_layer * mapping_layer * visual_layer,axis=axis)
+``` 

@@ -1,0 +1,49 @@
+---
+title: Number of people using the Internet"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Number of people using the Internet
+](https://ourworldindata.org/internet)
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+    df=@pipe CSV.File("./data/number-of-internet-users.csv")|>DataFrame|>rename(_,"Number of Internet users"=>:num_user)|>coalesce.(_, 0.0)
+
+first(df,5)
+```
+
+```{julia}
+list=("World","Asia","Europe","North America","Africa","Oceania")
+@eval(Main, myvars =list )
+df2=@chain df begin
+    @select(Entity,Year,num_user)
+    @filter(Entity in !!myvars)
+    @mutate(num_user=num_user/1_000_000_000)
+    @arrange(desc(num_user))
+end
+
+```
+
+## plot 
+```{julia}
+axis = (width = 1000, height =500,xticklabelrotation = pi/8,title="Internet user ",subtitle="Measured in billion.",
+yticks=(1:7,["$i billion" for i in 1:7]))
+data_layer = data(df2)
+mapping_layer=mapping(:Year,:num_user,color=:Entity)
+visual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)
+draw(data_layer * mapping_layer * visual_layer,axis=axis)
+```
+
+
+
+

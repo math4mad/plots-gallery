@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 1-normal-distributions</title>
+<title>GLMakie Gallery - Market share for logic chip production, by manufacturing stage, 2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -99,6 +99,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -112,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">1-normal-distributions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/market-for-chip-production.html">Market share for logic chip production, by manufacturing stage, 2021</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -198,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1-normal-distributions</span></a>
   </div>
 </li>
@@ -334,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/market-for-chip-production.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/market-for-chip-production.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Market share for logic chip production, by manufacturing stage, 2021</span></a>
   </div>
 </li>
@@ -364,14 +367,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link active" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
+  <li><a href="#plot-bar-plot" id="toc-plot-bar-plot" class="nav-link" data-scroll-target="#plot-bar-plot">3. plot bar plot</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">1-normal-distributions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/market-for-chip-production.html">Market share for logic chip production, by manufacturing stage, 2021</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1-normal-distributions</h1>
+<h1 class="title">Market share for logic chip production, by manufacturing stage, 2021</h1>
 </div>
 
 
@@ -381,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -394,56 +404,195 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="gaussian distributions">
+<div class="callout callout-style-default callout-note callout-titled" title="info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-gaussian distributions
+info
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>目的: 增强显示效果</p>
+<ul>
+<li>ref:<a href="https://ourworldindata.org/grapher/market-share-logic-chip-production-manufacturing-stage">Market share for logic chip production, by manufacturing stage, 2021</a></li>
+</ul>
 </div>
 </div>
-<div class="cell" data-execution_count="1">
+<p>load pacakge</p>
+<div id="2c7fb4fa" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">GLMakie</span>, <span class="bu">Distributions</span>, <span class="bu">Random</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">124</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  colors <span class="op">=</span> [<span class="st">"#FF410D"</span>, <span class="st">"#6EE2FF"</span>, <span class="st">"#F7C530"</span>, <span class="st">"#95CC5E"</span>, <span class="st">"#D0DFE6"</span>, <span class="st">"#F79D1E"</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  μσpairs <span class="op">=</span> [[<span class="op">-</span><span class="fl">3</span>, <span class="fl">1</span>], [<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1</span>], [<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">1.2</span>, <span class="fl">1</span>], [<span class="fl">4</span>, <span class="fl">1</span>], [<span class="fl">5</span>, <span class="fl">1</span>]] <span class="co">#方差相同, 均值变化</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  μσpairs2 <span class="op">=</span> [[<span class="fl">0</span>, <span class="fl">0.8</span>], [<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">0</span>, <span class="fl">2</span>], [<span class="fl">0</span>, <span class="fl">3</span>], [<span class="fl">0</span>, <span class="fl">4</span>], [<span class="fl">0</span>, <span class="fl">5</span>]]   <span class="co"># 均值相同, 方差变化</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ts <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">200</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1000</span>, <span class="fl">600</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ax1 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], xlabel<span class="op">=</span><span class="st">"μ change, σ=1"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ax2 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">3</span>], xlabel<span class="op">=</span><span class="st">"μ=0,σ change"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (p, p2, c) <span class="kw">in</span> <span class="fu">zip</span>(μσpairs, μσpairs2, colors)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="fu">pdf1</span>(x) <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Normal</span>(p<span class="op">...</span>), x)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="fu">pdf2</span>(x) <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Normal</span>(p2<span class="op">...</span>), x)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines!</span>(ax1, ts, <span class="fu">pdf1</span>.(ts), label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(p[<span class="fl">1</span>])<span class="st">,  </span><span class="sc">$</span>(p[<span class="fl">2</span>])<span class="st">"</span>, color<span class="op">=</span>c, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">band!</span>(ax1, ts, <span class="fu">fill</span>(<span class="fl">0</span>, <span class="fu">length</span>(ts)), <span class="fu">pdf1</span>.(ts); color<span class="op">=</span>(c, <span class="fl">0.1</span>)) <span class="co">#半透明区域</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines!</span>(ax2, ts, <span class="fu">pdf2</span>.(ts), label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(p2[<span class="fl">1</span>])<span class="st">,  </span><span class="sc">$</span>(p2[<span class="fl">2</span>])<span class="st">"</span>, color<span class="op">=</span>c, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">band!</span>(ax2, ts, <span class="fu">fill</span>(<span class="fl">0</span>, <span class="fu">length</span>(ts)), <span class="fu">pdf2</span>.(ts); color<span class="op">=</span>(c, <span class="fl">0.1</span>)) <span class="co">#半透明区域</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axislegend</span>(ax1)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axislegend</span>(ax2)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span>,<span class="bu">Pipe</span>,<span class="bu">Tidier</span>,<span class="bu">HypertextLiteral</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MakieThemes</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Makie.<span class="fu">set_theme!</span>(<span class="fu">ggthemr</span>(<span class="op">:</span>dust))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+</div>
+<section id="load-data-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
+<div id="6bcb0d6f" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/market-share-logic-chip-production-manufacturing-stage.csv"</span>)<span class="op">|&gt;</span>DataFrame</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="fu">coalesce</span>.(df, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="86">
+<div><div style="float: left;"><span>9×6 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Design</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Fabrication</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Assembly, testing and packaging</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String15">String15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Any">Any</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">CHN</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">14.0</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">Italy</td>
+<td style="text-align: left;">ITA</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">JPN</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">7.0</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">MYS</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">Others</td>
+<td style="text-align: left;">0.0</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">5.0</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">Singapore</td>
+<td style="text-align: left;">SGP</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">South Korea</td>
+<td style="text-align: left;">KOR</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">13.0</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">Taiwan</td>
+<td style="text-align: left;">TWN</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">47.0</td>
+<td style="text-align: right;">29.0</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">61.0</td>
+<td style="text-align: right;">27.0</td>
+<td style="text-align: right;">28.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-bar-plot" class="level2">
+<h2 class="anchored" data-anchor-id="plot-bar-plot">3. plot bar plot</h2>
+<div id="daaac175" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cats<span class="op">=</span><span class="fu">names</span>(df)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>row,_<span class="op">=</span><span class="fu">size</span>(df)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_barplt</span>(df)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a> fig<span class="op">=</span><span class="fu">Figure</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> axs<span class="op">=</span>[<span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>]),<span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">2</span>]),<span class="fu">Axis</span>(fig[<span class="fl">2</span>,<span class="fl">1</span>])]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> <span class="cf">for</span> (idx, ax) <span class="kw">in</span> <span class="fu">enumerate</span>(axs)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     df<span class="op">=</span><span class="fu">sort</span>(df,cats[<span class="fl">3</span><span class="op">+</span>idx];rev<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     ax.title<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(cats[<span class="fl">3</span><span class="op">+</span>idx])<span class="st">"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>     ax.yticks<span class="op">=</span>(<span class="fl">1</span><span class="op">:</span>row,df.Entity)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>     ax.xgridvisible<span class="op">=</span><span class="cn">false</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>     ax.ygridvisible<span class="op">=</span><span class="cn">false</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>     xs<span class="op">=</span>df.Entity</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>     ys<span class="op">=</span><span class="pp">@pipe</span> <span class="fu">select</span>(df,<span class="fl">3</span><span class="op">+</span>idx)<span class="op">|&gt;</span>_[<span class="op">:</span>,<span class="fl">1</span>]<span class="op">|&gt;</span><span class="fu">map</span>(<span class="fu">x-&gt;</span>(x<span class="op">/</span><span class="fu">sum</span>(_))<span class="op">*</span><span class="fl">100</span>,_)<span class="op">|&gt;</span><span class="fu">round</span>.(_,digits<span class="op">=</span><span class="fl">0</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>     <span class="co">#@info ys</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>     <span class="fu">barplot!</span>(ax,<span class="fl">1</span><span class="op">:</span>row,ys;direction<span class="op">=:</span>x,color<span class="op">=</span>ys,bar_labels<span class="op">=:</span>y,flip_labels_at<span class="op">=</span><span class="fl">20</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>     color_over_background<span class="op">=:</span>dodgerblue3,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>     color_over_bar<span class="op">=:</span>white,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a> <span class="cf">end</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a> supertitle <span class="op">=</span> <span class="fu">Label</span>(fig[<span class="fl">0</span>, <span class="op">:</span>], <span class="st">"Market share for logic chip production, by manufacturing</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>stage, <span class="fl">2021</span><span class="st">", fontsize = 20)</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a> fig</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_barplt</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="87">
 <div>
 <figure class="figure">
-<p><img src="1-normaldist_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="market-for-chip-production_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

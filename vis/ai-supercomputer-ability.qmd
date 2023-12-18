@@ -1,0 +1,35 @@
+---
+title: Computation used to train notable artificial intelligence systems"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Computation used to train notable artificial intelligence systems](https://ourworldindata.org/grapher/artificial-intelligence-training-computation)
+:::
+
+
+load pacakge
+```{julia}
+using CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral
+using MakieThemes
+using StatsBase
+using AlgebraOfGraphics
+Makie.set_theme!(ggthemr(:dust))
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/artificial-intelligence-training-computation.csv")|>DataFrame
+df=coalesce.(df, 0.0)
+rename!(df,"Training computation (petaFLOP)"=>:petaFLOP)
+df=@pipe sort(df,:petaFLOP;rev=true)|>first(_,40)
+```
+
+```{julia}
+axis = (width = 600, height =300,xticklabelrotation = pi/8,title="Computation used to train notable artificial intelligence systems")
+data_layer = data(df)
+mapping_layer=mapping(:Day,:petaFLOP,color=:Domain)
+visual_layer = visual(Scatter;stroke=1,strokecolor=(:red,0.8),markersize=18)
+draw(data_layer * mapping_layer * visual_layer,axis=axis)
+```

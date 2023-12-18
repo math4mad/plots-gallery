@@ -1,0 +1,640 @@
+Entity,Code,Day,Training computation (petaFLOP),Domain
+(ensemble): AWD-LSTM-DOC (fin) × 5 (WT2),,2018-08-30,693,Language
+2-layer-LSTM+Deep-Gradient-Compression,,2017-12-05,1.34,Language
+3D city reconstruction,,2009-09-29,,Other
+4 layer QRNN (h=2500),,2018-03-22,240.00002,Language
+6-Act Tether,,2021-08-03,,Other
+6-layer MLP (MNIST),,2010-03-01,0.131,Vision
+A3C FF hs,,2016-02-04,,Games
+ADALINE,,1960-06-30,9.9e-12,Vision
+ADAM (CIFAR-10),,2014-12-22,60.5,Vision
+ADM,,2021-05-11,500000.03,Drawing
+ALBERT,,2019-09-26,,Language
+ALBERT-xxlarge,,2020-02-09,2390000,Language
+ALIGN,,2021-06-11,215000020,Multimodal
+ALM 1.0,,2022-11-28,,Language
+ALVINN,,1989-12-01,0.0000812,Other
+AMDIM,,2019-06-03,,Drawing
+AR-LDM,,2022-11-20,510000,Multimodal
+ASE+ACE,,1983-09-01,,Games
+AWD-LSTM,,2017-07-18,,Language
+AWD-LSTM + MoS + Partial Shuffled,,2019-06-10,328,Language
+AWD-LSTM - 3-layer LSTM (tied) + continuous cache pointer (WT2),,2017-08-07,309.00003,Language
+AWD-LSTM+WT+Cache+IOG (WT2),,2017-09-26,3.3100002,Language
+AWD-LSTM-DRILL + dynamic evaluation† (WT2),,2019-05-14,424,Language
+"AWD-LSTM-MoS + dynamic evaluation (WT2, 2017)",,2017-11-10,437,Language
+"AWD-LSTM-MoS + dynamic evaluation (WT2, 2018)",,2018-09-18,,Language
+AWD-LSTM-MoS+PDR + dynamic evaluation (WT2),,2018-08-14,,Language
+Adaptive Input Transformer + RD,,2021-06-28,82000,Language
+Adaptive Inputs + LayerDrop,,2019-09-25,,Language
+Adaptive Subgrad,,2011-10-03,,Not specified
+Advantage Learning,,2015-12-15,,Games
+Agent57,,2020-03-30,,Games
+AlexNet,,2012-09-30,470,Vision
+AlexaTM 20B,,2022-08-02,204000000,Language
+AlphaCode,,2022-02-02,405000000,Language
+AlphaFold,,2020-01-15,100000,Other
+AlphaFold 2,,2020-11-30,2990000,Other
+AlphaGo Fan,,2015-10-01,380000.03,Games
+AlphaGo Lee,,2016-01-27,1900000,Games
+AlphaGo Master,,2017-01-01,150000000,Games
+AlphaGo Zero,,2017-10-18,341000000,Games
+AlphaStar,,2019-10-30,202000020,Games
+AlphaX-1,,2019-10-02,7600,Vision
+AlphaZero,,2017-12-05,36700000,Games
+AltCLIP,,2022-11-12,,Multimodal
+AmoebaNet-A (F=190),,2018-02-05,,Vision
+AmoebaNet-A (F=448),,2018-02-05,385000,Vision
+Ankh,,2023-01-18,,Language
+BART-large,,2019-10-29,,Language
+BASIC-L,,2021-11-19,83000000,Vision
+BASIC-L + Lion,,2023-02-13,,Vision
+BERT-Large,,2018-10-11,285000,Language
+BERT-Large-CAS (PTB+WT2+WT103),,2019-04-20,521000.03,Language
+BLOOM,,2022-11-08,180000000,Language
+BLSTM for handwriting (1),,2007-09-23,,Vision
+BLSTM for handwriting (2),,2007-12-03,,Vision
+BLUUMI,,2023-11-03,,Language
+BOXES,,1968-07-01,,Games
+BPE,,2015-08-31,,Language
+BPL,,2015-12-11,,Drawing
+Back-propagation,,1986-10-01,1.24e-7,Other
+Base LM + kNN LM + Continuous Cache,,2019-11-01,7300.0005,Language
+BatchNorm,,2015-06-15,,Not specified
+Bayesian automated hyperparameter tuning,,2012-12-02,,Not specified
+BellKor 2007,,2009-09-21,,Recommendation
+BellKor 2008,,2009-08-01,,Recommendation
+BellKor 2009,,2009-08-01,,Recommendation
+BiLSTM for Speech,,2005-08-01,0.024100002,Speech
+Bidirectional RNN,,1997-11-01,,Speech
+Big Transfer (BiT-L),,2019-12-24,,Vision
+Big-Little Net,,2018-07-10,,Vision
+BigBiGAN,,2019-07-04,,Drawing
+BigChaos 2008,,2008-11-25,,Recommendation
+BigChaos OptiBlend,,2009-08-01,,Recommendation
+BigGAN-deep 512x512,,2018-09-28,3000000,Drawing
+BigSSL,,2021-01-10,,Speech
+Binarized Neural Network (MNIST),,2016-03-17,,Vision
+BloombergGPT,,2023-03-30,236000020,Language
+Boss (DARPA Urban Challenge),,2008-07-23,,Other
+ByT5-XXL,,2021-05-28,81000000,Language
+CICERO,,2022-11-22,,Games
+CLIP (ResNet-50),,2021-01-05,,Multimodal
+CLIP (ViT L/14@336px),,2021-01-05,10500000,Multimodal
+CNN Best Practices,,2003-08-06,,Vision
+CODEFUSION (Python),,2023-10-26,7920,Language
+CPC v2,,2019-05-22,,Drawing
+CPM-Large,,2020-12-01,1800000,Language
+CRF-RNN,,2015-02-11,,Vision
+CT-MoS (WT2),,2020-12-25,562,Language
+CTC-Trained LSTM,,2006-06-25,,Speech
+CURL,,2020-04-08,,Games
+CapsNet (MNIST),,2017-10-26,,Vision
+CapsNet (MultiMNIST),,2017-10-26,,Vision
+Cascaded LNet-ANet,,2014-11-28,,Vision
+Char-CNN-BiLSTM,,2019-06-13,,Language
+Character-enriched word2vec,,2016-07-15,,Language
+ChatGPT (gpt-3.5-turbo),,2022-11-30,,Language
+Chinchilla,,2022-03-29,576000000,Language
+Chinese - English translation,,2018-03-01,,Language
+Claude,,2023-03-14,,Language
+Claude 2,,2023-07-11,3870000000,Language
+Claude 2.1,,2023-11-21,,Language
+CoAtNet,,2021-06-09,85000000,Vision
+CoCa,,2022-06-14,73000000,Vision
+CodeT5+,,2023-05-20,,Language
+CodeT5-base,,2021-11-01,1560000.1,Language
+CodeT5-large,,2022-07-05,2720000,Language
+Codex,,2021-07-07,,Language
+CogVideo,,2022-05-29,,Multimodal
+CogView,,2021-05-26,26800000,Drawing
+Cognitron,,1975-09-01,,Not specified
+ConSERT,,2021-05-25,280000,Language
+Conditional probability machines,,1956-07-01,,Vision
+Conformer,,2020-05-16,,Speech
+Conformer + Wav2vec 2.0 + Noisy Student ,,2020-10-20,15000000,Speech
+Constituency-Tree LSTM,,2015-02-28,,Language
+Context-dependent RNN,,2012-07-27,,Language
+ContextNet,,2020-05-07,,Speech
+ContextNet + Noisy Student,,2020-01-19,5400000,Speech
+Conv-DBN,,2009-06-14,,Not specified
+ConvNet similarity metric,,2005-06-20,,Vision
+Convolutional Pose Machines,,2016-01-30,,Vision
+Cross-Lingual POS Tagger,,2011-06-19,,Language
+Cross-lingual alignment,,2019-04-04,2560,Not specified
+Culturome,,2010-12-16,,Language
+Cutout-regularized net,,2017-08-15,,Vision
+DALL-E,,2021-01-05,47000000,Drawing
+DALL·E 2,,2022-04-06,,Drawing
+DALL·E 3,,2023-10-19,,Drawing
+DANet,,2019-04-21,,Vision
+DARTS,,2018-06-24,11,Language
+DBLSTM,,2013-12-08,,Speech
+DD-PPO,,2019-12-19,780000.06,Other
+DDPM-IP (CelebA),,2023-01-27,350000,Vision
+DETR,,2020-05-26,400000,Vision
+DITTO,,2022-06-06,11000,Language
+DImensionality Reduction,,2006-07-18,,Vision
+DLRM-2020,,2019-05-31,4000,Recommendation
+DMN,,2016-06-20,,Language
+DOT(S)-RNN,,2013-12-20,,Language
+DQN,,2013-12-19,2.3000002,Games
+DQN-2015,,2015-02-25,,Games
+DSN,,2014-09-18,,Vision
+DeBERTa,,2021-06-10,6000000,Language
+DeBERTaV3-large + KEAR ,,2021-12-06,,Language
+DeLight,,2020-08-03,24000,Language
+Decision tree (classification),,2001-12-08,0.063,Vision
+Deconvolutional Network,,2010-06-13,,Vision
+Decoupled weight decay regularization,,2019-01-04,2470.0002,Vision
+Deep Belief Nets,,2006-07-18,,Vision
+Deep Boltzmann Machines,,2009-04-16,,Not specified
+Deep Deterministic Policy Gradients,,2015-09-09,,Not specified
+Deep LSTM for video classification,,2015-05-01,,Vision
+Deep Multitask NLP Network,,2008-07-05,,Language
+Deep rectifier networks,,2011-04-13,,Not specified
+DeepFace,,2014-06-23,,Vision
+DeepLab,,2014-12-22,,Vision
+DeepLab (2017),,2017-04-27,,Vision
+DeepLabV3,,2017-06-17,,Vision
+DeepLabV3+,,2018-02-07,,Vision
+DeepNet,,2022-03-01,,Language
+DeepSpeech2 (English),,2015-12-08,26000,Speech
+DeepStack,,2017-01-06,14500,Games
+Deeply-recursive ConvNet,,2016-11-11,,Vision
+Deeply-supervised nets,,2014-09-18,,Vision
+Denoising Autoencoders,,2008-07-05,,Not specified
+Denoising Diffusion Probabilistic Models (LSUN Bedroom),,2021-06-11,95000.01,Drawing
+DenseNet-264,,2016-08-25,,Vision
+DiT-XL/2 + Discriminator Guidance,,2022-11-28,,Vision
+Diabetic Retinopathy Detection Net,,2016-12-13,,Vision
+Differentiable neural computer,,2016-10-12,,Not specified
+Diffusion-GAN,,2022-06-05,,Drawing
+DistilBERT,,2019-10-02,12400,Language
+DnCNN,,2017-02-01,,Vision
+Domain Adaptation,,2011-11-06,,Vision
+DrLIM,,2006-06-17,,Vision
+Dropout (2014),,2014-06-01,,Not specified
+Dropout (CIFAR),,2012-06-03,4.27,Vision
+Dropout (ImageNet),,2012-06-03,273,Vision
+Dropout (MNIST),,2012-06-03,6.0400004,Vision
+Dropout (TIMIT),,2012-06-03,,Speech
+Dropout-LSTM+Noise(Bernoulli) (WT2),,2018-05-03,127,Language
+EDSR,,2017-06-10,,Vision
+EI-REHN-1000D,,2017-08-14,10.599999,Language
+ELECTRA,,2020-03-23,3100000,Language
+ELMo,,2018-02-01,,Language
+ENAS,,2018-02-09,20.1,Language
+EN^2AS with performance reward,,2019-07-22,,Language
+ERNIE 3.0,,2021-07-05,22500000,Language
+ERNIE 3.0 Titan,,2021-12-23,1040000000,Language
+ERNIE 3.5,,2023-06-27,,Language
+ERNIE-Doc (247M),,2020-12-31,29100,Language
+ERNIE-GEN (large),,2020-08-06,,Language
+ERNIE-ViLG,,2021-12-31,,Multimodal
+ESM-1,,2020-12-16,,Language
+ESM-2,,2022-10-31,78000010,Language
+ESRGAN,,2018-09-01,,Vision
+EfficientDet,,2020-07-27,,Vision
+EfficientNet-L2,,2019-05-28,,Vision
+EfficientNetV2,,2021-06-23,95600.01,Vision
+EfficientZero,,2021-10-30,,Games
+Elastic weight consolidation,,2016-12-02,,Not specified
+Enhanced Neighborhood-Based Filtering,,2007-10-28,,Recommendation
+Error Propagation,,1986-01-03,,Not specified
+FAIRSEQ Adaptive Inputs,,2019-04-01,7300.0005,Language
+FAST,,2006-05-07,,Vision
+FLAN 137B,,2021-09-03,49000004,Language
+FTW,,2019-05-31,7260000.5,Games
+Falcon 180B,,2023-09-06,3780000000,Language
+Falcon-40B,,2023-03-15,240000000,Language
+Fast R-CNN,,2015-04-30,,Vision
+Faster R-CNN,,2015-06-04,,Vision
+Feedback Transformer,,2020-02-21,44100,Language
+Feedforward NN,,2010-05-13,0.35000002,Vision
+Ferret (13B),,2023-10-11,40400,Multimodal
+Ferret-13B,,2023-10-11,40400,Multimodal
+Fine-tuned-AWD-LSTM-DOC(fin),,2018-11-12,1.9200001,Language
+Fisher Kernel GMM,,2017-01-01,,Vision
+Fisher-Boost,,2010-09-05,,Vision
+FixRes ResNeXt-101 WSL,,2019-06-14,,Vision
+Flamingo,,2022-04-29,270000000,Multimodal
+Florence,,2021-11-22,48300000,Vision
+Fractional Max-Pooling,,2014-12-18,100,Vision
+FrameNet role labeling,,2000-09-01,,Language
+Fraternal dropout + AWD-LSTM 3-layer (WT2),,2017-10-31,98.5,Language
+Fully Convolutional Networks,,2014-11-14,,Vision
+Fuzzy NN,,1992-09-01,0.0000014,Speech
+GAN-Advancer,,2016-12-05,,Vision
+GANs,,2014-06-10,518,Drawing
+GCNN-14,,2016-12-23,,Language
+GL-LWGC-AWD-MoS-LSTM + dynamic evaluation (WT2),,2017-08-29,474.00003,Language
+GLEE,,1968-07-01,,Games
+GLIDE,,2021-12-20,,Drawing
+GLM-130B,,2022-08-04,378000030,Language
+GLaM,,2021-12-13,374000000,Language
+GNMT,,2016-09-26,6900000,Language
+GOAT,,2021-07-27,78000010,Games
+GPT,,2018-06-01,17600,Language
+GPT-2 (1542M),,2019-02-14,1490000,Language
+GPT-3 175B (davinci),,2020-05-28,314000000,Language
+GPT-3.5 (text-davinci-003),,2022-11-28,2580000000,Language
+GPT-4,,2023-03-15,21000000000,Multimodal
+GPT-4V,,2023-09-25,,Multimodal
+GPT-NeoX-20B,,2022-02-09,93200010,Language
+GPU DBNs,,2009-06-15,1,Other
+GPipe (Amoeba),,2018-11-16,,Vision
+GPipe (Transformer),,2018-11-16,,Language
+GRUs,,2014-06-03,,Language
+GShard (dense),,2020-06-30,26000000,Language
+Galactica,,2022-11-15,324000000,Language
+Gated HORNN (3rd order),,2016-04-30,,Language
+Gato,,2022-05-12,5440000,Multimodal
+Gen-1,,2023-02-06,,Other
+Generative BST,,2021-03-05,,Language
+Genetic algorithm,,1954-07-02,,Not specified
+GloVe (32B),,2014-01-01,,Language
+GloVe (6B),,2014-01-01,,Language
+Go-explore,,2020-04-27,,Games
+GoogLeNet / InceptionV1,,2015-06-07,1560,Vision
+Gopher (280B),,2021-12-08,631000000,Language
+Gradient Boosting Machine,,2001-10-01,,Not specified
+Graph-based structural reasoning,,1970-09-01,,Not specified
+Greedy layer-wise DNN training,,2006-12-04,,Not specified
+Grok-1,,2023-11-04,,Language
+GroupLens,,1994-10-22,,Recommendation
+HMM Word Alignment,,1996-08-05,,Language
+HOGWILD!,,2011-11-11,,Not specified
+HRA,,2017-06-13,,Games
+Hanabi 4 player,,2019-02-01,4300,Games
+Heuristic problem solving for AI,,1961-01-01,,Not specified
+Hiero,,2005-06-01,,Language
+Histograms of Oriented Gradients,,2005-06-25,,Vision
+Hopfield Networks (2020),,2020-07-16,,Other
+Hopfield network,,1982-04-01,,Other
+HuBERT,,2021-07-27,5540000,Language
+Hybrid H3-2.7B,,2022-12-28,849000.06,Language
+HyperClova,,2021-09-10,148000000,Language
+HyperNEAT,,2014-03-05,,Games
+IBM Model 4,,1999-07-02,,Language
+IBM-5,,1993-06-15,,Language
+IMPALA,,2018-02-05,168000,Games
+ISS,,2017-09-15,3.4,Language
+Image Classification with the Fisher Vector: Theory and Practice,,2013-06-12,0.090799995,Vision
+Image generation,,2013-12-20,0.475,Vision
+Image-to-image cGAN,,2016-11-21,,Not specified
+Imagen,,2022-05-23,14600000,Drawing
+Immediate trihead,,2001-07-06,,Language
+Inception v3,,2015-12-02,,Vision
+Inception-ResNet-V2,,2016-02-23,,Vision
+Inceptionv4,,2016-02-23,,Vision
+Incoder-6.7B,,2023-04-09,3000000,Language
+Inflated 3D ConvNet,,2017-06-01,,Vision
+Innervator,,1989-01-01,1.2e-7,Other
+InstructGPT,,2022-01-27,,Language
+InternLM,,2023-07-06,,Language
+Internal functionality of visual invariants,,1979-05-02,,Vision
+Iterative Bootstrapping WSD,,1995-06-26,,Language
+JFT,,2017-08-04,843000.06,Vision
+Jais,,2023-08-29,30800002,Language
+KEPLER,,2020-11-23,124000,Language
+KN5 LM + RNN 400/10 (WSJ),,2010-09-26,61.4,Speech
+KataGo,,2019-02-27,23200.002,Games
+Kohonen network,,1981-07-25,,Other
+LDA,,2003-02-02,,Language
+LLaMA-65B,,2023-02-24,550000000,Language
+LLaMA-7B,,2023-02-24,40200000,Language
+LMS,,1960-06-30,,Not specified
+LRCN,,2014-11-07,,Vision
+LRSO-GAN,,2017-10-22,,Vision
+LSTM,,1997-11-15,0.021,Language
+LSTM (2018),,2018-03-04,,Language
+"LSTM (Hebbian, Cache, MbPA)",,2018-03-27,24000,Language
+LSTM + dynamic eval,,2017-09-21,,Language
+LSTM with forget gates,,1999-01-02,,Not specified
+LSTM+NeuralCache,,2018-09-24,1.02,Language
+LSTM-300units,,2012-09-01,,Language
+LSTM-Char-Large,,2015-08-26,2.6499999,Language
+LaMDA,,2022-02-10,355000000,Language
+LaNet-L (CIFAR-10),,2019-06-17,,Vision
+Large regularized LSTM,,2014-09-08,91,Language
+LeNet-5,,1998-11-01,0.00281,Vision
+Learnability theory of language development,,1984-07-01,,Language
+Learning deep architectures,,2009-11-15,,Not specified
+Libratus,,2017-01-01,551000,Games
+"Listen, Attend and Spell",,2015-08-20,,Not specified
+Llama 2,,2023-07-18,810000000,Language
+Local Binary Patterns for facial recognition,,2006-12-01,,Not specified
+M6-T,,2021-03-05,5500000.5,Multimodal
+MADALINE I,,1962-07-01,,Not specified
+MADALINE III,,1990-09-01,,Not specified
+MCDNN (MNIST),,2012-02-13,3.73,Vision
+MEB,,2021-09-04,,Other
+MLP as Bayesian Approximator,,1990-12-01,,Not specified
+MMLSTM,,2019-12-05,2320,Language
+MS-CNN,,2016-09-17,,Vision
+"MSRA (C, PReLU)",,2015-02-06,24000,Vision
+MT-DNN,,2019-01-31,,Language
+MV-RNN,,2012-07-12,,Language
+Make-A-Video,,2022-09-29,,Other
+Mask R-CNN,,2017-03-30,,Vision
+MatrixFac for Recommenders,,2009-08-07,,Recommendation
+Max-Margin Markov Networks,,2004-03-01,,Not specified
+Maximum Entropy Models for machine translation,,2002-07-06,,Language
+Maxout Networks,,2013-02-18,,Vision
+Meena,,2020-01-28,112000000,Language
+Megatron-BERT,,2019-09-17,603000000,Language
+Megatron-LM (8.3B),,2019-09-17,9100000,Language
+Megatron-Turing NLG 530B,,2021-10-11,1170000000,Language
+MetNet,,2020-03-24,,Other
+Meta Pseudo Labels,,2021-03-01,47900004,Vision
+MetaLM,,2022-06-13,,Multimodal
+MetaMimic,,2018-10-11,,Games
+Mid-level Features,,2010-06-13,,Vision
+Midjourney V1,,2022-02-15,,Drawing
+Minerva (540B),,2022-06-29,2740000300,Language
+Mitosis,,2013-09-22,137,Vision
+MnasNet-A1 + SSDLite,,2019-05-29,1500000,Vision
+MnasNet-A3,,2019-05-29,1500000,Vision
+MoCo,,2019-11-13,,Drawing
+MoE,,2017-01-23,93900,Language
+MobileNet,,2017-04-17,,Vision
+MobileNetV2,,2018-06-18,,Vision
+"Mogrifier (d2, MoS2, MC) + dynamic eval",,2019-09-04,,Language
+Mogrifier RLSTM (WT2),,2022-11-03,109,Language
+Motion-Driven 3D Feature Tracking,,1988-07-01,,Vision
+MuZero,,2019-11-19,48000,Games
+Multi-cell LSTM,,2018-11-15,2.01,Language
+Multi-scale Dilated CNN,,2015-11-23,,Vision
+Multi-task Cascaded CNN,,2016-08-26,,Vision
+Multiresolution CNN,,2014-06-23,,Other
+Multiscale deformable part model,,2008-06-23,,Vision
+MusicGen,,2023-06-08,,Other
+NAS+ESS (156M),,2020-05-06,2890,Language
+NASNet-A,,2017-07-21,,Vision
+NASv3 (CIFAR-10),,2016-11-05,2200000,Vision
+NEAT in neuroevolution,,2002-06-01,,Not specified
+NLLB,,2022-07-06,17500000,Language
+NLP from scratch,,2011-11-08,,Language
+NPLM,,2003-03-15,1.3000001,Language
+NTM,,2014-12-10,,Not specified
+Naive Bayes,,1974-09-01,,Vision
+Named Entity Recognition model,,2016-07-21,96.9,Language
+Neocognitron,,1980-04-01,2.28e-7,Vision
+NetTalk,,1987-06-06,0.000027700002,Speech
+NetTalk (dictionary),,1987-06-06,0.000027700002,Speech
+NetTalk (transcription),,1987-06-06,0.000028299999,Speech
+Netflix Recommender System,,2015-12-01,,Recommendation
+Network in Network,,2013-12-16,,Not specified
+NeuMF (Pinterest),,2017-08-16,,Recommendation
+Neural Architecture Search with base 8 and shared embeddings,,2016-11-05,10.5,Language
+Noisy Student (L2),,2019-11-11,849000.06,Vision
+NoisyNet-Dueling,,2017-06-30,,Games
+NÜWA,,2021-11-24,4840000,Multimodal
+OPT-175B,,2022-05-02,430000030,Language
+OR-WideResNet,,2017-01-07,,Vision
+ObjectNet,,2019-09-06,19400.002,Vision
+Once for All,,2020-04-29,1780000.1,Vision
+OpenAI Five,,2019-12-13,67000004,Games
+OpenAI Five Rerun,,2019-12-13,13000000,Games
+OpenAI TI7 DOTA 1v1,,2017-08-11,604609.5,Games
+Optimized Multi-Scale Edge Detection,,1986-11-01,,Vision
+Optimized Single-layer Net,,2011-04-11,,Not specified
+OverFeat,,2013-12-21,,Vision
+PDP model for serial order,,1986-01-05,,Not specified
+PG-SWGAN,,2019-06-15,,Drawing
+PLATO-XL,,2021-09-20,,Language
+PLUG,,2021-04-19,36000000,Language
+PNAS-net,,2017-12-02,,Vision
+PNASNet-5,,2017-12-02,66300,Not specified
+PSPNet,,2017-07-21,,Vision
+PaLI,,2022-09-14,51000000,Vision
+PaLI-X,,2023-05-29,,Multimodal
+PaLM (540B),,2022-04-04,2530000100,Language
+PaLM 2,,2023-05-10,7339999700,Language
+PaLM-E,,2023-03-06,,Other
+PanGu-Σ,,2023-03-20,467000000,Language
+Pandemonium (morse),,1959-02-01,6e-7,Other
+Part-of-sentence tagging model,,2016-07-21,145,Language
+Parti,,2022-06-22,396000000,Drawing
+Pattern recognition and reading by machine,,1959-12-01,,Vision
+Perceiver IO,,2020-02-08,,Multimodal
+Perceptron Mark I,,1957-01-01,6.95e-10,Vision
+Perceptron for Large Margin Classification,,1999-12-01,,Vision
+PermuteFormer,,2021-09-06,3100,Language
+Phenaki,,2022-10-05,,Vision
+Photo-Geometric Autoencoder,,2019-11-25,,Vision
+Phrase-based translation,,2003-05-01,,Language
+Player of Games,,2021-12-06,,Games
+Pluribus,,2019-07-11,66,Games
+PointNet,,2016-12-02,,Other
+PointNet++,,2017-06-07,,Not specified
+Pointer Sentinel-LSTM (medium),,2016-09-26,7.49,Language
+PolyCoder,,2022-02-26,1100000,Language
+PolyNet,,2016-11-17,64000,Vision
+Population-based DRL,,2018-07-03,34900,Games
+Pragmatic Theory solution (Netflix 2009),,2009-08-01,,Recommendation
+PreTrans-3L-250H,,2013-03-22,,Speech
+ProBERTa,,2020-09-01,9720.001,Language
+ProGen2,,2022-06-27,13000000,Language
+ProgressiveGAN,,2017-10-27,,Vision
+Projected GAN,,2021-11-01,,Drawing
+ProtT5-XXL,,2021-05-04,73700000,Other
+ProteinBERT,,2022-02-10,65000,Language
+Prototypical networks,,2017-03-15,,Vision
+ProxylessNAS,,2019-02-23,37100,Vision
+PyramidNet,,2017-09-06,,Vision
+Q-learning,,1989-01-01,,Not specified
+QRNN,,2018-02-01,360,Language
+R-CNN (T-net),,2013-11-11,,Vision
+R-FCN,,2016-06-21,61.500004,Vision
+RBM Image Classifier,,2009-04-08,,Vision
+RBM-tuning,,2010-08-02,,Not specified
+RCAN,,2018-07-08,,Vision
+REINFORCE in Stochastic Connectionism,,1992-05-01,,Not specified
+RETRO-7B,,2022-02-07,,Language
+RNN 500/10 + RT09 LM (NIST RT05),,2010-09-26,3.41,Speech
+RNN+LDA+KN5+cache,,2012-12-01,,Language
+RNN+weight noise+dynamic eval,,2013-08-04,4.21,Language
+RNN-SpeedUp,,2011-05-22,,Language
+RNNsearch-50*,,2014-09-01,1560,Language
+Random Decision Forests,,1995-08-14,,Not specified
+Rational DQN Average,,2021-02-18,,Games
+ReLU (LFW),,2010-06-15,,Vision
+ReLU (NORB),,2010-06-15,,Vision
+Recursive sentiment autoencoder,,2011-07-01,,Language
+RefineNet,,2016-11-20,,Vision
+Refined Part Pooling,,2018-01-09,,Vision
+Regularized SVD for Collaborative Filtering,,2007-08-12,,Recommendation
+Relational Memory Core,,2018-06-05,,Language
+ResNeXt-101 32x48d,,2018-05-02,8740000,Vision
+ResNeXt-101 Billion-scale,,2019-05-02,,Vision
+ResNeXt-50,,2016-11-16,,Vision
+ResNet-1001,,2016-09-17,,Vision
+ResNet-110 (CIFAR-10),,2015-12-10,,Vision
+ResNet-152 (ImageNet),,2015-12-10,12100,Vision
+ResNet-200,,2016-09-17,,Vision
+ResNet-50 Billion-scale,,2019-05-02,,Vision
+Residual Dense Network,,2018-02-24,,Vision
+Restricted Bolzmann machines,,2007-06-20,,Recommendation
+RetinaNet-R101,,2017-08-07,2070,Vision
+RetinaNet-R50,,2017-08-07,,Vision
+RoBERTa Large,,2019-07-01,4150000,Language
+RoboCat,,2023-06-20,,Other
+Robot Parkour,,2023-09-12,,Other
+Rotation,,2018-03-21,,Drawing
+Routing Transformer,,2020-03-12,,Language
+S4,,2021-10-31,600000,Language
+SACHS,,2005-04-22,,Other
+SEER,,2021-07-29,4420000,Vision
+SENet (ImageNet),,2017-09-05,,Vision
+SNARC,,1952-01-08,,Other
+SPN-4+KN5,,2014-01-01,44,Language
+SPPNet,,2014-06-18,3410,Vision
+SRGAN,,2017-05-25,,Vision
+SRN-Encoded Grammatical Structures,,1991-09-01,,Language
+SRU++ Large,,2021-02-24,11000,Language
+ST-MoE,,2022-02-17,,Language
+SVD in recommender systems,,2000-07-14,,Recommendation
+SVM for face detection,,1997-06-17,,Vision
+Samuel Neural Checkers,,1959-07-01,4.28e-7,Games
+Sandwich Transformer,,2019-11-10,158000,Language
+Search-Proven Best LSTM,,2015-07-06,3.3400002,Language
+SearchFusion,,2013-04-02,,Vision
+"Segatron-XL large, M=384 + HCP",,2022-03-21,26500,Language
+Self Organizing System,,1955-03-01,,Vision
+SemExp,,2020-07-02,,Other
+SemVec,,2013-06-09,,Language
+Semantic Hashing,,2008-12-10,,Other
+Semi-Supervised Embedding for DL,,2008-07-05,,Not specified
+Seq2Seq LSTM,,2014-09-10,56000,Language
+Sequence-based pattern recognition,,1955-03-01,,Vision
+Show-1,,2023-09-27,,Other
+ShuffleNet v1,,2017-07-03,,Vision
+ShuffleNet v2,,2018-06-30,,Vision
+SimCLR,,2020-02-13,,Drawing
+SimCLRv2,,2020-10-26,,Not specified
+SimCSE,,2022-05-18,,Language
+SimpleNet,,2016-08-22,,Vision
+Skywork-13B,,2023-10-30,304000000,Language
+SmooCT,,2014-07-01,69,Games
+Social and content-based classification,,1998-07-01,,Other
+Sparse Energy-Based Model,,2006-12-04,,Vision
+Sparse all-MLP,,2022-04-14,60800,Language
+Sparse coding model for V1 receptive fields,,1997-12-01,,Not specified
+Sparse digit recognition SVM,,2008-11-19,,Vision
+Spatial Pyramid Matching,,2006-06-17,,Vision
+Spatially-Sparse CNN,,2014-09-23,,Vision
+Spatiotemporal fusion ConvNet,,2016-06-01,,Vision
+SpecAugment,,2019-04-18,,Language
+Spectrally Normalized GAN,,2018-02-16,,Vision
+SqueezeNet,,2016-02-24,,Vision
+Stable Diffusion (LDM-KL-8-G),,2022-04-13,50000000,Drawing
+Stable Diffusion XL,,2023-07-04,,Drawing
+Stacked Denoising Autoencoders,,2010-01-03,,Not specified
+Stacked hourglass network,,2016-09-17,,Vision
+Stanley (DARPA Grand Challenge 2),,2006-01-01,,Other
+StarCoder,,2023-05-09,112000000,Language
+StarGAN v2,,2019-12-04,,Drawing
+Statement Curriculum Learning,,2022-03-02,,Language
+Statistical Shape Constellations,,2003-01-01,,Vision
+Support Vector Machines,,1995-09-01,,Vision
+Swift,,2023-08-30,53.399998,Other
+Switch,,2021-01-11,82200000,Language
+Symmetric Residual Encoder-Decoder Net,,2016-03-30,,Vision
+System 11,,1996-06-18,0.0000129,Vision
+T5-11B,,2019-10-23,40500000,Language
+T5-3B,,2019-10-23,10400001,Language
+TCN (P-MNIST),,2018-02-15,,Language
+TD(0),,1977-08-01,,Not specified
+TD-Gammon,,1992-05-01,0.018199999,Games
+TFE SVM,,2006-02-02,,Not specified
+TSN,,2016-09-17,,Vision
+TaLK Convolution,,2020-02-08,27800,Language
+Tagging via Viterbi Decoding,,2002-06-01,,Language
+Taiyi-Stable Diffusion,,2022-10-31,51000000,Drawing
+Temporal Convolutional Attention-based Network(TCAN) (WT2),,2020-02-28,,Language
+Tensor-Transformer(1core)+PN (WT103),,2020-03-17,1580,Language
+TensorReasoner,,2013-12-01,,Not specified
+Tensorized Transformer (257M),,2019-06-24,4760.0005,Language
+Textual Imager,,2013-01-16,,Vision
+Theseus,,1950-07-02,4e-14,Other
+Theseus 6/768,,2020-02-07,,Language
+Thumbs Up?,,2002-05-28,,Language
+Time-delay neural networks,,1989-03-03,,Not specified
+Trajectory-pooled conv nets,,2015-05-19,,Vision
+Tranception,,2022-05-27,7240000.5,Language
+TransE,,2013-12-05,1340,Other
+Transformer,,2017-06-12,7420,Language
+Transformer (Adaptive Input Embeddings),,2018-09-28,7300.0005,Language
+Transformer - LibriVox + Decoding/Rescoring,,2019-11-19,,Speech
+Transformer ELMo,,2019-01-01,,Language
+Transformer local-attention (NesT-B),,2021-05-26,24100,Vision
+Transformer-XL + RMS dynamic eval,,2019-04-17,,Language
+Transformer-XL DeFINE (141M),,2019-11-27,6200,Language
+Transformer-XL Large,,2019-01-09,10900,Language
+Transformer-XL Large + Phrase Induction,,2019-06-04,7300.0005,Language
+TransformerXL + spectrum control,,2020-03-11,460,Language
+TrellisNet,,2018-10-15,2780,Language
+TriNet,,2017-11-21,,Vision
+True-Regularization+Finetune+Dynamic-Eval,,2019-04-08,,Language
+Turing-NLG,,2020-02-13,15700000,Language
+Two-stream ConvNets for action recognition,,2014-06-09,,Other
+UL2,,2022-05-10,,Language
+ULM-FiT,,2018-01-18,,Language
+Universal approximation via Feedforward Networks,,1989-03-09,,Not specified
+Unsupervised High-level Feature Learner,,2012-07-12,600,Vision
+Unsupervised Scale-Invariant Learning,,2003-06-18,,Vision
+VD-LSTM+REAL Large,,2016-11-04,21.3,Language
+VD-RHN,,2016-07-12,3.57,Language
+VGG16,,2014-09-04,9250,Vision
+VGG19,,2014-09-04,,Vision
+VQGAN + CLIP,,2020-12-17,,Drawing
+"Variational (untied weights, MC) LSTM (Large)",,2015-12-16,5.6200004,Language
+ViT-Base/32,,2020-10-22,,Vision
+ViT-G (model soup),,2022-03-10,3400000.2,Vision
+ViT-G/14,,2021-06-08,3400000.2,Vision
+ViT-G/14 (LiT),,2021-11-15,,Vision
+ViT-H/14,,2020-09-28,12800000,Vision
+ViT-Huge/14,,2020-10-22,,Vision
+Vicuna-13B,,2023-03-30,,Language
+Visualizing CNNs,,2013-11-12,532,Vision
+W2v-BERT,,2021-08-07,,Speech
+WGAN-GP,,2017-03-31,,Vision
+Walking Minotaur robot,,2019-06-19,,Other
+WaveNet,,2016-09-12,,Speech
+WeNet (Penn Treebank),,2019-04-08,,Language
+Whisper,,2022-09-21,46500000,Speech
+Wide & Deep,,2016-06-24,,Recommendation
+Wide Residual Network,,2016-09-19,,Vision
+WizardLM-7B,,2023-04-24,40200000,Language
+Word Representations,,2010-06-01,,Language
+Word2Vec (large),,2013-10-16,38.9,Language
+Word2Vec (small),,2013-10-16,,Language
+XGLM,,2021-12-20,,Language
+XGen-7B,,2023-09-07,80200010,Language
+XLM,,2019-06-01,,Language
+XLMR-XXL,,2021-08-17,,Language
+XLNet,,2019-06-01,,Language
+Xception,,2016-10-07,43600,Vision
+YOLO,,2015-06-08,,Vision
+YOLOv2,,2016-12-25,,Vision
+YOLOv3,,2018-04-08,50900,Vision
+YouTube Video Recommendation System,,2010-09-26,,Recommendation
+Youtube recommendation model,,2016-09-15,,Recommendation
+Yuan 1.0,,2021-10-12,410000000,Language
+Zidong Taichu,,2021-08-11,,Multimodal
+Zip CNN,,1989-12-01,0.0000434,Vision
+Zoneout + Variational LSTM (WT2),,2016-09-26,16.8,Language
+aLSTM(depth-2)+RecurrentPolicy (WT2),,2018-05-22,75.9,Language
+base LM+GNN+kNN,,2021-10-17,7300.0005,Language
+data2vec (language),,2022-01-20,,Language
+data2vec (speech),,2022-01-20,,Speech
+data2vec (vision),,2022-01-20,,Vision
+fastText,,2016-07-06,,Language
+genCNN + dyn eval,,2015-03-17,73,Language
+iGPT-XL,,2020-06-17,33000000,Drawing
+mT5-XXL,,2020-10-20,78000010,Language
+top-down frozen classifier,,2021-02-09,,Language
+wave2vec 2.0 LARGE,,2020-10-22,1900000,Speech
+λ-WASP,,2007-06-01,,Language

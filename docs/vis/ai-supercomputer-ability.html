@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 1-normal-distributions</title>
+<title>GLMakie Gallery - Computation used to train notable artificial intelligence systems”</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -99,6 +99,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -112,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">1-normal-distributions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/ai-supercomputer-ability.html">Computation used to train notable artificial intelligence systems”</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -198,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1-normal-distributions</span></a>
   </div>
 </li>
@@ -322,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/ai-supercomputer-ability.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/ai-supercomputer-ability.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Computation used to train notable artificial intelligence systems”</span></a>
   </div>
 </li>
@@ -364,14 +367,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link active" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">1-normal-distributions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/ai-supercomputer-ability.html">Computation used to train notable artificial intelligence systems”</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1-normal-distributions</h1>
+<h1 class="title">Computation used to train notable artificial intelligence systems”</h1>
 </div>
 
 
@@ -381,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -394,56 +403,301 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="gaussian distributions">
+<div class="callout callout-style-default callout-note callout-titled" title="info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-gaussian distributions
+info
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>目的: 增强显示效果</p>
+<ul>
+<li>ref:<a href="https://ourworldindata.org/grapher/artificial-intelligence-training-computation">Computation used to train notable artificial intelligence systems</a></li>
+</ul>
 </div>
 </div>
-<div class="cell" data-execution_count="1">
+<p>load pacakge</p>
+<div id="5eead1d9" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">GLMakie</span>, <span class="bu">Distributions</span>, <span class="bu">Random</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">124</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  colors <span class="op">=</span> [<span class="st">"#FF410D"</span>, <span class="st">"#6EE2FF"</span>, <span class="st">"#F7C530"</span>, <span class="st">"#95CC5E"</span>, <span class="st">"#D0DFE6"</span>, <span class="st">"#F79D1E"</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  μσpairs <span class="op">=</span> [[<span class="op">-</span><span class="fl">3</span>, <span class="fl">1</span>], [<span class="op">-</span><span class="fl">0.3</span>, <span class="fl">1</span>], [<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">1.2</span>, <span class="fl">1</span>], [<span class="fl">4</span>, <span class="fl">1</span>], [<span class="fl">5</span>, <span class="fl">1</span>]] <span class="co">#方差相同, 均值变化</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  μσpairs2 <span class="op">=</span> [[<span class="fl">0</span>, <span class="fl">0.8</span>], [<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">0</span>, <span class="fl">2</span>], [<span class="fl">0</span>, <span class="fl">3</span>], [<span class="fl">0</span>, <span class="fl">4</span>], [<span class="fl">0</span>, <span class="fl">5</span>]]   <span class="co"># 均值相同, 方差变化</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ts <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">200</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1000</span>, <span class="fl">600</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ax1 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], xlabel<span class="op">=</span><span class="st">"μ change, σ=1"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ax2 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">3</span>], xlabel<span class="op">=</span><span class="st">"μ=0,σ change"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (p, p2, c) <span class="kw">in</span> <span class="fu">zip</span>(μσpairs, μσpairs2, colors)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="fu">pdf1</span>(x) <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Normal</span>(p<span class="op">...</span>), x)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="fu">pdf2</span>(x) <span class="op">=</span> <span class="fu">pdf</span>(<span class="fu">Normal</span>(p2<span class="op">...</span>), x)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines!</span>(ax1, ts, <span class="fu">pdf1</span>.(ts), label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(p[<span class="fl">1</span>])<span class="st">,  </span><span class="sc">$</span>(p[<span class="fl">2</span>])<span class="st">"</span>, color<span class="op">=</span>c, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">band!</span>(ax1, ts, <span class="fu">fill</span>(<span class="fl">0</span>, <span class="fu">length</span>(ts)), <span class="fu">pdf1</span>.(ts); color<span class="op">=</span>(c, <span class="fl">0.1</span>)) <span class="co">#半透明区域</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lines!</span>(ax2, ts, <span class="fu">pdf2</span>.(ts), label<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(p2[<span class="fl">1</span>])<span class="st">,  </span><span class="sc">$</span>(p2[<span class="fl">2</span>])<span class="st">"</span>, color<span class="op">=</span>c, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">band!</span>(ax2, ts, <span class="fu">fill</span>(<span class="fl">0</span>, <span class="fu">length</span>(ts)), <span class="fu">pdf2</span>.(ts); color<span class="op">=</span>(c, <span class="fl">0.1</span>)) <span class="co">#半透明区域</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axislegend</span>(ax1)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">axislegend</span>(ax2)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span>,<span class="bu">Pipe</span>,<span class="bu">Tidier</span>,<span class="bu">HypertextLiteral</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MakieThemes</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">AlgebraOfGraphics</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Makie.<span class="fu">set_theme!</span>(<span class="fu">ggthemr</span>(<span class="op">:</span>dust))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="2">
+</div>
+<section id="load-data-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
+<div id="ac0a6e7d" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/artificial-intelligence-training-computation.csv"</span>)<span class="op">|&gt;</span>DataFrame</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="fu">coalesce</span>.(df, <span class="fl">0.0</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,<span class="st">"Training computation (petaFLOP)"</span><span class="op">=&gt;:</span>petaFLOP)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> <span class="fu">sort</span>(df,<span class="op">:</span>petaFLOP;rev<span class="op">=</span><span class="cn">true</span>)<span class="op">|&gt;</span><span class="fu">first</span>(_,<span class="fl">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="168">
+<div><div style="float: left;"><span>40×5 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">15 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Day</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">petaFLOP</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Domain</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Date">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String15">String15</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">GPT-4</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-03-15</td>
+<td style="text-align: right;">2.1e10</td>
+<td style="text-align: left;">Multimodal</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">PaLM 2</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-05-10</td>
+<td style="text-align: right;">7.34e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">Claude 2</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-07-11</td>
+<td style="text-align: right;">3.87e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">Falcon 180B</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-09-06</td>
+<td style="text-align: right;">3.78e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">Minerva (540B)</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-06-29</td>
+<td style="text-align: right;">2.74e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">GPT-3.5 (text-davinci-003)</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-11-28</td>
+<td style="text-align: right;">2.58e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">PaLM (540B)</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-04-04</td>
+<td style="text-align: right;">2.53e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">Megatron-Turing NLG 530B</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-10-11</td>
+<td style="text-align: right;">1.17e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">ERNIE 3.0 Titan</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-12-23</td>
+<td style="text-align: right;">1.04e9</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">Llama 2</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-07-18</td>
+<td style="text-align: right;">8.1e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">Gopher (280B)</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-12-08</td>
+<td style="text-align: right;">6.31e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">Megatron-BERT</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2019-09-17</td>
+<td style="text-align: right;">6.03e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">Chinchilla</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-03-29</td>
+<td style="text-align: right;">5.76e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">29</td>
+<td style="text-align: left;">BloombergGPT</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-03-30</td>
+<td style="text-align: right;">2.36e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">30</td>
+<td style="text-align: left;">ALIGN</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-06-11</td>
+<td style="text-align: right;">2.15e8</td>
+<td style="text-align: left;">Multimodal</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">31</td>
+<td style="text-align: left;">AlexaTM 20B</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-08-02</td>
+<td style="text-align: right;">2.04e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">32</td>
+<td style="text-align: left;">AlphaStar</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2019-10-30</td>
+<td style="text-align: right;">2.02e8</td>
+<td style="text-align: left;">Games</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">33</td>
+<td style="text-align: left;">BLOOM</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-11-08</td>
+<td style="text-align: right;">1.8e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">34</td>
+<td style="text-align: left;">AlphaGo Master</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2017-01-01</td>
+<td style="text-align: right;">1.5e8</td>
+<td style="text-align: left;">Games</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">35</td>
+<td style="text-align: left;">HyperClova</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-09-10</td>
+<td style="text-align: right;">1.48e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">36</td>
+<td style="text-align: left;">Meena</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2020-01-28</td>
+<td style="text-align: right;">1.12e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">37</td>
+<td style="text-align: left;">StarCoder</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-05-09</td>
+<td style="text-align: right;">1.12e8</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">38</td>
+<td style="text-align: left;">GPT-NeoX-20B</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-02-09</td>
+<td style="text-align: right;">9.32e7</td>
+<td style="text-align: left;">Language</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">39</td>
+<td style="text-align: left;">CoAtNet</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-06-09</td>
+<td style="text-align: right;">8.5e7</td>
+<td style="text-align: left;">Vision</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">40</td>
+<td style="text-align: left;">BASIC-L</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-11-19</td>
+<td style="text-align: right;">8.3e7</td>
+<td style="text-align: left;">Vision</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="e54f3c7d" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> (width <span class="op">=</span> <span class="fl">600</span>, height <span class="op">=</span><span class="fl">300</span>,xticklabelrotation <span class="op">=</span> <span class="cn">pi</span><span class="op">/</span><span class="fl">8</span>,title<span class="op">=</span><span class="st">"Computation used to train notable artificial intelligence systems"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data_layer <span class="op">=</span> <span class="fu">data</span>(df)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mapping_layer<span class="op">=</span><span class="fu">mapping</span>(<span class="op">:</span>Day,<span class="op">:</span>petaFLOP,color<span class="op">=:</span>Domain)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>visual_layer <span class="op">=</span> <span class="fu">visual</span>(Scatter;stroke<span class="op">=</span><span class="fl">1</span>,strokecolor<span class="op">=</span>(<span class="op">:</span>red,<span class="fl">0.8</span>),markersize<span class="op">=</span><span class="fl">18</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(data_layer <span class="op">*</span> mapping_layer <span class="op">*</span> visual_layer,axis<span class="op">=</span>axis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.
+└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="169">
 <div>
 <figure class="figure">
-<p><img src="1-normaldist_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="ai-supercomputer-ability_files/figure-html/cell-4-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -10,47 +10,80 @@
     ]
   },
   {
-    "objectID": "vis/2019-f1-statistics.html",
-    "href": "vis/2019-f1-statistics.html",
-    "title": "f1 2019 drivers statistics",
+    "objectID": "vis/ai-supercomputer-ability.html",
+    "href": "vis/ai-supercomputer-ability.html",
+    "title": "Computation used to train notable artificial intelligence systems”",
     "section": "",
-    "text": "feature :[\"Drivers\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\"]",
+    "text": "info\n\n\n\n\nref:Computation used to train notable artificial intelligence systems\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nusing AlgebraOfGraphics\nMakie.set_theme!(ggthemr(:dust))",
     "crumbs": [
       "Data Viz",
-      "f1 2019 drivers  statistics"
+      "Computation used to train notable artificial intelligence systems\""
     ]
   },
   {
-    "objectID": "vis/2019-f1-statistics.html#load-pacakge",
-    "href": "vis/2019-f1-statistics.html#load-pacakge",
-    "title": "f1 2019 drivers statistics",
-    "section": "1. load pacakge",
-    "text": "1. load pacakge\n\n\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier",
-    "crumbs": [
-      "Data Viz",
-      "f1 2019 drivers  statistics"
-    ]
-  },
-  {
-    "objectID": "vis/2019-f1-statistics.html#load-data-dataframe",
-    "href": "vis/2019-f1-statistics.html#load-data-dataframe",
-    "title": "f1 2019 drivers statistics",
+    "objectID": "vis/ai-supercomputer-ability.html#load-data-dataframe",
+    "href": "vis/ai-supercomputer-ability.html#load-data-dataframe",
+    "title": "Computation used to train notable artificial intelligence systems”",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndf=@pipe CSV.File(\"./data/f1_2019_drivers_data.csv\")|&gt;DataFrame|&gt;dropmissing\nrow,cor=size(df)\nname=df.Drivers\nscore=df[:,2:end]\nfirst(df,10)\n\n\n10×22 DataFrame\n\n\n\nRow\nDrivers\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n\n\n\nString31\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\nLewis Hamilton\n18\n25\n25\n18\n26\n25\n25\n25\n10\n26\n2\n25\n18\n16\n12\n26\n16\n25\n18\n6\n26\n\n\n2\nValtteri Bottas\n26\n18\n18\n25\n18\n15\n13\n18\n15\n18\n0\n4\n15\n18\n10\n18\n25\n15\n25\n0\n12\n\n\n3\nMax Verstappen\n15\n12\n12\n12\n15\n12\n10\n12\n26\n10\n26\n19\n0\n4\n15\n12\n0\n8\n15\n25\n18\n\n\n4\nCharles Leclerc\n10\n16\n10\n11\n10\n0\n15\n15\n18\n15\n0\n12\n25\n25\n18\n15\n8\n13\n13\n0\n15\n\n\n5\nSebastian Vettel\n12\n10\n15\n15\n12\n18\n18\n11\n12\n0\n18\n15\n13\n0\n25\n0\n18\n18\n0\n0\n10\n\n\n6\nCarlos Sainz Jnr\n0\n0\n0\n6\n4\n8\n0\n8\n4\n8\n10\n10\n0\n0\n0\n8\n10\n0\n4\n15\n1\n\n\n7\nPierre Gasly\n0\n4\n9\n0\n8\n11\n4\n1\n6\n12\n0\n8\n2\n0\n4\n0\n6\n2\n0\n18\n0\n\n\n8\nAlexander Albon\n0\n2\n1\n0\n0\n4\n0\n0\n0\n0\n8\n1\n10\n8\n8\n10\n12\n10\n10\n0\n8\n\n\n9\nDaniel Ricciardo\n0\n0\n6\n0\n0\n2\n8\n0\n0\n6\n0\n0\n0\n12\n0\n0\n0\n4\n8\n8\n0\n\n\n10\nSergio Perez\n0\n1\n4\n8\n0\n0\n0\n0\n0\n0\n0\n0\n8\n6\n0\n6\n4\n6\n1\n2\n6",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/artificial-intelligence-training-computation.csv\")|&gt;DataFrame\ndf=coalesce.(df, 0.0)\nrename!(df,\"Training computation (petaFLOP)\"=&gt;:petaFLOP)\ndf=@pipe sort(df,:petaFLOP;rev=true)|&gt;first(_,40)\n\n\n40×5 DataFrame15 rows omitted\n\n\n\nRow\nEntity\nCode\nDay\npetaFLOP\nDomain\n\n\n\nString\nFloat64\nDate\nFloat64\nString15\n\n\n\n\n1\nGPT-4\n0.0\n2023-03-15\n2.1e10\nMultimodal\n\n\n2\nPaLM 2\n0.0\n2023-05-10\n7.34e9\nLanguage\n\n\n3\nClaude 2\n0.0\n2023-07-11\n3.87e9\nLanguage\n\n\n4\nFalcon 180B\n0.0\n2023-09-06\n3.78e9\nLanguage\n\n\n5\nMinerva (540B)\n0.0\n2022-06-29\n2.74e9\nLanguage\n\n\n6\nGPT-3.5 (text-davinci-003)\n0.0\n2022-11-28\n2.58e9\nLanguage\n\n\n7\nPaLM (540B)\n0.0\n2022-04-04\n2.53e9\nLanguage\n\n\n8\nMegatron-Turing NLG 530B\n0.0\n2021-10-11\n1.17e9\nLanguage\n\n\n9\nERNIE 3.0 Titan\n0.0\n2021-12-23\n1.04e9\nLanguage\n\n\n10\nLlama 2\n0.0\n2023-07-18\n8.1e8\nLanguage\n\n\n11\nGopher (280B)\n0.0\n2021-12-08\n6.31e8\nLanguage\n\n\n12\nMegatron-BERT\n0.0\n2019-09-17\n6.03e8\nLanguage\n\n\n13\nChinchilla\n0.0\n2022-03-29\n5.76e8\nLanguage\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n29\nBloombergGPT\n0.0\n2023-03-30\n2.36e8\nLanguage\n\n\n30\nALIGN\n0.0\n2021-06-11\n2.15e8\nMultimodal\n\n\n31\nAlexaTM 20B\n0.0\n2022-08-02\n2.04e8\nLanguage\n\n\n32\nAlphaStar\n0.0\n2019-10-30\n2.02e8\nGames\n\n\n33\nBLOOM\n0.0\n2022-11-08\n1.8e8\nLanguage\n\n\n34\nAlphaGo Master\n0.0\n2017-01-01\n1.5e8\nGames\n\n\n35\nHyperClova\n0.0\n2021-09-10\n1.48e8\nLanguage\n\n\n36\nMeena\n0.0\n2020-01-28\n1.12e8\nLanguage\n\n\n37\nStarCoder\n0.0\n2023-05-09\n1.12e8\nLanguage\n\n\n38\nGPT-NeoX-20B\n0.0\n2022-02-09\n9.32e7\nLanguage\n\n\n39\nCoAtNet\n0.0\n2021-06-09\n8.5e7\nVision\n\n\n40\nBASIC-L\n0.0\n2021-11-19\n8.3e7\nVision\n\n\n\n\n\n\n\n\nCode\naxis = (width = 600, height =300,xticklabelrotation = pi/8,title=\"Computation used to train notable artificial intelligence systems\")\ndata_layer = data(df)\nmapping_layer=mapping(:Day,:petaFLOP,color=:Domain)\nvisual_layer = visual(Scatter;stroke=1,strokecolor=(:red,0.8),markersize=18)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
     "crumbs": [
       "Data Viz",
-      "f1 2019 drivers  statistics"
+      "Computation used to train notable artificial intelligence systems\""
     ]
   },
   {
-    "objectID": "vis/2019-f1-statistics.html#plot",
-    "href": "vis/2019-f1-statistics.html#plot",
-    "title": "f1 2019 drivers statistics",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\nf1 = ByRow(hidedecorations!)\nf2 =ByRow(hidedecorations!)\nwith_theme(theme_black()) do\n fig=Figure(resolution=(600,900))\n supertitle = Label(fig[0, :], \"Formula One Drivers 2019 Season Points\", fontsize = 24)\n grids =[fig[idx, 1] = GridLayout() for idx in 1:row]\n \n for idx  in eachindex(grids)\n     name=df[idx,:].Drivers\n     score=Vector(df[idx,2:end])\n     sum_score=sum(score)\n     al=Axis(grids[idx][1,1])\n     ac=Axis(grids[idx][1,2])\n     ar=Axis(grids[idx][1,3])\n     text!(al,0,0;text=name,align=(:center,:center),fontsize = 16)\n     barplot!(ac, 1:21,score;color=:red,strokewidth=0.3,strokecolor=(:white))\n     text!(ar,0,0,text=\"$(sum_score)\",align=(:center,:center),fontsize = 16)\n     f1([al,ac,ar])\n     hidespines!(al)\n     hidespines!(ar)\n     hidespines!(ac, :t, :r,:l)\n end\n fig\nend",
+    "objectID": "vis/internet-user-view.html",
+    "href": "vis/internet-user-view.html",
+    "title": "Number of people using the Internet”",
+    "section": "",
+    "text": "info\n\n\n\n\nref:Number of people using the Internet\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "f1 2019 drivers  statistics"
+      "Number of people using the Internet\""
+    ]
+  },
+  {
+    "objectID": "vis/internet-user-view.html#load-data-dataframe",
+    "href": "vis/internet-user-view.html#load-data-dataframe",
+    "title": "Number of people using the Internet”",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/number-of-internet-users.csv\")|&gt;DataFrame|&gt;rename(_,\"Number of Internet users\"=&gt;:num_user)|&gt;coalesce.(_, 0.0)\n\nfirst(df,5)\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nnum_user\n\n\n\nString\nAny\nInt64\nInt64\n\n\n\n\n1\nAfghanistan\nAFG\n1990\n0\n\n\n2\nAfghanistan\nAFG\n1991\n0\n\n\n3\nAfghanistan\nAFG\n1992\n0\n\n\n4\nAfghanistan\nAFG\n1993\n0\n\n\n5\nAfghanistan\nAFG\n1994\n0\n\n\n\n\n\n\n\n\nCode\nlist=(\"World\",\"Asia\",\"Europe\",\"North America\",\"Africa\",\"Oceania\")\n@eval(Main, myvars =list )\ndf2=@chain df begin\n    @select(Entity,Year,num_user)\n    @filter(Entity in !!myvars)\n    @mutate(num_user=num_user/1_000_000_000)\n    @arrange(desc(num_user))\nend\n\n\n183×3 DataFrame158 rows omitted\n\n\n\nRow\nEntity\nYear\nnum_user\n\n\n\nString\nInt64\nFloat64\n\n\n\n\n1\nWorld\n2020\n4.69989\n\n\n2\nWorld\n2019\n4.19408\n\n\n3\nWorld\n2018\n3.79552\n\n\n4\nWorld\n2017\n3.48375\n\n\n5\nWorld\n2016\n3.25622\n\n\n6\nWorld\n2015\n3.00458\n\n\n7\nWorld\n2014\n2.79366\n\n\n8\nWorld\n2013\n2.59861\n\n\n9\nAsia\n2020\n2.55759\n\n\n10\nWorld\n2012\n2.42685\n\n\n11\nAsia\n2019\n2.22554\n\n\n12\nWorld\n2011\n2.21888\n\n\n13\nWorld\n2010\n2.02115\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n172\nAfrica\n1995\n0.000324226\n\n\n173\nOceania\n1992\n0.000318972\n\n\n174\nAsia\n1992\n0.000247731\n\n\n175\nOceania\n1991\n0.000189499\n\n\n176\nAfrica\n1994\n0.000112387\n\n\n177\nOceania\n1990\n9.9747e-5\n\n\n178\nAsia\n1991\n9.3535e-5\n\n\n179\nAfrica\n1993\n4.897e-5\n\n\n180\nAsia\n1990\n4.0687e-5\n\n\n181\nAfrica\n1992\n1.6232e-5\n\n\n182\nAfrica\n1991\n5.434e-6\n\n\n183\nAfrica\n1990\n0.0",
+    "crumbs": [
+      "Data Viz",
+      "Number of people using the Internet\""
+    ]
+  },
+  {
+    "objectID": "vis/internet-user-view.html#plot",
+    "href": "vis/internet-user-view.html#plot",
+    "title": "Number of people using the Internet”",
+    "section": "plot",
+    "text": "plot\n\n\nCode\naxis = (width = 1000, height =500,xticklabelrotation = pi/8,title=\"Internet user \",subtitle=\"Measured in billion.\",\nyticks=(1:7,[\"$i billion\" for i in 1:7]))\ndata_layer = data(df2)\nmapping_layer=mapping(:Year,:num_user,color=:Entity)\nvisual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "crumbs": [
+      "Data Viz",
+      "Number of people using the Internet\""
+    ]
+  },
+  {
+    "objectID": "vis/world-electricity-generation.html",
+    "href": "vis/world-electricity-generation.html",
+    "title": "Total electricity generation”",
+    "section": "",
+    "text": "info\n\n\n\n\nref:Total electricity generation\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nusing AlgebraOfGraphics\nMakie.set_theme!(ggthemr(:dust))",
+    "crumbs": [
+      "Data Viz",
+      "Total electricity generation\""
+    ]
+  },
+  {
+    "objectID": "vis/world-electricity-generation.html#load-data-dataframe",
+    "href": "vis/world-electricity-generation.html#load-data-dataframe",
+    "title": "Total electricity generation”",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/electricity-generation.csv\")|&gt;DataFrame|&gt;rename(_,\"Electricity generation - TWh\"=&gt;:EGtwh)|&gt;coalesce.(_, 0.0)\n\nshow(levels(df.Entity))\nfirst(df,5)\n\n\n[\"ASEAN (Ember)\", \"Afghanistan\", \"Africa\", \"Africa (EI)\", \"Africa (Ember)\", \"Albania\", \"Algeria\", \"American Samoa\", \"Angola\", \"Antigua and Barbuda\", \"Argentina\", \"Armenia\", \"Aruba\", \"Asia\", \"Asia (Ember)\", \"Asia Pacific (EI)\", \"Australia\", \"Austria\", \"Azerbaijan\", \"Bahamas\", \"Bahrain\", \"Bangladesh\", \"Barbados\", \"Belarus\", \"Belgium\", \"Belize\", \"Benin\", \"Bermuda\", \"Bhutan\", \"Bolivia\", \"Bosnia and Herzegovina\", \"Botswana\", \"Brazil\", \"British Virgin Islands\", \"Brunei\", \"Bulgaria\", \"Burkina Faso\", \"Burundi\", \"CIS (EI)\", \"Cambodia\", \"Cameroon\", \"Canada\", \"Cape Verde\", \"Cayman Islands\", \"Central African Republic\", \"Central America (EI)\", \"Chad\", \"Chile\", \"China\", \"Colombia\", \"Comoros\", \"Congo\", \"Cook Islands\", \"Costa Rica\", \"Cote d'Ivoire\", \"Croatia\", \"Cuba\", \"Cyprus\", \"Czechia\", \"Democratic Republic of Congo\", \"Denmark\", \"Djibouti\", \"Dominica\", \"Dominican Republic\", \"East Timor\", \"Eastern Africa (EI)\", \"Ecuador\", \"Egypt\", \"El Salvador\", \"Equatorial Guinea\", \"Eritrea\", \"Estonia\", \"Eswatini\", \"Ethiopia\", \"Europe\", \"Europe (EI)\", \"Europe (Ember)\", \"European Union (27)\", \"Falkland Islands\", \"Faroe Islands\", \"Fiji\", \"Finland\", \"France\", \"French Guiana\", \"French Polynesia\", \"G20 (Ember)\", \"G7 (Ember)\", \"Gabon\", \"Gambia\", \"Georgia\", \"Germany\", \"Ghana\", \"Gibraltar\", \"Greece\", \"Greenland\", \"Grenada\", \"Guadeloupe\", \"Guam\", \"Guatemala\", \"Guinea\", \"Guinea-Bissau\", \"Guyana\", \"Haiti\", \"High-income countries\", \"Honduras\", \"Hong Kong\", \"Hungary\", \"Iceland\", \"India\", \"Indonesia\", \"Iran\", \"Iraq\", \"Ireland\", \"Israel\", \"Italy\", \"Jamaica\", \"Japan\", \"Jordan\", \"Kazakhstan\", \"Kenya\", \"Kiribati\", \"Kosovo\", \"Kuwait\", \"Kyrgyzstan\", \"Laos\", \"Latin America and Caribbean (Ember)\", \"Latvia\", \"Lebanon\", \"Lesotho\", \"Liberia\", \"Libya\", \"Lithuania\", \"Low-income countries\", \"Lower-middle-income countries\", \"Luxembourg\", \"Macao\", \"Madagascar\", \"Malawi\", \"Malaysia\", \"Maldives\", \"Mali\", \"Malta\", \"Martinique\", \"Mauritania\", \"Mauritius\", \"Mexico\", \"Middle Africa (EI)\", \"Middle East (EI)\", \"Middle East (Ember)\", \"Moldova\", \"Mongolia\", \"Montenegro\", \"Montserrat\", \"Morocco\", \"Mozambique\", \"Myanmar\", \"Namibia\", \"Nauru\", \"Nepal\", \"Netherlands\", \"New Caledonia\", \"New Zealand\", \"Nicaragua\", \"Niger\", \"Nigeria\", \"Niue\", \"Non-OECD (EI)\", \"North America\", \"North America (EI)\", \"North America (Ember)\", \"North Korea\", \"North Macedonia\", \"Norway\", \"OECD (EI)\", \"OECD (Ember)\", \"Oceania\", \"Oceania (Ember)\", \"Oman\", \"Pakistan\", \"Palestine\", \"Panama\", \"Papua New Guinea\", \"Paraguay\", \"Peru\", \"Philippines\", \"Poland\", \"Portugal\", \"Puerto Rico\", \"Qatar\", \"Reunion\", \"Romania\", \"Russia\", \"Rwanda\", \"Saint Helena\", \"Saint Kitts and Nevis\", \"Saint Lucia\", \"Saint Pierre and Miquelon\", \"Saint Vincent and the Grenadines\", \"Samoa\", \"Sao Tome and Principe\", \"Saudi Arabia\", \"Senegal\", \"Serbia\", \"Seychelles\", \"Sierra Leone\", \"Singapore\", \"Slovakia\", \"Slovenia\", \"Solomon Islands\", \"Somalia\", \"South Africa\", \"South America\", \"South Korea\", \"South Sudan\", \"South and Central America (EI)\", \"Spain\", \"Sri Lanka\", \"Sudan\", \"Suriname\", \"Sweden\", \"Switzerland\", \"Syria\", \"Taiwan\", \"Tajikistan\", \"Tanzania\", \"Thailand\", \"Togo\", \"Tonga\", \"Trinidad and Tobago\", \"Tunisia\", \"Turkey\", \"Turkmenistan\", \"Turks and Caicos Islands\", \"Uganda\", \"Ukraine\", \"United Arab Emirates\", \"United Kingdom\", \"United States\", \"United States Virgin Islands\", \"Upper-middle-income countries\", \"Uruguay\", \"Uzbekistan\", \"Vanuatu\", \"Venezuela\", \"Vietnam\", \"Western Africa (EI)\", \"Western Sahara\", \"World\", \"Yemen\", \"Zambia\", \"Zimbabwe\"]\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nEGtwh\n\n\n\nString\nAny\nInt64\nFloat64\n\n\n\n\n1\nASEAN (Ember)\n0.0\n2000\n368.08\n\n\n2\nASEAN (Ember)\n0.0\n2001\n396.6\n\n\n3\nASEAN (Ember)\n0.0\n2002\n423.11\n\n\n4\nASEAN (Ember)\n0.0\n2003\n447.7\n\n\n5\nASEAN (Ember)\n0.0\n2004\n485.55\n\n\n\n\n\n\n\n\nCode\nlist=(\"United States\",\"United Kingdom\",\"France\",\"India\",\"Sweden\")\n@eval(Main, myvars =list )\ndf2=@chain df begin\n    @filter(Entity in !!myvars)\nend\n\n\n190×4 DataFrame165 rows omitted\n\n\n\nRow\nEntity\nCode\nYear\nEGtwh\n\n\n\nString\nAny\nInt64\nFloat64\n\n\n\n\n1\nFrance\nFRA\n1985\n344.465\n\n\n2\nFrance\nFRA\n1986\n362.995\n\n\n3\nFrance\nFRA\n1987\n378.486\n\n\n4\nFrance\nFRA\n1988\n392.087\n\n\n5\nFrance\nFRA\n1989\n404.85\n\n\n6\nFrance\nFRA\n1990\n417.2\n\n\n7\nFrance\nFRA\n1991\n451.62\n\n\n8\nFrance\nFRA\n1992\n460.02\n\n\n9\nFrance\nFRA\n1993\n469.66\n\n\n10\nFrance\nFRA\n1994\n474.6\n\n\n11\nFrance\nFRA\n1995\n491.2\n\n\n12\nFrance\nFRA\n1996\n509.16\n\n\n13\nFrance\nFRA\n1997\n500.96\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n179\nUnited States\nUSA\n2011\n4088.87\n\n\n180\nUnited States\nUSA\n2012\n4040.67\n\n\n181\nUnited States\nUSA\n2013\n4055.61\n\n\n182\nUnited States\nUSA\n2014\n4096.01\n\n\n183\nUnited States\nUSA\n2015\n4083.99\n\n\n184\nUnited States\nUSA\n2016\n4087.56\n\n\n185\nUnited States\nUSA\n2017\n4052.31\n\n\n186\nUnited States\nUSA\n2018\n4201.55\n\n\n187\nUnited States\nUSA\n2019\n4158.38\n\n\n188\nUnited States\nUSA\n2020\n4043.18\n\n\n189\nUnited States\nUSA\n2021\n4153.62\n\n\n190\nUnited States\nUSA\n2022\n4286.91\n\n\n\n\n\n\n## 3. plot\n\n\nCode\naxis = (width = 1000, height =500,xticklabelrotation = pi/8,title=\"Electricity generation\",subtitle=\"Measured in terawatt-hours.\")\ndata_layer = data(df2)\nmapping_layer=mapping(:Year,:EGtwh,color=:Entity)\nvisual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=4,linewidth=5)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "crumbs": [
+      "Data Viz",
+      "Total electricity generation\""
     ]
   },
   {
@@ -710,6 +743,83 @@
     "crumbs": [
       "Math",
       "2-Two Variables Function corss-section"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html",
+    "href": "vis/2019-f1-statistics.html",
+    "title": "f1 2019 drivers statistics",
+    "section": "",
+    "text": "feature :[\"Drivers\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\"]",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html#load-pacakge",
+    "href": "vis/2019-f1-statistics.html#load-pacakge",
+    "title": "f1 2019 drivers statistics",
+    "section": "1. load pacakge",
+    "text": "1. load pacakge\n\n\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html#load-data-dataframe",
+    "href": "vis/2019-f1-statistics.html#load-data-dataframe",
+    "title": "f1 2019 drivers statistics",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndf=@pipe CSV.File(\"./data/f1_2019_drivers_data.csv\")|&gt;DataFrame|&gt;dropmissing\nrow,cor=size(df)\nname=df.Drivers\nscore=df[:,2:end]\nfirst(df,10)\n\n\n10×22 DataFrame\n\n\n\nRow\nDrivers\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n\n\n\nString31\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\nLewis Hamilton\n18\n25\n25\n18\n26\n25\n25\n25\n10\n26\n2\n25\n18\n16\n12\n26\n16\n25\n18\n6\n26\n\n\n2\nValtteri Bottas\n26\n18\n18\n25\n18\n15\n13\n18\n15\n18\n0\n4\n15\n18\n10\n18\n25\n15\n25\n0\n12\n\n\n3\nMax Verstappen\n15\n12\n12\n12\n15\n12\n10\n12\n26\n10\n26\n19\n0\n4\n15\n12\n0\n8\n15\n25\n18\n\n\n4\nCharles Leclerc\n10\n16\n10\n11\n10\n0\n15\n15\n18\n15\n0\n12\n25\n25\n18\n15\n8\n13\n13\n0\n15\n\n\n5\nSebastian Vettel\n12\n10\n15\n15\n12\n18\n18\n11\n12\n0\n18\n15\n13\n0\n25\n0\n18\n18\n0\n0\n10\n\n\n6\nCarlos Sainz Jnr\n0\n0\n0\n6\n4\n8\n0\n8\n4\n8\n10\n10\n0\n0\n0\n8\n10\n0\n4\n15\n1\n\n\n7\nPierre Gasly\n0\n4\n9\n0\n8\n11\n4\n1\n6\n12\n0\n8\n2\n0\n4\n0\n6\n2\n0\n18\n0\n\n\n8\nAlexander Albon\n0\n2\n1\n0\n0\n4\n0\n0\n0\n0\n8\n1\n10\n8\n8\n10\n12\n10\n10\n0\n8\n\n\n9\nDaniel Ricciardo\n0\n0\n6\n0\n0\n2\n8\n0\n0\n6\n0\n0\n0\n12\n0\n0\n0\n4\n8\n8\n0\n\n\n10\nSergio Perez\n0\n1\n4\n8\n0\n0\n0\n0\n0\n0\n0\n0\n8\n6\n0\n6\n4\n6\n1\n2\n6",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html#plot",
+    "href": "vis/2019-f1-statistics.html#plot",
+    "title": "f1 2019 drivers statistics",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\nf1 = ByRow(hidedecorations!)\nf2 =ByRow(hidedecorations!)\nwith_theme(theme_black()) do\n fig=Figure(resolution=(600,900))\n supertitle = Label(fig[0, :], \"Formula One Drivers 2019 Season Points\", fontsize = 24)\n grids =[fig[idx, 1] = GridLayout() for idx in 1:row]\n \n for idx  in eachindex(grids)\n     name=df[idx,:].Drivers\n     score=Vector(df[idx,2:end])\n     sum_score=sum(score)\n     al=Axis(grids[idx][1,1])\n     ac=Axis(grids[idx][1,2])\n     ar=Axis(grids[idx][1,3])\n     text!(al,0,0;text=name,align=(:center,:center),fontsize = 16)\n     barplot!(ac, 1:21,score;color=:red,strokewidth=0.3,strokecolor=(:white))\n     text!(ar,0,0,text=\"$(sum_score)\",align=(:center,:center),fontsize = 16)\n     f1([al,ac,ar])\n     hidespines!(al)\n     hidespines!(ar)\n     hidespines!(ac, :t, :r,:l)\n end\n fig\nend",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/market-for-chip-production.html",
+    "href": "vis/market-for-chip-production.html",
+    "title": "Market share for logic chip production, by manufacturing stage, 2021",
+    "section": "",
+    "text": "info\n\n\n\n\nref:Market share for logic chip production, by manufacturing stage, 2021\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nMakie.set_theme!(ggthemr(:dust))",
+    "crumbs": [
+      "Data Viz",
+      "Market share for logic chip production, by manufacturing stage, 2021"
+    ]
+  },
+  {
+    "objectID": "vis/market-for-chip-production.html#load-data-dataframe",
+    "href": "vis/market-for-chip-production.html#load-data-dataframe",
+    "title": "Market share for logic chip production, by manufacturing stage, 2021",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/market-share-logic-chip-production-manufacturing-stage.csv\")|&gt;DataFrame\ndf=coalesce.(df, 0.0)\n\n\n9×6 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nDesign\nFabrication\nAssembly, testing and packaging\n\n\n\nString15\nAny\nInt64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nChina\nCHN\n2021\n9.0\n12.0\n14.0\n\n\n2\nItaly\nITA\n2021\n0.0\n2.0\n0.0\n\n\n3\nJapan\nJPN\n2021\n6.0\n1.0\n7.0\n\n\n4\nMalaysia\nMYS\n2021\n0.0\n0.0\n2.0\n\n\n5\nOthers\n0.0\n2021\n9.0\n0.0\n5.0\n\n\n6\nSingapore\nSGP\n2021\n0.0\n0.0\n2.0\n\n\n7\nSouth Korea\nKOR\n2021\n6.0\n11.0\n13.0\n\n\n8\nTaiwan\nTWN\n2021\n9.0\n47.0\n29.0\n\n\n9\nUnited States\nUSA\n2021\n61.0\n27.0\n28.0",
+    "crumbs": [
+      "Data Viz",
+      "Market share for logic chip production, by manufacturing stage, 2021"
+    ]
+  },
+  {
+    "objectID": "vis/market-for-chip-production.html#plot-bar-plot",
+    "href": "vis/market-for-chip-production.html#plot-bar-plot",
+    "title": "Market share for logic chip production, by manufacturing stage, 2021",
+    "section": "3. plot bar plot",
+    "text": "3. plot bar plot\n\n\nCode\ncats=names(df)\nrow,_=size(df)\nfunction plot_barplt(df)\n fig=Figure()\n axs=[Axis(fig[1,1]),Axis(fig[1,2]),Axis(fig[2,1])]\n \n for (idx, ax) in enumerate(axs)\n     df=sort(df,cats[3+idx];rev=false)\n     ax.title=\"$(cats[3+idx])\"\n     ax.yticks=(1:row,df.Entity)\n     ax.xgridvisible=false\n     ax.ygridvisible=false\n     xs=df.Entity\n     ys=@pipe select(df,3+idx)|&gt;_[:,1]|&gt;map(x-&gt;(x/sum(_))*100,_)|&gt;round.(_,digits=0)\n     #@info ys\n     barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,flip_labels_at=20,\n     color_over_background=:dodgerblue3,\n     color_over_bar=:white,\n     )\n\n end\n\n supertitle = Label(fig[0, :], \"Market share for logic chip production, by manufacturing\nstage, 2021\", fontsize = 20)\n fig\n \nend\nplot_barplt(df)",
+    "crumbs": [
+      "Data Viz",
+      "Market share for logic chip production, by manufacturing stage, 2021"
     ]
   },
   {
