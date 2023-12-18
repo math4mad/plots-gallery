@@ -1,0 +1,48 @@
+---
+title: Average temperature anomaly, Global
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Average temperature anomaly, Global](https://ourworldindata.org/grapher/temperature-anomaly)
+  
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/temperature-anomaly.csv")|>DataFrame|>DataFrame|>coalesce.(_, 0.0)|>rename!(_,
+"Global average temperature anomaly relative to 1961-1990"=>:mean, "Upper bound of the annual temperature anomaly (95% confidence interval)"=>:upper, "Lower bound of the annual temperature anomaly (95% confidence interval)"=>:lower
+)
+
+gdf=groupby(df,:Entity)
+cats= @pipe keys(gdf) .|> values(_)[1]
+```
+
+## plots 
+```{julia}
+ fig=Figure()
+ axs=[Axis(fig[i,1]) for i in 1:3]
+ function plot_ci(df,ax,title)
+      ax.title=title
+      xs,mean,lower,upper=df.Year,df.mean,df.lower,df.upper
+      hlines!(ax,[0],linestyle=:dot,color=(:red,0.8))
+      lines!(ax,xs,mean,color=:blue)
+      band!(ax,xs,lower,upper,color=(:lightgreen,0.5))
+      
+      
+ end
+
+ #plot_ci(gdf[1],axs[1],title="blank")
+
+ for (idx, df) in enumerate(gdf)
+      plot_ci(df,axs[idx],cats[idx])
+ end
+ fig
+```

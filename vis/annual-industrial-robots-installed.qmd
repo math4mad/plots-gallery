@@ -1,0 +1,43 @@
+---
+title: Annual industrial robots installed
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Annual industrial robots installed](https://ourworldindata.org/grapher/annual-industrial-robots-installed)
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/annual-industrial-robots-installed.csv")|>DataFrame|>coalesce.(_, 0.0)|>rename!(_,"Total number of industrial robots installed by contry, 2021"=>:total)|>sort(_,:total)
+
+first(df,5)
+```
+
+## 3. plot 
+```{julia}
+   row,col=size(df)
+   fig=Figure()
+   ax=Axis(fig[1,1])
+   ax.title="Annual industrial robots installed"
+   ax.subtitle="2021"
+   ax.yticks=(1:row,df.Entity)
+   ax.xgridvisible=false
+   ax.ygridvisible=false
+   xs=df.Entity
+   ys=round.(Int,df.total)
+   barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,#flip_labels_at=20,
+     #color_over_background=:dodgerblue3,
+     #color_over_bar=:white,
+   )
+   
+   fig 
+```
+

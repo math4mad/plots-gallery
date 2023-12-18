@@ -1,0 +1,57 @@
+---
+title: Share of United States households using specific technologies
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Share of United States households using specific technologies](https://ourworldindata.org/rise-of-social-media)
+  
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/technology-adoption-by-households-in-the-united-states.csv")|>DataFrame|>rename(_,"Technology Diffusion (Comin and Hobijn (2004) and others)"=>:Tech_Diffusion)|>select(_,Not(:Code))
+
+# gdf=groupby(df,:Entity)
+# cats= @pipe keys(gdf) .|> values(_)[1]
+gdf=@chain df begin 
+   @group_by(Entity)
+   @arrange(Year)
+   @ungroup
+   @group_by(Entity)
+end
+cats= @pipe keys(gdf) .|> values(_)[1]
+group_size=keys(gdf)|>length;
+```
+
+```{julia}
+axs=[]
+fig=Figure(resolution=(1200,2000))
+function plot_diffusion(df,ax,title,c)
+    ax.title=title
+    ax.xticks=([1900,1930,1960,1980,2019],["1900","30","60","80","2019"])
+    ax.yticks=([0,50,100],["0%","50%","100%"])
+    ax.yticklabelsvisible= c==1 ? true :  false
+    xs,ys=df.Year,df.Tech_Diffusion
+    lines!(ax,xs,ys,color=(:red,0.8))
+end
+
+for idx in 1:45
+    r,c=fldmod1(idx,4)
+    ax=Axis(fig[r,c])
+    push!(axs,ax)
+    df=gdf[idx]
+    title=cats[idx]
+    plot_diffusion(df,ax,title,c)
+end
+linkyaxes!(axs...)
+linkxaxes!(axs...)
+fig
+```

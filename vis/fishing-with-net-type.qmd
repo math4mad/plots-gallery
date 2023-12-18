@@ -1,0 +1,56 @@
+---
+title: Wild fish catch by gear type, World
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Wild fish catch by gear type, World](https://ourworldindata.org/grapher/fish-catch-gear-type)
+  - fishing gear type : [Fish and Overfishing - Our World in Data](https://ourworldindata.org/fish-and-overfishing)
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/fish-catch-gear-type.csv")|>DataFrame|>DataFrame|>coalesce.(_, 0.0)|>rename!(_,"pelagic trawl"=>:pelagic_trawl)
+```
+
+## 3. data processing
+```{julia}
+df=@chain df begin
+   @group_by(Year)
+   @summarize(unknown_gear=sum(unknown_gear),
+              other_gear=sum(other_gear),
+              longline=sum(other_gear),
+              gillnet=sum(gillnet),
+              small_scale=sum(small_scale),
+              purse_seine=sum(purse_seine),
+              pelagic_trawl=sum(pelagic_trawl),
+              bottom_trawl=sum(bottom_trawl)
+    )
+   @ungroup
+   @pivot_longer(_, unknown_gear:bottom_trawl,names_to = gear_type, values_to =weight)
+end
+```
+
+## 4. plot 
+```{julia}
+#| label: fig-1
+#| fig-cap: "different gear  fihsing  amount"
+@rput df
+function plot_arestack_r()
+ R"""
+    library(ggplot2)
+    library(ggthemes)
+    library(viridis)
+    ggplot(df, aes(x=Year, y=weight, fill=gear_type)) + 
+    geom_area(alpha=0.6 , size=.5, colour="white")+scale_fill_viridis(discrete = T)+theme_wsj()
+ """
+end
+plot_arestack_r()
+```

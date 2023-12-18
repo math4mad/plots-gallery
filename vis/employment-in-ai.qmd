@@ -1,0 +1,40 @@
+---
+title: Employer of new AI PhDs in the United States and Canada
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Employer of new AI PhDs in the United States and Canada](https://ourworldindata.org/grapher/employer-new-artificial-intelligence-phds-stacked-area)
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/employer-new-artificial-intelligence-phds-stacked-area.csv")|>DataFrame|>
+rename!(_,"New AI PhD graduates"=>:Phdstudent)
+```
+
+## 3. plot 
+```{julia}
+#| label: fig-1
+#| fig-cap: "Employer of new AI PhDs in the United States and Canada"
+@rput df
+function plot_arestack_r()
+ R"""
+    library(ggplot2)
+    library(ggthemes)
+    library(viridis)
+    ggplot(df, aes(x=Year, y=Phdstudent, fill=Entity)) + 
+    geom_area(alpha=0.6 , size=.5, colour="white")+scale_fill_viridis(discrete = T)+theme_wsj()
+ """
+end
+plot_arestack_r()
+```
+
+
