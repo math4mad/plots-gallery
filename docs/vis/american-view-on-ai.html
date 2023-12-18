@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 3-biovariate-normal-dist</title>
+<title>GLMakie Gallery - Views of Americans about robot vs.&nbsp;human intelligence, All adults”</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -99,6 +99,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -112,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/3-bio-norm-dist.html">3-biovariate-normal-dist</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/american-view-on-ai.html">Views of Americans about robot vs.&nbsp;human intelligence, All adults”</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -246,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/3-bio-norm-dist.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/3-bio-norm-dist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3-biovariate-normal-dist</span></a>
   </div>
 </li>
@@ -328,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/american-view-on-ai.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/american-view-on-ai.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Views of Americans about robot vs.&nbsp;human intelligence, All adults”</span></a>
   </div>
 </li>
@@ -374,17 +377,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">2. plot</a></li>
+  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link active" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing">data processing</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/3-bio-norm-dist.html">3-biovariate-normal-dist</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/american-view-on-ai.html">Views of Americans about robot vs.&nbsp;human intelligence, All adults”</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">3-biovariate-normal-dist</h1>
+<h1 class="title">Views of Americans about robot vs.&nbsp;human intelligence, All adults”</h1>
 </div>
 
 
@@ -394,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -407,58 +410,250 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="load-package" class="level2">
-<h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
-<div class="cell" data-execution_count="1">
+<div class="callout callout-style-default callout-note callout-titled" title="info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ref:<a href="https://ourworldindata.org/grapher/views-of-americans-robot-vs-human-intelligence">Views of Americans about robot vs.&nbsp;human intelligence, All adults</a></li>
+</ul>
+</div>
+</div>
+<p>load pacakge</p>
+<div id="3fc7b466" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">GLMakie</span>, <span class="bu">Distributions</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">FileIO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"utils.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>[ Info: loading success</code></pre>
+</div>
+</div>
+<section id="load-data-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
+<div id="2464fcd1" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/views-of-americans-robot-vs-human-intelligence.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span><span class="fu">coalesce</span>.(_, <span class="fl">0.0</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(df,<span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<div><div style="float: left;"><span>5×8 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Day</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">None of these</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Don't know</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Most robots have already developed higher levels of intelligence than humans</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Robots will never be able to develop higher levels of intelligence than humans</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Robots will be able to develop higher levels of intelligence than humans in the future</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String31">String31</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Date">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">18-29 years</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-01-07</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">18-29 years</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2021-07-01</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">18-29 years</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-01-06</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">18-29 years</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2022-06-30</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">18-29 years</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">2023-01-05</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">46</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </section>
-<section id="plot" class="level2">
-<h2 class="anchored" data-anchor-id="plot">2. plot</h2>
-<div class="cell" data-execution_count="2">
+<section id="data-processing" class="level2">
+<h2 class="anchored" data-anchor-id="data-processing">data processing</h2>
+<div id="2ba4be4e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    μ <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">0</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Σ₁ <span class="op">=</span> [<span class="fl">2</span> <span class="fl">1.8</span>; <span class="fl">1.8</span> <span class="fl">2</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Σ₂ <span class="op">=</span> [<span class="fl">1</span> <span class="fl">0</span>; <span class="fl">0</span> <span class="fl">3</span>]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Σ₃ <span class="op">=</span> [<span class="fl">1</span> <span class="fl">0</span>; <span class="fl">0</span> <span class="fl">1</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    simga_dict <span class="op">=</span> <span class="fu">Dict</span>(<span class="st">"full"</span> <span class="op">=&gt;</span> Σ₁, <span class="st">"diagonal"</span> <span class="op">=&gt;</span> Σ₂, <span class="st">"spherical"</span> <span class="op">=&gt;</span> Σ₃)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">load_img</span>(src)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">load</span>(<span class="st">"./imgs/</span><span class="sc">$</span>(src)<span class="st">.png"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">binormal_plot</span>(; μ<span class="op">=</span>[<span class="fl">0</span>, <span class="fl">0</span>], Σmatrix<span class="op">::</span><span class="dt">Dict</span>=simga_dict, up<span class="op">::</span><span class="dt">Int</span>=<span class="fl">4</span>, n<span class="op">::</span><span class="dt">Int</span>=<span class="fl">100</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        xs <span class="op">=</span> ys <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span>up, up, n)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        simga_keys <span class="op">=</span> <span class="fu">keys</span>(Σmatrix)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (idx, val) <span class="kw">in</span> <span class="fu">enumerate</span>(simga_keys)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> cormatrix <span class="op">=</span> Σmatrix[val]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> img<span class="op">=</span><span class="fu">load_img</span>(val)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> d <span class="op">=</span> <span class="fu">MvNormal</span>(μ, cormatrix)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> zs <span class="op">=</span> [<span class="fu">pdf</span>(d, [x, y]) for x <span class="kw">in</span> xs, y <span class="kw">in</span> ys]</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ax1 <span class="op">=</span> <span class="fu">Axis3</span>(fig[<span class="fl">1</span>, idx], title<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(val)<span class="st">"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ax2<span class="op">=</span>  <span class="fu">Axis</span>(fig[<span class="fl">2</span>, idx],aspect <span class="op">=</span> <span class="fu">DataAspect</span>(),height<span class="op">=</span><span class="fl">60</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ax3 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">3</span>, idx];)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="fu">hidedecorations!</span>(ax2)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="fu">hidespines!</span>(ax2)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                <span class="fu">surface!</span>(ax1, xs, ys, zs)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                <span class="fu">image!</span>(ax2, <span class="fu">rotr90</span>(img))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="fu">contour!</span>(ax3, xs, ys, zs, levels<span class="op">=</span><span class="fl">10</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">binormal_plot</span>()</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> cats<span class="op">=</span><span class="fu">names</span>(df)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">rename!</span>(df,<span class="st">"None of these"</span><span class="op">=&gt;:</span>none,<span class="st">"Don't know"</span><span class="op">=&gt;:</span>dtkonw,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="st">"Most robots have already developed higher levels of intelligence than humans"</span><span class="op">=&gt;:</span>better,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> <span class="st">"Robots will never be able to develop higher levels of intelligence than humans"</span><span class="op">=&gt;:</span>nobetter,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> <span class="st">"Robots will be able to develop higher levels of intelligence than humans in the future"</span><span class="op">=&gt;:</span>future</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a> df2<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@group_by</span>(Day)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@summarize</span>(none<span class="op">=</span><span class="fu">sum</span>(none),dtkonw<span class="op">=</span><span class="fu">sum</span>(dtkonw),   better<span class="op">=</span><span class="fu">sum</span>(better),nobetter<span class="op">=</span><span class="fu">sum</span>(better),future<span class="op">=</span><span class="fu">sum</span>(future))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a> <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="67">
+<div><div style="float: left;"><span>6×6 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Day</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">none</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">dtkonw</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">better</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">nobetter</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">future</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Date">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">2021-01-07</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">482</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">958</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">2021-07-01</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">345</td>
+<td style="text-align: right;">345</td>
+<td style="text-align: right;">793</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">2022-01-06</td>
+<td style="text-align: right;">146</td>
+<td style="text-align: right;">538</td>
+<td style="text-align: right;">277</td>
+<td style="text-align: right;">277</td>
+<td style="text-align: right;">933</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">2022-06-30</td>
+<td style="text-align: right;">243</td>
+<td style="text-align: right;">441</td>
+<td style="text-align: right;">346</td>
+<td style="text-align: right;">346</td>
+<td style="text-align: right;">883</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">2023-01-05</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">494</td>
+<td style="text-align: right;">303</td>
+<td style="text-align: right;">303</td>
+<td style="text-align: right;">906</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">2023-06-29</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">478</td>
+<td style="text-align: right;">410</td>
+<td style="text-align: right;">410</td>
+<td style="text-align: right;">832</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="2799b2d3" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> (width <span class="op">=</span> <span class="fl">1000</span>, height <span class="op">=</span><span class="fl">500</span>,xticklabelrotation <span class="op">=</span> <span class="cn">pi</span><span class="op">/</span><span class="fl">8</span>,title<span class="op">=</span><span class="st">"Attitude about AI development"</span>,yticks<span class="op">=</span>(<span class="fu">range</span>(<span class="fl">100</span>,<span class="fl">1000</span>,<span class="fl">7</span>),[<span class="st">"</span><span class="sc">$</span>i<span class="st"> %"</span> for i <span class="kw">in</span> <span class="fl">5</span><span class="op">:</span><span class="fl">5</span><span class="op">:</span><span class="fl">35</span>]))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_layer <span class="op">=</span> <span class="fu">data</span>(df2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mapping_layer<span class="op">=</span><span class="fu">mapping</span>(<span class="op">:</span>Day,[<span class="op">:</span>none,<span class="op">:</span>dtkonw,<span class="op">:</span>better,<span class="op">:</span>nobetter,<span class="op">:</span>future]<span class="op">.=&gt;</span> <span class="st">"value"</span>, color<span class="op">=</span><span class="fu">dims</span>(<span class="fl">1</span>) <span class="op">=&gt;</span> <span class="fu">renamer</span>(cats[<span class="fl">4</span><span class="op">:</span><span class="fl">8</span>]) <span class="op">=&gt;</span> <span class="st">"opinion"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>visual_layer <span class="op">=</span> <span class="fu">visual</span>(ScatterLines;stroke<span class="op">=</span><span class="fl">1</span>,strokecolor<span class="op">=</span>(<span class="op">:</span>red,<span class="fl">0.8</span>),markersize<span class="op">=</span><span class="fl">10</span>,linewidth<span class="op">=</span><span class="fl">3</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(data_layer <span class="op">*</span> mapping_layer <span class="op">*</span> visual_layer,axis<span class="op">=</span>axis,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> legend<span class="op">=</span>(position<span class="op">=:</span>right, titleposition<span class="op">=:</span>top, framevisible<span class="op">=</span><span class="cn">true</span>, padding<span class="op">=</span><span class="fl">5</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.
+└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="68">
 <div>
 <figure class="figure">
-<p><img src="3-bio-norm-dist_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="american-view-on-ai_files/figure-html/cell-5-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

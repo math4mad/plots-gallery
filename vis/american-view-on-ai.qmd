@@ -1,0 +1,50 @@
+---
+title: Views of Americans about robot vs. human intelligence, All adults"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Views of Americans about robot vs. human intelligence, All
+adults](https://ourworldindata.org/grapher/views-of-americans-robot-vs-human-intelligence)
+:::
+
+
+load pacakge
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+    df=@pipe CSV.File("./data/views-of-americans-robot-vs-human-intelligence.csv")|>DataFrame|>coalesce.(_, 0.0)
+
+first(df,5)
+```
+
+## data processing
+```{julia}
+ cats=names(df)
+ rename!(df,"None of these"=>:none,"Don't know"=>:dtkonw,
+ "Most robots have already developed higher levels of intelligence than humans"=>:better,
+ "Robots will never be able to develop higher levels of intelligence than humans"=>:nobetter,
+ "Robots will be able to develop higher levels of intelligence than humans in the future"=>:future
+ 
+ )
+
+ df2=@chain df begin
+    @group_by(Day)
+    @summarize(none=sum(none),dtkonw=sum(dtkonw),	better=sum(better),nobetter=sum(better),future=sum(future))
+    
+ end
+```
+
+```{julia}
+axis = (width = 1000, height =500,xticklabelrotation = pi/8,title="Attitude about AI development",yticks=(range(100,1000,7),["$i %" for i in 5:5:35]))
+data_layer = data(df2)
+mapping_layer=mapping(:Day,[:none,:dtkonw,:better,:nobetter,:future].=> "value", color=dims(1) => renamer(cats[4:8]) => "opinion")
+visual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)
+draw(data_layer * mapping_layer * visual_layer,axis=axis,
+ legend=(position=:right, titleposition=:top, framevisible=true, padding=5)
+)
+```
