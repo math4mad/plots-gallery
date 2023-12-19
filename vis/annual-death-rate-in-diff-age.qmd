@@ -1,0 +1,90 @@
+---
+title: "Annual death rates in people of different ages"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="ref"}
+- ref :[Annual death rates in people of different ages](https://ourworldindata.org/life-expectancy#all-charts)
+:::
+
+
+```{julia}
+include("utils.jl")
+```
+
+```
+["Entity", "Code", "Year", "Central death rate - Type: period - Sex: both - Age: 0", "Central death rate - Type: period - Sex: both - Age: 10", "Central death rate - Type: period - Sex: both - Age: 25", "Central death rate - Type: period - Sex: both - Age: 45", "Central death rate - Type: period - Sex: both - Age: 65", "Central death rate - Type: period - Sex: both - Age: 80"]
+```
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/annual-death-rates-in-different-age-groups.csv")|>DataFrame
+cats=names(df)
+rename!(df,  "Central death rate - Type: period - Sex: both - Age: 0"=>:age0,
+              "Central death rate - Type: period - Sex: both - Age: 10"=>:age10,
+              "Central death rate - Type: period - Sex: both - Age: 25"=>:age25,
+              "Central death rate - Type: period - Sex: both - Age: 45"=>:age45,
+              "Central death rate - Type: period - Sex: both - Age: 65"=>:age65,
+              "Central death rate - Type: period - Sex: both - Age: 80"=>:age80    
+)
+first(df,10)
+```
+
+```{julia}
+make_title("Part 2: Plot")
+```
+
+```{julia}
+france=@chain df begin 
+   @filter(Entity=="France")
+   @select(3:9)
+   @pivot_longer(_, 2:7, names_to = age_group, values_to =rate)
+   #@group_by(age_group)
+end
+
+two_country=@chain df begin 
+   @select(1,3:9)
+   @pivot_longer(_, 3:8, names_to = age_group, values_to =rate)
+   @filter(Entity ∈ ["France","South Africa"])
+   @group_by(Entity)
+   @arrange(Year)
+   @ungroup
+end
+```
+
+<!-- ```{julia}
+  #| echo: false
+  data_layer1=data(france)
+  map_layer=mapping(:Year,:rate,layout=:age_group)
+  visual_layer1 = visual(Lines,linewidth=1,color=:red)
+  
+  
+  france_pipe=data_layer1*map_layer1*visual_layer1
+
+  data_layer2=data(southafrica)
+  
+  visual_layer2 = visual(Lines,linewidth=1,color=:green)
+  southafrica_pipe=data_layer2*map_layer*visual_layer2
+
+  draw(france_pipe+southafrica_pipe,facet = (;linkyaxes = :none))
+``` -->
+
+
+```{julia}
+  
+  data_layer=data(two_country)
+  map_layer=mapping(:Year,:rate,layout=:age_group,color=:Entity)
+  visual_layer = visual(Lines,linewidth=2)
+  
+  plt=data_layer*map_layer*visual_layer
+  draw(plt,facet = (;linkyaxes = :none),legend=(position=:bottom, titleposition=:left, framevisible=true, padding=2))
+```
+
+
+
+
+
+
+
+
+

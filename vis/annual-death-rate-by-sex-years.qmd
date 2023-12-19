@@ -1,0 +1,59 @@
+---
+title: "Annual death rates in people of different ages, by sex world"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="ref"}
+- ref :[Annual death rates in people of different ages, by sex](https://ourworldindata.org/life-expectancy#all-charts)
+:::
+
+
+```{julia}
+include("utils.jl")
+```
+
+```
+"Entity", "Code", "Year", "Central death rate - Type: period - Sex: female - Age: 0", "Central death rate - Type: period - Sex: male - Age: 0", "Central death rate - Type: period - Sex: female - Age: 10", "Central death rate - Type: period - Sex: male - Age: 10", "Central death rate - Type: period - Sex: female - Age: 15", "Central death rate - Type: period - Sex: male - Age: 15", "Central death rate - Type: period - Sex: female - Age: 25", "Central death rate - Type: period - Sex: male - Age: 25", "Central death rate - Type: period - Sex: female - Age: 45", "Central death rate - Type: period - Sex: male - Age: 45", "Central death rate - Type: period - Sex: female - Age: 65", "Central death rate - Type: period - Sex: male - Age: 65", "Central death rate - Type: period - Sex: female - Age: 80", "Central death rate - Type: period - Sex: male - Age: 80"]
+```
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/annual-death-rates-in-different-age-groups-by-sex.csv")|>DataFrame
+```
+
+```{julia}
+cats=names(df)
+rename!(df,  "Central death rate - Type: period - Sex: female - Age: 0"=>:female_age0, 
+             "Central death rate - Type: period - Sex: male - Age: 0"=>:male_age0, 
+             "Central death rate - Type: period - Sex: female - Age: 10"=>:female_age10, 
+             "Central death rate - Type: period - Sex: male - Age: 10"=>:male_age10, 
+             "Central death rate - Type: period - Sex: female - Age: 15"=>:female_age15, 
+             "Central death rate - Type: period - Sex: male - Age: 15"=>:male_age15, 
+             "Central death rate - Type: period - Sex: female - Age: 25"=>:female_age25, 
+             "Central death rate - Type: period - Sex: male - Age: 25"=>:male_age25, 
+             "Central death rate - Type: period - Sex: female - Age: 45"=>:female_age45, 
+             "Central death rate - Type: period - Sex: male - Age: 45"=>:male_age45,
+              "Central death rate - Type: period - Sex: female - Age: 65"=>:female_age65, 
+              "Central death rate - Type: period - Sex: male - Age: 65"=>:male_age65, 
+              "Central death rate - Type: period - Sex: female - Age: 80"=>:female_age80, 
+              "Central death rate - Type: period - Sex: male - Age: 80" =>:male_age80 
+)
+```
+
+```{julia}
+female_data=@chain df begin
+   @filter(Year==2021)
+   @select(1,3:17)
+   @select(startswith("female"))
+   @summarize(female_age0=mean(female_age0),female_age10=mean(female_age10),female_age15=mean(female_age15),female_age25=mean(female_age25),	female_age45=mean(female_age45),female_age65=mean(female_age65),female_age80=mean(female_age80))
+end
+```
+```{julia}
+male_data=@chain df begin
+   @filter(Year==2021)
+   @select(1,3:17)
+   @select(startswith("male"))
+   @summarize(male_age0=mean(male_age0),male_age10=mean(male_age10),male_age15=mean(male_age15),male_age25=mean(male_age25),male_age45=mean(male_age45),male_age65=mean(male_age65),male_age80=mean(male_age80))
+end
+```
+

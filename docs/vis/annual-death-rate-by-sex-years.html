@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.514">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="math4mad">
+
+<title>GLMakie Gallery - Annual death rates in people of different ages, by sex world</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/annual-death-rate-by-sex-years.html">Annual death rates in people of different ages, by sex world</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">GLMakie Gallery</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://math4mad.github.io/plots-gallery/" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Math</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/1-double-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1-double integral picture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/2-function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2-Two Variables Function corss-section</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/3-oval-spere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3-oval-sphere-params-equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/4-one-variable-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4-single-variable-integral</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/5-himmelblau-function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5-himmelblau-plot</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1-normal-distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/10-dirichlet-dist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10-dirichlet-dist</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/12-likelihood-coin-toss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12-likelihood of coin toss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/13-understand-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13-understanding-bayes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/14-unicode-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14-unicode-plot-method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15-bubble-plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/16-rotate-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16-rotate-plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/2-2d-descison-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2-2dimension decision boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/3-bio-norm-dist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3-biovariate-normal-dist</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/4-pair-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4-pair-plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/5-2d-decision-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5-2d-decision-boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/6-mutli-variable-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6-bio-normal-dist</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/7-mvnormal-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7-mv-normal-sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/8-dotplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8-dotplot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/9-2d-decision-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9-2d-descision-boundary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../machinelearning/1-classfication-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">classfication models comparison</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Data Viz</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/2019-f1-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">f1 2019 drivers statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/ai-performance-with-datasize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Artificial intelligence: Performance on knowledge tests vs.&nbsp;training computation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/ai-supercomputer-ability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computation used to train notable artificial intelligence systems”</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/american-view-on-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Views of Americans about robot vs.&nbsp;human intelligence, All adults”</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/annual-death-rate-by-sex-years.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Annual death rates in people of different ages, by sex world</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/annual-death-rate-in-diff-age.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annual death rates in people of different ages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/annual-industrial-robots-installed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annual industrial robots installed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/average-temperature-anomaly-world.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Average temperature anomaly, Global</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/cost-of-space-launch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cost of space launches to low Earth orbit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/employment-in-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Employer of new AI PhDs in the United States and Canada</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/fishing-with-net-type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wild fish catch by gear type, World</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/internet-user-view.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Number of people using the Internet”</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/irish-whiskey-sales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Irish Whiskey Sales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/market-for-chip-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Market share for logic chip production, by manufacturing stage, 2021</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/usa-household-use-technology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Share of United States households using specific technologies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/world-electricity-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Total electricity generation”</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Materials</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link active" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/annual-death-rate-by-sex-years.html">Annual death rates in people of different ages, by sex world</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Annual death rates in people of different ages, by sex world</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>math4mad </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="ref">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ref
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ref :<a href="https://ourworldindata.org/life-expectancy#all-charts">Annual death rates in people of different ages, by sex</a></li>
+</ul>
+</div>
+</div>
+<div id="2d7bf3f7" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"utils.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>[ Info: loading success</code></pre>
+</div>
+</div>
+<pre><code>"Entity", "Code", "Year", "Central death rate - Type: period - Sex: female - Age: 0", "Central death rate - Type: period - Sex: male - Age: 0", "Central death rate - Type: period - Sex: female - Age: 10", "Central death rate - Type: period - Sex: male - Age: 10", "Central death rate - Type: period - Sex: female - Age: 15", "Central death rate - Type: period - Sex: male - Age: 15", "Central death rate - Type: period - Sex: female - Age: 25", "Central death rate - Type: period - Sex: male - Age: 25", "Central death rate - Type: period - Sex: female - Age: 45", "Central death rate - Type: period - Sex: male - Age: 45", "Central death rate - Type: period - Sex: female - Age: 65", "Central death rate - Type: period - Sex: male - Age: 65", "Central death rate - Type: period - Sex: female - Age: 80", "Central death rate - Type: period - Sex: male - Age: 80"]</code></pre>
+<section id="load-data-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
+<div id="289ded34" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/annual-death-rates-in-different-age-groups-by-sex.csv"</span>)<span class="op">|&gt;</span>DataFrame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div><div style="float: left;"><span>19922×17 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">19897 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 0</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 0</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 10</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 10</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 45</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 45</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: female - Age: 80</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central death rate - Type: period - Sex: male - Age: 80</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, String15}">String15?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1950</td>
+<td style="text-align: right;">328.053</td>
+<td style="text-align: right;">378.814</td>
+<td style="text-align: right;">7.72991</td>
+<td style="text-align: right;">6.52991</td>
+<td style="text-align: right;">9.96758</td>
+<td style="text-align: right;">8.11575</td>
+<td style="text-align: right;">15.0426</td>
+<td style="text-align: right;">14.8812</td>
+<td style="text-align: right;">21.2739</td>
+<td style="text-align: right;">27.5066</td>
+<td style="text-align: right;">67.6107</td>
+<td style="text-align: right;">77.0253</td>
+<td style="text-align: right;">211.223</td>
+<td style="text-align: right;">226.547</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1951</td>
+<td style="text-align: right;">324.777</td>
+<td style="text-align: right;">374.956</td>
+<td style="text-align: right;">7.65714</td>
+<td style="text-align: right;">6.47173</td>
+<td style="text-align: right;">9.87427</td>
+<td style="text-align: right;">8.0444</td>
+<td style="text-align: right;">14.9049</td>
+<td style="text-align: right;">14.7495</td>
+<td style="text-align: right;">21.0961</td>
+<td style="text-align: right;">27.2708</td>
+<td style="text-align: right;">67.1116</td>
+<td style="text-align: right;">76.5053</td>
+<td style="text-align: right;">209.885</td>
+<td style="text-align: right;">225.159</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: right;">318.286</td>
+<td style="text-align: right;">366.965</td>
+<td style="text-align: right;">7.51281</td>
+<td style="text-align: right;">6.3596</td>
+<td style="text-align: right;">9.6892</td>
+<td style="text-align: right;">7.90725</td>
+<td style="text-align: right;">14.6317</td>
+<td style="text-align: right;">14.4965</td>
+<td style="text-align: right;">20.7428</td>
+<td style="text-align: right;">26.8212</td>
+<td style="text-align: right;">66.1187</td>
+<td style="text-align: right;">75.5487</td>
+<td style="text-align: right;">207.22</td>
+<td style="text-align: right;">222.703</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: right;">311.888</td>
+<td style="text-align: right;">358.685</td>
+<td style="text-align: right;">7.37038</td>
+<td style="text-align: right;">6.25279</td>
+<td style="text-align: right;">9.50655</td>
+<td style="text-align: right;">7.77702</td>
+<td style="text-align: right;">14.3619</td>
+<td style="text-align: right;">14.2566</td>
+<td style="text-align: right;">20.3934</td>
+<td style="text-align: right;">26.3985</td>
+<td style="text-align: right;">65.1349</td>
+<td style="text-align: right;">74.6933</td>
+<td style="text-align: right;">204.573</td>
+<td style="text-align: right;">220.633</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1954</td>
+<td style="text-align: right;">305.975</td>
+<td style="text-align: right;">351.087</td>
+<td style="text-align: right;">7.47033</td>
+<td style="text-align: right;">6.32612</td>
+<td style="text-align: right;">9.54872</td>
+<td style="text-align: right;">7.80432</td>
+<td style="text-align: right;">14.3075</td>
+<td style="text-align: right;">14.1708</td>
+<td style="text-align: right;">20.3094</td>
+<td style="text-align: right;">26.2079</td>
+<td style="text-align: right;">64.6866</td>
+<td style="text-align: right;">74.327</td>
+<td style="text-align: right;">202.837</td>
+<td style="text-align: right;">219.442</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1955</td>
+<td style="text-align: right;">298.864</td>
+<td style="text-align: right;">342.552</td>
+<td style="text-align: right;">7.08519</td>
+<td style="text-align: right;">6.0428</td>
+<td style="text-align: right;">9.14193</td>
+<td style="text-align: right;">7.52088</td>
+<td style="text-align: right;">13.824</td>
+<td style="text-align: right;">13.7848</td>
+<td style="text-align: right;">19.7027</td>
+<td style="text-align: right;">25.5661</td>
+<td style="text-align: right;">63.2202</td>
+<td style="text-align: right;">72.9975</td>
+<td style="text-align: right;">199.518</td>
+<td style="text-align: right;">216.517</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1956</td>
+<td style="text-align: right;">292.437</td>
+<td style="text-align: right;">334.788</td>
+<td style="text-align: right;">6.9579</td>
+<td style="text-align: right;">5.95098</td>
+<td style="text-align: right;">8.97388</td>
+<td style="text-align: right;">7.40485</td>
+<td style="text-align: right;">13.5696</td>
+<td style="text-align: right;">13.5633</td>
+<td style="text-align: right;">19.3775</td>
+<td style="text-align: right;">25.173</td>
+<td style="text-align: right;">62.3198</td>
+<td style="text-align: right;">72.1939</td>
+<td style="text-align: right;">197.145</td>
+<td style="text-align: right;">214.542</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1957</td>
+<td style="text-align: right;">285.96</td>
+<td style="text-align: right;">327.082</td>
+<td style="text-align: right;">6.80497</td>
+<td style="text-align: right;">5.82437</td>
+<td style="text-align: right;">8.78425</td>
+<td style="text-align: right;">7.25426</td>
+<td style="text-align: right;">13.2964</td>
+<td style="text-align: right;">13.2944</td>
+<td style="text-align: right;">19.0277</td>
+<td style="text-align: right;">24.7002</td>
+<td style="text-align: right;">61.3636</td>
+<td style="text-align: right;">71.1901</td>
+<td style="text-align: right;">194.668</td>
+<td style="text-align: right;">212.095</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1958</td>
+<td style="text-align: right;">279.403</td>
+<td style="text-align: right;">319.298</td>
+<td style="text-align: right;">6.66214</td>
+<td style="text-align: right;">5.69684</td>
+<td style="text-align: right;">8.60189</td>
+<td style="text-align: right;">7.09851</td>
+<td style="text-align: right;">13.0273</td>
+<td style="text-align: right;">13.0086</td>
+<td style="text-align: right;">18.6822</td>
+<td style="text-align: right;">24.1954</td>
+<td style="text-align: right;">60.4097</td>
+<td style="text-align: right;">70.1002</td>
+<td style="text-align: right;">192.166</td>
+<td style="text-align: right;">209.401</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1959</td>
+<td style="text-align: right;">273.273</td>
+<td style="text-align: right;">312.183</td>
+<td style="text-align: right;">6.52603</td>
+<td style="text-align: right;">5.58004</td>
+<td style="text-align: right;">8.42824</td>
+<td style="text-align: right;">6.9558</td>
+<td style="text-align: right;">12.7715</td>
+<td style="text-align: right;">12.7468</td>
+<td style="text-align: right;">18.3544</td>
+<td style="text-align: right;">23.7325</td>
+<td style="text-align: right;">59.5094</td>
+<td style="text-align: right;">69.0955</td>
+<td style="text-align: right;">189.867</td>
+<td style="text-align: right;">206.911</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1960</td>
+<td style="text-align: right;">267.463</td>
+<td style="text-align: right;">305.598</td>
+<td style="text-align: right;">6.40648</td>
+<td style="text-align: right;">5.48074</td>
+<td style="text-align: right;">8.27133</td>
+<td style="text-align: right;">6.83256</td>
+<td style="text-align: right;">12.5389</td>
+<td style="text-align: right;">12.5175</td>
+<td style="text-align: right;">18.0579</td>
+<td style="text-align: right;">23.3241</td>
+<td style="text-align: right;">58.6735</td>
+<td style="text-align: right;">68.2023</td>
+<td style="text-align: right;">187.792</td>
+<td style="text-align: right;">204.59</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1961</td>
+<td style="text-align: right;">261.854</td>
+<td style="text-align: right;">298.886</td>
+<td style="text-align: right;">6.26721</td>
+<td style="text-align: right;">5.3612</td>
+<td style="text-align: right;">8.09831</td>
+<td style="text-align: right;">6.68825</td>
+<td style="text-align: right;">12.2866</td>
+<td style="text-align: right;">12.256</td>
+<td style="text-align: right;">17.7335</td>
+<td style="text-align: right;">22.8633</td>
+<td style="text-align: right;">57.8106</td>
+<td style="text-align: right;">67.1957</td>
+<td style="text-align: right;">185.652</td>
+<td style="text-align: right;">202.185</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">256.655</td>
+<td style="text-align: right;">292.773</td>
+<td style="text-align: right;">6.14919</td>
+<td style="text-align: right;">5.26366</td>
+<td style="text-align: right;">7.9478</td>
+<td style="text-align: right;">6.56954</td>
+<td style="text-align: right;">12.0652</td>
+<td style="text-align: right;">12.0384</td>
+<td style="text-align: right;">17.4491</td>
+<td style="text-align: right;">22.4812</td>
+<td style="text-align: right;">57.0294</td>
+<td style="text-align: right;">66.3898</td>
+<td style="text-align: right;">183.704</td>
+<td style="text-align: right;">200.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19911</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">53.9416</td>
+<td style="text-align: right;">60.8736</td>
+<td style="text-align: right;">1.63101</td>
+<td style="text-align: right;">1.90256</td>
+<td style="text-align: right;">2.49942</td>
+<td style="text-align: right;">2.61754</td>
+<td style="text-align: right;">8.802</td>
+<td style="text-align: right;">8.97857</td>
+<td style="text-align: right;">20.8596</td>
+<td style="text-align: right;">27.2927</td>
+<td style="text-align: right;">45.8422</td>
+<td style="text-align: right;">52.5112</td>
+<td style="text-align: right;">86.3175</td>
+<td style="text-align: right;">114.257</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19912</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">50.7671</td>
+<td style="text-align: right;">57.5466</td>
+<td style="text-align: right;">1.5059</td>
+<td style="text-align: right;">1.7603</td>
+<td style="text-align: right;">2.24074</td>
+<td style="text-align: right;">2.40589</td>
+<td style="text-align: right;">6.98757</td>
+<td style="text-align: right;">7.8604</td>
+<td style="text-align: right;">16.663</td>
+<td style="text-align: right;">23.4714</td>
+<td style="text-align: right;">41.1328</td>
+<td style="text-align: right;">49.1328</td>
+<td style="text-align: right;">85.6723</td>
+<td style="text-align: right;">113.942</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19913</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">45.8417</td>
+<td style="text-align: right;">52.3628</td>
+<td style="text-align: right;">1.2744</td>
+<td style="text-align: right;">1.53946</td>
+<td style="text-align: right;">1.90764</td>
+<td style="text-align: right;">2.12629</td>
+<td style="text-align: right;">5.97021</td>
+<td style="text-align: right;">6.73963</td>
+<td style="text-align: right;">14.7873</td>
+<td style="text-align: right;">20.558</td>
+<td style="text-align: right;">37.6887</td>
+<td style="text-align: right;">46.8993</td>
+<td style="text-align: right;">85.0377</td>
+<td style="text-align: right;">113.63</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19914</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">42.4171</td>
+<td style="text-align: right;">48.8878</td>
+<td style="text-align: right;">1.14827</td>
+<td style="text-align: right;">1.36861</td>
+<td style="text-align: right;">1.71382</td>
+<td style="text-align: right;">1.9229</td>
+<td style="text-align: right;">5.13833</td>
+<td style="text-align: right;">5.92327</td>
+<td style="text-align: right;">13.1951</td>
+<td style="text-align: right;">18.2398</td>
+<td style="text-align: right;">35.8164</td>
+<td style="text-align: right;">45.3136</td>
+<td style="text-align: right;">84.4419</td>
+<td style="text-align: right;">113.357</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19915</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">40.2433</td>
+<td style="text-align: right;">46.6497</td>
+<td style="text-align: right;">1.06513</td>
+<td style="text-align: right;">1.26043</td>
+<td style="text-align: right;">1.58333</td>
+<td style="text-align: right;">1.78416</td>
+<td style="text-align: right;">4.57123</td>
+<td style="text-align: right;">5.31936</td>
+<td style="text-align: right;">12.052</td>
+<td style="text-align: right;">16.3566</td>
+<td style="text-align: right;">34.5043</td>
+<td style="text-align: right;">43.8205</td>
+<td style="text-align: right;">83.7835</td>
+<td style="text-align: right;">113.008</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19916</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">39.3862</td>
+<td style="text-align: right;">45.7603</td>
+<td style="text-align: right;">1.03008</td>
+<td style="text-align: right;">1.21829</td>
+<td style="text-align: right;">1.51606</td>
+<td style="text-align: right;">1.7263</td>
+<td style="text-align: right;">4.23604</td>
+<td style="text-align: right;">5.0488</td>
+<td style="text-align: right;">11.3024</td>
+<td style="text-align: right;">15.4633</td>
+<td style="text-align: right;">33.6349</td>
+<td style="text-align: right;">43.0445</td>
+<td style="text-align: right;">83.1682</td>
+<td style="text-align: right;">112.702</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19917</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">37.7949</td>
+<td style="text-align: right;">44.0875</td>
+<td style="text-align: right;">0.97629</td>
+<td style="text-align: right;">1.14752</td>
+<td style="text-align: right;">1.43611</td>
+<td style="text-align: right;">1.64832</td>
+<td style="text-align: right;">3.93881</td>
+<td style="text-align: right;">4.80345</td>
+<td style="text-align: right;">10.7236</td>
+<td style="text-align: right;">14.872</td>
+<td style="text-align: right;">32.8932</td>
+<td style="text-align: right;">42.7217</td>
+<td style="text-align: right;">82.5508</td>
+<td style="text-align: right;">112.388</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19918</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">36.8661</td>
+<td style="text-align: right;">43.1389</td>
+<td style="text-align: right;">0.95685</td>
+<td style="text-align: right;">1.12218</td>
+<td style="text-align: right;">1.38986</td>
+<td style="text-align: right;">1.61538</td>
+<td style="text-align: right;">3.73174</td>
+<td style="text-align: right;">4.70667</td>
+<td style="text-align: right;">10.2912</td>
+<td style="text-align: right;">14.6938</td>
+<td style="text-align: right;">32.3443</td>
+<td style="text-align: right;">42.7099</td>
+<td style="text-align: right;">81.9914</td>
+<td style="text-align: right;">112.102</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19919</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">35.4646</td>
+<td style="text-align: right;">41.6297</td>
+<td style="text-align: right;">0.89795</td>
+<td style="text-align: right;">1.04302</td>
+<td style="text-align: right;">1.32043</td>
+<td style="text-align: right;">1.53221</td>
+<td style="text-align: right;">3.51856</td>
+<td style="text-align: right;">4.42719</td>
+<td style="text-align: right;">9.86634</td>
+<td style="text-align: right;">13.892</td>
+<td style="text-align: right;">31.726</td>
+<td style="text-align: right;">42.13</td>
+<td style="text-align: right;">81.3326</td>
+<td style="text-align: right;">111.776</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19920</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">35.3383</td>
+<td style="text-align: right;">41.4167</td>
+<td style="text-align: right;">0.93255</td>
+<td style="text-align: right;">1.07613</td>
+<td style="text-align: right;">1.32845</td>
+<td style="text-align: right;">1.55651</td>
+<td style="text-align: right;">3.48048</td>
+<td style="text-align: right;">4.53653</td>
+<td style="text-align: right;">9.78645</td>
+<td style="text-align: right;">14.3989</td>
+<td style="text-align: right;">31.6513</td>
+<td style="text-align: right;">42.7631</td>
+<td style="text-align: right;">80.8855</td>
+<td style="text-align: right;">111.541</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19921</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">34.9539</td>
+<td style="text-align: right;">40.9834</td>
+<td style="text-align: right;">0.87637</td>
+<td style="text-align: right;">1.02782</td>
+<td style="text-align: right;">1.20826</td>
+<td style="text-align: right;">1.39351</td>
+<td style="text-align: right;">3.11532</td>
+<td style="text-align: right;">4.14614</td>
+<td style="text-align: right;">9.38663</td>
+<td style="text-align: right;">15.0135</td>
+<td style="text-align: right;">33.6533</td>
+<td style="text-align: right;">48.0212</td>
+<td style="text-align: right;">82.9557</td>
+<td style="text-align: right;">120.98</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19922</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">34.9083</td>
+<td style="text-align: right;">40.922</td>
+<td style="text-align: right;">0.86883</td>
+<td style="text-align: right;">1.02383</td>
+<td style="text-align: right;">1.30698</td>
+<td style="text-align: right;">1.58042</td>
+<td style="text-align: right;">3.38878</td>
+<td style="text-align: right;">4.70133</td>
+<td style="text-align: right;">10.5541</td>
+<td style="text-align: right;">17.1106</td>
+<td style="text-align: right;">38.6799</td>
+<td style="text-align: right;">56.6425</td>
+<td style="text-align: right;">100.369</td>
+<td style="text-align: right;">143.754</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="4c4b8fa0" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cats<span class="op">=</span><span class="fu">names</span>(df)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,  <span class="st">"Central death rate - Type: period - Sex: female - Age: 0"</span><span class="op">=&gt;:</span>female_age0, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: male - Age: 0"</span><span class="op">=&gt;:</span>male_age0, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: female - Age: 10"</span><span class="op">=&gt;:</span>female_age10, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: male - Age: 10"</span><span class="op">=&gt;:</span>male_age10, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: female - Age: 15"</span><span class="op">=&gt;:</span>female_age15, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: male - Age: 15"</span><span class="op">=&gt;:</span>male_age15, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: female - Age: 25"</span><span class="op">=&gt;:</span>female_age25, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: male - Age: 25"</span><span class="op">=&gt;:</span>male_age25, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: female - Age: 45"</span><span class="op">=&gt;:</span>female_age45, </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Central death rate - Type: period - Sex: male - Age: 45"</span><span class="op">=&gt;:</span>male_age45,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Central death rate - Type: period - Sex: female - Age: 65"</span><span class="op">=&gt;:</span>female_age65, </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Central death rate - Type: period - Sex: male - Age: 65"</span><span class="op">=&gt;:</span>male_age65, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Central death rate - Type: period - Sex: female - Age: 80"</span><span class="op">=&gt;:</span>female_age80, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Central death rate - Type: period - Sex: male - Age: 80"</span> <span class="op">=&gt;:</span>male_age80 </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><div style="float: left;"><span>19922×17 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">19897 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age0</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age0</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age10</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age10</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age45</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age45</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age80</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age80</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Union{Missing, String15}">String15?</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1950</td>
+<td style="text-align: right;">328.053</td>
+<td style="text-align: right;">378.814</td>
+<td style="text-align: right;">7.72991</td>
+<td style="text-align: right;">6.52991</td>
+<td style="text-align: right;">9.96758</td>
+<td style="text-align: right;">8.11575</td>
+<td style="text-align: right;">15.0426</td>
+<td style="text-align: right;">14.8812</td>
+<td style="text-align: right;">21.2739</td>
+<td style="text-align: right;">27.5066</td>
+<td style="text-align: right;">67.6107</td>
+<td style="text-align: right;">77.0253</td>
+<td style="text-align: right;">211.223</td>
+<td style="text-align: right;">226.547</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1951</td>
+<td style="text-align: right;">324.777</td>
+<td style="text-align: right;">374.956</td>
+<td style="text-align: right;">7.65714</td>
+<td style="text-align: right;">6.47173</td>
+<td style="text-align: right;">9.87427</td>
+<td style="text-align: right;">8.0444</td>
+<td style="text-align: right;">14.9049</td>
+<td style="text-align: right;">14.7495</td>
+<td style="text-align: right;">21.0961</td>
+<td style="text-align: right;">27.2708</td>
+<td style="text-align: right;">67.1116</td>
+<td style="text-align: right;">76.5053</td>
+<td style="text-align: right;">209.885</td>
+<td style="text-align: right;">225.159</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: right;">318.286</td>
+<td style="text-align: right;">366.965</td>
+<td style="text-align: right;">7.51281</td>
+<td style="text-align: right;">6.3596</td>
+<td style="text-align: right;">9.6892</td>
+<td style="text-align: right;">7.90725</td>
+<td style="text-align: right;">14.6317</td>
+<td style="text-align: right;">14.4965</td>
+<td style="text-align: right;">20.7428</td>
+<td style="text-align: right;">26.8212</td>
+<td style="text-align: right;">66.1187</td>
+<td style="text-align: right;">75.5487</td>
+<td style="text-align: right;">207.22</td>
+<td style="text-align: right;">222.703</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: right;">311.888</td>
+<td style="text-align: right;">358.685</td>
+<td style="text-align: right;">7.37038</td>
+<td style="text-align: right;">6.25279</td>
+<td style="text-align: right;">9.50655</td>
+<td style="text-align: right;">7.77702</td>
+<td style="text-align: right;">14.3619</td>
+<td style="text-align: right;">14.2566</td>
+<td style="text-align: right;">20.3934</td>
+<td style="text-align: right;">26.3985</td>
+<td style="text-align: right;">65.1349</td>
+<td style="text-align: right;">74.6933</td>
+<td style="text-align: right;">204.573</td>
+<td style="text-align: right;">220.633</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1954</td>
+<td style="text-align: right;">305.975</td>
+<td style="text-align: right;">351.087</td>
+<td style="text-align: right;">7.47033</td>
+<td style="text-align: right;">6.32612</td>
+<td style="text-align: right;">9.54872</td>
+<td style="text-align: right;">7.80432</td>
+<td style="text-align: right;">14.3075</td>
+<td style="text-align: right;">14.1708</td>
+<td style="text-align: right;">20.3094</td>
+<td style="text-align: right;">26.2079</td>
+<td style="text-align: right;">64.6866</td>
+<td style="text-align: right;">74.327</td>
+<td style="text-align: right;">202.837</td>
+<td style="text-align: right;">219.442</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1955</td>
+<td style="text-align: right;">298.864</td>
+<td style="text-align: right;">342.552</td>
+<td style="text-align: right;">7.08519</td>
+<td style="text-align: right;">6.0428</td>
+<td style="text-align: right;">9.14193</td>
+<td style="text-align: right;">7.52088</td>
+<td style="text-align: right;">13.824</td>
+<td style="text-align: right;">13.7848</td>
+<td style="text-align: right;">19.7027</td>
+<td style="text-align: right;">25.5661</td>
+<td style="text-align: right;">63.2202</td>
+<td style="text-align: right;">72.9975</td>
+<td style="text-align: right;">199.518</td>
+<td style="text-align: right;">216.517</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1956</td>
+<td style="text-align: right;">292.437</td>
+<td style="text-align: right;">334.788</td>
+<td style="text-align: right;">6.9579</td>
+<td style="text-align: right;">5.95098</td>
+<td style="text-align: right;">8.97388</td>
+<td style="text-align: right;">7.40485</td>
+<td style="text-align: right;">13.5696</td>
+<td style="text-align: right;">13.5633</td>
+<td style="text-align: right;">19.3775</td>
+<td style="text-align: right;">25.173</td>
+<td style="text-align: right;">62.3198</td>
+<td style="text-align: right;">72.1939</td>
+<td style="text-align: right;">197.145</td>
+<td style="text-align: right;">214.542</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1957</td>
+<td style="text-align: right;">285.96</td>
+<td style="text-align: right;">327.082</td>
+<td style="text-align: right;">6.80497</td>
+<td style="text-align: right;">5.82437</td>
+<td style="text-align: right;">8.78425</td>
+<td style="text-align: right;">7.25426</td>
+<td style="text-align: right;">13.2964</td>
+<td style="text-align: right;">13.2944</td>
+<td style="text-align: right;">19.0277</td>
+<td style="text-align: right;">24.7002</td>
+<td style="text-align: right;">61.3636</td>
+<td style="text-align: right;">71.1901</td>
+<td style="text-align: right;">194.668</td>
+<td style="text-align: right;">212.095</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1958</td>
+<td style="text-align: right;">279.403</td>
+<td style="text-align: right;">319.298</td>
+<td style="text-align: right;">6.66214</td>
+<td style="text-align: right;">5.69684</td>
+<td style="text-align: right;">8.60189</td>
+<td style="text-align: right;">7.09851</td>
+<td style="text-align: right;">13.0273</td>
+<td style="text-align: right;">13.0086</td>
+<td style="text-align: right;">18.6822</td>
+<td style="text-align: right;">24.1954</td>
+<td style="text-align: right;">60.4097</td>
+<td style="text-align: right;">70.1002</td>
+<td style="text-align: right;">192.166</td>
+<td style="text-align: right;">209.401</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1959</td>
+<td style="text-align: right;">273.273</td>
+<td style="text-align: right;">312.183</td>
+<td style="text-align: right;">6.52603</td>
+<td style="text-align: right;">5.58004</td>
+<td style="text-align: right;">8.42824</td>
+<td style="text-align: right;">6.9558</td>
+<td style="text-align: right;">12.7715</td>
+<td style="text-align: right;">12.7468</td>
+<td style="text-align: right;">18.3544</td>
+<td style="text-align: right;">23.7325</td>
+<td style="text-align: right;">59.5094</td>
+<td style="text-align: right;">69.0955</td>
+<td style="text-align: right;">189.867</td>
+<td style="text-align: right;">206.911</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1960</td>
+<td style="text-align: right;">267.463</td>
+<td style="text-align: right;">305.598</td>
+<td style="text-align: right;">6.40648</td>
+<td style="text-align: right;">5.48074</td>
+<td style="text-align: right;">8.27133</td>
+<td style="text-align: right;">6.83256</td>
+<td style="text-align: right;">12.5389</td>
+<td style="text-align: right;">12.5175</td>
+<td style="text-align: right;">18.0579</td>
+<td style="text-align: right;">23.3241</td>
+<td style="text-align: right;">58.6735</td>
+<td style="text-align: right;">68.2023</td>
+<td style="text-align: right;">187.792</td>
+<td style="text-align: right;">204.59</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1961</td>
+<td style="text-align: right;">261.854</td>
+<td style="text-align: right;">298.886</td>
+<td style="text-align: right;">6.26721</td>
+<td style="text-align: right;">5.3612</td>
+<td style="text-align: right;">8.09831</td>
+<td style="text-align: right;">6.68825</td>
+<td style="text-align: right;">12.2866</td>
+<td style="text-align: right;">12.256</td>
+<td style="text-align: right;">17.7335</td>
+<td style="text-align: right;">22.8633</td>
+<td style="text-align: right;">57.8106</td>
+<td style="text-align: right;">67.1957</td>
+<td style="text-align: right;">185.652</td>
+<td style="text-align: right;">202.185</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">256.655</td>
+<td style="text-align: right;">292.773</td>
+<td style="text-align: right;">6.14919</td>
+<td style="text-align: right;">5.26366</td>
+<td style="text-align: right;">7.9478</td>
+<td style="text-align: right;">6.56954</td>
+<td style="text-align: right;">12.0652</td>
+<td style="text-align: right;">12.0384</td>
+<td style="text-align: right;">17.4491</td>
+<td style="text-align: right;">22.4812</td>
+<td style="text-align: right;">57.0294</td>
+<td style="text-align: right;">66.3898</td>
+<td style="text-align: right;">183.704</td>
+<td style="text-align: right;">200.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19911</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">53.9416</td>
+<td style="text-align: right;">60.8736</td>
+<td style="text-align: right;">1.63101</td>
+<td style="text-align: right;">1.90256</td>
+<td style="text-align: right;">2.49942</td>
+<td style="text-align: right;">2.61754</td>
+<td style="text-align: right;">8.802</td>
+<td style="text-align: right;">8.97857</td>
+<td style="text-align: right;">20.8596</td>
+<td style="text-align: right;">27.2927</td>
+<td style="text-align: right;">45.8422</td>
+<td style="text-align: right;">52.5112</td>
+<td style="text-align: right;">86.3175</td>
+<td style="text-align: right;">114.257</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19912</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">50.7671</td>
+<td style="text-align: right;">57.5466</td>
+<td style="text-align: right;">1.5059</td>
+<td style="text-align: right;">1.7603</td>
+<td style="text-align: right;">2.24074</td>
+<td style="text-align: right;">2.40589</td>
+<td style="text-align: right;">6.98757</td>
+<td style="text-align: right;">7.8604</td>
+<td style="text-align: right;">16.663</td>
+<td style="text-align: right;">23.4714</td>
+<td style="text-align: right;">41.1328</td>
+<td style="text-align: right;">49.1328</td>
+<td style="text-align: right;">85.6723</td>
+<td style="text-align: right;">113.942</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19913</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">45.8417</td>
+<td style="text-align: right;">52.3628</td>
+<td style="text-align: right;">1.2744</td>
+<td style="text-align: right;">1.53946</td>
+<td style="text-align: right;">1.90764</td>
+<td style="text-align: right;">2.12629</td>
+<td style="text-align: right;">5.97021</td>
+<td style="text-align: right;">6.73963</td>
+<td style="text-align: right;">14.7873</td>
+<td style="text-align: right;">20.558</td>
+<td style="text-align: right;">37.6887</td>
+<td style="text-align: right;">46.8993</td>
+<td style="text-align: right;">85.0377</td>
+<td style="text-align: right;">113.63</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19914</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">42.4171</td>
+<td style="text-align: right;">48.8878</td>
+<td style="text-align: right;">1.14827</td>
+<td style="text-align: right;">1.36861</td>
+<td style="text-align: right;">1.71382</td>
+<td style="text-align: right;">1.9229</td>
+<td style="text-align: right;">5.13833</td>
+<td style="text-align: right;">5.92327</td>
+<td style="text-align: right;">13.1951</td>
+<td style="text-align: right;">18.2398</td>
+<td style="text-align: right;">35.8164</td>
+<td style="text-align: right;">45.3136</td>
+<td style="text-align: right;">84.4419</td>
+<td style="text-align: right;">113.357</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19915</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">40.2433</td>
+<td style="text-align: right;">46.6497</td>
+<td style="text-align: right;">1.06513</td>
+<td style="text-align: right;">1.26043</td>
+<td style="text-align: right;">1.58333</td>
+<td style="text-align: right;">1.78416</td>
+<td style="text-align: right;">4.57123</td>
+<td style="text-align: right;">5.31936</td>
+<td style="text-align: right;">12.052</td>
+<td style="text-align: right;">16.3566</td>
+<td style="text-align: right;">34.5043</td>
+<td style="text-align: right;">43.8205</td>
+<td style="text-align: right;">83.7835</td>
+<td style="text-align: right;">113.008</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19916</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">39.3862</td>
+<td style="text-align: right;">45.7603</td>
+<td style="text-align: right;">1.03008</td>
+<td style="text-align: right;">1.21829</td>
+<td style="text-align: right;">1.51606</td>
+<td style="text-align: right;">1.7263</td>
+<td style="text-align: right;">4.23604</td>
+<td style="text-align: right;">5.0488</td>
+<td style="text-align: right;">11.3024</td>
+<td style="text-align: right;">15.4633</td>
+<td style="text-align: right;">33.6349</td>
+<td style="text-align: right;">43.0445</td>
+<td style="text-align: right;">83.1682</td>
+<td style="text-align: right;">112.702</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19917</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">37.7949</td>
+<td style="text-align: right;">44.0875</td>
+<td style="text-align: right;">0.97629</td>
+<td style="text-align: right;">1.14752</td>
+<td style="text-align: right;">1.43611</td>
+<td style="text-align: right;">1.64832</td>
+<td style="text-align: right;">3.93881</td>
+<td style="text-align: right;">4.80345</td>
+<td style="text-align: right;">10.7236</td>
+<td style="text-align: right;">14.872</td>
+<td style="text-align: right;">32.8932</td>
+<td style="text-align: right;">42.7217</td>
+<td style="text-align: right;">82.5508</td>
+<td style="text-align: right;">112.388</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19918</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">36.8661</td>
+<td style="text-align: right;">43.1389</td>
+<td style="text-align: right;">0.95685</td>
+<td style="text-align: right;">1.12218</td>
+<td style="text-align: right;">1.38986</td>
+<td style="text-align: right;">1.61538</td>
+<td style="text-align: right;">3.73174</td>
+<td style="text-align: right;">4.70667</td>
+<td style="text-align: right;">10.2912</td>
+<td style="text-align: right;">14.6938</td>
+<td style="text-align: right;">32.3443</td>
+<td style="text-align: right;">42.7099</td>
+<td style="text-align: right;">81.9914</td>
+<td style="text-align: right;">112.102</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19919</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">35.4646</td>
+<td style="text-align: right;">41.6297</td>
+<td style="text-align: right;">0.89795</td>
+<td style="text-align: right;">1.04302</td>
+<td style="text-align: right;">1.32043</td>
+<td style="text-align: right;">1.53221</td>
+<td style="text-align: right;">3.51856</td>
+<td style="text-align: right;">4.42719</td>
+<td style="text-align: right;">9.86634</td>
+<td style="text-align: right;">13.892</td>
+<td style="text-align: right;">31.726</td>
+<td style="text-align: right;">42.13</td>
+<td style="text-align: right;">81.3326</td>
+<td style="text-align: right;">111.776</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19920</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">35.3383</td>
+<td style="text-align: right;">41.4167</td>
+<td style="text-align: right;">0.93255</td>
+<td style="text-align: right;">1.07613</td>
+<td style="text-align: right;">1.32845</td>
+<td style="text-align: right;">1.55651</td>
+<td style="text-align: right;">3.48048</td>
+<td style="text-align: right;">4.53653</td>
+<td style="text-align: right;">9.78645</td>
+<td style="text-align: right;">14.3989</td>
+<td style="text-align: right;">31.6513</td>
+<td style="text-align: right;">42.7631</td>
+<td style="text-align: right;">80.8855</td>
+<td style="text-align: right;">111.541</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19921</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">34.9539</td>
+<td style="text-align: right;">40.9834</td>
+<td style="text-align: right;">0.87637</td>
+<td style="text-align: right;">1.02782</td>
+<td style="text-align: right;">1.20826</td>
+<td style="text-align: right;">1.39351</td>
+<td style="text-align: right;">3.11532</td>
+<td style="text-align: right;">4.14614</td>
+<td style="text-align: right;">9.38663</td>
+<td style="text-align: right;">15.0135</td>
+<td style="text-align: right;">33.6533</td>
+<td style="text-align: right;">48.0212</td>
+<td style="text-align: right;">82.9557</td>
+<td style="text-align: right;">120.98</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19922</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: left;">ZWE</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">34.9083</td>
+<td style="text-align: right;">40.922</td>
+<td style="text-align: right;">0.86883</td>
+<td style="text-align: right;">1.02383</td>
+<td style="text-align: right;">1.30698</td>
+<td style="text-align: right;">1.58042</td>
+<td style="text-align: right;">3.38878</td>
+<td style="text-align: right;">4.70133</td>
+<td style="text-align: right;">10.5541</td>
+<td style="text-align: right;">17.1106</td>
+<td style="text-align: right;">38.6799</td>
+<td style="text-align: right;">56.6425</td>
+<td style="text-align: right;">100.369</td>
+<td style="text-align: right;">143.754</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="1f06f165" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>female_data<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@filter</span>(Year<span class="op">==</span><span class="fl">2021</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@select</span>(<span class="fl">1</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">17</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@select</span>(<span class="fu">startswith</span>(<span class="st">"female"</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@summarize</span>(female_age0<span class="op">=</span><span class="fu">mean</span>(female_age0),female_age10<span class="op">=</span><span class="fu">mean</span>(female_age10),female_age15<span class="op">=</span><span class="fu">mean</span>(female_age15),female_age25<span class="op">=</span><span class="fu">mean</span>(female_age25),    female_age45<span class="op">=</span><span class="fu">mean</span>(female_age45),female_age65<span class="op">=</span><span class="fu">mean</span>(female_age65),female_age80<span class="op">=</span><span class="fu">mean</span>(female_age80))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><div style="float: left;"><span>1×7 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age0</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age10</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age45</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">female_age80</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: right;">16.8304</td>
+<td style="text-align: right;">0.426706</td>
+<td style="text-align: right;">0.564174</td>
+<td style="text-align: right;">1.06755</td>
+<td style="text-align: right;">3.32511</td>
+<td style="text-align: right;">18.0247</td>
+<td style="text-align: right;">77.9603</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="6fa3db6e" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>male_data<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@filter</span>(Year<span class="op">==</span><span class="fl">2021</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@select</span>(<span class="fl">1</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">17</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@select</span>(<span class="fu">startswith</span>(<span class="st">"male"</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@summarize</span>(male_age0<span class="op">=</span><span class="fu">mean</span>(male_age0),male_age10<span class="op">=</span><span class="fu">mean</span>(male_age10),male_age15<span class="op">=</span><span class="fu">mean</span>(male_age15),male_age25<span class="op">=</span><span class="fu">mean</span>(male_age25),male_age45<span class="op">=</span><span class="fu">mean</span>(male_age45),male_age65<span class="op">=</span><span class="fu">mean</span>(male_age65),male_age80<span class="op">=</span><span class="fu">mean</span>(male_age80))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div><div style="float: left;"><span>1×7 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age0</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age10</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age15</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age25</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age45</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age65</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">male_age80</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: right;">20.0176</td>
+<td style="text-align: right;">0.504313</td>
+<td style="text-align: right;">0.759778</td>
+<td style="text-align: right;">1.84672</td>
+<td style="text-align: right;">5.45103</td>
+<td style="text-align: right;">29.892</td>
+<td style="text-align: right;">109.894</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

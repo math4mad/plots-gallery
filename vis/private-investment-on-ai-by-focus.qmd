@@ -1,0 +1,47 @@
+---
+title: "Private Investment on AI  by focus"
+author: math4mad
+code-fold: true
+---
+:::{.callout-note title="ref"}
+- ref :[Annual private investment in artificial intelligence, by focus area](https://ourworldindata.org/artificial-intelligence)
+:::
+
+
+```{julia}
+include("utils.jl")
+```
+
+```{julia}
+make_title("Part 1 : data processing")
+```
+## 2. load data->dataframe
+```{julia}
+df=@pipe CSV.File("./data/private-investment-in-artificial-intelligence-by-focus-area.csv")|>DataFrame
+rename!(df,"European Union and United Kingdom"=>:EU,"United States"=>:US)
+select!(df,Not("Code"))
+```
+
+```{julia}
+df2=@chain df begin 
+   @pivot_longer(_, 3:6, names_to =area, values_to =investment)
+   @mutate(investment=investment/10_000_000_000)
+   @group_by(Entity)
+   @arrange(Year)
+   @ungroup
+   @filter(Entity ∈ ["Medical and healthcare","Data management","Cybersecurity","Industrial automation","Semiconductors","Drones"])
+end
+```
+
+```{julia}
+ make_title("Part 2 :Plot")
+```
+
+```{julia}
+data_layer=data(df2)
+  map_layer=mapping(:Year,:investment,layout=:Entity,color=:area)
+  visual_layer = visual(Lines,linewidth=2)
+  
+  plt=data_layer*map_layer*visual_layer
+  draw(plt,legend=(position=:bottom, titleposition=:left, framevisible=true, padding=2),facet = (;linkyaxes = :true))
+```
