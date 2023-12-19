@@ -1,0 +1,78 @@
+---
+title: Irish Whiskey Sales
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Saint Patricks Irish Whiskey Sales](https://www.kaggle.com/code/mpwolke/saint-patricks-irish-whiskey-sales)
+  -  source :/Users/lunarcheung/Downloads/The Twisted Nature of Irish Whiskey Sales.png
+  
+:::
+
+
+```{julia}
+include("utils.jl")
+```
+
+## 2. load data->dataframe
+```{julia}
+    df=@pipe CSV.File("./data/irish.csv")|>DataFrame|>dropmissing
+   first(df,5)
+```
+
+
+## 3. data  preprocessing
+```{julia}
+ df1=@chain df begin
+    @select(country,year, cases)
+    #@filter(country in ["Ireland","Germany","Russia","France"])
+    @group_by(country,year)
+    @summarize(country,year,sales=sum(cases)/1000)
+    @ungroup
+    #@mutate(cases=cases/1000)
+    # @filter(country in ["Ireland","Germany","Russia"])
+    # @group_by(country)
+    # #@arrange(year)
+    # @mutate(cases =cases.-cases[1])
+    # @ungroup
+    unique!(_)
+    @group_by(country)
+    @arrange(year)
+    @mutate(sales =sales.-sales[1])
+    @ungroup
+
+ end
+ all_country_data=@chain df1 begin @filter(country ∉ ["Ireland","Germany","Russia","France"])
+ end
+ Ireland_data=@chain df1 begin @filter(country == "Ireland")
+ end
+ four_country_data=@chain df1 begin @filter(country ∈ ["Ireland","Germany","Russia","France","Spain"])
+ end
+```
+
+
+```{julia}
+ran=-100:50:350
+axis = (width = 500, height =500,xticks=(ran,["$(i)k" for i in ran]),       xticklabelrotation = pi/8,
+titlealign = :center,titlesize=24,
+title="The Twisted Nature of Irish Whiskey Sales",
+ subtitle = rich(
+    "Within Europe sales have increased 225% since 1990. While" , rich("Ireland's",color =:blue), "sales have decreased",rich("Russia, France \n and Germany", color =:green),"sales to   have than made up the difference.")
+
+)
+
+data_layer1=data(four_country_data)
+data_layer2=data(Ireland_data)
+#data_layer3=data(all_country_data)
+mapping_layer1=mapping(:sales,:year,color=:country)
+mapping_layer2=mapping(:sales,:year)
+visual_layer1 = visual(Lines,linewidth=3)
+visual_layer2 = visual(Lines, linewidth=8,color=:blue)
+#visual_layer3 = visual(Lines, linewidth=1,color=(:gray,0.3))
+four_lines=data_layer1* mapping_layer1 * visual_layer1
+ireland_line=data_layer2* mapping_layer2 * visual_layer2
+#all_lines=data_layer3* mapping_layer2 * visual_layer3
+draw(four_lines+ ireland_line ,axis=axis)
+
+```

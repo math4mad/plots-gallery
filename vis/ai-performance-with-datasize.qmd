@@ -1,0 +1,20 @@
+---
+title : "Artificial intelligence: Performance on knowledge tests vs. training computation"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+  - ref:[Artificial intelligence: Performance on knowledge tests vs.
+training computation](https://ourworldindata.org/artificial-intelligence)
+:::
+
+
+load pacakge
+```{julia}
+using CSV,DataFrames,Pipe,Tidier
+using CairoMakie,AlgebraOfGraphics,MakieThemes
+Makie.set_theme!(ggthemr(:dust))
+```
+
+

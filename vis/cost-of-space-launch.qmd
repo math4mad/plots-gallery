@@ -1,0 +1,48 @@
+---
+title: Cost of space launches to low Earth orbit
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="info"}
+ref: [Cost of space launches to low Earth orbit](https://ourworldindata.org/space-exploration-satellites)
+:::
+
+## load package
+```{julia}
+include("utils.jl")
+```
+```{julia}
+make_title("Part One : Data Processing")
+```
+## 1.1 load data=>dataframe
+```{julia}
+    df=@pipe CSV.File("./data/cost-space-launches-low-earth-orbit.csv")|>DataFrame
+df =@chain df begin
+   @select(1,3,4,5)
+   @arrange(Year)
+   @filter(Entity ∉ ["Delta E","Scout","Minotaur I","Space Shuttle"])
+   end
+first(df,5)
+```
+
+```{julia}
+make_title("Part Two : Plots")
+```
+
+```{julia}
+ axis = (width = 600, height =1200)
+ data_layer=data(df) 
+ mapping_layer1=mapping(:Year,:cost_per_kg,color=:launch_class)
+ visual_layer1 = visual(Scatter;strokewidth=2,strokecolor=:black)
+ mapping_layer2=mapping(:Year,:cost_per_kg, text=:Entity => verbatim)
+ visual_layer2 = visual(Makie.Text;color=:black)
+ plt=data_layer*mapping_layer1*visual_layer1
+ text_pipe=data_layer*mapping_layer2*visual_layer2
+draw(plt+text_pipe,axis=axis)
+```
+
+
+
+
+

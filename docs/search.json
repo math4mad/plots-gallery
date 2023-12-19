@@ -65,36 +65,69 @@
     ]
   },
   {
-    "objectID": "vis/employment-in-ai.html",
-    "href": "vis/employment-in-ai.html",
-    "title": "Employer of new AI PhDs in the United States and Canada",
+    "objectID": "vis/american-view-on-ai.html",
+    "href": "vis/american-view-on-ai.html",
+    "title": "Views of Americans about robot vs. human intelligence, All adults”",
     "section": "",
-    "text": "info\n\n\n\n\nref:Employer of new AI PhDs in the United States and Canada\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "info\n\n\n\n\nref:Views of Americans about robot vs. human intelligence, All adults\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "Employer of new AI PhDs in the United States and Canada"
+      "Views of Americans about robot vs. human intelligence, All adults\""
     ]
   },
   {
-    "objectID": "vis/employment-in-ai.html#load-data-dataframe",
-    "href": "vis/employment-in-ai.html#load-data-dataframe",
-    "title": "Employer of new AI PhDs in the United States and Canada",
+    "objectID": "vis/american-view-on-ai.html#load-data-dataframe",
+    "href": "vis/american-view-on-ai.html#load-data-dataframe",
+    "title": "Views of Americans about robot vs. human intelligence, All adults”",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/employer-new-artificial-intelligence-phds-stacked-area.csv\")|&gt;DataFrame|&gt;\nrename!(_,\"New AI PhD graduates\"=&gt;:Phdstudent)\n\n\n36×4 DataFrame11 rows omitted\n\n\n\nRow\nEntity\nCode\nYear\nPhdstudent\n\n\n\nString15\nMissing\nInt64\nInt64\n\n\n\n\n1\nAcademia\nmissing\n2010\n72\n\n\n2\nAcademia\nmissing\n2011\n63\n\n\n3\nAcademia\nmissing\n2012\n47\n\n\n4\nAcademia\nmissing\n2013\n51\n\n\n5\nAcademia\nmissing\n2014\n43\n\n\n6\nAcademia\nmissing\n2015\n42\n\n\n7\nAcademia\nmissing\n2016\n63\n\n\n8\nAcademia\nmissing\n2017\n60\n\n\n9\nAcademia\nmissing\n2018\n73\n\n\n10\nAcademia\nmissing\n2019\n65\n\n\n11\nAcademia\nmissing\n2020\n61\n\n\n12\nAcademia\nmissing\n2021\n84\n\n\n13\nGovernment\nmissing\n2010\n6\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n25\nIndustry\nmissing\n2010\n76\n\n\n26\nIndustry\nmissing\n2011\n64\n\n\n27\nIndustry\nmissing\n2012\n101\n\n\n28\nIndustry\nmissing\n2013\n74\n\n\n29\nIndustry\nmissing\n2014\n85\n\n\n30\nIndustry\nmissing\n2015\n77\n\n\n31\nIndustry\nmissing\n2016\n134\n\n\n32\nIndustry\nmissing\n2017\n116\n\n\n33\nIndustry\nmissing\n2018\n162\n\n\n34\nIndustry\nmissing\n2019\n180\n\n\n35\nIndustry\nmissing\n2020\n153\n\n\n36\nIndustry\nmissing\n2021\n195",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/views-of-americans-robot-vs-human-intelligence.csv\")|&gt;DataFrame|&gt;coalesce.(_, 0.0)\n\nfirst(df,5)\n\n\n5×8 DataFrame\n\n\n\nRow\nEntity\nCode\nDay\nNone of these\nDon't know\nMost robots have already developed higher levels of intelligence than humans\nRobots will never be able to develop higher levels of intelligence than humans\nRobots will be able to develop higher levels of intelligence than humans in the future\n\n\n\nString31\nFloat64\nDate\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\n18-29 years\n0.0\n2021-01-07\n6\n18\n14\n14\n47\n\n\n2\n18-29 years\n0.0\n2021-07-01\n8\n22\n19\n12\n39\n\n\n3\n18-29 years\n0.0\n2022-01-06\n3\n20\n11\n17\n49\n\n\n4\n18-29 years\n0.0\n2022-06-30\n9\n18\n20\n18\n35\n\n\n5\n18-29 years\n0.0\n2023-01-05\n9\n14\n16\n15\n46",
     "crumbs": [
       "Data Viz",
-      "Employer of new AI PhDs in the United States and Canada"
+      "Views of Americans about robot vs. human intelligence, All adults\""
     ]
   },
   {
-    "objectID": "vis/employment-in-ai.html#plot",
-    "href": "vis/employment-in-ai.html#plot",
-    "title": "Employer of new AI PhDs in the United States and Canada",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\n@rput df\nfunction plot_arestack_r()\n R\"\"\"\n    library(ggplot2)\n    library(ggthemes)\n    library(viridis)\n    ggplot(df, aes(x=Year, y=Phdstudent, fill=Entity)) + \n    geom_area(alpha=0.6 , size=.5, colour=\"white\")+scale_fill_viridis(discrete = T)+theme_wsj()\n \"\"\"\nend\nplot_arestack_r()\n\n\n┌ Warning: RCall.jl: Warning: package ‘ggthemes’ was built under R version 4.2.3\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Loading required package: viridisLite\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\n│ ℹ Please use `linewidth` instead.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\n\n\n(a) Employer of new AI PhDs in the United States and Canada\n\n\n\n\n\n\n\nRObject{VecSxp}\n\n\n(b)\n\n\n\n\n\nFigure 1",
+    "objectID": "vis/american-view-on-ai.html#data-processing",
+    "href": "vis/american-view-on-ai.html#data-processing",
+    "title": "Views of Americans about robot vs. human intelligence, All adults”",
+    "section": "data processing",
+    "text": "data processing\n\n\nCode\n cats=names(df)\n rename!(df,\"None of these\"=&gt;:none,\"Don't know\"=&gt;:dtkonw,\n \"Most robots have already developed higher levels of intelligence than humans\"=&gt;:better,\n \"Robots will never be able to develop higher levels of intelligence than humans\"=&gt;:nobetter,\n \"Robots will be able to develop higher levels of intelligence than humans in the future\"=&gt;:future\n \n )\n\n df2=@chain df begin\n    @group_by(Day)\n    @summarize(none=sum(none),dtkonw=sum(dtkonw),   better=sum(better),nobetter=sum(better),future=sum(future))\n    \n end\n\n\n6×6 DataFrame\n\n\n\nRow\nDay\nnone\ndtkonw\nbetter\nnobetter\nfuture\n\n\n\nDate\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\n2021-01-07\n136\n482\n263\n263\n958\n\n\n2\n2021-07-01\n139\n560\n345\n345\n793\n\n\n3\n2022-01-06\n146\n538\n277\n277\n933\n\n\n4\n2022-06-30\n243\n441\n346\n346\n883\n\n\n5\n2023-01-05\n240\n494\n303\n303\n906\n\n\n6\n2023-06-29\n181\n478\n410\n410\n832\n\n\n\n\n\n\n\n\nCode\naxis = (width = 1000, height =500,xticklabelrotation = pi/8,title=\"Attitude about AI development\",yticks=(range(100,1000,7),[\"$i %\" for i in 5:5:35]))\ndata_layer = data(df2)\nmapping_layer=mapping(:Day,[:none,:dtkonw,:better,:nobetter,:future].=&gt; \"value\", color=dims(1) =&gt; renamer(cats[4:8]) =&gt; \"opinion\")\nvisual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis,\n legend=(position=:right, titleposition=:top, framevisible=true, padding=5)\n)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
     "crumbs": [
       "Data Viz",
-      "Employer of new AI PhDs in the United States and Canada"
+      "Views of Americans about robot vs. human intelligence, All adults\""
+    ]
+  },
+  {
+    "objectID": "vis/average-temperature-anomaly-world.html",
+    "href": "vis/average-temperature-anomaly-world.html",
+    "title": "Average temperature anomaly, Global",
+    "section": "",
+    "text": "info\n\n\n\n\nref:Average temperature anomaly, Global\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "crumbs": [
+      "Data Viz",
+      "Average temperature anomaly, Global"
+    ]
+  },
+  {
+    "objectID": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
+    "href": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
+    "title": "Average temperature anomaly, Global",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/temperature-anomaly.csv\")|&gt;DataFrame|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\n\"Global average temperature anomaly relative to 1961-1990\"=&gt;:mean, \"Upper bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:upper, \"Lower bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:lower\n)\n\ngdf=groupby(df,:Entity)\ncats= @pipe keys(gdf) .|&gt; values(_)[1]\n\n\n3-element Vector{String31}:\n \"Global\"\n \"Northern hemisphere\"\n \"Southern hemisphere\"",
+    "crumbs": [
+      "Data Viz",
+      "Average temperature anomaly, Global"
+    ]
+  },
+  {
+    "objectID": "vis/average-temperature-anomaly-world.html#plots",
+    "href": "vis/average-temperature-anomaly-world.html#plots",
+    "title": "Average temperature anomaly, Global",
+    "section": "plots",
+    "text": "plots\n\n\nCode\n fig=Figure()\n axs=[Axis(fig[i,1]) for i in 1:3]\n function plot_ci(df,ax,title)\n      ax.title=title\n      xs,mean,lower,upper=df.Year,df.mean,df.lower,df.upper\n      hlines!(ax,[0],linestyle=:dot,color=(:red,0.8))\n      lines!(ax,xs,mean,color=:blue)\n      band!(ax,xs,lower,upper,color=(:lightgreen,0.5))\n      \n      \n end\n\n #plot_ci(gdf[1],axs[1],title=\"blank\")\n\n for (idx, df) in enumerate(gdf)\n      plot_ci(df,axs[idx],cats[idx])\n end\n fig",
+    "crumbs": [
+      "Data Viz",
+      "Average temperature anomaly, Global"
     ]
   },
   {
@@ -186,168 +219,442 @@
     ]
   },
   {
-    "objectID": "math/4-one-variable-integral.html",
-    "href": "math/4-one-variable-integral.html",
-    "title": "4-single-variable-integral",
+    "objectID": "math/2-function.html",
+    "href": "math/2-function.html",
+    "title": "2-Two Variables Function corss-section",
     "section": "",
-    "text": "一元函数积分示意\n\n\n\n欧拉方法, 改变Δx, 提高近似精度\n使用 rect = Rect(start-x,start-y,width,height)方法 绘制线性近似的矩形\n\nstart-x: 初始的点的 x 坐标\nstart-y 初始的点的 y 坐标 这里为 0 矩形初始点都在 x轴上\nwidth Δx\nheight 函数值\n\nfig[fldmod1(idx,3)...] fldmod1 方法来生成 plot layout\n\n\n\n\nCode\nusing GLMakie,Distributions,Pipe\n\nws=[1,0.8,0.5,0.3,0.2,0.1] #Δx 数组\nd=Normal()\nxs=-3:0.1:3 \nys=pdf.(d,xs)\n\n\"\"\"\n## define Rect\nrect = Rect(start-x,start-y,width,height)\n\"\"\"\nfunction  rect(;x=0,w=0.5)\n    return  Rect(x,0,w,pdf.(d,x))\nend\n\n\nfunction plot_hist(ax,box)\n    mesh!(ax, box, color=(:lightblue,0.4))\n    wireframe!(ax, box; color = :black, transparency=true)\nend\n\nfunction plot_res()\n    fig=Figure()\n    for (idx,w) in enumerate(ws)\n        local ax=Axis(fig[fldmod1(idx,3)...],title=L\"Δx=%$(w)\")\n        lines!(ax,xs,ys)\n        @pipe  Vector(-3:w:3).|&gt;rect(;x=_,w=w).|&gt;plot_hist(ax,_)\n    end\n    fig\n    #save(\"one-single-variable-euler-method-2.png\",fig)\nend\n\nplot_res()",
+    "text": "二元函数的分解理解\n\n\n\n二元函数可以从两个变量的方向分解开来研究\n固定一个变量, 改变另一个变量,得到一组一元函数\n在下列函数图里:\n\n第一列固定 y值(取一组离散值),改变 x值(连续变量)\n第二列x,y 都是连续值,二元函数自身\n第三列固定 x值(取一组离散值),改变 y值(连续变量)\n\n这里的方法和概率概念的边缘概率(marginal probability)一样, 意思是给定一个条件(固定一个值), 改变另一个变量的取值. 二元分布的概率密度函数就是二元函数,只不过曲线下积分等于 1\nCode\nusing GLMakie\nxs = ys = -3:0.1:3\nxs2 = ys2 = -2:1:2\nlen = length(xs)\nf1(x, y) = x^2 - y^2\nf2(x, y) = ℯ^(−(x^2) − (y^2))\nf3(x, y) = y^2\nf4(x, y) = 2 + 2x - y\nf5(x, y) = x + 2y + 3\nf6(x, y) = x^2 + y^2\nf7(x, y) = -x^2 - y^2\nf8(x, y) = x^2 \n\nfunc_arr = [f1,f2,f3,f4,f5,f6,f7,f8]\nlatexstr_arr=[L\"f(x, y) = x^2 - y^2\",L\"f(x,y)=ℯ^{−x^2 −y^2}\",L\"f(x,y)=y^2\",\nL\"f(x,y)=2 + 2x - y\",L\"f(x,y)=x + 2y + 3\",L\"f(x,y)=x^2 + y^2\",L\"f(x,y)=-(x^2+y^2)\",L\"f(x,y)=x^2\"]\n\n\"\"\"\n make_z(index::Int)\n 根据函数索引返回 julia 函数表达式和\n 函数 latex string\n\"\"\"\nfunction make_z(index::Int)\n    return ( (x,y)-&gt;func_arr[index](x,y),latexstr_arr[index])\nend\n\n\nmake_z\nCode\nfunction plot_func(func_z,latexstr)\n    f = Figure(resolution=(1800, 1000))\n    ax1 = Axis3(f[1, 1], title=L\"fixed y\", azimuth=0.3pi)\n    ax2 = Axis3(f[1, 2], title=L\"surface\", azimuth=0.3pi)\n    ax3 = Axis3(f[1, 3], title=L\"fixed x\", azimuth=0.3pi)\n    ax4 = Axis(f[2, 1])\n    ax5 = Axis(f[2, 3])\n    ax6 = Axis3(f[2, 2], azimuth=0.3pi)\n    Label(f[0, :], latexstr, fontsize=40)\n    zs = [func_z(x, y) for x in xs, y in ys]\n    surface!(ax2, xs, ys, zs, color=:lightblue)\n    for y in ys2\n        yspan = fill(y, len)\n        lines!(ax1, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n        lines!(ax4, xs, func_z.(xs, y), color=:black, lw=3)\n        lines!(ax6, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n    end\n    for x in xs2\n        xspan = fill(x, len)\n        lines!(ax3, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n        lines!(ax5, ys, func_z.(x, ys), color=:red, lw=3)\n        lines!(ax6, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n\n    end\n\n    surface!(ax6, xs, ys, zs, color=:lightblue)\n\n\n    return f\nend\n\n\nplot_func (generic function with 1 method)\nCode\nlet \nmake_z(1)|&gt;d-&gt;plot_func(d[1],d[2]) \nend",
     "crumbs": [
       "Math",
-      "4-single-variable-integral"
+      "2-Two Variables Function corss-section"
     ]
   },
   {
-    "objectID": "math/5-himmelblau-function.html",
-    "href": "math/5-himmelblau-function.html",
-    "title": "5-himmelblau-plot",
+    "objectID": "math/2-function.html#section",
+    "href": "math/2-function.html#section",
+    "title": "2-Two Variables Function corss-section",
     "section": "",
-    "text": "配置 ssao\n\n\n\nCode\n  using GLMakie\n  GLMakie.activate!(ssao=true)\n  GLMakie.closeall() \n  fig = Figure(resolution = (800, 800))\n  ssao = Makie.SSAO(radius = 5.0, blur = 3)\n  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\n  ax.scene.ssao.bias[] = 0.025\n\n\n0.025",
+    "text": "Figure 1: 1\n\n\n\n\n\n\n\n\n\n\nFigure 2: 3\n\n\n\n\n\n\n\n\n\n\nFigure 3: 4\n\n\n\n\n\n\n\n\n\n\nFigure 4: 5\n\n\n\n\n\n\n\n\n\n\nFigure 5: 6\n\n\n\n\n\n\n\n\n\n\nFigure 6: 7\n\n\n\n\n\n\n\n\n\n\nFigure 7: 8\n\n\n\n\n\n\n\n\n\n\nFigure 8: 9\n\n\n\n\n\n\n\n\n\n\nFigure 9: 10",
     "crumbs": [
       "Math",
-      "5-himmelblau-plot"
+      "2-Two Variables Function corss-section"
     ]
   },
   {
-    "objectID": "math/5-himmelblau-function.html#load-package",
-    "href": "math/5-himmelblau-function.html#load-package",
-    "title": "5-himmelblau-plot",
+    "objectID": "math/1-double-integral.html",
+    "href": "math/1-double-integral.html",
+    "title": "1-double integral picture",
     "section": "",
-    "text": "配置 ssao\n\n\n\nCode\n  using GLMakie\n  GLMakie.activate!(ssao=true)\n  GLMakie.closeall() \n  fig = Figure(resolution = (800, 800))\n  ssao = Makie.SSAO(radius = 5.0, blur = 3)\n  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\n  ax.scene.ssao.bias[] = 0.025\n\n\n0.025",
+    "text": "二元函数积分示意\n\n\n\n利用小立方体来近似二元函数曲线下面积\n为了增强效果使用了 GLMakie ssao 方法",
     "crumbs": [
       "Math",
-      "5-himmelblau-plot"
+      "1-double integral picture"
     ]
   },
   {
-    "objectID": "math/5-himmelblau-function.html#define-bio-variate-funciton",
-    "href": "math/5-himmelblau-function.html#define-bio-variate-funciton",
-    "title": "5-himmelblau-plot",
-    "section": "2 define bio-variate funciton",
-    "text": "2 define bio-variate funciton\n\n2.1 配置函数\n\n\nmake_cubic: plot 小立方体函数\nmack_z : 根据传入函数的(x,y)坐标返回值, 即 z坐标值\n\n\n\n\nCode\n  make_cubic(;x=0,y=0,h,w)=Rect3f(Vec3f(x,y,0), Vec3f(w,w,h))\n\n  function make_z(func)\n   return (x,y)-&gt;func(x,y)\n  end\n\n\nmake_z (generic function with 1 method)\n\n\n\n\n2.2 二元函数\n\n不限于此\n\n\n\nCode\n  f(x,y)=cos(x) * sin(y)\n\n\nf (generic function with 1 method)",
-    "crumbs": [
-      "Math",
-      "5-himmelblau-plot"
-    ]
-  },
-  {
-    "objectID": "math/5-himmelblau-function.html#plot",
-    "href": "math/5-himmelblau-function.html#plot",
-    "title": "5-himmelblau-plot",
-    "section": "3 plot",
-    "text": "3 plot\n\n\n可以改变 xs,ys step的值, 增加后, 立方体会变小\nbox_width=0.19 设置比xs,ys 的间隔小一点, 留出空隙\n\n\n\n\nCode\n    xs=range(0,15,50)\n    ys=range(0,15,50) \n    box_width=0.19\n    function plot_double_integ(funcz)\n      local box = [make_cubic(;x=x,y=y,h=funcz(x,y),w=box_width) for x in xs  for y in ys]\n      local zs=  [funcz(x,y) for x in xs , y in ys]\n      for  i in eachindex(box)\n      mesh!(ax, box[i], ssao=true,color=:lightblue)\n      wireframe!(ax, box[i]; color = :black, transparency=true)\n    end\n\n    #wireframe!(ax,xs,ys,zs,color=(:red,0.8),linewidth=1)\n    fig\n  end\n\n  make_z(f)|&gt;plot_double_integ",
-    "crumbs": [
-      "Math",
-      "5-himmelblau-plot"
-    ]
-  },
-  {
-    "objectID": "machinelearning/1-classfication-comparison.html",
-    "href": "machinelearning/1-classfication-comparison.html",
-    "title": "classfication models comparison",
-    "section": "",
-    "text": "import MLJ:predict,predict_mode\n    using  MLJ,GLMakie,DataFrames,Random\n    Random.seed!(1222)\n\nTaskLocalRNG()",
-    "crumbs": [
-      "Machine Learning",
-      "classfication models comparison"
-    ]
-  },
-  {
-    "objectID": "machinelearning/1-classfication-comparison.html#load-package",
-    "href": "machinelearning/1-classfication-comparison.html#load-package",
-    "title": "classfication models comparison",
-    "section": "",
-    "text": "import MLJ:predict,predict_mode\n    using  MLJ,GLMakie,DataFrames,Random\n    Random.seed!(1222)\n\nTaskLocalRNG()",
-    "crumbs": [
-      "Machine Learning",
-      "classfication models comparison"
-    ]
-  },
-  {
-    "objectID": "machinelearning/1-classfication-comparison.html#make-data",
-    "href": "machinelearning/1-classfication-comparison.html#make-data",
-    "title": "classfication models comparison",
-    "section": "2. make data",
-    "text": "2. make data\n\n    function circle_data()\n    X, y = make_circles(400; noise=0.1, factor=0.3)\n    df = DataFrame(X)\n    df.y = y\n    return df\n    end\n    function moons_data()\n        X, y = make_moons(400; noise=0.1)\n        df = DataFrame(X)\n        df.y = y\n        return df\n    end\n    function blob_data()\n        X, y = make_blobs(400, 2; centers=2, cluster_std=[1.0, 2.0])\n        df = DataFrame(X)\n        df.y = y\n        return df\n    end\n    #cat=df1.y|&gt;levels|&gt;unique\n    colors=[:green, :purple]\n\n2-element Vector{Symbol}:\n :green\n :purple",
-    "crumbs": [
-      "Machine Learning",
-      "classfication models comparison"
-    ]
-  },
-  {
-    "objectID": "machinelearning/1-classfication-comparison.html#define-function",
-    "href": "machinelearning/1-classfication-comparison.html#define-function",
-    "title": "classfication models comparison",
-    "section": "3. define function",
-    "text": "3. define function\n\nfunction plot_origin_data(df)\n    fig=Figure()\n    ax=Axis(fig[1,1])\n    local cat=df.y|&gt;levels|&gt;unique\n    \n    local colors=[:green, :purple]\n    for (i,c) in enumerate(cat)\n        d=df[y.==c,:]\n        scatter!(ax, d[:,1],d[:,2],color=(colors[i],0.6))\n        #@show d\n    end\n    fig\nend\n\nnums=100\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,:x1])\n    ylow,yhigh=extrema(df[:,:x2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\n\nfunction plot_desc_boudary(fig,ytest,i;df=df1,row=1)\n        tx,ty,xs,ys, xtest=boundary_data(df)\n        local ax=Axis(fig[row,i],title=\"$(names[i])\")\n\n        contourf!(ax, tx,ty,ytest,levels=length(cat),colormap=:phase)\n\n        for (i,c) in enumerate(cat)\n            d=df[y.==c,:]\n            scatter!(ax, d[:,1],d[:,2],color=(colors[i],0.6))\n        end\n        hidedecorations!(ax)\nend\n\nplot_desc_boudary (generic function with 1 method)",
-    "crumbs": [
-      "Machine Learning",
-      "classfication models comparison"
-    ]
-  },
-  {
-    "objectID": "machinelearning/1-classfication-comparison.html#define-machine-learning-models",
-    "href": "machinelearning/1-classfication-comparison.html#define-machine-learning-models",
-    "title": "classfication models comparison",
-    "section": "4. define machine learning models",
-    "text": "4. define machine learning models\n\n    using CatBoost.MLJCatBoostInterface\n    SVC = @load SVC pkg=LIBSVM   \n    KNNClassifier = @load KNNClassifier pkg=NearestNeighborModels\n    DecisionTreeClassifier = @load DecisionTreeClassifier pkg=DecisionTree\n    RandomForestClassifier = @load RandomForestClassifier pkg=DecisionTree\n    CatBoostClassifier = @load CatBoostClassifier pkg=CatBoost\n    BayesianLDA = @load BayesianLDA pkg=MultivariateStats\n    Booster = @load AdaBoostStumpClassifier pkg=DecisionTree\n    \n    models=[KNNClassifier,DecisionTreeClassifier,RandomForestClassifier,CatBoostClassifier,BayesianLDA,SVC]\n    names=[\"KNN\",\"DecisionTree\",\"RandomForest\",\"CatBoost\",\"BayesianLDA\",\"SVC\"]\n   function _fit(df::DataFrame,m)\n    X,y=df[:,1:2],df[:,3]\n    _,_,xtest=boundary_data(df;n=nums)\n    local predict= m==MLJLIBSVMInterface.SVC  ? MLJ.predict : MLJ.predict_mode \n    model=m()\n   mach = machine(model, X, y)|&gt;fit!\n   yhat=predict(mach, xtest)\n   ytest=yhat|&gt;Array|&gt;d-&gt;reshape(d,nums,nums)\n   return  ytest\nend\n\n\n\nfunction plot_desc_boudary(fig,ytest,i;df=df1,row=1)\n    tx,ty,_=boundary_data(df)\n    local y=df.y\n    local ax=Axis(fig[row,i],title=\"$(names[i])\")\n    cat=y|&gt;levels|&gt;unique\n    contourf!(ax, tx,ty,ytest,levels=length(cat),colormap=:redsblues)\n\n    for (i,c) in enumerate(cat)\n        d=df[y.==c,:]\n        scatter!(ax, d[:,1],d[:,2],color=(colors[i],0.6))\n    end\n    hidedecorations!(ax)\n    \n\nend\n\nfunction plot_comparsion(testdata,df;row=1)\n    \n    for (i,data) in enumerate(testdata)\n        plot_desc_boudary(fig,data,i;df=df,row=row)\n    end\n    fig\nend\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n\n\nimport MLJLIBSVMInterface ✔\nimport NearestNeighborModels ✔\nimport MLJDecisionTreeInterface ✔\nimport MLJDecisionTreeInterface ✔\nimport CatBoost ✔\nimport MLJMultivariateStatsInterface ✔\nimport MLJDecisionTreeInterface ✔\n\n\nplot_comparsion (generic function with 1 method)\n\n\n\nfig=Figure(resolution=(2100,1000))\nfunction plot_comparsion(testdata,df,row=1)\n    \n    for i in eachindex(testdata)\n        plot_desc_boudary(fig,testdata[i],i;df=df,row=row)\n    end\n    fig\nend\n\n\n\ndf1=circle_data()\n\nytest1=[_fit(df1,m) for (i,m) in enumerate(models)]\n\ndf2=moons_data()\nytest2=[_fit(df2,m) for (i,m) in enumerate(models)]\n\ndf3=blob_data()\nytest3=[_fit(df3,m) for (i,m) in enumerate(models)]\n\ndfs=[df2,df1,df3]\nytests=[ytest2,ytest1,ytest3]\n\nfig=Figure(resolution=(2100,1000))\n\nfor (df, data,i)  in zip(dfs,ytests,[1,2,3])\n    plot_comparsion(data,df;row=i)\nend\n\nfig\n\n[ Info: Training machine(KNNClassifier(K = 5, …), …).\n[ Info: Training machine(DecisionTreeClassifier(max_depth = -1, …), …).\n[ Info: Training machine(RandomForestClassifier(max_depth = -1, …), …).\n[ Info: Training machine(CatBoostClassifier(iterations = 1000, …), …).\n[ Info: Training machine(BayesianLDA(method = gevd, …), …).\n[ Info: Training machine(SVC(kernel = RadialBasis, …), …).\n[ Info: Training machine(KNNClassifier(K = 5, …), …).\n[ Info: Training machine(DecisionTreeClassifier(max_depth = -1, …), …).\n[ Info: Training machine(RandomForestClassifier(max_depth = -1, …), …).\n[ Info: Training machine(CatBoostClassifier(iterations = 1000, …), …).\n[ Info: Training machine(BayesianLDA(method = gevd, …), …).\n[ Info: Training machine(SVC(kernel = RadialBasis, …), …).\n[ Info: Training machine(KNNClassifier(K = 5, …), …).\n[ Info: Training machine(DecisionTreeClassifier(max_depth = -1, …), …).\n[ Info: Training machine(RandomForestClassifier(max_depth = -1, …), …).\n[ Info: Training machine(CatBoostClassifier(iterations = 1000, …), …).\n[ Info: Training machine(BayesianLDA(method = gevd, …), …).\n[ Info: Training machine(SVC(kernel = RadialBasis, …), …).",
-    "crumbs": [
-      "Machine Learning",
-      "classfication models comparison"
-    ]
-  },
-  {
-    "objectID": "statistics/14-unicode-plot.html",
-    "href": "statistics/14-unicode-plot.html",
-    "title": "14-unicode-plot-method",
-    "section": "",
-    "text": "简介\n\n\n\n使用Readme ·UnicodePlots.jl 以字符形式作图\n\n\n\n\nCode\nusing Plots,UnicodePlots\ndata=[21, 17, 21, 18, 22, 31, 31, 34, 34, 35, 35, 36, 39, 36,35]\nplt=scatterplot(data)\nshow(plt)\n\n\n      ┌────────────────────────────────────────┐ \n   40 │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⡀⠀⠂⠀⠂⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠄⠀⠀⠀⠄⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠄⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n   10 │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      └────────────────────────────────────────┘ \n      ⠀0⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀20⠀ \n\n\n(18, 49)",
-    "crumbs": [
-      "Statistics",
-      "14-unicode-plot-method"
-    ]
-  },
-  {
-    "objectID": "statistics/7-mvnormal-sampling.html",
-    "href": "statistics/7-mvnormal-sampling.html",
-    "title": "7-mv-normal-sampling",
-    "section": "",
-    "text": "方法\n\n\n\n通过contour:levels参数控制曲线的范围\nlevels=1 则只绘制出一条等位线",
-    "crumbs": [
-      "Statistics",
-      "7-mv-normal-sampling"
-    ]
-  },
-  {
-    "objectID": "statistics/7-mvnormal-sampling.html#load-package",
-    "href": "statistics/7-mvnormal-sampling.html#load-package",
-    "title": "7-mv-normal-sampling",
+    "objectID": "math/1-double-integral.html#load-package",
+    "href": "math/1-double-integral.html#load-package",
+    "title": "1-double integral picture",
     "section": "1. load package",
-    "text": "1. load package\n\n\nCode\nusing Distributions,GLMakie,Random\nRandom.seed!(343434)\n\n\nTaskLocalRNG()",
+    "text": "1. load package\n\n配置 ssao\n\n\n\nCode\n  using GLMakie\n  GLMakie.activate!(ssao=true)\n  GLMakie.closeall() \n  fig = Figure(resolution = (800, 800))\n  ssao = Makie.SSAO(radius = 5.0, blur = 3)\n  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\n  ax.scene.ssao.bias[] = 0.025\n\n\n0.025",
     "crumbs": [
-      "Statistics",
-      "7-mv-normal-sampling"
+      "Math",
+      "1-double integral picture"
     ]
   },
   {
-    "objectID": "statistics/7-mvnormal-sampling.html#define-distributions-params",
-    "href": "statistics/7-mvnormal-sampling.html#define-distributions-params",
-    "title": "7-mv-normal-sampling",
-    "section": "2. define distributions params",
-    "text": "2. define distributions params\n\n\nCode\nμ=[3,2]\nΣ=[1 -1.5;-1.5 4]\nd=MvNormal(μ,Σ)\nxs=range(0,6,100)\nys=range(-4,7,100)\ndens_mvnormal = [pdf(d, [i, j]) for i in xs, j in ys]\nrand_sample=rand(d,100)\n\n\n2×100 Matrix{Float64}:\n 2.04893  3.14939  2.04006  2.96766  3.14777  …  2.9465   2.47969   3.17612\n 3.31172  2.04522  2.43717  1.83891  1.69139     2.44297  0.862216  0.327061",
+    "objectID": "math/1-double-integral.html#define-bio-variate-funciton",
+    "href": "math/1-double-integral.html#define-bio-variate-funciton",
+    "title": "1-double integral picture",
+    "section": "2 define bio-variate funciton",
+    "text": "2 define bio-variate funciton\n\n2.1 配置函数\n\n\nmake_cubic: plot 小立方体函数\nmack_z : 根据传入函数的(x,y)坐标返回值, 即 z坐标值\n\n\n\n\nCode\n  make_cubic(;x=0,y=0,h,w)=Rect3f(Vec3f(x,y,0), Vec3f(w,w,h))\n\n  function make_z(func)\n   return (x,y)-&gt;func(x,y)\n  end\n\n\nmake_z (generic function with 1 method)\n\n\n\n\n2.2 二元函数\n\n不限于此\n\n\n\nCode\nf1(x,y)=ℯ^(−(x^2)−(y^2))\n  f5(x,y)=x^2+y^2\n\n\nf5 (generic function with 1 method)",
     "crumbs": [
-      "Statistics",
-      "7-mv-normal-sampling"
+      "Math",
+      "1-double integral picture"
     ]
   },
   {
-    "objectID": "statistics/7-mvnormal-sampling.html#plot-res",
-    "href": "statistics/7-mvnormal-sampling.html#plot-res",
-    "title": "7-mv-normal-sampling",
-    "section": "3. plot res",
-    "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(800,400))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()",
+    "objectID": "math/1-double-integral.html#plot",
+    "href": "math/1-double-integral.html#plot",
+    "title": "1-double integral picture",
+    "section": "3 plot",
+    "text": "3 plot\n\n\n可以改变 xs,ys step的值, 增加后, 立方体会变小\nbox_width=0.19 设置比xs,ys 的间隔小一点, 留出空隙\n\n\n\n\nCode\n    xs=range(-2,2,20)\n    ys=range(-2,2,20) \n    box_width=0.19\n    function plot_double_integ(funcz)\n      local box = [make_cubic(;x=x,y=y,h=funcz(x,y),w=box_width) for x in xs  for y in ys]\n      local zs=  [funcz(x,y) for x in xs , y in ys]\n      for  i in eachindex(box)\n      mesh!(ax, box[i], ssao=true,color=:lightblue)\n      wireframe!(ax, box[i]; color = :black, transparency=true)\n    end\n\n    #wireframe!(ax,xs,ys,zs,color=(:red,0.8),linewidth=1)\n    fig\n  end\n\n  make_z(f1)|&gt;plot_double_integ\n\n\n\n\n\n\n\n\n\n  二元函数\n  f1(x,y)=ℯ^(−(x^2)−(y^2))\n  f2(x,y)=y^2\n  f3(x,y)=2+2x-y\n  f4(x,y)=x+2y+3\n  f5(x,y)=x^2+y^2\n  f6(x,y)=-f5(x,y)+3\n  f7(x,y)=-f5(x,y)\n  f8(x,y)=ℯ^((x^2)+(y^2))\n  f9(x,y)=sqrt(x^2+y^2)",
+    "crumbs": [
+      "Math",
+      "1-double integral picture"
+    ]
+  },
+  {
+    "objectID": "math/3-oval-spere.html",
+    "href": "math/3-oval-spere.html",
+    "title": "3-oval-sphere-params-equation",
+    "section": "",
+    "text": "球体参数方程\n球体可以看做是二元球面的连续积分,这里的离散球面图和二元函数的分解道理相同\n\n\n\nCode\n  using GLMakie,LinearAlgebra\nlet\nuspan=0:0.01:1.82pi  #  不要到 2pi, 留出空隙, 可以观察内部\nvspan=0:0.01:1pi\nf = Figure()\nax = Axis3(f[1, 1];azimuth=-0.1pi,elevation=-0.05pi)\ncol = repeat([1:50;50:-1:1],outer=2)\n\n\nfunction plot_sphere(r::Int)\n    xs=[r*cos(u)*sin(v) for u in uspan,v in vspan]\n    ys=[r*sin(u)*sin(v) for u in uspan,v in vspan]\n    zs=[r*cos(v) for u in uspan,v in vspan]\n    surface!(xs,ys,zs,color=color=col)\nend\n\n\nfor  r in [2,5,8]\n    plot_sphere(r)\nend\n\n\nf\nend",
+    "crumbs": [
+      "Math",
+      "3-oval-sphere-params-equation"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "内容简介",
+    "section": "",
+    "text": "介绍\n\n\n\nGLMakie 方法\n\n\nCourse info & details here\ncommit chage gh-pages",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html",
+    "href": "statistics/15-bubble-plot.html",
+    "title": "15-bubble-plot",
+    "section": "",
+    "text": "简介\n\n\n\n\nref csv",
     "crumbs": [
       "Statistics",
-      "7-mv-normal-sampling"
+      "15-bubble-plot"
+    ]
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html#load-pacakge",
+    "href": "statistics/15-bubble-plot.html#load-pacakge",
+    "title": "15-bubble-plot",
+    "section": "1. load pacakge",
+    "text": "1. load pacakge\n\n\nCode\nusing GLMakie,CSV,DataFrames,GLMakie,LinearAlgebra,Pipe",
+    "crumbs": [
+      "Statistics",
+      "15-bubble-plot"
+    ]
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html#load-data-dataframe",
+    "href": "statistics/15-bubble-plot.html#load-data-dataframe",
+    "title": "15-bubble-plot",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndata=@pipe CSV.File(\"./data/BodyFat.csv\")|&gt;DataFrame|&gt;dropmissing|&gt;select(_,feature)\nfirst(data,10)\n\n\n10×3 DataFrame\n\n\n\nRow\nHeight\nWeight\nBodyfat\n\n\n\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n73.5\n247.25\n32.3\n\n\n2\n71.5\n177.25\n22.5\n\n\n3\n69.0\n156.25\n22.0\n\n\n4\n67.75\n154.25\n12.3\n\n\n5\n70.0\n177.0\n20.5\n\n\n6\n72.0\n198.0\n22.6\n\n\n7\n71.5\n200.5\n28.7\n\n\n8\n70.25\n163.0\n21.3\n\n\n9\n71.5\n241.25\n29.9\n\n\n10\n71.0\n218.5\n21.3",
+    "crumbs": [
+      "Statistics",
+      "15-bubble-plot"
+    ]
+  },
+  {
+    "objectID": "statistics/15-bubble-plot.html#plot-bubble-img",
+    "href": "statistics/15-bubble-plot.html#plot-bubble-img",
+    "title": "15-bubble-plot",
+    "section": "3. plot bubble img",
+    "text": "3. plot bubble img\n\n\nCode\n    function plot_bubble()\n        fig=Figure()\n        ax=Axis(fig[1,1];title=\"Bubble size: BodyFat\",xlabel=\"$(feature[1])\",ylabel=\"$(feature[2])\")\n        Box(fig[1,1];color = (:orange,0.1),strokewidth=0.5)\n        scatter!(ax,data[!,1],data[!,2],markersize=data[!,3].*2,color=(:blue,0.2),strokewidth=3,strokecolor=:black)\n        fig\n        #save(\"Bubble-size-BodyFat.png\",fig)\n    end\n\n    plot_bubble()",
+    "crumbs": [
+      "Statistics",
+      "15-bubble-plot"
+    ]
+  },
+  {
+    "objectID": "statistics/1-normaldist.html",
+    "href": "statistics/1-normaldist.html",
+    "title": "1-normal-distributions",
+    "section": "",
+    "text": "gaussian distributions\n\n\n\n目的: 增强显示效果\n\n\n\n\nCode\n  using GLMakie, Distributions, Random\n  Random.seed!(124)\n\n  colors = [\"#FF410D\", \"#6EE2FF\", \"#F7C530\", \"#95CC5E\", \"#D0DFE6\", \"#F79D1E\"]\n  μσpairs = [[-3, 1], [-0.3, 1], [0, 1], [1.2, 1], [4, 1], [5, 1]] #方差相同, 均值变化\n  μσpairs2 = [[0, 0.8], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]   # 均值相同, 方差变化\n\n  ts = range(-10, 10, 200)\n  fig = Figure(resolution=(1000, 600))\n  ax1 = Axis(fig[1, 1:2], xlabel=\"μ change, σ=1\")\n  ax2 = Axis(fig[1, 3], xlabel=\"μ=0,σ change\")\n\n  for (p, p2, c) in zip(μσpairs, μσpairs2, colors)\n      local pdf1(x) = pdf(Normal(p...), x)\n      local pdf2(x) = pdf(Normal(p2...), x)\n      lines!(ax1, ts, pdf1.(ts), label=\"$(p[1]),  $(p[2])\", color=c, linewidth=3)\n      band!(ax1, ts, fill(0, length(ts)), pdf1.(ts); color=(c, 0.1)) #半透明区域\n      lines!(ax2, ts, pdf2.(ts), label=\"$(p2[1]),  $(p2[2])\", color=c, linewidth=3)\n      band!(ax2, ts, fill(0, length(ts)), pdf2.(ts); color=(c, 0.1)) #半透明区域\n  end\n  axislegend(ax1)\n  axislegend(ax2)\n  fig",
+    "crumbs": [
+      "Statistics",
+      "1-normal-distributions"
+    ]
+  },
+  {
+    "objectID": "statistics/2-2d-descison-boundary.html",
+    "href": "statistics/2-2d-descison-boundary.html",
+    "title": "2-2dimension decision boundary",
+    "section": "",
+    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic",
+    "crumbs": [
+      "Statistics",
+      "2-2dimension decision boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/2-2d-descison-boundary.html#load-package",
+    "href": "statistics/2-2d-descison-boundary.html#load-package",
+    "title": "2-2dimension decision boundary",
+    "section": "",
+    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic",
+    "crumbs": [
+      "Statistics",
+      "2-2dimension decision boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/2-2d-descison-boundary.html#plots",
+    "href": "statistics/2-2d-descison-boundary.html#plots",
+    "title": "2-2dimension decision boundary",
+    "section": "3. plots",
+    "text": "3. plots\n\n\nCode\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n\n\n\n\n\n\n\n\nFigure 1: 2d-decision-boundary",
+    "crumbs": [
+      "Statistics",
+      "2-2dimension decision boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/6-mutli-variable-distributions.html",
+    "href": "statistics/6-mutli-variable-distributions.html",
+    "title": "6-bio-normal-dist",
+    "section": "",
+    "text": "Code\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)",
+    "crumbs": [
+      "Statistics",
+      "6-bio-normal-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/13-understand-bayes.html",
+    "href": "statistics/13-understand-bayes.html",
+    "title": "13-understanding-bayes",
+    "section": "",
+    "text": "简介\n\n\n\n下面我们考察一下一枚硬币真实参数为:p(head)=0.6的硬币在不同观察结果(obs)下的似然率估计\n估计两个点p(head)=[a=0.5,b=0.8]\n在这两个点的最大似然率的估计可以表示为赔率(odds), 注意这不是概率\n可以直观的在概率密度图上观察到两者的差异\n当 观测值逐渐增加以后, 两个点的条件概率会趋近于 0, 赔率会趋近于 1 \\[L(a,b)=\\frac{p(obs|a)}{p(obs|b)}\\]",
+    "crumbs": [
+      "Statistics",
+      "13-understanding-bayes"
+    ]
+  },
+  {
+    "objectID": "statistics/13-understand-bayes.html#load-package",
+    "href": "statistics/13-understand-bayes.html#load-package",
+    "title": "13-understanding-bayes",
+    "section": "1. load package",
+    "text": "1. load package\n\n using Distributions,GLMakie",
+    "crumbs": [
+      "Statistics",
+      "13-understanding-bayes"
+    ]
+  },
+  {
+    "objectID": "statistics/13-understand-bayes.html#define-likelihood-function",
+    "href": "statistics/13-understand-bayes.html#define-likelihood-function",
+    "title": "13-understanding-bayes",
+    "section": "2. define likelihood function",
+    "text": "2. define likelihood function\n\nxc=[0.5,0.8]\nfunction plot_likelihood(;p=0.6,n=10,s=6)\n    probrange=range(0.0,1.0,50)\n    fig=Figure(resolution=(500,300))\n    ax=Axis(fig[1,1])\n    fun(p)=Binomial(n,p)|&gt;d-&gt;pdf(d,s)\n    data=Float64[fun(p) for p in probrange]\n    \n\n    pdf1=fun(xc[1]);pdf2=fun(xc[2])\n    lines!(ax,probrange,data,label=\"n=$(n),success=$(s)\")\n    scatter!(ax,xc,[pdf1,pdf2];color=[:red,:green],markersize=20)\n    lines!(ax,[xc[1],xc[2],xc[2]],[pdf1,pdf1,pdf2];linestyle=:dot)\n    axislegend(halign =:left, valign =:top)\n    fig\nend\n\nplot_likelihood (generic function with 1 method)",
+    "crumbs": [
+      "Statistics",
+      "13-understanding-bayes"
+    ]
+  },
+  {
+    "objectID": "statistics/13-understand-bayes.html#plot-results",
+    "href": "statistics/13-understand-bayes.html#plot-results",
+    "title": "13-understanding-bayes",
+    "section": "3. plot results",
+    "text": "3. plot results\n\n3.1 10 次硬币试验,6 次正面\n两个点的高度相除就是基于实验观察的赔率\n\nplot_likelihood()\n\n\n\n\n\n\n\n\n\n\n3.2 100次试验 60 次正面\n\nplot_likelihood(;p=0.6,n=100,s=60)\n\n\n\n\n\n\n\n\n\n\n3.3 500次试验,300 次正面\n\nplot_likelihood(;p=0.6,n=500,s=300)\n\n\n\n\n\n\n\n\n\n在上述实验中模型参数是事先知道的:p(head)=0.6,但是对于很多问题, 参数未知. 在这种情况下, 如果给定两个参数, 优先选择赔率最大的参数作为估计",
+    "crumbs": [
+      "Statistics",
+      "13-understanding-bayes"
+    ]
+  },
+  {
+    "objectID": "statistics/5-2d-decision-boundary.html",
+    "href": "statistics/5-2d-decision-boundary.html",
+    "title": "5-2d-decision-boundary",
+    "section": "",
+    "text": "Code\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nusing MLJ\nLogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n#X, y = make_blobs(centers = 2)\nmach = fit!(machine(LogisticClassifier(), X, y))\npredict(mach, X)\nfitted_params(mach)\nprobs=predict(mach, x_test)|&gt;Array #返回分类概率值\nprobs_res=broadcast(pdf, probs, 1.0).|&gt;(d-&gt;round(d,digits=2))|&gt;d-&gt;reshape(d,nums,nums) #返回概率为1.0(\"virginica\")的概率值\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\nimport MLJLinearModels ✔\n\n\n100×100 Matrix{Float64}:\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n ⋮                             ⋮     ⋱            ⋮                   \n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0",
+    "crumbs": [
+      "Statistics",
+      "5-2d-decision-boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/5-2d-decision-boundary.html#plot-results",
+    "href": "statistics/5-2d-decision-boundary.html#plot-results",
+    "title": "5-2d-decision-boundary",
+    "section": "plot results",
+    "text": "plot results\n\n\nCode\n    fig=Figure(resolution=(1600,800))\n\n    function plot_res_contour()\n\n        ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contour\")\n        contour!(ax, tx, ty, probs_res; labels=true)\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    function plot_res_contourf()\n\n        ax = Axis(fig[1, 2], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contourf\")\n        contourf!(ax, tx, ty, probs_res; levels=6, colormap=(:heat, 0.5))\n        #contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1.0 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    plot_res_contourf()\n    plot_res_contour()",
+    "crumbs": [
+      "Statistics",
+      "5-2d-decision-boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/9-2d-decision-boundary.html",
+    "href": "statistics/9-2d-decision-boundary.html",
+    "title": "9-2d-descision-boundary",
+    "section": "",
+    "text": "简介\n\n\n\n\nref: probml page84 figure 2.13\ndataset:iris\nplots:使用 GLMakie:contourf 方法",
+    "crumbs": [
+      "Statistics",
+      "9-2d-descision-boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/9-2d-decision-boundary.html#load-package",
+    "href": "statistics/9-2d-decision-boundary.html#load-package",
+    "title": "9-2d-descision-boundary",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\n    import MLJ:fit!,fitted_params\n    using GLMakie,MLJ,CSV,DataFrames",
+    "crumbs": [
+      "Statistics",
+      "9-2d-descision-boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/9-2d-decision-boundary.html#process-data",
+    "href": "statistics/9-2d-decision-boundary.html#process-data",
+    "title": "9-2d-descision-boundary",
+    "section": "2 process data",
+    "text": "2 process data\n\n2.1 import iris datset\n\n\nCode\niris = load_iris();\n\n#selectrows(iris, 1:3)  |&gt; pretty\n\niris = DataFrames.DataFrame(iris);\nfirst(iris,5)|&gt;display\ny, X = unpack(iris, ==(:target); rng=123);\n\nX=select!(X,3:4)\n\nbyCat = iris.target\ncateg = unique(byCat)\ncolors = [:orange,:lightgreen,:purple];\n\n\n5×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n2.2 make desc boundary data\n\n生成决策边界实际是利用训练模型对区间内的每个点都做出预测,利用两个属性的最大值和最小值 生成 grid 数据,这是 test数据\n\n\n\nCode\n# grid data\n   n1 = n2 = 20\n   tx = LinRange(0, 8, 40)\n   ty = LinRange(-1, 4, 40)\n   X_test = mapreduce(collect, hcat, Iterators.product(tx, ty))\n   X_test = MLJ.table(X_test')\n\n\nTables.MatrixTable{LinearAlgebra.Adjoint{Float64, Matrix{Float64}}} with 1600 rows, 2 columns, and schema:\n :x1  Float64\n :x2  Float64",
+    "crumbs": [
+      "Statistics",
+      "9-2d-descision-boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/9-2d-decision-boundary.html#logisitcs-model",
+    "href": "statistics/9-2d-decision-boundary.html#logisitcs-model",
+    "title": "9-2d-descision-boundary",
+    "section": "3. Logisitcs model",
+    "text": "3. Logisitcs model\n\n3.1 training model\n\n\nCode\n   LogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n   #X, y = make_blobs(centers = 2)\n   mach = fit!(machine(LogisticClassifier(), X, y))\n   predict(mach, X)\n   fitted_params(mach)\n   probs=predict(mach, X_test)|&gt;Array #返回分类概率值\n   probres=[broadcast(pdf, probs,cat) for cat in categ]\n\n\nimport MLJLinearModels ✔\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\n3-element Vector{Vector{Float64}}:\n [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0  …  9.671834765600391e-132, 7.370874765820906e-135, 5.617320408186208e-138, 4.2809421636823794e-141, 3.2624925190464766e-144, 2.4863352574885955e-147, 1.8948282567827453e-150, 1.4440426374071983e-153, 1.1005003388488668e-156, 8.38687836794779e-160]\n [2.6707314921073497e-56, 1.0760270944086094e-53, 4.335270360659973e-51, 1.7466631832673993e-48, 7.037236485793986e-46, 2.835274587075858e-43, 1.142320852844153e-40, 4.6023652763324474e-38, 1.8542746623291115e-35, 7.470798854313656e-33  …  1.3627080472304016e-14, 4.184137656019423e-15, 1.2847218419308875e-15, 3.9446842977544977e-16, 1.2111986969540427e-16, 3.718934578207533e-17, 1.1418831965200673e-17, 3.5061042539858484e-18, 1.0765345419987361e-18, 3.305453963038536e-19]\n [1.6814079540479983e-80, 2.2062917118777524e-77, 2.8950280068446543e-74, 3.798766552624987e-71, 4.9846244275441556e-68, 6.540670593853871e-65, 8.582466430351137e-62, 1.1261648017760677e-58, 1.4777187549191659e-55, 1.9390170205959138e-52  …  0.9999999999999865, 0.9999999999999958, 0.9999999999999987, 0.9999999999999996, 0.9999999999999998, 1.0, 1.0, 1.0, 1.0, 1.0]\n\n\n\n\nCode\nfunction plot_res_contour()\n    fig=Figure()\n    ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d3class-contour\")\n    \n    \n    for (idx,cat) in enumerate(categ)\n        indc = findall(x -&gt; x == cat, byCat)\n        scatter!(ax,iris[:,3][indc],iris[:,4][indc];color=(colors[idx], 0.8), markersize=probres[idx].*10, strokewidth=1, strokecolor=:black, label=\"$cat\")\n        \n    end\n   fig\nend\nplot_res_contour()",
+    "crumbs": [
+      "Statistics",
+      "9-2d-descision-boundary"
+    ]
+  },
+  {
+    "objectID": "statistics/8-dotplot.html",
+    "href": "statistics/8-dotplot.html",
+    "title": "8-dotplot",
+    "section": "",
+    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法",
+    "crumbs": [
+      "Statistics",
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#load-package",
+    "href": "statistics/8-dotplot.html#load-package",
+    "title": "8-dotplot",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()",
+    "crumbs": [
+      "Statistics",
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#make-data",
+    "href": "statistics/8-dotplot.html#make-data",
+    "title": "8-dotplot",
+    "section": "2. make data",
+    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted",
+    "crumbs": [
+      "Statistics",
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#plot",
+    "href": "statistics/8-dotplot.html#plot",
+    "title": "8-dotplot",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\nRObject{VecSxp}",
+    "crumbs": [
+      "Statistics",
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/4-pair-plots.html",
+    "href": "statistics/4-pair-plots.html",
+    "title": "4-pair-plots",
+    "section": "",
+    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa",
+    "crumbs": [
+      "Statistics",
+      "4-pair-plots"
+    ]
+  },
+  {
+    "objectID": "statistics/3-bio-norm-dist.html",
+    "href": "statistics/3-bio-norm-dist.html",
+    "title": "3-biovariate-normal-dist",
+    "section": "",
+    "text": "Code\n  using GLMakie, Distributions\n  using FileIO",
+    "crumbs": [
+      "Statistics",
+      "3-biovariate-normal-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/3-bio-norm-dist.html#load-package",
+    "href": "statistics/3-bio-norm-dist.html#load-package",
+    "title": "3-biovariate-normal-dist",
+    "section": "",
+    "text": "Code\n  using GLMakie, Distributions\n  using FileIO",
+    "crumbs": [
+      "Statistics",
+      "3-biovariate-normal-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/3-bio-norm-dist.html#plot",
+    "href": "statistics/3-bio-norm-dist.html#plot",
+    "title": "3-biovariate-normal-dist",
+    "section": "2. plot",
+    "text": "2. plot\n\n\nCode\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" =&gt; Σ₁, \"diagonal\" =&gt; Σ₂, \"spherical\" =&gt; Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig",
+    "crumbs": [
+      "Statistics",
+      "3-biovariate-normal-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/16-rotate-plots.html",
+    "href": "statistics/16-rotate-plots.html",
+    "title": "16-rotate-plots",
+    "section": "",
+    "text": "参考\n\n\n\nMakie: how to make a vertical (rotated by 90deg) lines! plot\n\n\n\n\nCode\nusing GLMakie\n\nwith_theme(theme_light()) do \n    fig = Figure()\n    ax_main = Axis(fig[1,1:2])\n    ax_side = Axis(fig[1,3], xlabel = \"y label\", ylabel = \"x label\") # well, just flip these ones\n    Xs = Ys = -10:0.1:10\n    contour!(ax_main, Xs, Ys, exp.((-Xs'.^2 .- Ys.^2)/25))\n\n    obj = lines!(ax_side, Xs, exp.(-Xs.^2/25))\n    rotate!(obj, -π/2) # rotates your plotted object\n    ax_side.yreversed = true\n    fig\nend",
+    "crumbs": [
+      "Statistics",
+      "16-rotate-plots"
+    ]
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html",
+    "href": "statistics/10-dirichlet-dist.html",
+    "title": "10-dirichlet-dist",
+    "section": "",
+    "text": "简介\n\n\n\ndirichlet分布是Beta 分布的多元泛化\n参照 :Visualizing Dirichlet Distributions with Matplotlib",
+    "crumbs": [
+      "Statistics",
+      "10-dirichlet-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html#load-package",
+    "href": "statistics/10-dirichlet-dist.html#load-package",
+    "title": "10-dirichlet-dist",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing Distributions, GLMakie, Random, Pipe\nRandom.seed!(34343)\n\n\nTaskLocalRNG()",
+    "crumbs": [
+      "Statistics",
+      "10-dirichlet-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html#beta-分布",
+    "href": "statistics/10-dirichlet-dist.html#beta-分布",
+    "title": "10-dirichlet-dist",
+    "section": "2. Beta 分布",
+    "text": "2. Beta 分布\n\n2.1 定义\nBeta分布的定义:\n\n\nCode\n@doc(Beta)\n\n\nBeta(α, β)\nThe Beta distribution has probability density function\n\\[\nf(x; \\alpha, \\beta) = \\frac{1}{B(\\alpha, \\beta)}\nx^{\\alpha - 1} (1 - x)^{\\beta - 1}, \\quad x \\in [0, 1]\n\\]\nThe Beta distribution is related to the Gamma distribution via the property that if \\(X \\sim \\operatorname{Gamma}(\\alpha)\\) and \\(Y \\sim \\operatorname{Gamma}(\\beta)\\) independently, then \\(X / (X + Y) \\sim \\operatorname{Beta}(\\alpha, \\beta)\\).\nBeta()        # equivalent to Beta(1, 1)\nBeta(α)       # equivalent to Beta(α, α)\nBeta(α, β)    # Beta distribution with shape parameters α and β\n\nparams(d)     # Get the parameters, i.e. (α, β)\nExternal links\n\nBeta distribution on Wikipedia\n\n\n\nBeta分布有两个参数α,β, 当两个参数取不同值的时候, 分布的概率密度函数变现不同.\n\n\n2.2 不同参数的 pdf曲线\n\n\nCode\nxs=range(0,1,100)\nparams=[[.1,.1],[.5,.5],[1,1],[5,5],[10,10],[50,50]]\n#sas1 = @pipe params1.|&gt;(pdf(Beta(_...),xs))\nfunction plot_res()\n    fig = Figure(resolution=(900,900))\n    axs = [Axis(fig[i, j]) for i in 1:2, j in 1:3]\n\n    for (ax,vec) in zip(axs,params)\n        ax.title=\"$vec\"\n       lines!(ax,Beta(vec...),color=(:orange, 0.8))\n    end\n    fig\nend\nplot_res()",
+    "crumbs": [
+      "Statistics",
+      "10-dirichlet-dist"
+    ]
+  },
+  {
+    "objectID": "statistics/10-dirichlet-dist.html#dirichlet分布",
+    "href": "statistics/10-dirichlet-dist.html#dirichlet分布",
+    "title": "10-dirichlet-dist",
+    "section": "3 Dirichlet分布",
+    "text": "3 Dirichlet分布\n\n3.1 定义\n\n\nCode\n@doc(Dirichlet)\n\n\nDirichlet\nThe Dirichlet distribution is often used as the conjugate prior for Categorical or Multinomial distributions. The probability density function of a Dirichlet distribution with parameter \\(\\alpha = (\\alpha_1, \\ldots, \\alpha_k)\\) is:\n\\[\nf(x; \\alpha) = \\frac{1}{B(\\alpha)} \\prod_{i=1}^k x_i^{\\alpha_i - 1}, \\quad \\text{ with }\nB(\\alpha) = \\frac{\\prod_{i=1}^k \\Gamma(\\alpha_i)}{\\Gamma \\left( \\sum_{i=1}^k \\alpha_i \\right)},\n\\quad x_1 + \\cdots + x_k = 1\n\\]\n# Let alpha be a vector\nDirichlet(alpha)         # Dirichlet distribution with parameter vector alpha\n\n# Let a be a positive scalar\nDirichlet(k, a)          # Dirichlet distribution with parameter a * ones(k)\n\n\n\n\n3.2 Dirichlet sampling plot\n\n\nCode\nlet\n    vecs = [[0.1,0.1,0.1],[0.2,0.2,0.2],[1, 1, 1], [2, 2, 2], [6, 6, 6], [10, 10, 10],[20,20,20],[50,50,50],[100,100,100]]\n    sas = @pipe vecs |&gt; Dirichlet.(_) |&gt; rand.(_, 1000)\n\n    xs = ys = zs = range(0, 1, 100)\n    function plot_res()\n        fig = Figure(resolution=(900,900))\n        axs = [Axis3(fig[i, j];azimuth=0.2pi) for i in 1:3, j in 1:3]\n\n        for (ax, sa,vec) in zip(axs, sas,vecs)\n            ax.title=\"$vec\"\n            lines!(ax, [1, 0, 0,1], [0, 1, 0,0], [0, 0, 1,0];color=(:lightgreen,0.5),linewidth=3)\n            scatter!(ax, eachrow(sa)...; markersize=4, color=(:orange, 0.9))\n        end\n\n        fig\n    end\n    plot_res()\n\nend",
+    "crumbs": [
+      "Statistics",
+      "10-dirichlet-dist"
     ]
   },
   {
@@ -406,442 +713,201 @@
     ]
   },
   {
-    "objectID": "statistics/10-dirichlet-dist.html",
-    "href": "statistics/10-dirichlet-dist.html",
-    "title": "10-dirichlet-dist",
+    "objectID": "statistics/7-mvnormal-sampling.html",
+    "href": "statistics/7-mvnormal-sampling.html",
+    "title": "7-mv-normal-sampling",
     "section": "",
-    "text": "简介\n\n\n\ndirichlet分布是Beta 分布的多元泛化\n参照 :Visualizing Dirichlet Distributions with Matplotlib",
+    "text": "方法\n\n\n\n通过contour:levels参数控制曲线的范围\nlevels=1 则只绘制出一条等位线",
     "crumbs": [
       "Statistics",
-      "10-dirichlet-dist"
+      "7-mv-normal-sampling"
     ]
   },
   {
-    "objectID": "statistics/10-dirichlet-dist.html#load-package",
-    "href": "statistics/10-dirichlet-dist.html#load-package",
-    "title": "10-dirichlet-dist",
+    "objectID": "statistics/7-mvnormal-sampling.html#load-package",
+    "href": "statistics/7-mvnormal-sampling.html#load-package",
+    "title": "7-mv-normal-sampling",
     "section": "1. load package",
-    "text": "1. load package\n\n\nCode\nusing Distributions, GLMakie, Random, Pipe\nRandom.seed!(34343)\n\n\nTaskLocalRNG()",
+    "text": "1. load package\n\n\nCode\nusing Distributions,GLMakie,Random\nRandom.seed!(343434)\n\n\nTaskLocalRNG()",
     "crumbs": [
       "Statistics",
-      "10-dirichlet-dist"
+      "7-mv-normal-sampling"
     ]
   },
   {
-    "objectID": "statistics/10-dirichlet-dist.html#beta-分布",
-    "href": "statistics/10-dirichlet-dist.html#beta-分布",
-    "title": "10-dirichlet-dist",
-    "section": "2. Beta 分布",
-    "text": "2. Beta 分布\n\n2.1 定义\nBeta分布的定义:\n\n\nCode\n@doc(Beta)\n\n\nBeta(α, β)\nThe Beta distribution has probability density function\n\\[\nf(x; \\alpha, \\beta) = \\frac{1}{B(\\alpha, \\beta)}\nx^{\\alpha - 1} (1 - x)^{\\beta - 1}, \\quad x \\in [0, 1]\n\\]\nThe Beta distribution is related to the Gamma distribution via the property that if \\(X \\sim \\operatorname{Gamma}(\\alpha)\\) and \\(Y \\sim \\operatorname{Gamma}(\\beta)\\) independently, then \\(X / (X + Y) \\sim \\operatorname{Beta}(\\alpha, \\beta)\\).\nBeta()        # equivalent to Beta(1, 1)\nBeta(α)       # equivalent to Beta(α, α)\nBeta(α, β)    # Beta distribution with shape parameters α and β\n\nparams(d)     # Get the parameters, i.e. (α, β)\nExternal links\n\nBeta distribution on Wikipedia\n\n\n\nBeta分布有两个参数α,β, 当两个参数取不同值的时候, 分布的概率密度函数变现不同.\n\n\n2.2 不同参数的 pdf曲线\n\n\nCode\nxs=range(0,1,100)\nparams=[[.1,.1],[.5,.5],[1,1],[5,5],[10,10],[50,50]]\n#sas1 = @pipe params1.|&gt;(pdf(Beta(_...),xs))\nfunction plot_res()\n    fig = Figure(resolution=(900,900))\n    axs = [Axis(fig[i, j]) for i in 1:2, j in 1:3]\n\n    for (ax,vec) in zip(axs,params)\n        ax.title=\"$vec\"\n       lines!(ax,Beta(vec...),color=(:orange, 0.8))\n    end\n    fig\nend\nplot_res()",
+    "objectID": "statistics/7-mvnormal-sampling.html#define-distributions-params",
+    "href": "statistics/7-mvnormal-sampling.html#define-distributions-params",
+    "title": "7-mv-normal-sampling",
+    "section": "2. define distributions params",
+    "text": "2. define distributions params\n\n\nCode\nμ=[3,2]\nΣ=[1 -1.5;-1.5 4]\nd=MvNormal(μ,Σ)\nxs=range(0,6,100)\nys=range(-4,7,100)\ndens_mvnormal = [pdf(d, [i, j]) for i in xs, j in ys]\nrand_sample=rand(d,100)\n\n\n2×100 Matrix{Float64}:\n 2.04893  3.14939  2.04006  2.96766  3.14777  …  2.9465   2.47969   3.17612\n 3.31172  2.04522  2.43717  1.83891  1.69139     2.44297  0.862216  0.327061",
     "crumbs": [
       "Statistics",
-      "10-dirichlet-dist"
+      "7-mv-normal-sampling"
     ]
   },
   {
-    "objectID": "statistics/10-dirichlet-dist.html#dirichlet分布",
-    "href": "statistics/10-dirichlet-dist.html#dirichlet分布",
-    "title": "10-dirichlet-dist",
-    "section": "3 Dirichlet分布",
-    "text": "3 Dirichlet分布\n\n3.1 定义\n\n\nCode\n@doc(Dirichlet)\n\n\nDirichlet\nThe Dirichlet distribution is often used as the conjugate prior for Categorical or Multinomial distributions. The probability density function of a Dirichlet distribution with parameter \\(\\alpha = (\\alpha_1, \\ldots, \\alpha_k)\\) is:\n\\[\nf(x; \\alpha) = \\frac{1}{B(\\alpha)} \\prod_{i=1}^k x_i^{\\alpha_i - 1}, \\quad \\text{ with }\nB(\\alpha) = \\frac{\\prod_{i=1}^k \\Gamma(\\alpha_i)}{\\Gamma \\left( \\sum_{i=1}^k \\alpha_i \\right)},\n\\quad x_1 + \\cdots + x_k = 1\n\\]\n# Let alpha be a vector\nDirichlet(alpha)         # Dirichlet distribution with parameter vector alpha\n\n# Let a be a positive scalar\nDirichlet(k, a)          # Dirichlet distribution with parameter a * ones(k)\n\n\n\n\n3.2 Dirichlet sampling plot\n\n\nCode\nlet\n    vecs = [[0.1,0.1,0.1],[0.2,0.2,0.2],[1, 1, 1], [2, 2, 2], [6, 6, 6], [10, 10, 10],[20,20,20],[50,50,50],[100,100,100]]\n    sas = @pipe vecs |&gt; Dirichlet.(_) |&gt; rand.(_, 1000)\n\n    xs = ys = zs = range(0, 1, 100)\n    function plot_res()\n        fig = Figure(resolution=(900,900))\n        axs = [Axis3(fig[i, j];azimuth=0.2pi) for i in 1:3, j in 1:3]\n\n        for (ax, sa,vec) in zip(axs, sas,vecs)\n            ax.title=\"$vec\"\n            lines!(ax, [1, 0, 0,1], [0, 1, 0,0], [0, 0, 1,0];color=(:lightgreen,0.5),linewidth=3)\n            scatter!(ax, eachrow(sa)...; markersize=4, color=(:orange, 0.9))\n        end\n\n        fig\n    end\n    plot_res()\n\nend",
+    "objectID": "statistics/7-mvnormal-sampling.html#plot-res",
+    "href": "statistics/7-mvnormal-sampling.html#plot-res",
+    "title": "7-mv-normal-sampling",
+    "section": "3. plot res",
+    "text": "3. plot res\n\n\nCode\nfunction plot_func(fig,idx,levels=1)\n    ax=Axis(fig[1,idx], xlabel=L\"X\", ylabel=L\"Y\")\n    Box(fig[1,idx];color = (:orange,0.1))\n    scatter!(ax,rand_sample;marker=:circle,markersize=10,color=(:green,0.1),\n             strokewidth=1,strokecolor=:black)\n    contour!(ax,xs, ys,dens_mvnormal;levels=levels,linewidth=1)\nend\nfunction plot_mvnormal()\n    fig=Figure(resolution=(800,400))\n    [plot_func(fig,idx,levels) for (idx,levels) in enumerate([1,16])]\n    fig\nend\nplot_mvnormal()",
     "crumbs": [
       "Statistics",
-      "10-dirichlet-dist"
+      "7-mv-normal-sampling"
     ]
   },
   {
-    "objectID": "statistics/16-rotate-plots.html",
-    "href": "statistics/16-rotate-plots.html",
-    "title": "16-rotate-plots",
+    "objectID": "statistics/14-unicode-plot.html",
+    "href": "statistics/14-unicode-plot.html",
+    "title": "14-unicode-plot-method",
     "section": "",
-    "text": "参考\n\n\n\nMakie: how to make a vertical (rotated by 90deg) lines! plot\n\n\n\n\nCode\nusing GLMakie\n\nwith_theme(theme_light()) do \n    fig = Figure()\n    ax_main = Axis(fig[1,1:2])\n    ax_side = Axis(fig[1,3], xlabel = \"y label\", ylabel = \"x label\") # well, just flip these ones\n    Xs = Ys = -10:0.1:10\n    contour!(ax_main, Xs, Ys, exp.((-Xs'.^2 .- Ys.^2)/25))\n\n    obj = lines!(ax_side, Xs, exp.(-Xs.^2/25))\n    rotate!(obj, -π/2) # rotates your plotted object\n    ax_side.yreversed = true\n    fig\nend",
+    "text": "简介\n\n\n\n使用Readme ·UnicodePlots.jl 以字符形式作图\n\n\n\n\nCode\nusing Plots,UnicodePlots\ndata=[21, 17, 21, 18, 22, 31, 31, 34, 34, 35, 35, 36, 39, 36,35]\nplt=scatterplot(data)\nshow(plt)\n\n\n      ┌────────────────────────────────────────┐ \n   40 │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⡀⠀⠂⠀⠂⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠄⠀⠀⠀⠄⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠄⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n   10 │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀│ \n      └────────────────────────────────────────┘ \n      ⠀0⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀20⠀ \n\n\n(18, 49)",
     "crumbs": [
       "Statistics",
-      "16-rotate-plots"
+      "14-unicode-plot-method"
     ]
   },
   {
-    "objectID": "statistics/3-bio-norm-dist.html",
-    "href": "statistics/3-bio-norm-dist.html",
-    "title": "3-biovariate-normal-dist",
+    "objectID": "machinelearning/1-classfication-comparison.html",
+    "href": "machinelearning/1-classfication-comparison.html",
+    "title": "classfication models comparison",
     "section": "",
-    "text": "Code\n  using GLMakie, Distributions\n  using FileIO",
+    "text": "import MLJ:predict,predict_mode\n    using  MLJ,GLMakie,DataFrames,Random\n    Random.seed!(1222)\n\nTaskLocalRNG()",
     "crumbs": [
-      "Statistics",
-      "3-biovariate-normal-dist"
+      "Machine Learning",
+      "classfication models comparison"
     ]
   },
   {
-    "objectID": "statistics/3-bio-norm-dist.html#load-package",
-    "href": "statistics/3-bio-norm-dist.html#load-package",
-    "title": "3-biovariate-normal-dist",
+    "objectID": "machinelearning/1-classfication-comparison.html#load-package",
+    "href": "machinelearning/1-classfication-comparison.html#load-package",
+    "title": "classfication models comparison",
     "section": "",
-    "text": "Code\n  using GLMakie, Distributions\n  using FileIO",
+    "text": "import MLJ:predict,predict_mode\n    using  MLJ,GLMakie,DataFrames,Random\n    Random.seed!(1222)\n\nTaskLocalRNG()",
     "crumbs": [
-      "Statistics",
-      "3-biovariate-normal-dist"
+      "Machine Learning",
+      "classfication models comparison"
     ]
   },
   {
-    "objectID": "statistics/3-bio-norm-dist.html#plot",
-    "href": "statistics/3-bio-norm-dist.html#plot",
-    "title": "3-biovariate-normal-dist",
-    "section": "2. plot",
-    "text": "2. plot\n\n\nCode\n    μ = [0, 0]\n    Σ₁ = [2 1.8; 1.8 2]\n    Σ₂ = [1 0; 0 3]\n    Σ₃ = [1 0; 0 1]\n    simga_dict = Dict(\"full\" =&gt; Σ₁, \"diagonal\" =&gt; Σ₂, \"spherical\" =&gt; Σ₃)\n    fig = Figure(resolution=(1200, 800))\n\n    function load_img(src)\n        load(\"./imgs/$(src).png\")\n    end\n\n    function binormal_plot(; μ=[0, 0], Σmatrix::Dict=simga_dict, up::Int=4, n::Int=100)\n        xs = ys = range(-up, up, n)\n        simga_keys = keys(Σmatrix)\n        for (idx, val) in enumerate(simga_keys)\n                local cormatrix = Σmatrix[val]\n                local img=load_img(val)\n                local d = MvNormal(μ, cormatrix)\n                local zs = [pdf(d, [x, y]) for x in xs, y in ys]\n                local ax1 = Axis3(fig[1, idx], title=\"$(val)\")\n                local ax2=  Axis(fig[2, idx],aspect = DataAspect(),height=60)\n                local ax3 = Axis(fig[3, idx];)\n                hidedecorations!(ax2)\n                hidespines!(ax2)\n                surface!(ax1, xs, ys, zs)\n                image!(ax2, rotr90(img))\n                contour!(ax3, xs, ys, zs, levels=10)\n        end\n    end\n\n    binormal_plot()\n    fig",
-    "crumbs": [
-      "Statistics",
-      "3-biovariate-normal-dist"
-    ]
-  },
-  {
-    "objectID": "statistics/4-pair-plots.html",
-    "href": "statistics/4-pair-plots.html",
-    "title": "4-pair-plots",
-    "section": "",
-    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa",
-    "crumbs": [
-      "Statistics",
-      "4-pair-plots"
-    ]
-  },
-  {
-    "objectID": "statistics/8-dotplot.html",
-    "href": "statistics/8-dotplot.html",
-    "title": "8-dotplot",
-    "section": "",
-    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法",
-    "crumbs": [
-      "Statistics",
-      "8-dotplot"
-    ]
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#load-package",
-    "href": "statistics/8-dotplot.html#load-package",
-    "title": "8-dotplot",
-    "section": "1. load package",
-    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()",
-    "crumbs": [
-      "Statistics",
-      "8-dotplot"
-    ]
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#make-data",
-    "href": "statistics/8-dotplot.html#make-data",
-    "title": "8-dotplot",
+    "objectID": "machinelearning/1-classfication-comparison.html#make-data",
+    "href": "machinelearning/1-classfication-comparison.html#make-data",
+    "title": "classfication models comparison",
     "section": "2. make data",
-    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted",
+    "text": "2. make data\n\n    function circle_data()\n    X, y = make_circles(400; noise=0.1, factor=0.3)\n    df = DataFrame(X)\n    df.y = y\n    return df\n    end\n    function moons_data()\n        X, y = make_moons(400; noise=0.1)\n        df = DataFrame(X)\n        df.y = y\n        return df\n    end\n    function blob_data()\n        X, y = make_blobs(400, 2; centers=2, cluster_std=[1.0, 2.0])\n        df = DataFrame(X)\n        df.y = y\n        return df\n    end\n    #cat=df1.y|&gt;levels|&gt;unique\n    colors=[:green, :purple]\n\n2-element Vector{Symbol}:\n :green\n :purple",
     "crumbs": [
-      "Statistics",
-      "8-dotplot"
+      "Machine Learning",
+      "classfication models comparison"
     ]
   },
   {
-    "objectID": "statistics/8-dotplot.html#plot",
-    "href": "statistics/8-dotplot.html#plot",
-    "title": "8-dotplot",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\nRObject{VecSxp}",
+    "objectID": "machinelearning/1-classfication-comparison.html#define-function",
+    "href": "machinelearning/1-classfication-comparison.html#define-function",
+    "title": "classfication models comparison",
+    "section": "3. define function",
+    "text": "3. define function\n\nfunction plot_origin_data(df)\n    fig=Figure()\n    ax=Axis(fig[1,1])\n    local cat=df.y|&gt;levels|&gt;unique\n    \n    local colors=[:green, :purple]\n    for (i,c) in enumerate(cat)\n        d=df[y.==c,:]\n        scatter!(ax, d[:,1],d[:,2],color=(colors[i],0.6))\n        #@show d\n    end\n    fig\nend\n\nnums=100\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,:x1])\n    ylow,yhigh=extrema(df[:,:x2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\n\nfunction plot_desc_boudary(fig,ytest,i;df=df1,row=1)\n        tx,ty,xs,ys, xtest=boundary_data(df)\n        local ax=Axis(fig[row,i],title=\"$(names[i])\")\n\n        contourf!(ax, tx,ty,ytest,levels=length(cat),colormap=:phase)\n\n        for (i,c) in enumerate(cat)\n            d=df[y.==c,:]\n            scatter!(ax, d[:,1],d[:,2],color=(colors[i],0.6))\n        end\n        hidedecorations!(ax)\nend\n\nplot_desc_boudary (generic function with 1 method)",
     "crumbs": [
-      "Statistics",
-      "8-dotplot"
+      "Machine Learning",
+      "classfication models comparison"
     ]
   },
   {
-    "objectID": "statistics/9-2d-decision-boundary.html",
-    "href": "statistics/9-2d-decision-boundary.html",
-    "title": "9-2d-descision-boundary",
+    "objectID": "machinelearning/1-classfication-comparison.html#define-machine-learning-models",
+    "href": "machinelearning/1-classfication-comparison.html#define-machine-learning-models",
+    "title": "classfication models comparison",
+    "section": "4. define machine learning models",
+    "text": "4. define machine learning models\n\n    using CatBoost.MLJCatBoostInterface\n    SVC = @load SVC pkg=LIBSVM   \n    KNNClassifier = @load KNNClassifier pkg=NearestNeighborModels\n    DecisionTreeClassifier = @load DecisionTreeClassifier pkg=DecisionTree\n    RandomForestClassifier = @load RandomForestClassifier pkg=DecisionTree\n    CatBoostClassifier = @load CatBoostClassifier pkg=CatBoost\n    BayesianLDA = @load BayesianLDA pkg=MultivariateStats\n    Booster = @load AdaBoostStumpClassifier pkg=DecisionTree\n    \n    models=[KNNClassifier,DecisionTreeClassifier,RandomForestClassifier,CatBoostClassifier,BayesianLDA,SVC]\n    names=[\"KNN\",\"DecisionTree\",\"RandomForest\",\"CatBoost\",\"BayesianLDA\",\"SVC\"]\n   function _fit(df::DataFrame,m)\n    X,y=df[:,1:2],df[:,3]\n    _,_,xtest=boundary_data(df;n=nums)\n    local predict= m==MLJLIBSVMInterface.SVC  ? MLJ.predict : MLJ.predict_mode \n    model=m()\n   mach = machine(model, X, y)|&gt;fit!\n   yhat=predict(mach, xtest)\n   ytest=yhat|&gt;Array|&gt;d-&gt;reshape(d,nums,nums)\n   return  ytest\nend\n\n\n\nfunction plot_desc_boudary(fig,ytest,i;df=df1,row=1)\n    tx,ty,_=boundary_data(df)\n    local y=df.y\n    local ax=Axis(fig[row,i],title=\"$(names[i])\")\n    cat=y|&gt;levels|&gt;unique\n    contourf!(ax, tx,ty,ytest,levels=length(cat),colormap=:redsblues)\n\n    for (i,c) in enumerate(cat)\n        d=df[y.==c,:]\n        scatter!(ax, d[:,1],d[:,2],color=(colors[i],0.6))\n    end\n    hidedecorations!(ax)\n    \n\nend\n\nfunction plot_comparsion(testdata,df;row=1)\n    \n    for (i,data) in enumerate(testdata)\n        plot_desc_boudary(fig,data,i;df=df,row=row)\n    end\n    fig\nend\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: For silent loading, specify `verbosity=0`. \n\n\nimport MLJLIBSVMInterface ✔\nimport NearestNeighborModels ✔\nimport MLJDecisionTreeInterface ✔\nimport MLJDecisionTreeInterface ✔\nimport CatBoost ✔\nimport MLJMultivariateStatsInterface ✔\nimport MLJDecisionTreeInterface ✔\n\n\nplot_comparsion (generic function with 1 method)\n\n\n\nfig=Figure(resolution=(2100,1000))\nfunction plot_comparsion(testdata,df,row=1)\n    \n    for i in eachindex(testdata)\n        plot_desc_boudary(fig,testdata[i],i;df=df,row=row)\n    end\n    fig\nend\n\n\n\ndf1=circle_data()\n\nytest1=[_fit(df1,m) for (i,m) in enumerate(models)]\n\ndf2=moons_data()\nytest2=[_fit(df2,m) for (i,m) in enumerate(models)]\n\ndf3=blob_data()\nytest3=[_fit(df3,m) for (i,m) in enumerate(models)]\n\ndfs=[df2,df1,df3]\nytests=[ytest2,ytest1,ytest3]\n\nfig=Figure(resolution=(2100,1000))\n\nfor (df, data,i)  in zip(dfs,ytests,[1,2,3])\n    plot_comparsion(data,df;row=i)\nend\n\nfig\n\n[ Info: Training machine(KNNClassifier(K = 5, …), …).\n[ Info: Training machine(DecisionTreeClassifier(max_depth = -1, …), …).\n[ Info: Training machine(RandomForestClassifier(max_depth = -1, …), …).\n[ Info: Training machine(CatBoostClassifier(iterations = 1000, …), …).\n[ Info: Training machine(BayesianLDA(method = gevd, …), …).\n[ Info: Training machine(SVC(kernel = RadialBasis, …), …).\n[ Info: Training machine(KNNClassifier(K = 5, …), …).\n[ Info: Training machine(DecisionTreeClassifier(max_depth = -1, …), …).\n[ Info: Training machine(RandomForestClassifier(max_depth = -1, …), …).\n[ Info: Training machine(CatBoostClassifier(iterations = 1000, …), …).\n[ Info: Training machine(BayesianLDA(method = gevd, …), …).\n[ Info: Training machine(SVC(kernel = RadialBasis, …), …).\n[ Info: Training machine(KNNClassifier(K = 5, …), …).\n[ Info: Training machine(DecisionTreeClassifier(max_depth = -1, …), …).\n[ Info: Training machine(RandomForestClassifier(max_depth = -1, …), …).\n[ Info: Training machine(CatBoostClassifier(iterations = 1000, …), …).\n[ Info: Training machine(BayesianLDA(method = gevd, …), …).\n[ Info: Training machine(SVC(kernel = RadialBasis, …), …).",
+    "crumbs": [
+      "Machine Learning",
+      "classfication models comparison"
+    ]
+  },
+  {
+    "objectID": "math/5-himmelblau-function.html",
+    "href": "math/5-himmelblau-function.html",
+    "title": "5-himmelblau-plot",
     "section": "",
-    "text": "简介\n\n\n\n\nref: probml page84 figure 2.13\ndataset:iris\nplots:使用 GLMakie:contourf 方法",
-    "crumbs": [
-      "Statistics",
-      "9-2d-descision-boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/9-2d-decision-boundary.html#load-package",
-    "href": "statistics/9-2d-decision-boundary.html#load-package",
-    "title": "9-2d-descision-boundary",
-    "section": "1. load package",
-    "text": "1. load package\n\n\nCode\n    import MLJ:fit!,fitted_params\n    using GLMakie,MLJ,CSV,DataFrames",
-    "crumbs": [
-      "Statistics",
-      "9-2d-descision-boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/9-2d-decision-boundary.html#process-data",
-    "href": "statistics/9-2d-decision-boundary.html#process-data",
-    "title": "9-2d-descision-boundary",
-    "section": "2 process data",
-    "text": "2 process data\n\n2.1 import iris datset\n\n\nCode\niris = load_iris();\n\n#selectrows(iris, 1:3)  |&gt; pretty\n\niris = DataFrames.DataFrame(iris);\nfirst(iris,5)|&gt;display\ny, X = unpack(iris, ==(:target); rng=123);\n\nX=select!(X,3:4)\n\nbyCat = iris.target\ncateg = unique(byCat)\ncolors = [:orange,:lightgreen,:purple];\n\n\n5×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n\n\n\n\n\n\n2.2 make desc boundary data\n\n生成决策边界实际是利用训练模型对区间内的每个点都做出预测,利用两个属性的最大值和最小值 生成 grid 数据,这是 test数据\n\n\n\nCode\n# grid data\n   n1 = n2 = 20\n   tx = LinRange(0, 8, 40)\n   ty = LinRange(-1, 4, 40)\n   X_test = mapreduce(collect, hcat, Iterators.product(tx, ty))\n   X_test = MLJ.table(X_test')\n\n\nTables.MatrixTable{LinearAlgebra.Adjoint{Float64, Matrix{Float64}}} with 1600 rows, 2 columns, and schema:\n :x1  Float64\n :x2  Float64",
-    "crumbs": [
-      "Statistics",
-      "9-2d-descision-boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/9-2d-decision-boundary.html#logisitcs-model",
-    "href": "statistics/9-2d-decision-boundary.html#logisitcs-model",
-    "title": "9-2d-descision-boundary",
-    "section": "3. Logisitcs model",
-    "text": "3. Logisitcs model\n\n3.1 training model\n\n\nCode\n   LogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n   #X, y = make_blobs(centers = 2)\n   mach = fit!(machine(LogisticClassifier(), X, y))\n   predict(mach, X)\n   fitted_params(mach)\n   probs=predict(mach, X_test)|&gt;Array #返回分类概率值\n   probres=[broadcast(pdf, probs,cat) for cat in categ]\n\n\nimport MLJLinearModels ✔\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\n3-element Vector{Vector{Float64}}:\n [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0  …  9.671834765600391e-132, 7.370874765820906e-135, 5.617320408186208e-138, 4.2809421636823794e-141, 3.2624925190464766e-144, 2.4863352574885955e-147, 1.8948282567827453e-150, 1.4440426374071983e-153, 1.1005003388488668e-156, 8.38687836794779e-160]\n [2.6707314921073497e-56, 1.0760270944086094e-53, 4.335270360659973e-51, 1.7466631832673993e-48, 7.037236485793986e-46, 2.835274587075858e-43, 1.142320852844153e-40, 4.6023652763324474e-38, 1.8542746623291115e-35, 7.470798854313656e-33  …  1.3627080472304016e-14, 4.184137656019423e-15, 1.2847218419308875e-15, 3.9446842977544977e-16, 1.2111986969540427e-16, 3.718934578207533e-17, 1.1418831965200673e-17, 3.5061042539858484e-18, 1.0765345419987361e-18, 3.305453963038536e-19]\n [1.6814079540479983e-80, 2.2062917118777524e-77, 2.8950280068446543e-74, 3.798766552624987e-71, 4.9846244275441556e-68, 6.540670593853871e-65, 8.582466430351137e-62, 1.1261648017760677e-58, 1.4777187549191659e-55, 1.9390170205959138e-52  …  0.9999999999999865, 0.9999999999999958, 0.9999999999999987, 0.9999999999999996, 0.9999999999999998, 1.0, 1.0, 1.0, 1.0, 1.0]\n\n\n\n\nCode\nfunction plot_res_contour()\n    fig=Figure()\n    ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d3class-contour\")\n    \n    \n    for (idx,cat) in enumerate(categ)\n        indc = findall(x -&gt; x == cat, byCat)\n        scatter!(ax,iris[:,3][indc],iris[:,4][indc];color=(colors[idx], 0.8), markersize=probres[idx].*10, strokewidth=1, strokecolor=:black, label=\"$cat\")\n        \n    end\n   fig\nend\nplot_res_contour()",
-    "crumbs": [
-      "Statistics",
-      "9-2d-descision-boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/5-2d-decision-boundary.html",
-    "href": "statistics/5-2d-decision-boundary.html",
-    "title": "5-2d-decision-boundary",
-    "section": "",
-    "text": "Code\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nusing MLJ\nLogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n#X, y = make_blobs(centers = 2)\nmach = fit!(machine(LogisticClassifier(), X, y))\npredict(mach, X)\nfitted_params(mach)\nprobs=predict(mach, x_test)|&gt;Array #返回分类概率值\nprobs_res=broadcast(pdf, probs, 1.0).|&gt;(d-&gt;round(d,digits=2))|&gt;d-&gt;reshape(d,nums,nums) #返回概率为1.0(\"virginica\")的概率值\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\nimport MLJLinearModels ✔\n\n\n100×100 Matrix{Float64}:\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n ⋮                             ⋮     ⋱            ⋮                   \n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0",
-    "crumbs": [
-      "Statistics",
-      "5-2d-decision-boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/5-2d-decision-boundary.html#plot-results",
-    "href": "statistics/5-2d-decision-boundary.html#plot-results",
-    "title": "5-2d-decision-boundary",
-    "section": "plot results",
-    "text": "plot results\n\n\nCode\n    fig=Figure(resolution=(1600,800))\n\n    function plot_res_contour()\n\n        ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contour\")\n        contour!(ax, tx, ty, probs_res; labels=true)\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    function plot_res_contourf()\n\n        ax = Axis(fig[1, 2], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contourf\")\n        contourf!(ax, tx, ty, probs_res; levels=6, colormap=(:heat, 0.5))\n        #contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1.0 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    plot_res_contourf()\n    plot_res_contour()",
-    "crumbs": [
-      "Statistics",
-      "5-2d-decision-boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/13-understand-bayes.html",
-    "href": "statistics/13-understand-bayes.html",
-    "title": "13-understanding-bayes",
-    "section": "",
-    "text": "简介\n\n\n\n下面我们考察一下一枚硬币真实参数为:p(head)=0.6的硬币在不同观察结果(obs)下的似然率估计\n估计两个点p(head)=[a=0.5,b=0.8]\n在这两个点的最大似然率的估计可以表示为赔率(odds), 注意这不是概率\n可以直观的在概率密度图上观察到两者的差异\n当 观测值逐渐增加以后, 两个点的条件概率会趋近于 0, 赔率会趋近于 1 \\[L(a,b)=\\frac{p(obs|a)}{p(obs|b)}\\]",
-    "crumbs": [
-      "Statistics",
-      "13-understanding-bayes"
-    ]
-  },
-  {
-    "objectID": "statistics/13-understand-bayes.html#load-package",
-    "href": "statistics/13-understand-bayes.html#load-package",
-    "title": "13-understanding-bayes",
-    "section": "1. load package",
-    "text": "1. load package\n\n using Distributions,GLMakie",
-    "crumbs": [
-      "Statistics",
-      "13-understanding-bayes"
-    ]
-  },
-  {
-    "objectID": "statistics/13-understand-bayes.html#define-likelihood-function",
-    "href": "statistics/13-understand-bayes.html#define-likelihood-function",
-    "title": "13-understanding-bayes",
-    "section": "2. define likelihood function",
-    "text": "2. define likelihood function\n\nxc=[0.5,0.8]\nfunction plot_likelihood(;p=0.6,n=10,s=6)\n    probrange=range(0.0,1.0,50)\n    fig=Figure(resolution=(500,300))\n    ax=Axis(fig[1,1])\n    fun(p)=Binomial(n,p)|&gt;d-&gt;pdf(d,s)\n    data=Float64[fun(p) for p in probrange]\n    \n\n    pdf1=fun(xc[1]);pdf2=fun(xc[2])\n    lines!(ax,probrange,data,label=\"n=$(n),success=$(s)\")\n    scatter!(ax,xc,[pdf1,pdf2];color=[:red,:green],markersize=20)\n    lines!(ax,[xc[1],xc[2],xc[2]],[pdf1,pdf1,pdf2];linestyle=:dot)\n    axislegend(halign =:left, valign =:top)\n    fig\nend\n\nplot_likelihood (generic function with 1 method)",
-    "crumbs": [
-      "Statistics",
-      "13-understanding-bayes"
-    ]
-  },
-  {
-    "objectID": "statistics/13-understand-bayes.html#plot-results",
-    "href": "statistics/13-understand-bayes.html#plot-results",
-    "title": "13-understanding-bayes",
-    "section": "3. plot results",
-    "text": "3. plot results\n\n3.1 10 次硬币试验,6 次正面\n两个点的高度相除就是基于实验观察的赔率\n\nplot_likelihood()\n\n\n\n\n\n\n\n\n\n\n3.2 100次试验 60 次正面\n\nplot_likelihood(;p=0.6,n=100,s=60)\n\n\n\n\n\n\n\n\n\n\n3.3 500次试验,300 次正面\n\nplot_likelihood(;p=0.6,n=500,s=300)\n\n\n\n\n\n\n\n\n\n在上述实验中模型参数是事先知道的:p(head)=0.6,但是对于很多问题, 参数未知. 在这种情况下, 如果给定两个参数, 优先选择赔率最大的参数作为估计",
-    "crumbs": [
-      "Statistics",
-      "13-understanding-bayes"
-    ]
-  },
-  {
-    "objectID": "statistics/6-mutli-variable-distributions.html",
-    "href": "statistics/6-mutli-variable-distributions.html",
-    "title": "6-bio-normal-dist",
-    "section": "",
-    "text": "Code\nusing GLMakie\nusing Distributions\nusing Latexify\n\nGLMakie.activate!()\n\nn=100\nxs=ys=range(-4,4,n)\nμ=[0 , 0]\nΣ=[1 0 ; 0 1]\nd=MvNormal(μ,Σ)\nd2=Normal()\nzs=[pdf(d,[x,y]) for x in xs , y in ys]\n\n# 投影到 x-z 平面数据\nxz=[Point3f(4,y,pdf(d2,y)/2) for y in ys]\n\n# 投影到 y-z 平面数据\nyz=[Point3f(x,4,pdf(d2,x)/2) for x in ys]\n\n\nstr=latexify([0,0])\nfig = Figure(size=(600,600))\nax = Axis3(fig[1, 1],title=L\"\\mu \")\nsurface!(xs,ys,zs;space=:data)\nlines!(ax, xz;linewidth=3)\nlines!(ax, yz;linewidth=3)\n\nfig\n#save(\"./imgs/mutli-normal-dist.png\",fig)",
-    "crumbs": [
-      "Statistics",
-      "6-bio-normal-dist"
-    ]
-  },
-  {
-    "objectID": "statistics/2-2d-descison-boundary.html",
-    "href": "statistics/2-2d-descison-boundary.html",
-    "title": "2-2dimension decision boundary",
-    "section": "",
-    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic",
-    "crumbs": [
-      "Statistics",
-      "2-2dimension decision boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/2-2d-descison-boundary.html#load-package",
-    "href": "statistics/2-2d-descison-boundary.html#load-package",
-    "title": "2-2dimension decision boundary",
-    "section": "",
-    "text": "Code\nusing GLMakie\nusing StatsFuns: logistic",
-    "crumbs": [
-      "Statistics",
-      "2-2dimension decision boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/2-2d-descison-boundary.html#plots",
-    "href": "statistics/2-2d-descison-boundary.html#plots",
-    "title": "2-2dimension decision boundary",
-    "section": "3. plots",
-    "text": "3. plots\n\n\nCode\nfontsize_theme = Theme(fontsize=16)\nset_theme!(fontsize_theme)\n\nfig = Figure(resolution=(900,900))\n\nfunction surface_data(w)\n    fun(x, y) = logistic(w' * [x, y])\n    span = range(-10, 10, 100)\n    zs = [fun(x, y) for x in span, y in span]\n    return span, span, zs\nend\n\nws = [3, 0, -3]\nlet\n    for (idx, x) in enumerate(ws)\n        for (idy, y) in enumerate(ws)\n            w = [x, y] == [0, 0] ? vec([0, 0.5]) : vec([x, y])\n            xs, ys, zs = surface_data(w)\n            ax = Axis3(fig[idx, idy], title=\"w=($(w[1]),$(w[2]))\")\n            surface!(ax, xs, ys, zs)\n        end\n    end\nend\n\nfig\n\n\n\n\n\n\n\n\nFigure 1: 2d-decision-boundary",
-    "crumbs": [
-      "Statistics",
-      "2-2dimension decision boundary"
-    ]
-  },
-  {
-    "objectID": "statistics/1-normaldist.html",
-    "href": "statistics/1-normaldist.html",
-    "title": "1-normal-distributions",
-    "section": "",
-    "text": "gaussian distributions\n\n\n\n目的: 增强显示效果\n\n\n\n\nCode\n  using GLMakie, Distributions, Random\n  Random.seed!(124)\n\n  colors = [\"#FF410D\", \"#6EE2FF\", \"#F7C530\", \"#95CC5E\", \"#D0DFE6\", \"#F79D1E\"]\n  μσpairs = [[-3, 1], [-0.3, 1], [0, 1], [1.2, 1], [4, 1], [5, 1]] #方差相同, 均值变化\n  μσpairs2 = [[0, 0.8], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5]]   # 均值相同, 方差变化\n\n  ts = range(-10, 10, 200)\n  fig = Figure(resolution=(1000, 600))\n  ax1 = Axis(fig[1, 1:2], xlabel=\"μ change, σ=1\")\n  ax2 = Axis(fig[1, 3], xlabel=\"μ=0,σ change\")\n\n  for (p, p2, c) in zip(μσpairs, μσpairs2, colors)\n      local pdf1(x) = pdf(Normal(p...), x)\n      local pdf2(x) = pdf(Normal(p2...), x)\n      lines!(ax1, ts, pdf1.(ts), label=\"$(p[1]),  $(p[2])\", color=c, linewidth=3)\n      band!(ax1, ts, fill(0, length(ts)), pdf1.(ts); color=(c, 0.1)) #半透明区域\n      lines!(ax2, ts, pdf2.(ts), label=\"$(p2[1]),  $(p2[2])\", color=c, linewidth=3)\n      band!(ax2, ts, fill(0, length(ts)), pdf2.(ts); color=(c, 0.1)) #半透明区域\n  end\n  axislegend(ax1)\n  axislegend(ax2)\n  fig",
-    "crumbs": [
-      "Statistics",
-      "1-normal-distributions"
-    ]
-  },
-  {
-    "objectID": "statistics/15-bubble-plot.html",
-    "href": "statistics/15-bubble-plot.html",
-    "title": "15-bubble-plot",
-    "section": "",
-    "text": "简介\n\n\n\n\nref csv",
-    "crumbs": [
-      "Statistics",
-      "15-bubble-plot"
-    ]
-  },
-  {
-    "objectID": "statistics/15-bubble-plot.html#load-pacakge",
-    "href": "statistics/15-bubble-plot.html#load-pacakge",
-    "title": "15-bubble-plot",
-    "section": "1. load pacakge",
-    "text": "1. load pacakge\n\n\nCode\nusing GLMakie,CSV,DataFrames,GLMakie,LinearAlgebra,Pipe",
-    "crumbs": [
-      "Statistics",
-      "15-bubble-plot"
-    ]
-  },
-  {
-    "objectID": "statistics/15-bubble-plot.html#load-data-dataframe",
-    "href": "statistics/15-bubble-plot.html#load-data-dataframe",
-    "title": "15-bubble-plot",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndata=@pipe CSV.File(\"./data/BodyFat.csv\")|&gt;DataFrame|&gt;dropmissing|&gt;select(_,feature)\nfirst(data,10)\n\n\n10×3 DataFrame\n\n\n\nRow\nHeight\nWeight\nBodyfat\n\n\n\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\n73.5\n247.25\n32.3\n\n\n2\n71.5\n177.25\n22.5\n\n\n3\n69.0\n156.25\n22.0\n\n\n4\n67.75\n154.25\n12.3\n\n\n5\n70.0\n177.0\n20.5\n\n\n6\n72.0\n198.0\n22.6\n\n\n7\n71.5\n200.5\n28.7\n\n\n8\n70.25\n163.0\n21.3\n\n\n9\n71.5\n241.25\n29.9\n\n\n10\n71.0\n218.5\n21.3",
-    "crumbs": [
-      "Statistics",
-      "15-bubble-plot"
-    ]
-  },
-  {
-    "objectID": "statistics/15-bubble-plot.html#plot-bubble-img",
-    "href": "statistics/15-bubble-plot.html#plot-bubble-img",
-    "title": "15-bubble-plot",
-    "section": "3. plot bubble img",
-    "text": "3. plot bubble img\n\n\nCode\n    function plot_bubble()\n        fig=Figure()\n        ax=Axis(fig[1,1];title=\"Bubble size: BodyFat\",xlabel=\"$(feature[1])\",ylabel=\"$(feature[2])\")\n        Box(fig[1,1];color = (:orange,0.1),strokewidth=0.5)\n        scatter!(ax,data[!,1],data[!,2],markersize=data[!,3].*2,color=(:blue,0.2),strokewidth=3,strokecolor=:black)\n        fig\n        #save(\"Bubble-size-BodyFat.png\",fig)\n    end\n\n    plot_bubble()",
-    "crumbs": [
-      "Statistics",
-      "15-bubble-plot"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "内容简介",
-    "section": "",
-    "text": "介绍\n\n\n\nGLMakie 方法\n\n\nCourse info & details here\ncommit chage gh-pages",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "math/3-oval-spere.html",
-    "href": "math/3-oval-spere.html",
-    "title": "3-oval-sphere-params-equation",
-    "section": "",
-    "text": "球体参数方程\n球体可以看做是二元球面的连续积分,这里的离散球面图和二元函数的分解道理相同\n\n\n\nCode\n  using GLMakie,LinearAlgebra\nlet\nuspan=0:0.01:1.82pi  #  不要到 2pi, 留出空隙, 可以观察内部\nvspan=0:0.01:1pi\nf = Figure()\nax = Axis3(f[1, 1];azimuth=-0.1pi,elevation=-0.05pi)\ncol = repeat([1:50;50:-1:1],outer=2)\n\n\nfunction plot_sphere(r::Int)\n    xs=[r*cos(u)*sin(v) for u in uspan,v in vspan]\n    ys=[r*sin(u)*sin(v) for u in uspan,v in vspan]\n    zs=[r*cos(v) for u in uspan,v in vspan]\n    surface!(xs,ys,zs,color=color=col)\nend\n\n\nfor  r in [2,5,8]\n    plot_sphere(r)\nend\n\n\nf\nend",
+    "text": "配置 ssao\n\n\n\nCode\n  using GLMakie\n  GLMakie.activate!(ssao=true)\n  GLMakie.closeall() \n  fig = Figure(resolution = (800, 800))\n  ssao = Makie.SSAO(radius = 5.0, blur = 3)\n  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\n  ax.scene.ssao.bias[] = 0.025\n\n\n0.025",
     "crumbs": [
       "Math",
-      "3-oval-sphere-params-equation"
+      "5-himmelblau-plot"
     ]
   },
   {
-    "objectID": "math/1-double-integral.html",
-    "href": "math/1-double-integral.html",
-    "title": "1-double integral picture",
+    "objectID": "math/5-himmelblau-function.html#load-package",
+    "href": "math/5-himmelblau-function.html#load-package",
+    "title": "5-himmelblau-plot",
     "section": "",
-    "text": "二元函数积分示意\n\n\n\n利用小立方体来近似二元函数曲线下面积\n为了增强效果使用了 GLMakie ssao 方法",
+    "text": "配置 ssao\n\n\n\nCode\n  using GLMakie\n  GLMakie.activate!(ssao=true)\n  GLMakie.closeall() \n  fig = Figure(resolution = (800, 800))\n  ssao = Makie.SSAO(radius = 5.0, blur = 3)\n  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\n  ax.scene.ssao.bias[] = 0.025\n\n\n0.025",
     "crumbs": [
       "Math",
-      "1-double integral picture"
+      "5-himmelblau-plot"
     ]
   },
   {
-    "objectID": "math/1-double-integral.html#load-package",
-    "href": "math/1-double-integral.html#load-package",
-    "title": "1-double integral picture",
-    "section": "1. load package",
-    "text": "1. load package\n\n配置 ssao\n\n\n\nCode\n  using GLMakie\n  GLMakie.activate!(ssao=true)\n  GLMakie.closeall() \n  fig = Figure(resolution = (800, 800))\n  ssao = Makie.SSAO(radius = 5.0, blur = 3)\n  ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\n  ax.scene.ssao.bias[] = 0.025\n\n\n0.025",
-    "crumbs": [
-      "Math",
-      "1-double integral picture"
-    ]
-  },
-  {
-    "objectID": "math/1-double-integral.html#define-bio-variate-funciton",
-    "href": "math/1-double-integral.html#define-bio-variate-funciton",
-    "title": "1-double integral picture",
+    "objectID": "math/5-himmelblau-function.html#define-bio-variate-funciton",
+    "href": "math/5-himmelblau-function.html#define-bio-variate-funciton",
+    "title": "5-himmelblau-plot",
     "section": "2 define bio-variate funciton",
-    "text": "2 define bio-variate funciton\n\n2.1 配置函数\n\n\nmake_cubic: plot 小立方体函数\nmack_z : 根据传入函数的(x,y)坐标返回值, 即 z坐标值\n\n\n\n\nCode\n  make_cubic(;x=0,y=0,h,w)=Rect3f(Vec3f(x,y,0), Vec3f(w,w,h))\n\n  function make_z(func)\n   return (x,y)-&gt;func(x,y)\n  end\n\n\nmake_z (generic function with 1 method)\n\n\n\n\n2.2 二元函数\n\n不限于此\n\n\n\nCode\nf1(x,y)=ℯ^(−(x^2)−(y^2))\n  f5(x,y)=x^2+y^2\n\n\nf5 (generic function with 1 method)",
+    "text": "2 define bio-variate funciton\n\n2.1 配置函数\n\n\nmake_cubic: plot 小立方体函数\nmack_z : 根据传入函数的(x,y)坐标返回值, 即 z坐标值\n\n\n\n\nCode\n  make_cubic(;x=0,y=0,h,w)=Rect3f(Vec3f(x,y,0), Vec3f(w,w,h))\n\n  function make_z(func)\n   return (x,y)-&gt;func(x,y)\n  end\n\n\nmake_z (generic function with 1 method)\n\n\n\n\n2.2 二元函数\n\n不限于此\n\n\n\nCode\n  f(x,y)=cos(x) * sin(y)\n\n\nf (generic function with 1 method)",
     "crumbs": [
       "Math",
-      "1-double integral picture"
+      "5-himmelblau-plot"
     ]
   },
   {
-    "objectID": "math/1-double-integral.html#plot",
-    "href": "math/1-double-integral.html#plot",
-    "title": "1-double integral picture",
+    "objectID": "math/5-himmelblau-function.html#plot",
+    "href": "math/5-himmelblau-function.html#plot",
+    "title": "5-himmelblau-plot",
     "section": "3 plot",
-    "text": "3 plot\n\n\n可以改变 xs,ys step的值, 增加后, 立方体会变小\nbox_width=0.19 设置比xs,ys 的间隔小一点, 留出空隙\n\n\n\n\nCode\n    xs=range(-2,2,20)\n    ys=range(-2,2,20) \n    box_width=0.19\n    function plot_double_integ(funcz)\n      local box = [make_cubic(;x=x,y=y,h=funcz(x,y),w=box_width) for x in xs  for y in ys]\n      local zs=  [funcz(x,y) for x in xs , y in ys]\n      for  i in eachindex(box)\n      mesh!(ax, box[i], ssao=true,color=:lightblue)\n      wireframe!(ax, box[i]; color = :black, transparency=true)\n    end\n\n    #wireframe!(ax,xs,ys,zs,color=(:red,0.8),linewidth=1)\n    fig\n  end\n\n  make_z(f1)|&gt;plot_double_integ\n\n\n\n\n\n\n\n\n\n  二元函数\n  f1(x,y)=ℯ^(−(x^2)−(y^2))\n  f2(x,y)=y^2\n  f3(x,y)=2+2x-y\n  f4(x,y)=x+2y+3\n  f5(x,y)=x^2+y^2\n  f6(x,y)=-f5(x,y)+3\n  f7(x,y)=-f5(x,y)\n  f8(x,y)=ℯ^((x^2)+(y^2))\n  f9(x,y)=sqrt(x^2+y^2)",
+    "text": "3 plot\n\n\n可以改变 xs,ys step的值, 增加后, 立方体会变小\nbox_width=0.19 设置比xs,ys 的间隔小一点, 留出空隙\n\n\n\n\nCode\n    xs=range(0,15,50)\n    ys=range(0,15,50) \n    box_width=0.19\n    function plot_double_integ(funcz)\n      local box = [make_cubic(;x=x,y=y,h=funcz(x,y),w=box_width) for x in xs  for y in ys]\n      local zs=  [funcz(x,y) for x in xs , y in ys]\n      for  i in eachindex(box)\n      mesh!(ax, box[i], ssao=true,color=:lightblue)\n      wireframe!(ax, box[i]; color = :black, transparency=true)\n    end\n\n    #wireframe!(ax,xs,ys,zs,color=(:red,0.8),linewidth=1)\n    fig\n  end\n\n  make_z(f)|&gt;plot_double_integ",
     "crumbs": [
       "Math",
-      "1-double integral picture"
+      "5-himmelblau-plot"
     ]
   },
   {
-    "objectID": "math/2-function.html",
-    "href": "math/2-function.html",
-    "title": "2-Two Variables Function corss-section",
+    "objectID": "math/4-one-variable-integral.html",
+    "href": "math/4-one-variable-integral.html",
+    "title": "4-single-variable-integral",
     "section": "",
-    "text": "二元函数的分解理解\n\n\n\n二元函数可以从两个变量的方向分解开来研究\n固定一个变量, 改变另一个变量,得到一组一元函数\n在下列函数图里:\n\n第一列固定 y值(取一组离散值),改变 x值(连续变量)\n第二列x,y 都是连续值,二元函数自身\n第三列固定 x值(取一组离散值),改变 y值(连续变量)\n\n这里的方法和概率概念的边缘概率(marginal probability)一样, 意思是给定一个条件(固定一个值), 改变另一个变量的取值. 二元分布的概率密度函数就是二元函数,只不过曲线下积分等于 1\nCode\nusing GLMakie\nxs = ys = -3:0.1:3\nxs2 = ys2 = -2:1:2\nlen = length(xs)\nf1(x, y) = x^2 - y^2\nf2(x, y) = ℯ^(−(x^2) − (y^2))\nf3(x, y) = y^2\nf4(x, y) = 2 + 2x - y\nf5(x, y) = x + 2y + 3\nf6(x, y) = x^2 + y^2\nf7(x, y) = -x^2 - y^2\nf8(x, y) = x^2 \n\nfunc_arr = [f1,f2,f3,f4,f5,f6,f7,f8]\nlatexstr_arr=[L\"f(x, y) = x^2 - y^2\",L\"f(x,y)=ℯ^{−x^2 −y^2}\",L\"f(x,y)=y^2\",\nL\"f(x,y)=2 + 2x - y\",L\"f(x,y)=x + 2y + 3\",L\"f(x,y)=x^2 + y^2\",L\"f(x,y)=-(x^2+y^2)\",L\"f(x,y)=x^2\"]\n\n\"\"\"\n make_z(index::Int)\n 根据函数索引返回 julia 函数表达式和\n 函数 latex string\n\"\"\"\nfunction make_z(index::Int)\n    return ( (x,y)-&gt;func_arr[index](x,y),latexstr_arr[index])\nend\n\n\nmake_z\nCode\nfunction plot_func(func_z,latexstr)\n    f = Figure(resolution=(1800, 1000))\n    ax1 = Axis3(f[1, 1], title=L\"fixed y\", azimuth=0.3pi)\n    ax2 = Axis3(f[1, 2], title=L\"surface\", azimuth=0.3pi)\n    ax3 = Axis3(f[1, 3], title=L\"fixed x\", azimuth=0.3pi)\n    ax4 = Axis(f[2, 1])\n    ax5 = Axis(f[2, 3])\n    ax6 = Axis3(f[2, 2], azimuth=0.3pi)\n    Label(f[0, :], latexstr, fontsize=40)\n    zs = [func_z(x, y) for x in xs, y in ys]\n    surface!(ax2, xs, ys, zs, color=:lightblue)\n    for y in ys2\n        yspan = fill(y, len)\n        lines!(ax1, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n        lines!(ax4, xs, func_z.(xs, y), color=:black, lw=3)\n        lines!(ax6, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n    end\n    for x in xs2\n        xspan = fill(x, len)\n        lines!(ax3, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n        lines!(ax5, ys, func_z.(x, ys), color=:red, lw=3)\n        lines!(ax6, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n\n    end\n\n    surface!(ax6, xs, ys, zs, color=:lightblue)\n\n\n    return f\nend\n\n\nplot_func (generic function with 1 method)\nCode\nlet \nmake_z(1)|&gt;d-&gt;plot_func(d[1],d[2]) \nend",
+    "text": "一元函数积分示意\n\n\n\n欧拉方法, 改变Δx, 提高近似精度\n使用 rect = Rect(start-x,start-y,width,height)方法 绘制线性近似的矩形\n\nstart-x: 初始的点的 x 坐标\nstart-y 初始的点的 y 坐标 这里为 0 矩形初始点都在 x轴上\nwidth Δx\nheight 函数值\n\nfig[fldmod1(idx,3)...] fldmod1 方法来生成 plot layout\n\n\n\n\nCode\nusing GLMakie,Distributions,Pipe\n\nws=[1,0.8,0.5,0.3,0.2,0.1] #Δx 数组\nd=Normal()\nxs=-3:0.1:3 \nys=pdf.(d,xs)\n\n\"\"\"\n## define Rect\nrect = Rect(start-x,start-y,width,height)\n\"\"\"\nfunction  rect(;x=0,w=0.5)\n    return  Rect(x,0,w,pdf.(d,x))\nend\n\n\nfunction plot_hist(ax,box)\n    mesh!(ax, box, color=(:lightblue,0.4))\n    wireframe!(ax, box; color = :black, transparency=true)\nend\n\nfunction plot_res()\n    fig=Figure()\n    for (idx,w) in enumerate(ws)\n        local ax=Axis(fig[fldmod1(idx,3)...],title=L\"Δx=%$(w)\")\n        lines!(ax,xs,ys)\n        @pipe  Vector(-3:w:3).|&gt;rect(;x=_,w=w).|&gt;plot_hist(ax,_)\n    end\n    fig\n    #save(\"one-single-variable-euler-method-2.png\",fig)\nend\n\nplot_res()",
     "crumbs": [
       "Math",
-      "2-Two Variables Function corss-section"
+      "4-single-variable-integral"
     ]
   },
   {
-    "objectID": "math/2-function.html#section",
-    "href": "math/2-function.html#section",
-    "title": "2-Two Variables Function corss-section",
+    "objectID": "vis/irish-whiskey-sales.html",
+    "href": "vis/irish-whiskey-sales.html",
+    "title": "Irish Whiskey Sales",
     "section": "",
-    "text": "Figure 1: 1\n\n\n\n\n\n\n\n\n\n\nFigure 2: 3\n\n\n\n\n\n\n\n\n\n\nFigure 3: 4\n\n\n\n\n\n\n\n\n\n\nFigure 4: 5\n\n\n\n\n\n\n\n\n\n\nFigure 5: 6\n\n\n\n\n\n\n\n\n\n\nFigure 6: 7\n\n\n\n\n\n\n\n\n\n\nFigure 7: 8\n\n\n\n\n\n\n\n\n\n\nFigure 8: 9\n\n\n\n\n\n\n\n\n\n\nFigure 9: 10",
+    "text": "info\n\n\n\n\nref:Saint Patricks Irish Whiskey Sales\nsource :/Users/lunarcheung/Downloads/The Twisted Nature of Irish Whiskey Sales.png\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
-      "Math",
-      "2-Two Variables Function corss-section"
+      "Data Viz",
+      "Irish Whiskey Sales"
+    ]
+  },
+  {
+    "objectID": "vis/irish-whiskey-sales.html#load-data-dataframe",
+    "href": "vis/irish-whiskey-sales.html#load-data-dataframe",
+    "title": "Irish Whiskey Sales",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/irish.csv\")|&gt;DataFrame|&gt;dropmissing\n   first(df,5)\n\n\n5×5 DataFrame\n\n\n\nRow\ncategory\nquality\ncountry\nyear\ncases\n\n\n\nString15\nString15\nString\nInt64\nInt64\n\n\n\n\n1\nIrish Whiskey\nStandard\nUnited States\n1990\n243000\n\n\n2\nIrish Whiskey\nStandard\nUnited States\n1991\n214000\n\n\n3\nIrish Whiskey\nStandard\nUnited States\n1992\n219500\n\n\n4\nIrish Whiskey\nStandard\nUnited States\n1993\n225000\n\n\n5\nIrish Whiskey\nStandard\nUnited States\n1994\n239500",
+    "crumbs": [
+      "Data Viz",
+      "Irish Whiskey Sales"
+    ]
+  },
+  {
+    "objectID": "vis/irish-whiskey-sales.html#data-preprocessing",
+    "href": "vis/irish-whiskey-sales.html#data-preprocessing",
+    "title": "Irish Whiskey Sales",
+    "section": "3. data preprocessing",
+    "text": "3. data preprocessing\n\n\nCode\n df1=@chain df begin\n    @select(country,year, cases)\n    #@filter(country in [\"Ireland\",\"Germany\",\"Russia\",\"France\"])\n    @group_by(country,year)\n    @summarize(country,year,sales=sum(cases)/1000)\n    @ungroup\n    #@mutate(cases=cases/1000)\n    # @filter(country in [\"Ireland\",\"Germany\",\"Russia\"])\n    # @group_by(country)\n    # #@arrange(year)\n    # @mutate(cases =cases.-cases[1])\n    # @ungroup\n    unique!(_)\n    @group_by(country)\n    @arrange(year)\n    @mutate(sales =sales.-sales[1])\n    @ungroup\n\n end\n all_country_data=@chain df1 begin @filter(country ∉ [\"Ireland\",\"Germany\",\"Russia\",\"France\"])\n end\n Ireland_data=@chain df1 begin @filter(country == \"Ireland\")\n end\n four_country_data=@chain df1 begin @filter(country ∈ [\"Ireland\",\"Germany\",\"Russia\",\"France\",\"Spain\"])\n end\n\n\n134×3 DataFrame109 rows omitted\n\n\n\nRow\ncountry\nyear\nsales\n\n\n\nString\nInt64\nFloat64\n\n\n\n\n1\nIreland\n1990\n0.0\n\n\n2\nIreland\n1991\n9.5\n\n\n3\nIreland\n1992\n-26.5\n\n\n4\nIreland\n1993\n-13.0\n\n\n5\nIreland\n1994\n-12.5\n\n\n6\nIreland\n1995\n-22.5\n\n\n7\nIreland\n1996\n-2.4\n\n\n8\nIreland\n1997\n7.8\n\n\n9\nIreland\n1998\n9.25\n\n\n10\nIreland\n1999\n49.15\n\n\n11\nIreland\n2000\n52.1\n\n\n12\nIreland\n2001\n53.35\n\n\n13\nIreland\n2002\n32.8\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n123\nRussia\n2005\n39.75\n\n\n124\nRussia\n2006\n63.25\n\n\n125\nRussia\n2007\n102.75\n\n\n126\nRussia\n2008\n146.75\n\n\n127\nRussia\n2009\n132.0\n\n\n128\nRussia\n2010\n182.0\n\n\n129\nRussia\n2011\n307.25\n\n\n130\nRussia\n2012\n365.25\n\n\n131\nRussia\n2013\n387.25\n\n\n132\nRussia\n2014\n445.75\n\n\n133\nRussia\n2015\n290.5\n\n\n134\nRussia\n2016\n293.5\n\n\n\n\n\n\n\n\nCode\nran=-100:50:350\naxis = (width = 500, height =500,xticks=(ran,[\"$(i)k\" for i in ran]),       xticklabelrotation = pi/8,\ntitlealign = :center,titlesize=24,\ntitle=\"The Twisted Nature of Irish Whiskey Sales\",\n subtitle = rich(\n    \"Within Europe sales have increased 225% since 1990. While\" , rich(\"Ireland's\",color =:blue), \"sales have decreased\",rich(\"Russia, France \\n and Germany\", color =:green),\"sales to   have than made up the difference.\")\n\n)\n\ndata_layer1=data(four_country_data)\ndata_layer2=data(Ireland_data)\n#data_layer3=data(all_country_data)\nmapping_layer1=mapping(:sales,:year,color=:country)\nmapping_layer2=mapping(:sales,:year)\nvisual_layer1 = visual(Lines,linewidth=3)\nvisual_layer2 = visual(Lines, linewidth=8,color=:blue)\n#visual_layer3 = visual(Lines, linewidth=1,color=(:gray,0.3))\nfour_lines=data_layer1* mapping_layer1 * visual_layer1\nireland_line=data_layer2* mapping_layer2 * visual_layer2\n#all_lines=data_layer3* mapping_layer2 * visual_layer3\ndraw(four_lines+ ireland_line ,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "crumbs": [
+      "Data Viz",
+      "Irish Whiskey Sales"
     ]
   },
   {
@@ -922,69 +988,80 @@
     ]
   },
   {
-    "objectID": "vis/average-temperature-anomaly-world.html",
-    "href": "vis/average-temperature-anomaly-world.html",
-    "title": "Average temperature anomaly, Global",
+    "objectID": "vis/ai-performance-with-datasize.html",
+    "href": "vis/ai-performance-with-datasize.html",
+    "title": "Artificial intelligence: Performance on knowledge tests vs. training computation",
     "section": "",
-    "text": "info\n\n\n\n\nref:Average temperature anomaly, Global\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "info\n\n\n\n\nref:Artificial intelligence: Performance on knowledge tests vs. training computation\n\n\n\nload pacakge\n\n\nCode\nusing CSV,DataFrames,Pipe,Tidier\nusing CairoMakie,AlgebraOfGraphics,MakieThemes\nMakie.set_theme!(ggthemr(:dust))",
     "crumbs": [
       "Data Viz",
-      "Average temperature anomaly, Global"
+      "Artificial intelligence: Performance on knowledge tests vs. training computation"
     ]
   },
   {
-    "objectID": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
-    "href": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
-    "title": "Average temperature anomaly, Global",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/temperature-anomaly.csv\")|&gt;DataFrame|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\n\"Global average temperature anomaly relative to 1961-1990\"=&gt;:mean, \"Upper bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:upper, \"Lower bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:lower\n)\n\ngdf=groupby(df,:Entity)\ncats= @pipe keys(gdf) .|&gt; values(_)[1]\n\n\n3-element Vector{String31}:\n \"Global\"\n \"Northern hemisphere\"\n \"Southern hemisphere\"",
-    "crumbs": [
-      "Data Viz",
-      "Average temperature anomaly, Global"
-    ]
-  },
-  {
-    "objectID": "vis/average-temperature-anomaly-world.html#plots",
-    "href": "vis/average-temperature-anomaly-world.html#plots",
-    "title": "Average temperature anomaly, Global",
-    "section": "plots",
-    "text": "plots\n\n\nCode\n fig=Figure()\n axs=[Axis(fig[i,1]) for i in 1:3]\n function plot_ci(df,ax,title)\n      ax.title=title\n      xs,mean,lower,upper=df.Year,df.mean,df.lower,df.upper\n      hlines!(ax,[0],linestyle=:dot,color=(:red,0.8))\n      lines!(ax,xs,mean,color=:blue)\n      band!(ax,xs,lower,upper,color=(:lightgreen,0.5))\n      \n      \n end\n\n #plot_ci(gdf[1],axs[1],title=\"blank\")\n\n for (idx, df) in enumerate(gdf)\n      plot_ci(df,axs[idx],cats[idx])\n end\n fig",
-    "crumbs": [
-      "Data Viz",
-      "Average temperature anomaly, Global"
-    ]
-  },
-  {
-    "objectID": "vis/american-view-on-ai.html",
-    "href": "vis/american-view-on-ai.html",
-    "title": "Views of Americans about robot vs. human intelligence, All adults”",
+    "objectID": "vis/employment-in-ai.html",
+    "href": "vis/employment-in-ai.html",
+    "title": "Employer of new AI PhDs in the United States and Canada",
     "section": "",
-    "text": "info\n\n\n\n\nref:Views of Americans about robot vs. human intelligence, All adults\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "info\n\n\n\n\nref:Employer of new AI PhDs in the United States and Canada\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "Views of Americans about robot vs. human intelligence, All adults\""
+      "Employer of new AI PhDs in the United States and Canada"
     ]
   },
   {
-    "objectID": "vis/american-view-on-ai.html#load-data-dataframe",
-    "href": "vis/american-view-on-ai.html#load-data-dataframe",
-    "title": "Views of Americans about robot vs. human intelligence, All adults”",
+    "objectID": "vis/employment-in-ai.html#load-data-dataframe",
+    "href": "vis/employment-in-ai.html#load-data-dataframe",
+    "title": "Employer of new AI PhDs in the United States and Canada",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/views-of-americans-robot-vs-human-intelligence.csv\")|&gt;DataFrame|&gt;coalesce.(_, 0.0)\n\nfirst(df,5)\n\n\n5×8 DataFrame\n\n\n\nRow\nEntity\nCode\nDay\nNone of these\nDon't know\nMost robots have already developed higher levels of intelligence than humans\nRobots will never be able to develop higher levels of intelligence than humans\nRobots will be able to develop higher levels of intelligence than humans in the future\n\n\n\nString31\nFloat64\nDate\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\n18-29 years\n0.0\n2021-01-07\n6\n18\n14\n14\n47\n\n\n2\n18-29 years\n0.0\n2021-07-01\n8\n22\n19\n12\n39\n\n\n3\n18-29 years\n0.0\n2022-01-06\n3\n20\n11\n17\n49\n\n\n4\n18-29 years\n0.0\n2022-06-30\n9\n18\n20\n18\n35\n\n\n5\n18-29 years\n0.0\n2023-01-05\n9\n14\n16\n15\n46",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/employer-new-artificial-intelligence-phds-stacked-area.csv\")|&gt;DataFrame|&gt;\nrename!(_,\"New AI PhD graduates\"=&gt;:Phdstudent)\n\n\n36×4 DataFrame11 rows omitted\n\n\n\nRow\nEntity\nCode\nYear\nPhdstudent\n\n\n\nString15\nMissing\nInt64\nInt64\n\n\n\n\n1\nAcademia\nmissing\n2010\n72\n\n\n2\nAcademia\nmissing\n2011\n63\n\n\n3\nAcademia\nmissing\n2012\n47\n\n\n4\nAcademia\nmissing\n2013\n51\n\n\n5\nAcademia\nmissing\n2014\n43\n\n\n6\nAcademia\nmissing\n2015\n42\n\n\n7\nAcademia\nmissing\n2016\n63\n\n\n8\nAcademia\nmissing\n2017\n60\n\n\n9\nAcademia\nmissing\n2018\n73\n\n\n10\nAcademia\nmissing\n2019\n65\n\n\n11\nAcademia\nmissing\n2020\n61\n\n\n12\nAcademia\nmissing\n2021\n84\n\n\n13\nGovernment\nmissing\n2010\n6\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n25\nIndustry\nmissing\n2010\n76\n\n\n26\nIndustry\nmissing\n2011\n64\n\n\n27\nIndustry\nmissing\n2012\n101\n\n\n28\nIndustry\nmissing\n2013\n74\n\n\n29\nIndustry\nmissing\n2014\n85\n\n\n30\nIndustry\nmissing\n2015\n77\n\n\n31\nIndustry\nmissing\n2016\n134\n\n\n32\nIndustry\nmissing\n2017\n116\n\n\n33\nIndustry\nmissing\n2018\n162\n\n\n34\nIndustry\nmissing\n2019\n180\n\n\n35\nIndustry\nmissing\n2020\n153\n\n\n36\nIndustry\nmissing\n2021\n195",
     "crumbs": [
       "Data Viz",
-      "Views of Americans about robot vs. human intelligence, All adults\""
+      "Employer of new AI PhDs in the United States and Canada"
     ]
   },
   {
-    "objectID": "vis/american-view-on-ai.html#data-processing",
-    "href": "vis/american-view-on-ai.html#data-processing",
-    "title": "Views of Americans about robot vs. human intelligence, All adults”",
-    "section": "data processing",
-    "text": "data processing\n\n\nCode\n cats=names(df)\n rename!(df,\"None of these\"=&gt;:none,\"Don't know\"=&gt;:dtkonw,\n \"Most robots have already developed higher levels of intelligence than humans\"=&gt;:better,\n \"Robots will never be able to develop higher levels of intelligence than humans\"=&gt;:nobetter,\n \"Robots will be able to develop higher levels of intelligence than humans in the future\"=&gt;:future\n \n )\n\n df2=@chain df begin\n    @group_by(Day)\n    @summarize(none=sum(none),dtkonw=sum(dtkonw),   better=sum(better),nobetter=sum(better),future=sum(future))\n    \n end\n\n\n6×6 DataFrame\n\n\n\nRow\nDay\nnone\ndtkonw\nbetter\nnobetter\nfuture\n\n\n\nDate\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\n2021-01-07\n136\n482\n263\n263\n958\n\n\n2\n2021-07-01\n139\n560\n345\n345\n793\n\n\n3\n2022-01-06\n146\n538\n277\n277\n933\n\n\n4\n2022-06-30\n243\n441\n346\n346\n883\n\n\n5\n2023-01-05\n240\n494\n303\n303\n906\n\n\n6\n2023-06-29\n181\n478\n410\n410\n832\n\n\n\n\n\n\n\n\nCode\naxis = (width = 1000, height =500,xticklabelrotation = pi/8,title=\"Attitude about AI development\",yticks=(range(100,1000,7),[\"$i %\" for i in 5:5:35]))\ndata_layer = data(df2)\nmapping_layer=mapping(:Day,[:none,:dtkonw,:better,:nobetter,:future].=&gt; \"value\", color=dims(1) =&gt; renamer(cats[4:8]) =&gt; \"opinion\")\nvisual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis,\n legend=(position=:right, titleposition=:top, framevisible=true, padding=5)\n)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "objectID": "vis/employment-in-ai.html#plot",
+    "href": "vis/employment-in-ai.html#plot",
+    "title": "Employer of new AI PhDs in the United States and Canada",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\n@rput df\nfunction plot_arestack_r()\n R\"\"\"\n    library(ggplot2)\n    library(ggthemes)\n    library(viridis)\n    ggplot(df, aes(x=Year, y=Phdstudent, fill=Entity)) + \n    geom_area(alpha=0.6 , size=.5, colour=\"white\")+scale_fill_viridis(discrete = T)+theme_wsj()\n \"\"\"\nend\nplot_arestack_r()\n\n\n┌ Warning: RCall.jl: Warning: package ‘ggthemes’ was built under R version 4.2.3\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Loading required package: viridisLite\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\n│ ℹ Please use `linewidth` instead.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\n\n\n(a) Employer of new AI PhDs in the United States and Canada\n\n\n\n\n\n\n\nRObject{VecSxp}\n\n\n(b)\n\n\n\n\n\nFigure 1",
     "crumbs": [
       "Data Viz",
-      "Views of Americans about robot vs. human intelligence, All adults\""
+      "Employer of new AI PhDs in the United States and Canada"
+    ]
+  },
+  {
+    "objectID": "vis/cost-of-space-launch.html",
+    "href": "vis/cost-of-space-launch.html",
+    "title": "Cost of space launches to low Earth orbit",
+    "section": "",
+    "text": "info\n\n\n\nref: Cost of space launches to low Earth orbit",
+    "crumbs": [
+      "Data Viz",
+      "Cost of space launches to low Earth orbit"
+    ]
+  },
+  {
+    "objectID": "vis/cost-of-space-launch.html#load-package",
+    "href": "vis/cost-of-space-launch.html#load-package",
+    "title": "Cost of space launches to low Earth orbit",
+    "section": "load package",
+    "text": "load package\n\n\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success\n\n\n\n\nCode\nmake_title(\"Part One : Data Processing\")\n\n\n    \n       Part One : Data Processing",
+    "crumbs": [
+      "Data Viz",
+      "Cost of space launches to low Earth orbit"
+    ]
+  },
+  {
+    "objectID": "vis/cost-of-space-launch.html#load-datadataframe",
+    "href": "vis/cost-of-space-launch.html#load-datadataframe",
+    "title": "Cost of space launches to low Earth orbit",
+    "section": "1.1 load data=>dataframe",
+    "text": "1.1 load data=&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/cost-space-launches-low-earth-orbit.csv\")|&gt;DataFrame\ndf =@chain df begin\n   @select(1,3,4,5)\n   @arrange(Year)\n   @filter(Entity ∉ [\"Delta E\",\"Scout\",\"Minotaur I\",\"Space Shuttle\"])\n   end\nfirst(df,5)\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nYear\ncost_per_kg\nlaunch_class\n\n\n\nString31\nInt64\nInt64\nString7\n\n\n\n\n1\nKosmos\n1962\n14900\nSmall\n\n\n2\nAtlas Centaur\n1963\n29500\nMedium\n\n\n3\nTitan II\n1964\n30600\nMedium\n\n\n4\nProton\n1965\n8200\nHeavy\n\n\n5\nTitan III+\n1965\n21000\nMedium\n\n\n\n\n\n\n\n\nCode\nmake_title(\"Part Two : Plots\")\n\n\n    \n       Part Two : Plots\n    \n\n\n\n\nCode\n axis = (width = 600, height =1200)\n data_layer=data(df) \n mapping_layer1=mapping(:Year,:cost_per_kg,color=:launch_class)\n visual_layer1 = visual(Scatter;strokewidth=2,strokecolor=:black)\n mapping_layer2=mapping(:Year,:cost_per_kg, text=:Entity =&gt; verbatim)\n visual_layer2 = visual(Makie.Text;color=:black)\n plt=data_layer*mapping_layer1*visual_layer1\n text_pipe=data_layer*mapping_layer2*visual_layer2\ndraw(plt+text_pipe,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "crumbs": [
+      "Data Viz",
+      "Cost of space launches to low Earth orbit"
     ]
   },
   {
