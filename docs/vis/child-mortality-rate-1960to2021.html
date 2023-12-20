@@ -8,7 +8,7 @@
 
 <meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 15-bubble-plot</title>
+<title>GLMakie Gallery - Child mortality rate, 1960 to 2021</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/15-bubble-plot.html">15-bubble-plot</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/child-mortality-rate-1960to2021.html">Child mortality rate, 1960 to 2021</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15-bubble-plot</span></a>
   </div>
 </li>
@@ -367,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/child-mortality-rate-1960to2021.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/child-mortality-rate-1960to2021.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Child mortality rate, 1960 to 2021</span></a>
   </div>
 </li>
@@ -467,18 +467,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load-pacakge" id="toc-load-pacakge" class="nav-link active" data-scroll-target="#load-pacakge">1. load pacakge</a></li>
-  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
-  <li><a href="#plot-bubble-img" id="toc-plot-bubble-img" class="nav-link" data-scroll-target="#plot-bubble-img">3. plot bubble img</a></li>
+  <li><a href="#load-csv" id="toc-load-csv" class="nav-link active" data-scroll-target="#load-csv">load csv</a></li>
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">tidy data</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/15-bubble-plot.html">15-bubble-plot</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/child-mortality-rate-1960to2021.html">Child mortality rate, 1960 to 2021</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">15-bubble-plot</h1>
+<h1 class="title">Child mortality rate, 1960 to 2021</h1>
 </div>
 
 
@@ -501,115 +500,222 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="简介">
+<div class="callout callout-style-default callout-note callout-titled" title="ref">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-简介
+ref
 </div>
 </div>
-<section id="bubble-plot" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="bubble-plot">Bubble plot</h3>
-<p>ref <a href="https://www.lock5stat.com/datasets3e/BodyFat.csv">csv</a></p>
-</section>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ref : <a href="https://ourworldindata.org/owid-grapher">Child mortality rate, 1960 to 2021</a></li>
+<li>package :<a href="https://r-charts.com/evolution/newggslopegraph/">The newggslopegraph function from the CGPfunctions package</a></li>
+</ul>
 </div>
-<section id="load-pacakge" class="level2">
-<h2 class="anchored" data-anchor-id="load-pacakge">1. load pacakge</h2>
-<div class="cell" data-execution_count="1">
+</div>
+<div id="1dfb9007" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span>,<span class="bu">GLMakie</span>,<span class="bu">LinearAlgebra</span>,<span class="bu">Pipe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">include</span>(<span class="st">"utils.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>[ Info: loading success</code></pre>
 </div>
-</section>
-<section id="load-data-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
-<div class="cell" data-execution_count="2">
+</div>
+<div id="9277c301" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>feature<span class="op">=</span>[<span class="st">"Height"</span>,<span class="st">"Weight"</span>,<span class="st">"Bodyfat"</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/BodyFat.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span>dropmissing<span class="op">|&gt;</span><span class="fu">select</span>(_,feature)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(data,<span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_title</span>(<span class="st">"Part one : Data processing"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<div><div style="float: left;"><span>10×3 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<div class="cell-output cell-output-display" data-execution_count="3">
+    <div class="alert alert-primary" role="alert">
+       Part one : Data processing
+    </div>
+</div>
+</div>
+<section id="load-csv" class="level2">
+<h2 class="anchored" data-anchor-id="load-csv">load csv</h2>
+<div id="2b8cf762" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/child-mortality-1960-vs-latest-slope.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span><span class="fu">rename</span>(_,<span class="st">"Observation value - Unit_of_measure: Deaths per 100 live births - Indicator: Under-five mortality rate - Sex: Both sexes - Wealth_quintile: All wealth quintiles"</span><span class="op">=&gt;:</span>rate)<span class="op">|&gt;</span><span class="fu">select</span>(_,<span class="fu">Not</span>(<span class="op">:</span>Code,<span class="op">:</span>Continent,<span class="st">"Population (historical estimates)"</span>))<span class="op">|&gt;</span>dropmissing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div><div style="float: left;"><span>13472×3 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">13447 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Height</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Bodyfat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">rate</th>
 </tr>
 <tr class="odd subheader headerLastRow">
 <th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">73.5</td>
-<td style="text-align: right;">247.25</td>
-<td style="text-align: right;">32.3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1957</td>
+<td style="text-align: right;">37.5905</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">177.25</td>
-<td style="text-align: right;">22.5</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1958</td>
+<td style="text-align: right;">36.9628</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">69.0</td>
-<td style="text-align: right;">156.25</td>
-<td style="text-align: right;">22.0</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1959</td>
+<td style="text-align: right;">36.3437</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">67.75</td>
-<td style="text-align: right;">154.25</td>
-<td style="text-align: right;">12.3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1960</td>
+<td style="text-align: right;">35.7301</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">70.0</td>
-<td style="text-align: right;">177.0</td>
-<td style="text-align: right;">20.5</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1961</td>
+<td style="text-align: right;">35.1658</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">72.0</td>
-<td style="text-align: right;">198.0</td>
-<td style="text-align: right;">22.6</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">34.584</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">200.5</td>
-<td style="text-align: right;">28.7</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1963</td>
+<td style="text-align: right;">34.0159</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: right;">70.25</td>
-<td style="text-align: right;">163.0</td>
-<td style="text-align: right;">21.3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1964</td>
+<td style="text-align: right;">33.4848</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">241.25</td>
-<td style="text-align: right;">29.9</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1965</td>
+<td style="text-align: right;">32.9421</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: right;">71.0</td>
-<td style="text-align: right;">218.5</td>
-<td style="text-align: right;">21.3</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1966</td>
+<td style="text-align: right;">32.3938</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1967</td>
+<td style="text-align: right;">31.8366</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1968</td>
+<td style="text-align: right;">31.2825</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1969</td>
+<td style="text-align: right;">30.7243</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13461</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">8.61062</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13462</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">8.05877</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13463</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">7.21463</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13464</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">6.62226</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13465</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">6.26086</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13466</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">6.04718</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13467</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">5.78704</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13468</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">5.61751</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13469</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">5.36877</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13470</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">5.26659</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13471</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">5.17696</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13472</td>
+<td style="text-align: left;">Zimbabwe</td>
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">4.9522</td>
 </tr>
 </tbody>
 </table>
@@ -617,28 +723,237 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plot-bubble-img" class="level2">
-<h2 class="anchored" data-anchor-id="plot-bubble-img">3. plot bubble img</h2>
-<div class="cell" data-execution_count="3">
+<section id="tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data">tidy data</h2>
+<div id="3ae9f7bb" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_bubble</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        fig<span class="op">=</span><span class="fu">Figure</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>];title<span class="op">=</span><span class="st">"Bubble size: BodyFat"</span>,xlabel<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(feature[<span class="fl">1</span>])<span class="st">"</span>,ylabel<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(feature[<span class="fl">2</span>])<span class="st">"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Box</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>];color <span class="op">=</span> (<span class="op">:</span>orange,<span class="fl">0.1</span>),strokewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scatter!</span>(ax,data[!,<span class="fl">1</span>],data[!,<span class="fl">2</span>],markersize<span class="op">=</span>data[!,<span class="fl">3</span>]<span class="op">.*</span><span class="fl">2</span>,color<span class="op">=</span>(<span class="op">:</span>blue,<span class="fl">0.2</span>),strokewidth<span class="op">=</span><span class="fl">3</span>,strokecolor<span class="op">=:</span>black)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        fig</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#save("Bubble-size-BodyFat.png",fig)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_bubble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  query_years<span class="op">=</span>[<span class="fl">1960</span>,<span class="fl">1980</span>,<span class="fl">2000</span>,<span class="fl">2020</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  query_countries<span class="op">=</span>[<span class="st">"Abkhazia"</span>,<span class="st">"Uganda"</span>,<span class="st">"Kenya"</span>,<span class="st">"Egypt"</span>,<span class="st">"Spain"</span>,<span class="st">"Japan"</span>,<span class="st">"France"</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@eval</span>(<span class="bu">Main</span>, input_years<span class="op">=</span>query_years)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@eval</span>(<span class="bu">Main</span>, input_countries <span class="op">=</span>query_countries)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@eval</span>(<span class="bu">Main</span>,input_points<span class="op">=</span><span class="fu">length</span>(query_years))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  df<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@filter</span>(Year <span class="op">∈</span> !!input_years)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@group_by</span>(Entity)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="co">#filter(d-&gt;nrow(d)==4,_) </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@filter</span>(<span class="fu">length</span>(Year)<span class="op">==</span>!!input_points) </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@arrange</span>(Year)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@ungroup</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">coerce</span>(_,  <span class="op">:</span>Year<span class="op">=&gt;</span>OrderedFactor)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@mutate</span>(rate<span class="op">=</span><span class="fu">round</span>(rate,digits<span class="op">=</span><span class="fl">1</span>))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="pp">@filter</span>(Entity <span class="op">∈</span> !!input_countries)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div><div style="float: left;"><span>24×3 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">rate</th>
+</tr>
+<tr class="odd subheader headerLastRow">
+<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="CategoricalValue{Int64, UInt32}">Cat…</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
+<td style="text-align: left;">Egypt</td>
+<td style="text-align: left;">1960</td>
+<td style="text-align: right;">31.8</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
+<td style="text-align: left;">Egypt</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: right;">16.8</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
+<td style="text-align: left;">Egypt</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">4.7</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
+<td style="text-align: left;">Egypt</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">1960</td>
+<td style="text-align: right;">2.8</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: right;">1.2</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: right;">0.4</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">1960</td>
+<td style="text-align: right;">4.0</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: right;">0.2</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
+<td style="text-align: left;">Kenya</td>
+<td style="text-align: left;">1960</td>
+<td style="text-align: right;">19.7</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">14</td>
+<td style="text-align: left;">Kenya</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: right;">11.1</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">15</td>
+<td style="text-align: left;">Kenya</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">9.9</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">16</td>
+<td style="text-align: left;">Kenya</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: right;">3.9</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">17</td>
+<td style="text-align: left;">Spain</td>
+<td style="text-align: left;">1960</td>
+<td style="text-align: right;">5.5</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">18</td>
+<td style="text-align: left;">Spain</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: right;">1.5</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">19</td>
+<td style="text-align: left;">Spain</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">20</td>
+<td style="text-align: left;">Spain</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">21</td>
+<td style="text-align: left;">Uganda</td>
+<td style="text-align: left;">1960</td>
+<td style="text-align: right;">22.3</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">22</td>
+<td style="text-align: left;">Uganda</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: right;">21.9</td>
+</tr>
+<tr class="odd">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">23</td>
+<td style="text-align: left;">Uganda</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">14.6</td>
+</tr>
+<tr class="even">
+<td class="rowNumber" style="text-align: right; font-weight: bold;">24</td>
+<td style="text-align: left;">Uganda</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: right;">4.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="5cc2466e" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_title</span>(<span class="st">"Part 2:  Plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+    <div class="alert alert-primary" role="alert">
+       Part 2:  Plot
+    </div>
+</div>
+</div>
+<div id="4d575d48" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>  <span class="pp">@rput</span> df</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  R<span class="st">"""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">    # install.packages("CGPfunctions")</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">     library(CGPfunctions)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">     newggslopegraph(dataframe = df,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">                Times = Year,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">                Measurement = rate,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">                Grouping = Entity,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">                Title = "Child mortality rate",</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">                SubTitle = "1960-2020",</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">                Caption = "By R CHARTS",</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">                LineThickness = 0.5,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="st">                # DataLabelPadding =0.2,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="st">                # DataLabelLineSize = 0.5,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="st">                # DataLabelFillColor = "lightblue",</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="st">                ThemeChoice = "wsj"</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="st">                )</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="st">  """</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="15-bubble-plot_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="child-mortality-rate-1960to2021_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>RObject{VecSxp}</code></pre>
 </div>
 </div>
 

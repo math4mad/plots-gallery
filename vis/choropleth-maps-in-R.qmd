@@ -1,0 +1,45 @@
+---
+title: "Choropleth maps in R"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="ref"}
+- ref :[Choropleth maps in R](https://r-charts.com/spatial/choropleth-map/)
+:::
+
+
+```{r}
+ # install.packages("sf")
+library(sf)
+# install.packages("dplyr")
+library(dplyr)
+# install.packages("giscoR")
+library(giscoR)
+
+year_ref <- 2013
+
+nuts2_IT <- gisco_get_nuts(
+  year = year_ref,
+  resolution = 20, 
+  nuts_level = 2,
+  country = "Italy") %>%
+  select(NUTS_ID, NAME_LATN)
+
+# Transform the shape
+nuts2_IT_32632 <- st_transform(nuts2_IT, 32632)
+
+# Filter to select data from 2013
+disp_income <- giscoR::tgs00026 %>%
+  filter(time == year_ref) %>%
+  select(-time)
+
+nuts2_IT_32632_data <- nuts2_IT_32632 %>%
+  left_join(disp_income, by = c("NUTS_ID" = "geo"))
+
+plot(nuts2_IT_32632_data[, "values"],
+     breaks = "jenks",
+     main = "Choropleth map")
+```
+
+

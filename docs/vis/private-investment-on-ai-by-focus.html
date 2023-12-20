@@ -367,8 +367,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../vis/child-mortality-rate-1960to2021.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Child mortality rate, 1960 to 2021</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/choropleth-maps-in-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Choropleth maps in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../vis/cost-of-space-launch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cost of space launches to low Earth orbit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/dumbbell-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dumbbell Plot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -496,7 +514,7 @@ ref
 </ul>
 </div>
 </div>
-<div id="04563a0d" class="cell" data-execution_count="1">
+<div id="92c2801b" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"utils.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -505,12 +523,12 @@ ref
 <pre><code>[ Info: loading success</code></pre>
 </div>
 </div>
-<div id="122cd891" class="cell" data-execution_count="2">
+<div id="89740977" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_title</span>(<span class="st">"Part 1 : data processing"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="58">
+<div class="cell-output cell-output-display" data-execution_count="3">
     <div class="alert alert-primary" role="alert">
        Part 1 : data processing
     </div>
@@ -518,14 +536,14 @@ ref
 </div>
 <section id="load-data-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
-<div id="63aadf8f" class="cell" data-execution_count="3">
+<div id="92108c51" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/private-investment-in-artificial-intelligence-by-focus-area.csv"</span>)<span class="op">|&gt;</span>DataFrame</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,<span class="st">"European Union and United Kingdom"</span><span class="op">=&gt;:</span>EU,<span class="st">"United States"</span><span class="op">=&gt;:</span>US)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">select!</span>(df,<span class="fu">Not</span>(<span class="st">"Code"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div><div style="float: left;"><span>160×6 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">135 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -788,7 +806,7 @@ ref
 </div>
 </div>
 </div>
-<div id="25fd04b6" class="cell" data-execution_count="4">
+<div id="06de2143" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df2<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span> </span>
@@ -800,7 +818,7 @@ ref
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@filter</span>(Entity <span class="op">∈</span> [<span class="st">"Medical and healthcare"</span>,<span class="st">"Data management"</span>,<span class="st">"Cybersecurity"</span>,<span class="st">"Industrial automation"</span>,<span class="st">"Semiconductors"</span>,<span class="st">"Drones"</span>])</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="60">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div><div style="float: left;"><span>144×4 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">119 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
@@ -1007,18 +1025,18 @@ ref
 </div>
 </div>
 </div>
-<div id="0832242e" class="cell" data-execution_count="5">
+<div id="379d13c8" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">make_title</span>(<span class="st">"Part 2 :Plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="6">
     <div class="alert alert-primary" role="alert">
        Part 2 :Plot
     </div>
 </div>
 </div>
-<div id="a627643d" class="cell" data-execution_count="6">
+<div id="910b2bd0" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_layer<span class="op">=</span><span class="fu">data</span>(df2)</span>
@@ -1032,7 +1050,7 @@ ref
 <pre><code>┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.
 └ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 <figure class="figure">
 <p><img src="private-investment-on-ai-by-focus_files/figure-html/cell-7-output-2.svg" class="img-fluid figure-img"></p>

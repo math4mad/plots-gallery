@@ -8,7 +8,7 @@
 
 <meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 15-bubble-plot</title>
+<title>GLMakie Gallery - Dumbbell Plot</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/15-bubble-plot.html">15-bubble-plot</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/dumbbell-plot.html">Dumbbell Plot</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15-bubble-plot</span></a>
   </div>
 </li>
@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/dumbbell-plot.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/dumbbell-plot.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Dumbbell Plot</span></a>
   </div>
 </li>
@@ -463,22 +463,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load-pacakge" id="toc-load-pacakge" class="nav-link active" data-scroll-target="#load-pacakge">1. load pacakge</a></li>
-  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
-  <li><a href="#plot-bubble-img" id="toc-plot-bubble-img" class="nav-link" data-scroll-target="#plot-bubble-img">3. plot bubble img</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/15-bubble-plot.html">15-bubble-plot</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/dumbbell-plot.html">Dumbbell Plot</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">15-bubble-plot</h1>
+<h1 class="title">Dumbbell Plot</h1>
 </div>
 
 
@@ -501,149 +493,165 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="简介">
+<div class="callout callout-style-default callout-note callout-titled" title="ref">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-简介
+ref
 </div>
 </div>
-<section id="bubble-plot" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="bubble-plot">Bubble plot</h3>
-<p>ref <a href="https://www.lock5stat.com/datasets3e/BodyFat.csv">csv</a></p>
-</section>
+<div class="callout-body-container callout-body">
+<p><a href="https://r-charts.com/distribution/dumbbell-plot-ggplot2/">Dumbbell plot in ggplot2</a></p>
 </div>
-<section id="load-pacakge" class="level2">
-<h2 class="anchored" data-anchor-id="load-pacakge">1. load pacakge</h2>
-<div class="cell" data-execution_count="1">
+</div>
+<div id="ac53c8bf" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span>,<span class="bu">GLMakie</span>,<span class="bu">LinearAlgebra</span>,<span class="bu">Pipe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"utils.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>[ Info: loading success</code></pre>
 </div>
-</section>
-<section id="load-data-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
-<div class="cell" data-execution_count="2">
+</div>
+<div id="e6c598a8" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>feature<span class="op">=</span>[<span class="st">"Height"</span>,<span class="st">"Weight"</span>,<span class="st">"Bodyfat"</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/BodyFat.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span>dropmissing<span class="op">|&gt;</span><span class="fu">select</span>(_,feature)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(data,<span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>R<span class="st">"""</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st"># Seed</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">set.seed(1)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st"># Data</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">customers &lt;- sample(50:150, 10)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">potential_customers &lt;- sample(150:500, 10)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">company &lt;- LETTERS[1:10]</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st"># Data frame</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">df &lt;- data.frame(company = company,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">                 x = customers,</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">                 y = potential_customers)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@rget</span> df</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(df,<span class="op">:</span>x<span class="op">=&gt;:</span>customers,<span class="op">:</span>y<span class="op">=&gt;:</span>potential_customers)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(df,<span class="op">:</span>company)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#df2=@pivot_longer(df, customers:potential_customers)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div><div style="float: left;"><span>10×3 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Height</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Bodyfat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">company</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">customers</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">potential_customers</th>
 </tr>
 <tr class="odd subheader headerLastRow">
 <th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">73.5</td>
-<td style="text-align: right;">247.25</td>
-<td style="text-align: right;">32.3</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">117</td>
+<td style="text-align: right;">234</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">177.25</td>
-<td style="text-align: right;">22.5</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">426</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">69.0</td>
-<td style="text-align: right;">156.25</td>
-<td style="text-align: right;">22.0</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">479</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">67.75</td>
-<td style="text-align: right;">154.25</td>
-<td style="text-align: right;">12.3</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">412</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">70.0</td>
-<td style="text-align: right;">177.0</td>
-<td style="text-align: right;">20.5</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">478</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">72.0</td>
-<td style="text-align: right;">198.0</td>
-<td style="text-align: right;">22.6</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">228</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">200.5</td>
-<td style="text-align: right;">28.7</td>
+<td style="text-align: left;">G</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">362</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: right;">70.25</td>
-<td style="text-align: right;">163.0</td>
-<td style="text-align: right;">21.3</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">186</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">241.25</td>
-<td style="text-align: right;">29.9</td>
+<td style="text-align: left;">I</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: right;">254</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: right;">71.0</td>
-<td style="text-align: right;">218.5</td>
-<td style="text-align: right;">21.3</td>
+<td style="text-align: left;">J</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">366</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</section>
-<section id="plot-bubble-img" class="level2">
-<h2 class="anchored" data-anchor-id="plot-bubble-img">3. plot bubble img</h2>
-<div class="cell" data-execution_count="3">
+<!-- ```{julia}
+data_layer=data(df2)
+map_layer1=mapping(:value,:company)
+map_layer2=mapping(:potential_customers,:company)
+visual1=visual(Scatter)
+visual2=visual(LineSegments)
+plt=data_layer*(map_layer1+map_layer2)*(visual1)
+draw(plt)
+``` -->
+<div id="120f712b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_bubble</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        fig<span class="op">=</span><span class="fu">Figure</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>];title<span class="op">=</span><span class="st">"Bubble size: BodyFat"</span>,xlabel<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(feature[<span class="fl">1</span>])<span class="st">"</span>,ylabel<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(feature[<span class="fl">2</span>])<span class="st">"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Box</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>];color <span class="op">=</span> (<span class="op">:</span>orange,<span class="fl">0.1</span>),strokewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scatter!</span>(ax,data[!,<span class="fl">1</span>],data[!,<span class="fl">2</span>],markersize<span class="op">=</span>data[!,<span class="fl">3</span>]<span class="op">.*</span><span class="fl">2</span>,color<span class="op">=</span>(<span class="op">:</span>blue,<span class="fl">0.2</span>),strokewidth<span class="op">=</span><span class="fl">3</span>,strokecolor<span class="op">=:</span>black)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        fig</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#save("Bubble-size-BodyFat.png",fig)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_bubble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   fig<span class="op">=</span><span class="fu">Figure</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    for (idx,row) in enumerate(eachrow(df))</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#         hlines!(ax,[idx]; xmin =[row.customers], xmax = [row.potential_customers])</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    end</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#    hlines!(ax, 1:10;xmin=[df.customers...], xmax =[df.potential_customers...], color = :blue)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>   fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 <figure class="figure">
-<p><img src="15-bubble-plot_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="dumbbell-plot_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

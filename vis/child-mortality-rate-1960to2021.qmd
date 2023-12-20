@@ -1,0 +1,70 @@
+---
+title: "Child mortality rate, 1960 to 2021"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="ref"}
+  - ref :  [Child mortality rate, 1960 to 2021](https://ourworldindata.org/owid-grapher)
+  - package :[The newggslopegraph function from the CGPfunctions package](https://r-charts.com/evolution/newggslopegraph/)
+:::
+```{julia}
+ include("utils.jl")
+```
+
+```{julia}
+make_title("Part one : Data processing")
+```
+
+## load csv 
+```{julia}
+df=@pipe CSV.File("./data/child-mortality-1960-vs-latest-slope.csv")|>DataFrame|>rename(_,"Observation value - Unit_of_measure: Deaths per 100 live births - Indicator: Under-five mortality rate - Sex: Both sexes - Wealth_quintile: All wealth quintiles"=>:rate)|>select(_,Not(:Code,:Continent,"Population (historical estimates)"))|>dropmissing
+```
+
+##  tidy data
+```{julia}
+  query_years=[1960,1980,2000,2020]
+  query_countries=["Abkhazia","Uganda","Kenya","Egypt","Spain","Japan","France"]
+  @eval(Main, input_years=query_years)
+  @eval(Main, input_countries =query_countries)
+  @eval(Main,input_points=length(query_years))
+  df=@chain df begin
+      @filter(Year ∈ !!input_years)
+      @group_by(Entity)
+      #filter(d->nrow(d)==4,_) 
+      @filter(length(Year)==!!input_points) 
+      @arrange(Year)
+      @ungroup
+      coerce(_,  :Year=>OrderedFactor)
+      @mutate(rate=round(rate,digits=1))
+      @filter(Entity ∈ !!input_countries)
+  end
+```
+
+```{julia}
+make_title("Part 2:  Plot")
+```
+
+```{julia}
+  @rput df
+  R"""
+    # install.packages("CGPfunctions")
+     library(CGPfunctions)
+     newggslopegraph(dataframe = df,
+                Times = Year,
+                Measurement = rate,
+                Grouping = Entity,
+                Title = "Child mortality rate",
+                SubTitle = "1960-2020",
+                Caption = "By R CHARTS",
+                LineThickness = 0.5,
+                # DataLabelPadding =0.2,
+                # DataLabelLineSize = 0.5,
+                # DataLabelFillColor = "lightblue",
+                ThemeChoice = "wsj"
+                )
+  """
+```
+
+
+

@@ -8,7 +8,7 @@
 
 <meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 15-bubble-plot</title>
+<title>GLMakie Gallery - Choropleth maps in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,9 +99,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -115,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/15-bubble-plot.html">15-bubble-plot</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/choropleth-maps-in-R.html">Choropleth maps in R</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -231,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15-bubble-plot</span></a>
   </div>
 </li>
@@ -373,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/choropleth-maps-in-R.html" class="sidebar-item-text sidebar-link">
+  <a href="../vis/choropleth-maps-in-R.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Choropleth maps in R</span></a>
   </div>
 </li>
@@ -463,22 +460,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load-pacakge" id="toc-load-pacakge" class="nav-link active" data-scroll-target="#load-pacakge">1. load pacakge</a></li>
-  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
-  <li><a href="#plot-bubble-img" id="toc-plot-bubble-img" class="nav-link" data-scroll-target="#plot-bubble-img">3. plot bubble img</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/15-bubble-plot.html">15-bubble-plot</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2019-f1-statistics.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/choropleth-maps-in-R.html">Choropleth maps in R</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">15-bubble-plot</h1>
+<h1 class="title">Choropleth maps in R</h1>
 </div>
 
 
@@ -501,149 +490,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="简介">
+<div class="callout callout-style-default callout-note callout-titled" title="ref">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-简介
+ref
 </div>
 </div>
-<section id="bubble-plot" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="bubble-plot">Bubble plot</h3>
-<p>ref <a href="https://www.lock5stat.com/datasets3e/BodyFat.csv">csv</a></p>
-</section>
+<div class="callout-body-container callout-body">
+<ul>
+<li>ref :<a href="https://r-charts.com/spatial/choropleth-map/">Choropleth maps in R</a></li>
+</ul>
 </div>
-<section id="load-pacakge" class="level2">
-<h2 class="anchored" data-anchor-id="load-pacakge">1. load pacakge</h2>
-<div class="cell" data-execution_count="1">
+</div>
+<div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span>,<span class="bu">CSV</span>,<span class="bu">DataFrames</span>,<span class="bu">GLMakie</span>,<span class="bu">LinearAlgebra</span>,<span class="bu">Pipe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># install.packages("sf")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'sf' was built under R version 4.2.3</code></pre>
 </div>
-</section>
-<section id="load-data-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
-<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
+</div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>feature<span class="op">=</span>[<span class="st">"Height"</span>,<span class="st">"Weight"</span>,<span class="st">"Bodyfat"</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/BodyFat.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span>dropmissing<span class="op">|&gt;</span><span class="fu">select</span>(_,feature)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(data,<span class="fl">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("dplyr")</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<div><div style="float: left;"><span>10×3 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
-<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Height</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Bodyfat</th>
-</tr>
-<tr class="odd subheader headerLastRow">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: right;">73.5</td>
-<td style="text-align: right;">247.25</td>
-<td style="text-align: right;">32.3</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">177.25</td>
-<td style="text-align: right;">22.5</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: right;">69.0</td>
-<td style="text-align: right;">156.25</td>
-<td style="text-align: right;">22.0</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: right;">67.75</td>
-<td style="text-align: right;">154.25</td>
-<td style="text-align: right;">12.3</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: right;">70.0</td>
-<td style="text-align: right;">177.0</td>
-<td style="text-align: right;">20.5</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: right;">72.0</td>
-<td style="text-align: right;">198.0</td>
-<td style="text-align: right;">22.6</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">200.5</td>
-<td style="text-align: right;">28.7</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: right;">70.25</td>
-<td style="text-align: right;">163.0</td>
-<td style="text-align: right;">21.3</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: right;">71.5</td>
-<td style="text-align: right;">241.25</td>
-<td style="text-align: right;">29.9</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: right;">71.0</td>
-<td style="text-align: right;">218.5</td>
-<td style="text-align: right;">21.3</td>
-</tr>
-</tbody>
-</table>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
 </div>
-</section>
-<section id="plot-bubble-img" class="level2">
-<h2 class="anchored" data-anchor-id="plot-bubble-img">3. plot bubble img</h2>
-<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">plot_bubble</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        fig<span class="op">=</span><span class="fu">Figure</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>];title<span class="op">=</span><span class="st">"Bubble size: BodyFat"</span>,xlabel<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(feature[<span class="fl">1</span>])<span class="st">"</span>,ylabel<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(feature[<span class="fl">2</span>])<span class="st">"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Box</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>];color <span class="op">=</span> (<span class="op">:</span>orange,<span class="fl">0.1</span>),strokewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scatter!</span>(ax,data[!,<span class="fl">1</span>],data[!,<span class="fl">2</span>],markersize<span class="op">=</span>data[!,<span class="fl">3</span>]<span class="op">.*</span><span class="fl">2</span>,color<span class="op">=</span>(<span class="op">:</span>blue,<span class="fl">0.2</span>),strokewidth<span class="op">=</span><span class="fl">3</span>,strokecolor<span class="op">=:</span>black)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        fig</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">#save("Bubble-size-BodyFat.png",fig)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_bubble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("giscoR")</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(giscoR)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>year_ref <span class="ot">&lt;-</span> <span class="dv">2013</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>nuts2_IT <span class="ot">&lt;-</span> <span class="fu">gisco_get_nuts</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> year_ref,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolution =</span> <span class="dv">20</span>, </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">nuts_level =</span> <span class="dv">2</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="st">"Italy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(NUTS_ID, NAME_LATN)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform the shape</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>nuts2_IT_32632 <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(nuts2_IT, <span class="dv">32632</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to select data from 2013</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>disp_income <span class="ot">&lt;-</span> giscoR<span class="sc">::</span>tgs00026 <span class="sc">%&gt;%</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">==</span> year_ref) <span class="sc">%&gt;%</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>time)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>nuts2_IT_32632_data <span class="ot">&lt;-</span> nuts2_IT_32632 <span class="sc">%&gt;%</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(disp_income, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"NUTS_ID"</span> <span class="ot">=</span> <span class="st">"geo"</span>))</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nuts2_IT_32632_data[, <span class="st">"values"</span>],</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="st">"jenks"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Choropleth map"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="15-bubble-plot_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="choropleth-maps-in-R_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

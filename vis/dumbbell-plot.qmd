@@ -1,0 +1,59 @@
+---
+title: "Dumbbell Plot"
+author: math4mad
+code-fold: true
+---
+
+
+:::{.callout-note title="ref"}
+[Dumbbell plot in ggplot2](https://r-charts.com/distribution/dumbbell-plot-ggplot2/)
+:::
+
+```{julia}
+include("utils.jl")
+```
+
+
+```{julia}
+R"""
+# Seed
+set.seed(1)
+
+# Data
+customers <- sample(50:150, 10)
+potential_customers <- sample(150:500, 10)
+company <- LETTERS[1:10]
+
+# Data frame
+df <- data.frame(company = company,
+                 x = customers,
+                 y = potential_customers)
+"""
+df=@rget df
+rename!(df,:x=>:customers,:y=>:potential_customers)
+sort(df,:company)
+#df2=@pivot_longer(df, customers:potential_customers)
+
+```
+
+<!-- ```{julia}
+data_layer=data(df2)
+map_layer1=mapping(:value,:company)
+map_layer2=mapping(:potential_customers,:company)
+visual1=visual(Scatter)
+visual2=visual(LineSegments)
+plt=data_layer*(map_layer1+map_layer2)*(visual1)
+draw(plt)
+``` -->
+
+```{julia}
+   fig=Figure()
+   ax=Axis(fig[1,1])
+#    for (idx,row) in enumerate(eachrow(df))
+
+#         hlines!(ax,[idx]; xmin =[row.customers], xmax = [row.potential_customers])
+
+#    end
+#    hlines!(ax, 1:10;xmin=[df.customers...], xmax =[df.potential_customers...], color = :blue)
+   fig
+```
