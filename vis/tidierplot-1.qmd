@@ -1,0 +1,17 @@
+---
+title: "TidierPlot demo"
+author: math4mad
+code-fold: true
+---
+
+
+
+```{julia}
+using Tidier,TidierPlots
+using DataFrames,CSV,Pipe
+
+penguins =@pipe CSV.File("./data/penguine_data.csv")|>DataFrame|>dropmissing
+@show penguins
+ggplot(data = penguins) + 
+    geom_bar(aes(x = :species,color=:species))+labs(x = "Species")
+```

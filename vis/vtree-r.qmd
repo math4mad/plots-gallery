@@ -1,0 +1,32 @@
+---
+title: "Data exploration with vtree"
+author: math4mad
+code-fold: false
+---
+
+
+:::{.callout-note title="info"}
+[Data exploration with vtree: diabetes dataset](https://rstudio-pubs-static.s3.amazonaws.com/464400_9f35b95eacf44cfb925b5ca5fe770c68.html)
+:::
+```{r}
+library(vtree)
+library(Hmisc)
+```
+
+```{r}
+getHdata(diabetes)
+```
+
+
+```{r}
+head(diabetes)
+```
+
+```{r}
+vtree(diabetes,"frame",horiz=FALSE,height=250,width=850)
+```
+
+
+```{r}
+vtree(diabetes,"frame location",horiz=FALSE,height=250,width=850)
+```

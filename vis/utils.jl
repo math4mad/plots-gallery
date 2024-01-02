@@ -4,7 +4,7 @@ using StatsBase
 using AlgebraOfGraphics
 using RCall
 using ScientificTypes
-Makie.set_theme!(ggthemr(:dust))
+#Makie.set_theme!(ggthemr(:dust))
 
 
 function make_title(str::String)

@@ -57,3 +57,7 @@ draw(plt)
 #    hlines!(ax, 1:10;xmin=[df.customers...], xmax =[df.potential_customers...], color = :blue)
    fig
 ```
+
+```{julia}
+@doc(@select)
+```

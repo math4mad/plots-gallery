@@ -1,0 +1,66 @@
+---
+title: "6-gradient-vector-fields"
+format:
+  html: 
+    code-fold: false
+    fontsize: 1.1em
+    linestretch: 1.7
+    
+execute: 
+  cache: false
+  jupyter: julia-1.9
+---
+
+
+## 1. load pacages
+```{julia}
+using GLMakie,Symbolics
+```
+
+## 2.define symbolics variables
+```{julia}
+@variables x, y
+Dx=Differential(x)
+Dy=Differential(y)
+```
+
+## 3. make data
+使用`Symbolics.jl` 方法构建求导函数.
+
+- `of` 表示原函数
+- `fx` 沿 x 轴的导函数
+- `fy` 沿 y轴方向的导函数
+```{julia}
+f=x^2+2y^2
+g=5-x^2-2y^2
+h=x+2y+3
+funcs=[f,g,h]
+df=[]
+for fun in funcs
+    local of=build_function(fun, x,y)|>eval
+    local fx=fun|>Dx|>expand_derivatives|>expr->build_function(expr, x,y)|>eval
+    local fy=fun|>Dy|>expand_derivatives|>expr->build_function(expr, x,y)|>eval
+    push!(df,[of,fx,fy])
+
+end
+
+```
+
+
+## 4. plot 
+```{julia}
+fig=Figure(resolution=(900,600))
+xs=ys=range(-3,3,10)
+for  i in 1:3
+     local ax1=Axis(fig[1,i],title=L"%$(funcs[i])")
+     local ax2=Axis(fig[2,i])
+     local zs=[df[i][1](x,y) for x in xs, y in ys]
+     local us=[df[i][2](x,y) for x in xs, y in ys]
+     local vs=[df[i][3](x,y) for x in xs, y in ys]
+     contour!(ax1,xs,ys,zs)
+     arrows!( ax2,xs, ys, us, vs,lengthscale=i==3 ? 0.2 : 0.05,color=(:purple,0.8))
+
+end
+fig
+```
+

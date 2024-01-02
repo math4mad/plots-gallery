@@ -33,9 +33,13 @@ website:
 
 format:
   html:
-    theme: cosmo
-    # css: styles.css
+    highlight-style: a11y
+    theme: 
+           - cosmo
+           - styles.scss
     toc: true
+    fig-align: "center"
+    fig-cap-location : bottom
 
 execute:
   freeze: auto

@@ -1,0 +1,14 @@
+---
+title: "Using Dash "
+author: math4mad
+code-fold: true
+---
+
+```{julia}
+using Dash
+using DataFrames, CSV, PlotlyJS, RDatasets
+
+iris = RDatasets.dataset("datasets", "iris")
+
+Plot(iris, x=:SepalLength, y=:SepalWidth, mode="markers", marker_size=8, group=:Species)
+```

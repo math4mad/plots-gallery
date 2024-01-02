@@ -1,0 +1,66 @@
+---
+title: "NBA shot chart"
+author: math4mad
+code-fold: true
+---
+
+```{julia}
+using Images
+import CairoMakie:Axis
+include("utils.jl")
+```
+
+```{julia}
+img = load("./imgs/halfcourt.png")
+xs = range(-250.0, 250.0, length=size(img,1))
+ys = range(-50.0,420.0, length=size(img,2))
+
+```
+
+<!-- ```{julia}
+   fig=Figure()
+   ax=Axis(fig[1,1])
+   image!(xs,ys,image)
+   fig
+``` -->
+```{julia}
+df=@pipe CSV.File("./data/nba_shot.csv")|>DataFrame|>dropmissing|>Float64.(_)
+df.shot=coerce(df.shot, Multiclass)
+first(df,10)
+```
+
+```{julia}
+#| eval: true
+using GLMakie
+fig=Figure()
+ax=Axis(fig[1,1])
+GLMakie.image!(ax,rotl90(img))
+
+
+plt = AlgebraOfGraphics.data(df) * mapping(:x, :y,color=:shot)
+draw!(fig[1,1],plt * visual(Scatter))
+fig
+```
+
+
+```{julia}
+set_aog_theme!()
+
+axis = (width = 150, height = 150)
+shot_frequency = AlgebraOfGraphics.data(df) * frequency() * mapping(:shot)
+draw(shot_frequency; axis)
+```
+
+```{julia}
+let 
+  axis = (type = Axis3, width =600, height = 600)
+   layer = AlgebraOfGraphics.density() * visual(Wireframe, linewidth=0.05)
+   plt = AlgebraOfGraphics.data(df)* layer* mapping(:x,:y) 
+   draw(plt; axis)
+    
+end
+```
+
+```{julia}
+
+```

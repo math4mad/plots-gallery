@@ -10,58 +10,79 @@
     ]
   },
   {
-    "objectID": "vis/ai-supercomputer-ability.html",
-    "href": "vis/ai-supercomputer-ability.html",
-    "title": "Computation used to train notable artificial intelligence systems”",
+    "objectID": "materials.html",
+    "href": "materials.html",
+    "title": "Course Materials",
     "section": "",
-    "text": "info\n\n\n\n\nref:Computation used to train notable artificial intelligence systems\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nusing AlgebraOfGraphics\nMakie.set_theme!(ggthemr(:dust))",
+    "text": "Datasets\nSlides",
     "crumbs": [
-      "Data Viz",
-      "Computation used to train notable artificial intelligence systems\""
+      "Materials"
     ]
   },
   {
-    "objectID": "vis/ai-supercomputer-ability.html#load-data-dataframe",
-    "href": "vis/ai-supercomputer-ability.html#load-data-dataframe",
-    "title": "Computation used to train notable artificial intelligence systems”",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/artificial-intelligence-training-computation.csv\")|&gt;DataFrame\ndf=coalesce.(df, 0.0)\nrename!(df,\"Training computation (petaFLOP)\"=&gt;:petaFLOP)\ndf=@pipe sort(df,:petaFLOP;rev=true)|&gt;first(_,40)\n\n\n40×5 DataFrame15 rows omitted\n\n\n\nRow\nEntity\nCode\nDay\npetaFLOP\nDomain\n\n\n\nString\nFloat64\nDate\nFloat64\nString15\n\n\n\n\n1\nGPT-4\n0.0\n2023-03-15\n2.1e10\nMultimodal\n\n\n2\nPaLM 2\n0.0\n2023-05-10\n7.34e9\nLanguage\n\n\n3\nClaude 2\n0.0\n2023-07-11\n3.87e9\nLanguage\n\n\n4\nFalcon 180B\n0.0\n2023-09-06\n3.78e9\nLanguage\n\n\n5\nMinerva (540B)\n0.0\n2022-06-29\n2.74e9\nLanguage\n\n\n6\nGPT-3.5 (text-davinci-003)\n0.0\n2022-11-28\n2.58e9\nLanguage\n\n\n7\nPaLM (540B)\n0.0\n2022-04-04\n2.53e9\nLanguage\n\n\n8\nMegatron-Turing NLG 530B\n0.0\n2021-10-11\n1.17e9\nLanguage\n\n\n9\nERNIE 3.0 Titan\n0.0\n2021-12-23\n1.04e9\nLanguage\n\n\n10\nLlama 2\n0.0\n2023-07-18\n8.1e8\nLanguage\n\n\n11\nGopher (280B)\n0.0\n2021-12-08\n6.31e8\nLanguage\n\n\n12\nMegatron-BERT\n0.0\n2019-09-17\n6.03e8\nLanguage\n\n\n13\nChinchilla\n0.0\n2022-03-29\n5.76e8\nLanguage\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n29\nBloombergGPT\n0.0\n2023-03-30\n2.36e8\nLanguage\n\n\n30\nALIGN\n0.0\n2021-06-11\n2.15e8\nMultimodal\n\n\n31\nAlexaTM 20B\n0.0\n2022-08-02\n2.04e8\nLanguage\n\n\n32\nAlphaStar\n0.0\n2019-10-30\n2.02e8\nGames\n\n\n33\nBLOOM\n0.0\n2022-11-08\n1.8e8\nLanguage\n\n\n34\nAlphaGo Master\n0.0\n2017-01-01\n1.5e8\nGames\n\n\n35\nHyperClova\n0.0\n2021-09-10\n1.48e8\nLanguage\n\n\n36\nMeena\n0.0\n2020-01-28\n1.12e8\nLanguage\n\n\n37\nStarCoder\n0.0\n2023-05-09\n1.12e8\nLanguage\n\n\n38\nGPT-NeoX-20B\n0.0\n2022-02-09\n9.32e7\nLanguage\n\n\n39\nCoAtNet\n0.0\n2021-06-09\n8.5e7\nVision\n\n\n40\nBASIC-L\n0.0\n2021-11-19\n8.3e7\nVision\n\n\n\n\n\n\n\n\nCode\naxis = (width = 600, height =300,xticklabelrotation = pi/8,title=\"Computation used to train notable artificial intelligence systems\")\ndata_layer = data(df)\nmapping_layer=mapping(:Day,:petaFLOP,color=:Domain)\nvisual_layer = visual(Scatter;stroke=1,strokecolor=(:red,0.8),markersize=18)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
-    "crumbs": [
-      "Data Viz",
-      "Computation used to train notable artificial intelligence systems\""
-    ]
-  },
-  {
-    "objectID": "vis/internet-user-view.html",
-    "href": "vis/internet-user-view.html",
-    "title": "Number of people using the Internet”",
+    "objectID": "vis/market-for-chip-production.html",
+    "href": "vis/market-for-chip-production.html",
+    "title": "Market share for logic chip production, by manufacturing stage, 2021",
     "section": "",
-    "text": "info\n\n\n\n\nref:Number of people using the Internet\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "info\n\n\n\n\nref:Market share for logic chip production, by manufacturing stage, 2021\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nMakie.set_theme!(ggthemr(:dust))",
     "crumbs": [
       "Data Viz",
-      "Number of people using the Internet\""
+      "Market share for logic chip production, by manufacturing stage, 2021"
     ]
   },
   {
-    "objectID": "vis/internet-user-view.html#load-data-dataframe",
-    "href": "vis/internet-user-view.html#load-data-dataframe",
-    "title": "Number of people using the Internet”",
+    "objectID": "vis/market-for-chip-production.html#load-data-dataframe",
+    "href": "vis/market-for-chip-production.html#load-data-dataframe",
+    "title": "Market share for logic chip production, by manufacturing stage, 2021",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/number-of-internet-users.csv\")|&gt;DataFrame|&gt;rename(_,\"Number of Internet users\"=&gt;:num_user)|&gt;coalesce.(_, 0.0)\n\nfirst(df,5)\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nnum_user\n\n\n\nString\nAny\nInt64\nInt64\n\n\n\n\n1\nAfghanistan\nAFG\n1990\n0\n\n\n2\nAfghanistan\nAFG\n1991\n0\n\n\n3\nAfghanistan\nAFG\n1992\n0\n\n\n4\nAfghanistan\nAFG\n1993\n0\n\n\n5\nAfghanistan\nAFG\n1994\n0\n\n\n\n\n\n\n\n\nCode\nlist=(\"World\",\"Asia\",\"Europe\",\"North America\",\"Africa\",\"Oceania\")\n@eval(Main, myvars =list )\ndf2=@chain df begin\n    @select(Entity,Year,num_user)\n    @filter(Entity in !!myvars)\n    @mutate(num_user=num_user/1_000_000_000)\n    @arrange(desc(num_user))\nend\n\n\n183×3 DataFrame158 rows omitted\n\n\n\nRow\nEntity\nYear\nnum_user\n\n\n\nString\nInt64\nFloat64\n\n\n\n\n1\nWorld\n2020\n4.69989\n\n\n2\nWorld\n2019\n4.19408\n\n\n3\nWorld\n2018\n3.79552\n\n\n4\nWorld\n2017\n3.48375\n\n\n5\nWorld\n2016\n3.25622\n\n\n6\nWorld\n2015\n3.00458\n\n\n7\nWorld\n2014\n2.79366\n\n\n8\nWorld\n2013\n2.59861\n\n\n9\nAsia\n2020\n2.55759\n\n\n10\nWorld\n2012\n2.42685\n\n\n11\nAsia\n2019\n2.22554\n\n\n12\nWorld\n2011\n2.21888\n\n\n13\nWorld\n2010\n2.02115\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n172\nAfrica\n1995\n0.000324226\n\n\n173\nOceania\n1992\n0.000318972\n\n\n174\nAsia\n1992\n0.000247731\n\n\n175\nOceania\n1991\n0.000189499\n\n\n176\nAfrica\n1994\n0.000112387\n\n\n177\nOceania\n1990\n9.9747e-5\n\n\n178\nAsia\n1991\n9.3535e-5\n\n\n179\nAfrica\n1993\n4.897e-5\n\n\n180\nAsia\n1990\n4.0687e-5\n\n\n181\nAfrica\n1992\n1.6232e-5\n\n\n182\nAfrica\n1991\n5.434e-6\n\n\n183\nAfrica\n1990\n0.0",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/market-share-logic-chip-production-manufacturing-stage.csv\")|&gt;DataFrame\ndf=coalesce.(df, 0.0)\n\n\n9×6 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nDesign\nFabrication\nAssembly, testing and packaging\n\n\n\nString15\nAny\nInt64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nChina\nCHN\n2021\n9.0\n12.0\n14.0\n\n\n2\nItaly\nITA\n2021\n0.0\n2.0\n0.0\n\n\n3\nJapan\nJPN\n2021\n6.0\n1.0\n7.0\n\n\n4\nMalaysia\nMYS\n2021\n0.0\n0.0\n2.0\n\n\n5\nOthers\n0.0\n2021\n9.0\n0.0\n5.0\n\n\n6\nSingapore\nSGP\n2021\n0.0\n0.0\n2.0\n\n\n7\nSouth Korea\nKOR\n2021\n6.0\n11.0\n13.0\n\n\n8\nTaiwan\nTWN\n2021\n9.0\n47.0\n29.0\n\n\n9\nUnited States\nUSA\n2021\n61.0\n27.0\n28.0",
     "crumbs": [
       "Data Viz",
-      "Number of people using the Internet\""
+      "Market share for logic chip production, by manufacturing stage, 2021"
     ]
   },
   {
-    "objectID": "vis/internet-user-view.html#plot",
-    "href": "vis/internet-user-view.html#plot",
-    "title": "Number of people using the Internet”",
-    "section": "plot",
-    "text": "plot\n\n\nCode\naxis = (width = 1000, height =500,xticklabelrotation = pi/8,title=\"Internet user \",subtitle=\"Measured in billion.\",\nyticks=(1:7,[\"$i billion\" for i in 1:7]))\ndata_layer = data(df2)\nmapping_layer=mapping(:Year,:num_user,color=:Entity)\nvisual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "objectID": "vis/market-for-chip-production.html#plot-bar-plot",
+    "href": "vis/market-for-chip-production.html#plot-bar-plot",
+    "title": "Market share for logic chip production, by manufacturing stage, 2021",
+    "section": "3. plot bar plot",
+    "text": "3. plot bar plot\n\n\nCode\ncats=names(df)\nrow,_=size(df)\nfunction plot_barplt(df)\n fig=Figure()\n axs=[Axis(fig[1,1]),Axis(fig[1,2]),Axis(fig[2,1])]\n \n for (idx, ax) in enumerate(axs)\n     df=sort(df,cats[3+idx];rev=false)\n     ax.title=\"$(cats[3+idx])\"\n     ax.yticks=(1:row,df.Entity)\n     ax.xgridvisible=false\n     ax.ygridvisible=false\n     xs=df.Entity\n     ys=@pipe select(df,3+idx)|&gt;_[:,1]|&gt;map(x-&gt;(x/sum(_))*100,_)|&gt;round.(_,digits=0)\n     #@info ys\n     barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,flip_labels_at=20,\n     color_over_background=:dodgerblue3,\n     color_over_bar=:white,\n     )\n\n end\n\n supertitle = Label(fig[0, :], \"Market share for logic chip production, by manufacturing\nstage, 2021\", fontsize = 20)\n fig\n \nend\nplot_barplt(df)",
     "crumbs": [
       "Data Viz",
-      "Number of people using the Internet\""
+      "Market share for logic chip production, by manufacturing stage, 2021"
+    ]
+  },
+  {
+    "objectID": "vis/golden-warriors-court.html",
+    "href": "vis/golden-warriors-court.html",
+    "title": "Golden State Warrior court",
+    "section": "",
+    "text": "Code\nusing GLMakie,GeometryBasics,Images\nGLMakie.activate!(ssao=true)\nGLMakie.closeall() # close any open screen\n\n#=======Setting  define notice for ssao setting========#\nfig = Figure(resolution = (1000, 1000))\nssao = Makie.SSAO(radius = 3.0, blur = 2)\nax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)\nax.scene.ssao.bias[] = 0.025\n#=======================================================#\n\n\n## ===##\n\n\nimg = load(\"./imgs/gs.jpeg\")\nxs = range(-250.0, 250.0, length=size(img,1))\nys = range(-50.0,420.0, length=size(img,2))\n\n\n#=======================================================#\n\n\"\"\"\n## define Rect\nrect = Rect(start-x,start-y,height,width)\n\"\"\"\nn=6\nrect = Rect(0.0, 0.0,290,200)\n\nmesh!(ax, rect, ssao=true,color=img)\n\n\n\nfig",
+    "crumbs": [
+      "Data Viz",
+      "Golden State Warrior court"
+    ]
+  },
+  {
+    "objectID": "vis/simpson-paradox-on-penguines.html",
+    "href": "vis/simpson-paradox-on-penguines.html",
+    "title": "Simpson’s paradox on penguins",
+    "section": "",
+    "text": "Code\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "crumbs": [
+      "Data Viz",
+      "Simpson’s paradox on penguins"
+    ]
+  },
+  {
+    "objectID": "vis/simpson-paradox-on-penguines.html#load-data",
+    "href": "vis/simpson-paradox-on-penguines.html#load-data",
+    "title": "Simpson’s paradox on penguins",
+    "section": "load data",
+    "text": "load data\n\n\nCode\ndf=@pipe CSV.File(\"./data/palmerpenguins.csv\")|&gt;DataFrame|&gt;dropmissing\nfirst(df,10)\n\n\n10×7 DataFrame\n\n\n\nRow\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\nString15\nString15\nFloat64\nFloat64\nInt64\nInt64\nString7\n\n\n\n\n1\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\n2\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\n3\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\n5\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale\n\n\n6\nAdelie\nTorgersen\n38.9\n17.8\n181\n3625\nfemale\n\n\n7\nAdelie\nTorgersen\n39.2\n19.6\n195\n4675\nmale\n\n\n8\nAdelie\nTorgersen\n41.1\n17.6\n182\n3200\nfemale\n\n\n9\nAdelie\nTorgersen\n38.6\n21.2\n191\n3800\nmale\n\n\n10\nAdelie\nTorgersen\n34.6\n21.1\n198\n4400\nmale\n\n\n\n\n\n\n\n\nCode\n   describe(df)\n\n\n7×7 DataFrame\n\n\n\nRow\nvariable\nmean\nmin\nmedian\nmax\nnmissing\neltype\n\n\n\nSymbol\nUnion…\nAny\nUnion…\nAny\nInt64\nDataType\n\n\n\n\n1\nspecies\n\nAdelie\n\nGentoo\n0\nString15\n\n\n2\nisland\n\nBiscoe\n\nTorgersen\n0\nString15\n\n\n3\nbill_length_mm\n43.9928\n32.1\n44.5\n59.6\n0\nFloat64\n\n\n4\nbill_depth_mm\n17.1649\n13.1\n17.3\n21.5\n0\nFloat64\n\n\n5\nflipper_length_mm\n200.967\n172\n197.0\n231\n0\nInt64\n\n\n6\nbody_mass_g\n4207.06\n2700\n4050.0\n6300\n0\nInt64\n\n\n7\nsex\n\nfemale\n\nmale\n0\nString7\n\n\n\n\n\n\n\n\nCode\n```{julia}\n#| label: fig-simpson-paradox\n#| fig-cap: simpson-paradox on palmerpenguins\n#| fig-align: center\n#| warning: false\naxis = (width = 300, height = 300)\npenguin_bill = data(df) * mapping(\n    :bill_length_mm =&gt; (t -&gt; t / 10) =&gt;\"bill_length\",\n    :bill_depth_mm =&gt; (t -&gt; t / 10) =&gt;\"bill_depth\",\n)\npipeline1=penguin_bill * linear() * mapping(color = :species)\npipeline2=penguin_bill * mapping(color = :species)*visual(Scatter;strokewidth=1,strokcolor=:black)\npipeline3=penguin_bill *linear()\n\nplt =(pipeline1+pipeline2+pipeline3)*visual(alpha = 0.5)\ndraw(plt; axis = axis)\n```\n\n\n\n\n\n\n\n\nFigure 1: simpson-paradox on palmerpenguins",
+    "crumbs": [
+      "Data Viz",
+      "Simpson’s paradox on penguins"
     ]
   },
   {
@@ -131,124 +152,58 @@
     ]
   },
   {
-    "objectID": "vis/average-temperature-anomaly-world.html",
-    "href": "vis/average-temperature-anomaly-world.html",
-    "title": "Average temperature anomaly, Global",
+    "objectID": "vis/mapsf.html",
+    "href": "vis/mapsf.html",
+    "title": "basic example of mapsf",
     "section": "",
-    "text": "info\n\n\n\n\nref:Average temperature anomaly, Global\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "Code\nlibrary(mapsf)\n\n\nWarning: package 'mapsf' was built under R version 4.2.3\n\n\nCode\n# Import the sample dataset\nmtq &lt;- mf_get_mtq()\n# Plot the base map\nmf_map(x = mtq)\n# Plot proportional symbols\nmf_map(x = mtq, var = \"POP\", type = \"prop\", leg_pos = \"topright\")\n# Plot a map layout\nmf_layout(\n  title = \"Population in Martinique\",\n  credits = \"T. Giraud; Sources: INSEE & IGN, 2018\"\n)\n\n\n\n\n\n\n\n\n\n\n\nCode\n# Export a map with a theme and extra margins\nmf_theme(\"green\")\nmf_export(\n  x = mtq, filename = \"mtq.png\",\n  width = 600, res = 120,\n  expandBB = c(0, 0, 0, .3)\n)\n\n\nWarning in grSoftVersion(): unable to load shared object '/Library/Frameworks/R.framework/Resources/modules//R_X11.so':\n  dlopen(/Library/Frameworks/R.framework/Resources/modules//R_X11.so, 0x0006): Library not loaded: /opt/X11/lib/libSM.6.dylib\n  Referenced from: &lt;BBB44505-4BB3-30FA-9ED6-ABC69D534041&gt; /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/modules/R_X11.so\n  Reason: tried: '/opt/X11/lib/libSM.6.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/X11/lib/libSM.6.dylib' (no such file), '/opt/X11/lib/libSM.6.dylib' (no such file), '/Library/Frameworks/R.framework/Resources/lib/libSM.6.dylib' (no such file), '/Library/Java/JavaVirtualMachines/jdk-17.0.1+12/Contents/Home/lib/server/libSM.6.dylib' (no such file)\n\n\nWarning in cairoVersion(): unable to load shared object '/Library/Frameworks/R.framework/Resources/library/grDevices/libs//cairo.so':\n  dlopen(/Library/Frameworks/R.framework/Resources/library/grDevices/libs//cairo.so, 0x0006): Library not loaded: /opt/X11/lib/libXrender.1.dylib\n  Referenced from: &lt;25AEF222-E381-3C27-AC91-0E12B2DF269A&gt; /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/grDevices/libs/cairo.so\n  Reason: tried: '/opt/X11/lib/libXrender.1.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/X11/lib/libXrender.1.dylib' (no such file), '/opt/X11/lib/libXrender.1.dylib' (no such file), '/Library/Frameworks/R.framework/Resources/lib/libXrender.1.dylib' (no such file), '/Library/Java/JavaVirtualMachines/jdk-17.0.1+12/Contents/Home/lib/server/libXrender.1.dylib' (no such file)\n\n\nWarning in png(filename, width = fd[1], height = fd[2], res = res, type =\n\"cairo-png\", : failed to load cairo DLL\n\n\nCode\n# Plot a shadow\nmf_shadow(mtq, col = \"grey10\", add = TRUE)\n# Plot a choropleth map\nmf_map(\n  x = mtq, var = \"MED\", type = \"choro\",\n  pal = \"Dark Mint\",\n  breaks = \"quantile\",\n  nbreaks = 6,\n  leg_title = \"Median Income\\n(euros)\",\n  leg_val_rnd = -2,\n  add = TRUE\n)\n# Start an inset map\nmf_inset_on(x = \"worldmap\", pos = \"right\")\n# Plot mtq position on a worldmap\nmf_worldmap(mtq, col = \"#0E3F5C\")\n# Close the inset\nmf_inset_off()\n# Plot a title\nmf_title(\"Wealth in Martinique, 2015\")\n# Plot credits\nmf_credits(\"T. Giraud\\nSources: INSEE & IGN, 2018\")\n# Plot a scale bar\nmf_scale(size = 5)\n# Plot a north arrow\nmf_arrow(\"topleft\")\n\n\n\n\n\n\n\n\n\nCode\ndev.off()\n\n\nnull device \n          1 \n\n\n\n\nCode\nmtq &lt;- mf_get_mtq()\nhead(mtq)\n\n\nSimple feature collection with 6 features and 7 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 695444 ymin: 1598818 xmax: 717731 ymax: 1645182\nProjected CRS: WGS 84 / UTM zone 20N\n  INSEE_COM              STATUS            LIBGEO  POP   MED CHOM  ACT\n1     97201 Simple municipality L'Ajoupa-Bouillon 1902 13633  254  801\n2     97202 Simple municipality Les Anses-d'Arlet 3737 14558  425 1659\n3     97203 Simple municipality      Basse-Pointe 3357 14456  400 1395\n4     97204 Simple municipality         Le Carbet 3683 18847  285 1568\n5     97205 Simple municipality       Case-Pilote 4458 21005  347 2096\n6     97206 Simple municipality        Le Diamant 5976 19704  430 2654\n                            geom\n1 MULTIPOLYGON (((699261 1637...\n2 MULTIPOLYGON (((709840 1599...\n3 MULTIPOLYGON (((697602 1638...\n4 MULTIPOLYGON (((702229 1628...\n5 MULTIPOLYGON (((698805 1621...\n6 MULTIPOLYGON (((709840 1599...\n\n\n\n\nCode\nmf_map(mtq)\nmf_map(mtq, var = c(\"POP\", \"MED\"), type = \"prop_choro\")",
     "crumbs": [
       "Data Viz",
-      "Average temperature anomaly, Global"
+      "basic example of mapsf"
     ]
   },
   {
-    "objectID": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
-    "href": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
-    "title": "Average temperature anomaly, Global",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/temperature-anomaly.csv\")|&gt;DataFrame|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\n\"Global average temperature anomaly relative to 1961-1990\"=&gt;:mean, \"Upper bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:upper, \"Lower bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:lower\n)\n\ngdf=groupby(df,:Entity)\ncats= @pipe keys(gdf) .|&gt; values(_)[1]\n\n\n3-element Vector{String31}:\n \"Global\"\n \"Northern hemisphere\"\n \"Southern hemisphere\"",
-    "crumbs": [
-      "Data Viz",
-      "Average temperature anomaly, Global"
-    ]
-  },
-  {
-    "objectID": "vis/average-temperature-anomaly-world.html#plots",
-    "href": "vis/average-temperature-anomaly-world.html#plots",
-    "title": "Average temperature anomaly, Global",
-    "section": "plots",
-    "text": "plots\n\n\nCode\n fig=Figure()\n axs=[Axis(fig[i,1]) for i in 1:3]\n function plot_ci(df,ax,title)\n      ax.title=title\n      xs,mean,lower,upper=df.Year,df.mean,df.lower,df.upper\n      hlines!(ax,[0],linestyle=:dot,color=(:red,0.8))\n      lines!(ax,xs,mean,color=:blue)\n      band!(ax,xs,lower,upper,color=(:lightgreen,0.5))\n      \n      \n end\n\n #plot_ci(gdf[1],axs[1],title=\"blank\")\n\n for (idx, df) in enumerate(gdf)\n      plot_ci(df,axs[idx],cats[idx])\n end\n fig",
-    "crumbs": [
-      "Data Viz",
-      "Average temperature anomaly, Global"
-    ]
-  },
-  {
-    "objectID": "vis/2019-f1-statistics.html",
-    "href": "vis/2019-f1-statistics.html",
-    "title": "f1 2019 drivers statistics",
+    "objectID": "vis/ai-performance-with-datasize.html",
+    "href": "vis/ai-performance-with-datasize.html",
+    "title": "Artificial intelligence: Performance on knowledge tests vs. training computation",
     "section": "",
-    "text": "feature :[\"Drivers\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\"]",
+    "text": "info\n\n\n\n\nref:Artificial intelligence: Performance on knowledge tests vs. training computation\n\n\n\nload pacakge\n\n\nCode\nusing CSV,DataFrames,Pipe,Tidier\nusing CairoMakie,AlgebraOfGraphics,MakieThemes\nMakie.set_theme!(ggthemr(:dust))",
     "crumbs": [
       "Data Viz",
-      "f1 2019 drivers  statistics"
+      "Artificial intelligence: Performance on knowledge tests vs. training computation"
     ]
   },
   {
-    "objectID": "vis/2019-f1-statistics.html#load-pacakge",
-    "href": "vis/2019-f1-statistics.html#load-pacakge",
-    "title": "f1 2019 drivers statistics",
-    "section": "1. load pacakge",
-    "text": "1. load pacakge\n\n\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier",
-    "crumbs": [
-      "Data Viz",
-      "f1 2019 drivers  statistics"
-    ]
-  },
-  {
-    "objectID": "vis/2019-f1-statistics.html#load-data-dataframe",
-    "href": "vis/2019-f1-statistics.html#load-data-dataframe",
-    "title": "f1 2019 drivers statistics",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndf=@pipe CSV.File(\"./data/f1_2019_drivers_data.csv\")|&gt;DataFrame|&gt;dropmissing\nrow,cor=size(df)\nname=df.Drivers\nscore=df[:,2:end]\nfirst(df,10)\n\n\n10×22 DataFrame\n\n\n\nRow\nDrivers\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n\n\n\nString31\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\nLewis Hamilton\n18\n25\n25\n18\n26\n25\n25\n25\n10\n26\n2\n25\n18\n16\n12\n26\n16\n25\n18\n6\n26\n\n\n2\nValtteri Bottas\n26\n18\n18\n25\n18\n15\n13\n18\n15\n18\n0\n4\n15\n18\n10\n18\n25\n15\n25\n0\n12\n\n\n3\nMax Verstappen\n15\n12\n12\n12\n15\n12\n10\n12\n26\n10\n26\n19\n0\n4\n15\n12\n0\n8\n15\n25\n18\n\n\n4\nCharles Leclerc\n10\n16\n10\n11\n10\n0\n15\n15\n18\n15\n0\n12\n25\n25\n18\n15\n8\n13\n13\n0\n15\n\n\n5\nSebastian Vettel\n12\n10\n15\n15\n12\n18\n18\n11\n12\n0\n18\n15\n13\n0\n25\n0\n18\n18\n0\n0\n10\n\n\n6\nCarlos Sainz Jnr\n0\n0\n0\n6\n4\n8\n0\n8\n4\n8\n10\n10\n0\n0\n0\n8\n10\n0\n4\n15\n1\n\n\n7\nPierre Gasly\n0\n4\n9\n0\n8\n11\n4\n1\n6\n12\n0\n8\n2\n0\n4\n0\n6\n2\n0\n18\n0\n\n\n8\nAlexander Albon\n0\n2\n1\n0\n0\n4\n0\n0\n0\n0\n8\n1\n10\n8\n8\n10\n12\n10\n10\n0\n8\n\n\n9\nDaniel Ricciardo\n0\n0\n6\n0\n0\n2\n8\n0\n0\n6\n0\n0\n0\n12\n0\n0\n0\n4\n8\n8\n0\n\n\n10\nSergio Perez\n0\n1\n4\n8\n0\n0\n0\n0\n0\n0\n0\n0\n8\n6\n0\n6\n4\n6\n1\n2\n6",
-    "crumbs": [
-      "Data Viz",
-      "f1 2019 drivers  statistics"
-    ]
-  },
-  {
-    "objectID": "vis/2019-f1-statistics.html#plot",
-    "href": "vis/2019-f1-statistics.html#plot",
-    "title": "f1 2019 drivers statistics",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\nf1 = ByRow(hidedecorations!)\nf2 =ByRow(hidedecorations!)\nwith_theme(theme_black()) do\n fig=Figure(resolution=(600,900))\n supertitle = Label(fig[0, :], \"Formula One Drivers 2019 Season Points\", fontsize = 24)\n grids =[fig[idx, 1] = GridLayout() for idx in 1:row]\n \n for idx  in eachindex(grids)\n     name=df[idx,:].Drivers\n     score=Vector(df[idx,2:end])\n     sum_score=sum(score)\n     al=Axis(grids[idx][1,1])\n     ac=Axis(grids[idx][1,2])\n     ar=Axis(grids[idx][1,3])\n     text!(al,0,0;text=name,align=(:center,:center),fontsize = 16)\n     barplot!(ac, 1:21,score;color=:red,strokewidth=0.3,strokecolor=(:white))\n     text!(ar,0,0,text=\"$(sum_score)\",align=(:center,:center),fontsize = 16)\n     f1([al,ac,ar])\n     hidespines!(al)\n     hidespines!(ar)\n     hidespines!(ac, :t, :r,:l)\n end\n fig\nend",
-    "crumbs": [
-      "Data Viz",
-      "f1 2019 drivers  statistics"
-    ]
-  },
-  {
-    "objectID": "vis/fishing-with-net-type.html",
-    "href": "vis/fishing-with-net-type.html",
-    "title": "Wild fish catch by gear type, World",
+    "objectID": "vis/infographic-style-charts-using-waffle.html",
+    "href": "vis/infographic-style-charts-using-waffle.html",
+    "title": "Infographic-style charts using the R waffle package",
     "section": "",
-    "text": "info\n\n\n\n\nref:Wild fish catch by gear type, World\nfishing gear type : Fish and Overfishing - Our World in Data\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "ref\n\n\n\n-ref :Infographic-style charts using the R waffle package\n\n\n\n\nCode\nlibrary(waffle)\n\n\nLoading required package: ggplot2\n\n\nCode\nlibrary(extrafont)\n\n\nRegistering fonts with R\n\n\n\n\nCode\nfont_import()\n\n\nImporting fonts may take a few minutes, depending on the number of fonts and the speed of the system.\nContinue? [y/n] \n\n\nExiting.\n\n\nCode\nfonts()[grep(\"Awesome5\", fonts())]\n\n\ncharacter(0)\n\n\nCode\nloadfonts();\n\n\n.Keyboard already registered with pdfFont().\n\n\n.New York already registered with pdfFont().\n\n\n.SF Arabic already registered with pdfFont().\n\n\n.SF Arabic Rounded already registered with pdfFont().\n\n\n.SF Armenian already registered with pdfFont().\n\n\n.SF Armenian Rounded already registered with pdfFont().\n\n\n.SF Camera already registered with pdfFont().\n\n\n.SF Compact already registered with pdfFont().\n\n\n.SF Compact Rounded already registered with pdfFont().\n\n\n.SF Georgian already registered with pdfFont().\n\n\n.SF Georgian Rounded already registered with pdfFont().\n\n\n.SF Hebrew already registered with pdfFont().\n\n\n.SF Hebrew Rounded already registered with pdfFont().\n\n\n.SF NS Mono already registered with pdfFont().\n\n\n.SF NS Rounded already registered with pdfFont().\n\n\nAcademy Engraved LET already registered with pdfFont().\n\n\nAndale Mono already registered with pdfFont().\n\n\nMore than one version of regular/bold/italic found for Apple Braille. Skipping setup for this font.\n\n\nAppleMyungjo already registered with pdfFont().\n\n\nArial already registered with pdfFont().\n\n\nArial Black already registered with pdfFont().\n\n\nArial Narrow already registered with pdfFont().\n\n\nArial Rounded MT Bold already registered with pdfFont().\n\n\nArial Unicode MS already registered with pdfFont().\n\n\nBodoni 72 Smallcaps already registered with pdfFont().\n\n\nBodoni Ornaments already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of Brush Script MT. Skipping setup for this font.\n\n\nComic Sans MS already registered with pdfFont().\n\n\nCourier New already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of DIN Alternate. Skipping setup for this font.\n\n\nNo regular (non-bold, non-italic) version of DIN Condensed. Skipping setup for this font.\n\n\nFont Awesome 6 Free Solid already registered with pdfFont().\n\n\nFontAwesome already registered with pdfFont().\n\n\nGeorgia already registered with pdfFont().\n\n\nImpact already registered with pdfFont().\n\n\nJuliaMono already registered with pdfFont().\n\n\nJuliaMono Black already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono BlackItalic. Skipping setup for this font.\n\n\nNo regular (non-bold, non-italic) version of JuliaMono BoldItalic. Skipping setup for this font.\n\n\nJuliaMono ExtraBold already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono ExtraBoldItalic. Skipping setup for this font.\n\n\nNo regular (non-bold, non-italic) version of JuliaMono Italic. Skipping setup for this font.\n\n\nJuliaMono Latin already registered with pdfFont().\n\n\nJuliaMono Light already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono LightItalic. Skipping setup for this font.\n\n\nJuliaMono Medium already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono MediumItalic. Skipping setup for this font.\n\n\nJuliaMono SemiBold already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono SemiBoldItalic. Skipping setup for this font.\n\n\nKhmer Sangam MN already registered with pdfFont().\n\n\nLao Sangam MN already registered with pdfFont().\n\n\nLuminari already registered with pdfFont().\n\n\nMicrosoft Sans Serif already registered with pdfFont().\n\n\nNoto Sans Adlam already registered with pdfFont().\n\n\nNoto Sans Avestan already registered with pdfFont().\n\n\nNoto Sans Bamum already registered with pdfFont().\n\n\nNoto Sans Bassa Vah already registered with pdfFont().\n\n\nNoto Sans Batak already registered with pdfFont().\n\n\nNoto Sans Bhaiksuki already registered with pdfFont().\n\n\nNoto Sans Brahmi already registered with pdfFont().\n\n\nNoto Sans Buginese already registered with pdfFont().\n\n\nNoto Sans Buhid already registered with pdfFont().\n\n\nNoto Sans Carian already registered with pdfFont().\n\n\nNoto Sans CaucAlban already registered with pdfFont().\n\n\nNoto Sans Chakma already registered with pdfFont().\n\n\nNoto Sans Cham already registered with pdfFont().\n\n\nNoto Sans Coptic already registered with pdfFont().\n\n\nNoto Sans Cuneiform already registered with pdfFont().\n\n\nNoto Sans Cypriot already registered with pdfFont().\n\n\nNoto Sans Duployan already registered with pdfFont().\n\n\nNoto Sans EgyptHiero already registered with pdfFont().\n\n\nNoto Sans Elbasan already registered with pdfFont().\n\n\nNoto Sans Glagolitic already registered with pdfFont().\n\n\nNoto Sans Gothic already registered with pdfFont().\n\n\nNoto Sans HanifiRohg already registered with pdfFont().\n\n\nNoto Sans Hanunoo already registered with pdfFont().\n\n\nNoto Sans Hatran already registered with pdfFont().\n\n\nNoto Sans ImpAramaic already registered with pdfFont().\n\n\nNoto Sans InsPahlavi already registered with pdfFont().\n\n\nNoto Sans InsParthi already registered with pdfFont().\n\n\nNoto Sans Kaithi already registered with pdfFont().\n\n\nNoto Sans Kayah Li already registered with pdfFont().\n\n\nNoto Sans Kharoshthi already registered with pdfFont().\n\n\nNoto Sans Khojki already registered with pdfFont().\n\n\nNoto Sans Khudawadi already registered with pdfFont().\n\n\nNoto Sans Lepcha already registered with pdfFont().\n\n\nNoto Sans Limbu already registered with pdfFont().\n\n\nNoto Sans Linear A already registered with pdfFont().\n\n\nNoto Sans Linear B already registered with pdfFont().\n\n\nNoto Sans Lisu already registered with pdfFont().\n\n\nNoto Sans Lycian already registered with pdfFont().\n\n\nNoto Sans Lydian already registered with pdfFont().\n\n\nNoto Sans Mahajani already registered with pdfFont().\n\n\nNoto Sans Mandaic already registered with pdfFont().\n\n\nNoto Sans Manichaean already registered with pdfFont().\n\n\nNoto Sans Marchen already registered with pdfFont().\n\n\nNoto Sans MeeteiMayek already registered with pdfFont().\n\n\nNoto Sans Mende Kikakui already registered with pdfFont().\n\n\nNoto Sans Meroitic already registered with pdfFont().\n\n\nNoto Sans Miao already registered with pdfFont().\n\n\nNoto Sans Modi already registered with pdfFont().\n\n\nNoto Sans Mongolian already registered with pdfFont().\n\n\nNoto Sans Mro already registered with pdfFont().\n\n\nNoto Sans Multani already registered with pdfFont().\n\n\nNoto Sans Nabataean already registered with pdfFont().\n\n\nNoto Sans Newa already registered with pdfFont().\n\n\nNoto Sans NewTaiLue already registered with pdfFont().\n\n\nNoto Sans NKo already registered with pdfFont().\n\n\nNoto Sans Ol Chiki already registered with pdfFont().\n\n\nNo regular (non-bold, non-italic) version of Noto Sans Old Italic. Skipping setup for this font.\n\n\nNoto Sans Old Permic already registered with pdfFont().\n\n\nNoto Sans Old Turkic already registered with pdfFont().\n\n\nNoto Sans OldHung already registered with pdfFont().\n\n\nNoto Sans OldNorArab already registered with pdfFont().\n\n\nNoto Sans OldPersian already registered with pdfFont().\n\n\nNoto Sans OldSouArab already registered with pdfFont().\n\n\nNoto Sans Osage already registered with pdfFont().\n\n\nNoto Sans Osmanya already registered with pdfFont().\n\n\nNoto Sans Pahawh Hmong already registered with pdfFont().\n\n\nNoto Sans Palmyrene already registered with pdfFont().\n\n\nNoto Sans PauCinHau already registered with pdfFont().\n\n\nNoto Sans PhagsPa already registered with pdfFont().\n\n\nNoto Sans Phoenician already registered with pdfFont().\n\n\nNoto Sans PsaPahlavi already registered with pdfFont().\n\n\nNoto Sans Rejang already registered with pdfFont().\n\n\nNoto Sans Samaritan already registered with pdfFont().\n\n\nNoto Sans Saurashtra already registered with pdfFont().\n\n\nNoto Sans Sharada already registered with pdfFont().\n\n\nNoto Sans Siddham already registered with pdfFont().\n\n\nNoto Sans SoraSomp already registered with pdfFont().\n\n\nNoto Sans Sundanese already registered with pdfFont().\n\n\nNoto Sans Syloti Nagri already registered with pdfFont().\n\n\nNoto Sans Syriac already registered with pdfFont().\n\n\nNoto Sans Tagalog already registered with pdfFont().\n\n\nNoto Sans Tagbanwa already registered with pdfFont().\n\n\nNoto Sans Tai Le already registered with pdfFont().\n\n\nNoto Sans Tai Tham already registered with pdfFont().\n\n\nNoto Sans Tai Viet already registered with pdfFont().\n\n\nNoto Sans Takri already registered with pdfFont().\n\n\nNoto Sans Thaana already registered with pdfFont().\n\n\nNoto Sans Tifinagh already registered with pdfFont().\n\n\nNoto Sans Tirhuta already registered with pdfFont().\n\n\nNoto Sans Ugaritic already registered with pdfFont().\n\n\nNoto Sans Vai already registered with pdfFont().\n\n\nNoto Sans Wancho already registered with pdfFont().\n\n\nNoto Sans WarangCiti already registered with pdfFont().\n\n\nNoto Sans Yi already registered with pdfFont().\n\n\nNoto Serif Ahom already registered with pdfFont().\n\n\nNoto Serif Balinese already registered with pdfFont().\n\n\nNoto Serif Hmong Nyiakeng already registered with pdfFont().\n\n\nParty LET already registered with pdfFont().\n\n\nSTIX Two Text already registered with pdfFont().\n\n\nSystem Font already registered with pdfFont().\n\n\nTahoma already registered with pdfFont().\n\n\nTimes New Roman already registered with pdfFont().\n\n\nTrattatello already registered with pdfFont().\n\n\nTrebuchet MS already registered with pdfFont().\n\n\nVerdana already registered with pdfFont().\n\n\nWebdings already registered with pdfFont().\n\n\nWingdings already registered with pdfFont().\n\n\nWingdings 2 already registered with pdfFont().\n\n\nWingdings 3 already registered with pdfFont().\n\n\n.Keyboard already registered with postscriptFont().\n\n\n.New York already registered with postscriptFont().\n\n\n.SF Arabic already registered with postscriptFont().\n\n\n.SF Arabic Rounded already registered with postscriptFont().\n\n\n.SF Armenian already registered with postscriptFont().\n\n\n.SF Armenian Rounded already registered with postscriptFont().\n\n\n.SF Camera already registered with postscriptFont().\n\n\n.SF Compact already registered with postscriptFont().\n\n\n.SF Compact Rounded already registered with postscriptFont().\n\n\n.SF Georgian already registered with postscriptFont().\n\n\n.SF Georgian Rounded already registered with postscriptFont().\n\n\n.SF Hebrew already registered with postscriptFont().\n\n\n.SF Hebrew Rounded already registered with postscriptFont().\n\n\n.SF NS Mono already registered with postscriptFont().\n\n\n.SF NS Rounded already registered with postscriptFont().\n\n\nAcademy Engraved LET already registered with postscriptFont().\n\n\nAndale Mono already registered with postscriptFont().\n\n\nMore than one version of regular/bold/italic found for Apple Braille. Skipping setup for this font.\n\n\nAppleMyungjo already registered with postscriptFont().\n\n\nArial already registered with postscriptFont().\n\n\nArial Black already registered with postscriptFont().\n\n\nArial Narrow already registered with postscriptFont().\n\n\nArial Rounded MT Bold already registered with postscriptFont().\n\n\nArial Unicode MS already registered with postscriptFont().\n\n\nBodoni 72 Smallcaps already registered with postscriptFont().\n\n\nBodoni Ornaments already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of Brush Script MT. Skipping setup for this font.\n\n\nComic Sans MS already registered with postscriptFont().\n\n\nCourier New already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of DIN Alternate. Skipping setup for this font.\n\n\nNo regular (non-bold, non-italic) version of DIN Condensed. Skipping setup for this font.\n\n\nFont Awesome 6 Free Solid already registered with postscriptFont().\n\n\nFontAwesome already registered with postscriptFont().\n\n\nGeorgia already registered with postscriptFont().\n\n\nImpact already registered with postscriptFont().\n\n\nJuliaMono already registered with postscriptFont().\n\n\nJuliaMono Black already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono BlackItalic. Skipping setup for this font.\n\n\nNo regular (non-bold, non-italic) version of JuliaMono BoldItalic. Skipping setup for this font.\n\n\nJuliaMono ExtraBold already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono ExtraBoldItalic. Skipping setup for this font.\n\n\nNo regular (non-bold, non-italic) version of JuliaMono Italic. Skipping setup for this font.\n\n\nJuliaMono Latin already registered with postscriptFont().\n\n\nJuliaMono Light already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono LightItalic. Skipping setup for this font.\n\n\nJuliaMono Medium already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono MediumItalic. Skipping setup for this font.\n\n\nJuliaMono SemiBold already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of JuliaMono SemiBoldItalic. Skipping setup for this font.\n\n\nKhmer Sangam MN already registered with postscriptFont().\n\n\nLao Sangam MN already registered with postscriptFont().\n\n\nLuminari already registered with postscriptFont().\n\n\nMicrosoft Sans Serif already registered with postscriptFont().\n\n\nNoto Sans Adlam already registered with postscriptFont().\n\n\nNoto Sans Avestan already registered with postscriptFont().\n\n\nNoto Sans Bamum already registered with postscriptFont().\n\n\nNoto Sans Bassa Vah already registered with postscriptFont().\n\n\nNoto Sans Batak already registered with postscriptFont().\n\n\nNoto Sans Bhaiksuki already registered with postscriptFont().\n\n\nNoto Sans Brahmi already registered with postscriptFont().\n\n\nNoto Sans Buginese already registered with postscriptFont().\n\n\nNoto Sans Buhid already registered with postscriptFont().\n\n\nNoto Sans Carian already registered with postscriptFont().\n\n\nNoto Sans CaucAlban already registered with postscriptFont().\n\n\nNoto Sans Chakma already registered with postscriptFont().\n\n\nNoto Sans Cham already registered with postscriptFont().\n\n\nNoto Sans Coptic already registered with postscriptFont().\n\n\nNoto Sans Cuneiform already registered with postscriptFont().\n\n\nNoto Sans Cypriot already registered with postscriptFont().\n\n\nNoto Sans Duployan already registered with postscriptFont().\n\n\nNoto Sans EgyptHiero already registered with postscriptFont().\n\n\nNoto Sans Elbasan already registered with postscriptFont().\n\n\nNoto Sans Glagolitic already registered with postscriptFont().\n\n\nNoto Sans Gothic already registered with postscriptFont().\n\n\nNoto Sans HanifiRohg already registered with postscriptFont().\n\n\nNoto Sans Hanunoo already registered with postscriptFont().\n\n\nNoto Sans Hatran already registered with postscriptFont().\n\n\nNoto Sans ImpAramaic already registered with postscriptFont().\n\n\nNoto Sans InsPahlavi already registered with postscriptFont().\n\n\nNoto Sans InsParthi already registered with postscriptFont().\n\n\nNoto Sans Kaithi already registered with postscriptFont().\n\n\nNoto Sans Kayah Li already registered with postscriptFont().\n\n\nNoto Sans Kharoshthi already registered with postscriptFont().\n\n\nNoto Sans Khojki already registered with postscriptFont().\n\n\nNoto Sans Khudawadi already registered with postscriptFont().\n\n\nNoto Sans Lepcha already registered with postscriptFont().\n\n\nNoto Sans Limbu already registered with postscriptFont().\n\n\nNoto Sans Linear A already registered with postscriptFont().\n\n\nNoto Sans Linear B already registered with postscriptFont().\n\n\nNoto Sans Lisu already registered with postscriptFont().\n\n\nNoto Sans Lycian already registered with postscriptFont().\n\n\nNoto Sans Lydian already registered with postscriptFont().\n\n\nNoto Sans Mahajani already registered with postscriptFont().\n\n\nNoto Sans Mandaic already registered with postscriptFont().\n\n\nNoto Sans Manichaean already registered with postscriptFont().\n\n\nNoto Sans Marchen already registered with postscriptFont().\n\n\nNoto Sans MeeteiMayek already registered with postscriptFont().\n\n\nNoto Sans Mende Kikakui already registered with postscriptFont().\n\n\nNoto Sans Meroitic already registered with postscriptFont().\n\n\nNoto Sans Miao already registered with postscriptFont().\n\n\nNoto Sans Modi already registered with postscriptFont().\n\n\nNoto Sans Mongolian already registered with postscriptFont().\n\n\nNoto Sans Mro already registered with postscriptFont().\n\n\nNoto Sans Multani already registered with postscriptFont().\n\n\nNoto Sans Nabataean already registered with postscriptFont().\n\n\nNoto Sans Newa already registered with postscriptFont().\n\n\nNoto Sans NewTaiLue already registered with postscriptFont().\n\n\nNoto Sans NKo already registered with postscriptFont().\n\n\nNoto Sans Ol Chiki already registered with postscriptFont().\n\n\nNo regular (non-bold, non-italic) version of Noto Sans Old Italic. Skipping setup for this font.\n\n\nNoto Sans Old Permic already registered with postscriptFont().\n\n\nNoto Sans Old Turkic already registered with postscriptFont().\n\n\nNoto Sans OldHung already registered with postscriptFont().\n\n\nNoto Sans OldNorArab already registered with postscriptFont().\n\n\nNoto Sans OldPersian already registered with postscriptFont().\n\n\nNoto Sans OldSouArab already registered with postscriptFont().\n\n\nNoto Sans Osage already registered with postscriptFont().\n\n\nNoto Sans Osmanya already registered with postscriptFont().\n\n\nNoto Sans Pahawh Hmong already registered with postscriptFont().\n\n\nNoto Sans Palmyrene already registered with postscriptFont().\n\n\nNoto Sans PauCinHau already registered with postscriptFont().\n\n\nNoto Sans PhagsPa already registered with postscriptFont().\n\n\nNoto Sans Phoenician already registered with postscriptFont().\n\n\nNoto Sans PsaPahlavi already registered with postscriptFont().\n\n\nNoto Sans Rejang already registered with postscriptFont().\n\n\nNoto Sans Samaritan already registered with postscriptFont().\n\n\nNoto Sans Saurashtra already registered with postscriptFont().\n\n\nNoto Sans Sharada already registered with postscriptFont().\n\n\nNoto Sans Siddham already registered with postscriptFont().\n\n\nNoto Sans SoraSomp already registered with postscriptFont().\n\n\nNoto Sans Sundanese already registered with postscriptFont().\n\n\nNoto Sans Syloti Nagri already registered with postscriptFont().\n\n\nNoto Sans Syriac already registered with postscriptFont().\n\n\nNoto Sans Tagalog already registered with postscriptFont().\n\n\nNoto Sans Tagbanwa already registered with postscriptFont().\n\n\nNoto Sans Tai Le already registered with postscriptFont().\n\n\nNoto Sans Tai Tham already registered with postscriptFont().\n\n\nNoto Sans Tai Viet already registered with postscriptFont().\n\n\nNoto Sans Takri already registered with postscriptFont().\n\n\nNoto Sans Thaana already registered with postscriptFont().\n\n\nNoto Sans Tifinagh already registered with postscriptFont().\n\n\nNoto Sans Tirhuta already registered with postscriptFont().\n\n\nNoto Sans Ugaritic already registered with postscriptFont().\n\n\nNoto Sans Vai already registered with postscriptFont().\n\n\nNoto Sans Wancho already registered with postscriptFont().\n\n\nNoto Sans WarangCiti already registered with postscriptFont().\n\n\nNoto Sans Yi already registered with postscriptFont().\n\n\nNoto Serif Ahom already registered with postscriptFont().\n\n\nNoto Serif Balinese already registered with postscriptFont().\n\n\nNoto Serif Hmong Nyiakeng already registered with postscriptFont().\n\n\nParty LET already registered with postscriptFont().\n\n\nSTIX Two Text already registered with postscriptFont().\n\n\nSystem Font already registered with postscriptFont().\n\n\nTahoma already registered with postscriptFont().\n\n\nTimes New Roman already registered with postscriptFont().\n\n\nTrattatello already registered with postscriptFont().\n\n\nTrebuchet MS already registered with postscriptFont().\n\n\nVerdana already registered with postscriptFont().\n\n\nWebdings already registered with postscriptFont().\n\n\nWingdings already registered with postscriptFont().\n\n\nWingdings 2 already registered with postscriptFont().\n\n\nWingdings 3 already registered with postscriptFont().\n\n\n\n\nCode\nwaffle(c(50, 30, 15, 5), rows = 5, title = \"Your basic waffle chart\")",
     "crumbs": [
       "Data Viz",
-      "Wild fish catch by gear type, World"
+      "Infographic-style charts using the R waffle package"
     ]
   },
   {
-    "objectID": "vis/fishing-with-net-type.html#load-data-dataframe",
-    "href": "vis/fishing-with-net-type.html#load-data-dataframe",
-    "title": "Wild fish catch by gear type, World",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/fish-catch-gear-type.csv\")|&gt;DataFrame|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\"pelagic trawl\"=&gt;:pelagic_trawl)\n\n\n13730×11 DataFrame13705 rows omitted\n\n\n\nRow\nEntity\nCode\nYear\nunknown_gear\nother_gear\nlongline\ngillnet\nsmall_scale\npurse_seine\npelagic_trawl\nbottom_trawl\n\n\n\nString\nAny\nInt64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nAlbania\nALB\n1995\n1.21382\n135.643\n0.0\n0.0\n39.7734\n54.0707\n104.631\n1120.05\n\n\n2\nAlbania\nALB\n1996\n16.5429\n209.023\n0.0\n0.0\n50.4084\n84.432\n163.963\n1804.86\n\n\n3\nAlbania\nALB\n1997\n14.2151\n113.616\n0.0\n0.0\n13.3192\n38.8843\n75.6516\n810.648\n\n\n4\nAlbania\nALB\n1998\n14.2151\n219.064\n0.0\n0.0\n10.9106\n88.8256\n173.728\n1897.43\n\n\n5\nAlbania\nALB\n1999\n14.2151\n227.661\n0.0\n0.0\n11.3388\n92.3117\n180.907\n1972.6\n\n\n6\nAlbania\nALB\n2011\n634.994\n0.0\n0.0\n0.0\n21.7128\n143.804\n0.0\n3144.62\n\n\n7\nAlbania\nALB\n2012\n1499.1\n0.0\n0.0\n0.0\n45.1773\n339.495\n0.0\n7423.87\n\n\n8\nAlbania\nALB\n2013\n1561.1\n0.0\n0.0\n0.0\n47.0043\n353.535\n0.0\n7730.9\n\n\n9\nAlbania\nALB\n2014\n1869.72\n0.0\n0.0\n0.0\n71.146\n282.188\n0.0\n6170.72\n\n\n10\nAlbania\nALB\n2015\n1149.99\n0.0\n0.0\n0.0\n33.2955\n273.578\n0.0\n5982.43\n\n\n11\nAlbania\nALB\n2016\n1447.69\n0.0\n0.0\n0.0\n51.6242\n251.592\n0.0\n5501.66\n\n\n12\nAlbania\nALB\n2017\n1566.67\n0.0\n0.0\n0.0\n58.2399\n249.588\n0.0\n5457.85\n\n\n13\nAlbania\nALB\n2018\n899.878\n0.0\n0.0\n0.0\n17.0815\n299.842\n0.0\n6556.76\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n13719\nYemen\nYEM\n1999\n0.0\n10150.0\n0.0\n0.0\n1.73005e5\n0.0\n0.0\n89861.3\n\n\n13720\nYemen\nYEM\n2000\n0.0\n11239.5\n0.0\n0.0\n1.47774e5\n0.0\n0.0\n89681.5\n\n\n13721\nYemen\nYEM\n2001\n0.0\n10217.8\n0.0\n0.0\n1.85588e5\n0.0\n0.0\n1.02895e5\n\n\n13722\nYemen\nYEM\n2002\n0.0\n9503.93\n0.0\n0.0\n2.49449e5\n0.0\n0.0\n1.14498e5\n\n\n13723\nYemen\nYEM\n2003\n0.0\n26166.0\n0.0\n0.0\n3.29698e5\n0.0\n0.0\n1.03919e5\n\n\n13724\nYemen\nYEM\n2004\n0.0\n32574.7\n0.0\n0.0\n372192.0\n0.0\n0.0\n1.0894e5\n\n\n13725\nYemen\nYEM\n2005\n0.0\n30072.7\n0.0\n0.0\n351902.0\n0.0\n0.0\n95306.5\n\n\n13726\nYemen\nYEM\n2006\n0.0\n30707.2\n0.0\n0.0\n3.45725e5\n0.0\n0.0\n86286.5\n\n\n13727\nYemen\nYEM\n2007\n0.0\n27540.5\n0.0\n0.0\n2.61181e5\n0.0\n0.0\n74653.9\n\n\n13728\nYemen\nYEM\n2008\n0.0\n20552.1\n0.0\n0.0\n1.80339e5\n0.0\n0.0\n43331.4\n\n\n13729\nYemen\nYEM\n2009\n0.0\n24330.6\n0.0\n0.0\n2.29675e5\n0.0\n0.0\n57511.8\n\n\n13730\nYemen\nYEM\n2010\n0.0\n28806.0\n0.0\n0.0\n2.64376e5\n0.0\n0.0\n93367.3",
+    "objectID": "vis/choropleth-maps-in-R.html",
+    "href": "vis/choropleth-maps-in-R.html",
+    "title": "Choropleth maps in R",
+    "section": "",
+    "text": "ref\n\n\n\n\nref :Choropleth maps in R\n\n\n\n\n\nCode\n # install.packages(\"sf\")\nlibrary(sf)\n\n\nWarning: package 'sf' was built under R version 4.2.3\n\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE\n\n\nCode\n# install.packages(\"dplyr\")\nlibrary(dplyr)\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n# install.packages(\"giscoR\")\nlibrary(giscoR)\n\nyear_ref &lt;- 2013\n\nnuts2_IT &lt;- gisco_get_nuts(\n  year = year_ref,\n  resolution = 20, \n  nuts_level = 2,\n  country = \"Italy\") %&gt;%\n  select(NUTS_ID, NAME_LATN)\n\n# Transform the shape\nnuts2_IT_32632 &lt;- st_transform(nuts2_IT, 32632)\n\n# Filter to select data from 2013\ndisp_income &lt;- giscoR::tgs00026 %&gt;%\n  filter(time == year_ref) %&gt;%\n  select(-time)\n\nnuts2_IT_32632_data &lt;- nuts2_IT_32632 %&gt;%\n  left_join(disp_income, by = c(\"NUTS_ID\" = \"geo\"))\n\nplot(nuts2_IT_32632_data[, \"values\"],\n     breaks = \"jenks\",\n     main = \"Choropleth map\")",
     "crumbs": [
       "Data Viz",
-      "Wild fish catch by gear type, World"
+      "Choropleth maps in R"
     ]
   },
   {
-    "objectID": "vis/fishing-with-net-type.html#data-processing",
-    "href": "vis/fishing-with-net-type.html#data-processing",
-    "title": "Wild fish catch by gear type, World",
-    "section": "3. data processing",
-    "text": "3. data processing\n\n\nCode\ndf=@chain df begin\n   @group_by(Year)\n   @summarize(unknown_gear=sum(unknown_gear),\n              other_gear=sum(other_gear),\n              longline=sum(other_gear),\n              gillnet=sum(gillnet),\n              small_scale=sum(small_scale),\n              purse_seine=sum(purse_seine),\n              pelagic_trawl=sum(pelagic_trawl),\n              bottom_trawl=sum(bottom_trawl)\n    )\n   @ungroup\n   @pivot_longer(_, unknown_gear:bottom_trawl,names_to = gear_type, values_to =weight)\nend\n\n\n552×3 DataFrame527 rows omitted\n\n\n\nRow\nYear\ngear_type\nweight\n\n\n\nInt64\nString\nFloat64\n\n\n\n\n1\n1995\nunknown_gear\n1.06338e7\n\n\n2\n1996\nunknown_gear\n1.0397e7\n\n\n3\n1997\nunknown_gear\n1.1286e7\n\n\n4\n1998\nunknown_gear\n1.08899e7\n\n\n5\n1999\nunknown_gear\n1.15815e7\n\n\n6\n2011\nunknown_gear\n1.05883e7\n\n\n7\n2012\nunknown_gear\n1.07134e7\n\n\n8\n2013\nunknown_gear\n1.0431e7\n\n\n9\n2014\nunknown_gear\n1.19992e7\n\n\n10\n2015\nunknown_gear\n1.54834e7\n\n\n11\n2016\nunknown_gear\n1.20867e7\n\n\n12\n2017\nunknown_gear\n1.6716e7\n\n\n13\n2018\nunknown_gear\n1.57526e7\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n541\n1994\nbottom_trawl\n5.43778e7\n\n\n542\n2000\nbottom_trawl\n5.18786e7\n\n\n543\n2001\nbottom_trawl\n5.23496e7\n\n\n544\n2002\nbottom_trawl\n5.20457e7\n\n\n545\n2003\nbottom_trawl\n5.00434e7\n\n\n546\n2004\nbottom_trawl\n5.05469e7\n\n\n547\n2005\nbottom_trawl\n4.82271e7\n\n\n548\n2006\nbottom_trawl\n4.84797e7\n\n\n549\n2007\nbottom_trawl\n4.7881e7\n\n\n550\n2008\nbottom_trawl\n4.76333e7\n\n\n551\n2009\nbottom_trawl\n4.80774e7\n\n\n552\n2010\nbottom_trawl\n4.89898e7",
+    "objectID": "vis/nba-short-half-court.html",
+    "href": "vis/nba-short-half-court.html",
+    "title": "NBA shot chart",
+    "section": "",
+    "text": "Code\nusing Images\nimport CairoMakie:Axis\ninclude(\"utils.jl\")\n\n\n[ Info: loading success\n\n\n\n\nCode\nimg = load(\"./imgs/halfcourt.png\")\nxs = range(-250.0, 250.0, length=size(img,1))\nys = range(-50.0,420.0, length=size(img,2))\n\n\n-50.0:0.37630104083266613:420.0\n\n\n\n\n\nCode\ndf=@pipe CSV.File(\"./data/nba_shot.csv\")|&gt;DataFrame|&gt;dropmissing|&gt;Float64.(_)\ndf.shot=coerce(df.shot, Multiclass)\nfirst(df,10)\n\n\n10×3 DataFrame\n\n\n\nRow\nx\ny\nshot\n\n\n\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n95.0\n242.0\n1.0\n\n\n2\n129.0\n43.0\n0.0\n\n\n3\n20.0\n10.0\n0.0\n\n\n4\n-127.0\n239.0\n0.0\n\n\n5\n-13.0\n14.0\n1.0\n\n\n6\n30.0\n252.0\n1.0\n\n\n7\n168.0\n208.0\n0.0\n\n\n8\n130.0\n17.0\n1.0\n\n\n9\n9.0\n21.0\n0.0\n\n\n10\n-2.0\n264.0\n0.0\n\n\n\n\n\n\n\n\nCode\nusing GLMakie\nfig=Figure()\nax=Axis(fig[1,1])\nGLMakie.image!(ax,rotl90(img))\n\n\nplt = AlgebraOfGraphics.data(df) * mapping(:x, :y,color=:shot)\ndraw!(fig[1,1],plt * visual(Scatter))\nfig\n\n\n\n\n\n\n\n\n\n\n\nCode\nset_aog_theme!()\n\naxis = (width = 150, height = 150)\nshot_frequency = AlgebraOfGraphics.data(df) * frequency() * mapping(:shot)\ndraw(shot_frequency; axis)\n\n\n\n\n\n\n\n\n\n\n\nCode\nlet \n  axis = (type = Axis3, width =600, height = 600)\n   layer = AlgebraOfGraphics.density() * visual(Wireframe, linewidth=0.05)\n   plt = AlgebraOfGraphics.data(df)* layer* mapping(:x,:y) \n   draw(plt; axis)\n    \nend",
     "crumbs": [
       "Data Viz",
-      "Wild fish catch by gear type, World"
-    ]
-  },
-  {
-    "objectID": "vis/fishing-with-net-type.html#plot",
-    "href": "vis/fishing-with-net-type.html#plot",
-    "title": "Wild fish catch by gear type, World",
-    "section": "4. plot",
-    "text": "4. plot\n\n\nCode\n@rput df\nfunction plot_arestack_r()\n R\"\"\"\n    library(ggplot2)\n    library(ggthemes)\n    library(viridis)\n    ggplot(df, aes(x=Year, y=weight, fill=gear_type)) + \n    geom_area(alpha=0.6 , size=.5, colour=\"white\")+scale_fill_viridis(discrete = T)+theme_wsj()\n \"\"\"\nend\nplot_arestack_r()\n\n\n┌ Warning: RCall.jl: Warning: package ‘ggthemes’ was built under R version 4.2.3\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Loading required package: viridisLite\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\n│ ℹ Please use `linewidth` instead.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\n\n\n(a) different gear fihsing amount\n\n\n\n\n\n\n\nRObject{VecSxp}\n\n\n(b)\n\n\n\n\n\nFigure 1",
-    "crumbs": [
-      "Data Viz",
-      "Wild fish catch by gear type, World"
+      "NBA shot chart"
     ]
   },
   {
@@ -274,91 +229,80 @@
     ]
   },
   {
-    "objectID": "vis/annual-industrial-robots-installed.html",
-    "href": "vis/annual-industrial-robots-installed.html",
-    "title": "Annual industrial robots installed",
+    "objectID": "vis/annual-death-rate-in-diff-age.html",
+    "href": "vis/annual-death-rate-in-diff-age.html",
+    "title": "Annual death rates in people of different ages",
     "section": "",
-    "text": "info\n\n\n\n\nref:Annual industrial robots installed\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "ref\n\n\n\n\nref :Annual death rates in people of different ages\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "Annual industrial robots installed"
+      "Annual death rates in people of different ages"
     ]
   },
   {
-    "objectID": "vis/annual-industrial-robots-installed.html#load-data-dataframe",
-    "href": "vis/annual-industrial-robots-installed.html#load-data-dataframe",
-    "title": "Annual industrial robots installed",
+    "objectID": "vis/annual-death-rate-in-diff-age.html#load-data-dataframe",
+    "href": "vis/annual-death-rate-in-diff-age.html#load-data-dataframe",
+    "title": "Annual death rates in people of different ages",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/annual-industrial-robots-installed.csv\")|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\"Total number of industrial robots installed by contry, 2021\"=&gt;:total)|&gt;sort(_,:total)\n\nfirst(df,5)\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\ntotal\n\n\n\nString15\nString3\nInt64\nInt64\n\n\n\n\n1\nPoland\nPOL\n2021\n3300\n\n\n2\nSpain\nESP\n2021\n3400\n\n\n3\nSingapore\nSGP\n2021\n3500\n\n\n4\nThailand\nTHA\n2021\n3900\n\n\n5\nCanada\nCAN\n2021\n4300",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/annual-death-rates-in-different-age-groups.csv\")|&gt;DataFrame\ncats=names(df)\nrename!(df,  \"Central death rate - Type: period - Sex: both - Age: 0\"=&gt;:age0,\n              \"Central death rate - Type: period - Sex: both - Age: 10\"=&gt;:age10,\n              \"Central death rate - Type: period - Sex: both - Age: 25\"=&gt;:age25,\n              \"Central death rate - Type: period - Sex: both - Age: 45\"=&gt;:age45,\n              \"Central death rate - Type: period - Sex: both - Age: 65\"=&gt;:age65,\n              \"Central death rate - Type: period - Sex: both - Age: 80\"=&gt;:age80    \n)\nfirst(df,10)\n\n\n10×9 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nage0\nage10\nage25\nage45\nage65\nage80\n\n\n\nString\nString15?\nInt64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nAfghanistan\nAFG\n1950\n353.469\n7.10599\n14.9553\n24.7113\n72.9251\n219.856\n\n\n2\nAfghanistan\nAFG\n1951\n350.066\n7.04221\n14.8208\n24.475\n72.3925\n218.43\n\n\n3\nAfghanistan\nAFG\n1952\n342.826\n6.91651\n14.5584\n24.0431\n71.3978\n215.819\n\n\n4\nAfghanistan\nAFG\n1953\n335.489\n6.79443\n14.3049\n23.6353\n70.4698\n213.431\n\n\n5\nAfghanistan\nAFG\n1954\n328.739\n6.88345\n14.2338\n23.4879\n70.0566\n211.938\n\n\n6\nAfghanistan\nAFG\n1955\n320.919\n6.55437\n13.8029\n22.8619\n68.6513\n208.779\n\n\n7\nAfghanistan\nAFG\n1956\n313.825\n6.44994\n13.5662\n22.4995\n67.7879\n206.572\n\n\n8\nAfghanistan\nAFG\n1957\n306.734\n6.31585\n13.2953\n22.0842\n66.7916\n204.067\n\n\n9\nAfghanistan\nAFG\n1958\n299.564\n6.1871\n13.0174\n21.6528\n65.7387\n201.421\n\n\n10\nAfghanistan\nAFG\n1959\n292.941\n6.06023\n12.7585\n21.249\n64.7374\n198.98\n\n\n\n\n\n\n\n\nCode\nmake_title(\"Part 2: Plot\")\n\n\n    \n       Part 2: Plot\n    \n\n\n\n\nCode\nfrance=@chain df begin \n   @filter(Entity==\"France\")\n   @select(3:9)\n   @pivot_longer(_, 2:7, names_to = age_group, values_to =rate)\n   #@group_by(age_group)\nend\n\ntwo_country=@chain df begin \n   @select(1,3:9)\n   @pivot_longer(_, 3:8, names_to = age_group, values_to =rate)\n   @filter(Entity ∈ [\"France\",\"South Africa\"])\n   @group_by(Entity)\n   @arrange(Year)\n   @ungroup\nend\n\n\n1668×4 DataFrame1643 rows omitted\n\n\n\nRow\nEntity\nYear\nage_group\nrate\n\n\n\nString\nInt64\nString\nFloat64\n\n\n\n\n1\nFrance\n1816\nage0\n205.34\n\n\n2\nFrance\n1816\nage10\n6.15\n\n\n3\nFrance\n1816\nage25\n10.25\n\n\n4\nFrance\n1816\nage45\n14.52\n\n\n5\nFrance\n1816\nage65\n46.12\n\n\n6\nFrance\n1816\nage80\n163.13\n\n\n7\nFrance\n1817\nage0\n200.27\n\n\n8\nFrance\n1817\nage10\n6.42\n\n\n9\nFrance\n1817\nage25\n9.64\n\n\n10\nFrance\n1817\nage45\n14.81\n\n\n11\nFrance\n1817\nage65\n48.33\n\n\n12\nFrance\n1817\nage80\n159.54\n\n\n13\nFrance\n1818\nage0\n201.52\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n1657\nSouth Africa\n2020\nage0\n21.4911\n\n\n1658\nSouth Africa\n2020\nage10\n0.40998\n\n\n1659\nSouth Africa\n2020\nage25\n3.14994\n\n\n1660\nSouth Africa\n2020\nage45\n9.43341\n\n\n1661\nSouth Africa\n2020\nage65\n35.0478\n\n\n1662\nSouth Africa\n2020\nage80\n86.7938\n\n\n1663\nSouth Africa\n2021\nage0\n27.3008\n\n\n1664\nSouth Africa\n2021\nage10\n0.46976\n\n\n1665\nSouth Africa\n2021\nage25\n3.63036\n\n\n1666\nSouth Africa\n2021\nage45\n10.8592\n\n\n1667\nSouth Africa\n2021\nage65\n41.6478\n\n\n1668\nSouth Africa\n2021\nage80\n109.58\n\n\n\n\n\n\n\n\n\nCode\n  data_layer=data(two_country)\n  map_layer=mapping(:Year,:rate,layout=:age_group,color=:Entity)\n  visual_layer = visual(Lines,linewidth=2)\n  \n  plt=data_layer*map_layer*visual_layer\n  draw(plt,facet = (;linkyaxes = :none),legend=(position=:bottom, titleposition=:left, framevisible=true, padding=2))\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
     "crumbs": [
       "Data Viz",
-      "Annual industrial robots installed"
+      "Annual death rates in people of different ages"
     ]
   },
   {
-    "objectID": "vis/annual-industrial-robots-installed.html#plot",
-    "href": "vis/annual-industrial-robots-installed.html#plot",
-    "title": "Annual industrial robots installed",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\n   row,col=size(df)\n   fig=Figure()\n   ax=Axis(fig[1,1])\n   ax.title=\"Annual industrial robots installed\"\n   ax.subtitle=\"2021\"\n   ax.yticks=(1:row,df.Entity)\n   ax.xgridvisible=false\n   ax.ygridvisible=false\n   xs=df.Entity\n   ys=round.(Int,df.total)\n   barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,#flip_labels_at=20,\n     #color_over_background=:dodgerblue3,\n     #color_over_bar=:white,\n   )\n   \n   fig",
-    "crumbs": [
-      "Data Viz",
-      "Annual industrial robots installed"
-    ]
-  },
-  {
-    "objectID": "vis/usa-household-use-technology.html",
-    "href": "vis/usa-household-use-technology.html",
-    "title": "Share of United States households using specific technologies",
+    "objectID": "vis/timeseries-aog.html",
+    "href": "vis/timeseries-aog.html",
+    "title": "Time Series in Aog",
     "section": "",
-    "text": "info\n\n\n\n\nref:Share of United States households using specific technologies\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "Code\nusing StateSpaceModels,DataFrames,CSV \nusing AlgebraOfGraphics,CairoMakie\nusing Pipe,MakieThemes\nMakie.set_theme!(ggthemr(:dust))\n\n\n\n\nCode\n   axis=(title=\"Nile River Annual Flow\",xlabel=\"year\",ylabel=\"waer height\",xticklabelrotation=pi/8)\n   data_layter=@pipe CSV.File(StateSpaceModels.NILE) |&gt;DataFrame|&gt;data\n   map_layer=mapping(:year, :flow)\n   visual_layer=visual(Lines,color=:lightblue,linewidth=2)\n   draw(data_layter*map_layer*visual_layer,axis=axis)",
     "crumbs": [
       "Data Viz",
-      "Share of United States households using specific technologies"
+      "Time Series  in Aog"
     ]
   },
   {
-    "objectID": "vis/usa-household-use-technology.html#load-data-dataframe",
-    "href": "vis/usa-household-use-technology.html#load-data-dataframe",
-    "title": "Share of United States households using specific technologies",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/technology-adoption-by-households-in-the-united-states.csv\")|&gt;DataFrame|&gt;rename(_,\"Technology Diffusion (Comin and Hobijn (2004) and others)\"=&gt;:Tech_Diffusion)|&gt;select(_,Not(:Code))\n\n# gdf=groupby(df,:Entity)\n# cats= @pipe keys(gdf) .|&gt; values(_)[1]\ngdf=@chain df begin \n   @group_by(Entity)\n   @arrange(Year)\n   @ungroup\n   @group_by(Entity)\nend\ncats= @pipe keys(gdf) .|&gt; values(_)[1]\ngroup_size=keys(gdf)|&gt;length;\n\n\n\n\nCode\naxs=[]\nfig=Figure(resolution=(1200,2000))\nfunction plot_diffusion(df,ax,title,c)\n    ax.title=title\n    ax.xticks=([1900,1930,1960,1980,2019],[\"1900\",\"30\",\"60\",\"80\",\"2019\"])\n    ax.yticks=([0,50,100],[\"0%\",\"50%\",\"100%\"])\n    ax.yticklabelsvisible= c==1 ? true :  false\n    xs,ys=df.Year,df.Tech_Diffusion\n    lines!(ax,xs,ys,color=(:red,0.8))\nend\n\nfor idx in 1:45\n    r,c=fldmod1(idx,4)\n    ax=Axis(fig[r,c])\n    push!(axs,ax)\n    df=gdf[idx]\n    title=cats[idx]\n    plot_diffusion(df,ax,title,c)\nend\nlinkyaxes!(axs...)\nlinkxaxes!(axs...)\nfig",
-    "crumbs": [
-      "Data Viz",
-      "Share of United States households using specific technologies"
-    ]
-  },
-  {
-    "objectID": "vis/irish-whiskey-sales.html",
-    "href": "vis/irish-whiskey-sales.html",
-    "title": "Irish Whiskey Sales",
+    "objectID": "vis/test-tailwind.html",
+    "href": "vis/test-tailwind.html",
+    "title": "Test Tailwind css",
     "section": "",
-    "text": "info\n\n\n\n\nref:Saint Patricks Irish Whiskey Sales\nsource :/Users/lunarcheung/Downloads/The Twisted Nature of Irish Whiskey Sales.png\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "Code\ninclude(\"utils.jl\")\n\n\n[ Info: loading success\n\n\n\n\nCode\n  @htl(\"\"\"\n    &lt;button class=\"btn btn-primary rounded-1\" type=\"button\" data-bs-toggle=\"offcanvas\" data-bs-target=\"#offcanvasRight\" aria-controls=\"offcanvasRight\"&gt;Toggle right offcanvas&lt;/button&gt;\n\n&lt;div class=\"offcanvas offcanvas-end\" tabindex=\"-1\" id=\"offcanvasRight\" aria-labelledby=\"offcanvasRightLabel\"&gt;\n  &lt;div class=\"offcanvas-header\"&gt;\n    &lt;h5 id=\"offcanvasRightLabel\"&gt;Offcanvas right&lt;/h5&gt;\n    &lt;button type=\"button\" class=\"btn-close text-reset\" data-bs-dismiss=\"offcanvas\" aria-label=\"Close\"&gt;&lt;/button&gt;\n  &lt;/div&gt;\n  &lt;div class=\"offcanvas-body\"&gt;\n    ...\n  &lt;/div&gt;\n&lt;/div&gt;\n  \"\"\")\n\n\n    Toggle right offcanvas\n\n\n  \n    Offcanvas right\n    \n  \n  \n    ...",
     "crumbs": [
       "Data Viz",
-      "Irish Whiskey Sales"
+      "Test Tailwind css"
     ]
   },
   {
-    "objectID": "vis/irish-whiskey-sales.html#load-data-dataframe",
-    "href": "vis/irish-whiskey-sales.html#load-data-dataframe",
-    "title": "Irish Whiskey Sales",
-    "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/irish.csv\")|&gt;DataFrame|&gt;dropmissing\n   first(df,5)\n\n\n5×5 DataFrame\n\n\n\nRow\ncategory\nquality\ncountry\nyear\ncases\n\n\n\nString15\nString15\nString\nInt64\nInt64\n\n\n\n\n1\nIrish Whiskey\nStandard\nUnited States\n1990\n243000\n\n\n2\nIrish Whiskey\nStandard\nUnited States\n1991\n214000\n\n\n3\nIrish Whiskey\nStandard\nUnited States\n1992\n219500\n\n\n4\nIrish Whiskey\nStandard\nUnited States\n1993\n225000\n\n\n5\nIrish Whiskey\nStandard\nUnited States\n1994\n239500",
+    "objectID": "vis/use-ggplot-map.html",
+    "href": "vis/use-ggplot-map.html",
+    "title": "use ggplot2 map",
+    "section": "",
+    "text": "Code\nusing RCall \n\nR\"\"\"\nlibrary(ggplot2)\nlibrary(maps)\n\n# Import the data with coordinates\nworld &lt;- map_data(\"world\")\n\n# Plot the map. group = group connects the points in the correct order\nggplot(data = world, aes(x = long, y = lat, group = group)) + \n  geom_polygon() \n\n# Equivalent to:\nggplot(world, aes(map_id = region)) +\n  geom_map(data = world, map = world,\n    aes(x = long, y = lat, map_id = region))\n\"\"\"\n\n\n┌ Warning: RCall.jl: Warning: package ‘maps’ was built under R version 4.2.3\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Warning in geom_map(data = world, map = world, aes(x = long, y = lat, map_id = region)) :\n│   Ignoring unknown aesthetics: x and y\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\nRObject{VecSxp}",
     "crumbs": [
       "Data Viz",
-      "Irish Whiskey Sales"
+      "use ggplot2  map"
     ]
   },
   {
-    "objectID": "vis/irish-whiskey-sales.html#data-preprocessing",
-    "href": "vis/irish-whiskey-sales.html#data-preprocessing",
-    "title": "Irish Whiskey Sales",
-    "section": "3. data preprocessing",
-    "text": "3. data preprocessing\n\n\nCode\n df1=@chain df begin\n    @select(country,year, cases)\n    #@filter(country in [\"Ireland\",\"Germany\",\"Russia\",\"France\"])\n    @group_by(country,year)\n    @summarize(country,year,sales=sum(cases)/1000)\n    @ungroup\n    #@mutate(cases=cases/1000)\n    # @filter(country in [\"Ireland\",\"Germany\",\"Russia\"])\n    # @group_by(country)\n    # #@arrange(year)\n    # @mutate(cases =cases.-cases[1])\n    # @ungroup\n    unique!(_)\n    @group_by(country)\n    @arrange(year)\n    @mutate(sales =sales.-sales[1])\n    @ungroup\n\n end\n all_country_data=@chain df1 begin @filter(country ∉ [\"Ireland\",\"Germany\",\"Russia\",\"France\"])\n end\n Ireland_data=@chain df1 begin @filter(country == \"Ireland\")\n end\n four_country_data=@chain df1 begin @filter(country ∈ [\"Ireland\",\"Germany\",\"Russia\",\"France\",\"Spain\"])\n end\n\n\n134×3 DataFrame109 rows omitted\n\n\n\nRow\ncountry\nyear\nsales\n\n\n\nString\nInt64\nFloat64\n\n\n\n\n1\nIreland\n1990\n0.0\n\n\n2\nIreland\n1991\n9.5\n\n\n3\nIreland\n1992\n-26.5\n\n\n4\nIreland\n1993\n-13.0\n\n\n5\nIreland\n1994\n-12.5\n\n\n6\nIreland\n1995\n-22.5\n\n\n7\nIreland\n1996\n-2.4\n\n\n8\nIreland\n1997\n7.8\n\n\n9\nIreland\n1998\n9.25\n\n\n10\nIreland\n1999\n49.15\n\n\n11\nIreland\n2000\n52.1\n\n\n12\nIreland\n2001\n53.35\n\n\n13\nIreland\n2002\n32.8\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n123\nRussia\n2005\n39.75\n\n\n124\nRussia\n2006\n63.25\n\n\n125\nRussia\n2007\n102.75\n\n\n126\nRussia\n2008\n146.75\n\n\n127\nRussia\n2009\n132.0\n\n\n128\nRussia\n2010\n182.0\n\n\n129\nRussia\n2011\n307.25\n\n\n130\nRussia\n2012\n365.25\n\n\n131\nRussia\n2013\n387.25\n\n\n132\nRussia\n2014\n445.75\n\n\n133\nRussia\n2015\n290.5\n\n\n134\nRussia\n2016\n293.5\n\n\n\n\n\n\n\n\nCode\nran=-100:50:350\naxis = (width = 500, height =500,xticks=(ran,[\"$(i)k\" for i in ran]),       xticklabelrotation = pi/8,\ntitlealign = :center,titlesize=24,\ntitle=\"The Twisted Nature of Irish Whiskey Sales\",\n subtitle = rich(\n    \"Within Europe sales have increased 225% since 1990. While\" , rich(\"Ireland's\",color =:blue), \"sales have decreased\",rich(\"Russia, France \\n and Germany\", color =:green),\"sales to   have than made up the difference.\")\n\n)\n\ndata_layer1=data(four_country_data)\ndata_layer2=data(Ireland_data)\n#data_layer3=data(all_country_data)\nmapping_layer1=mapping(:sales,:year,color=:country)\nmapping_layer2=mapping(:sales,:year)\nvisual_layer1 = visual(Lines,linewidth=3)\nvisual_layer2 = visual(Lines, linewidth=8,color=:blue)\n#visual_layer3 = visual(Lines, linewidth=1,color=(:gray,0.3))\nfour_lines=data_layer1* mapping_layer1 * visual_layer1\nireland_line=data_layer2* mapping_layer2 * visual_layer2\n#all_lines=data_layer3* mapping_layer2 * visual_layer3\ndraw(four_lines+ ireland_line ,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "objectID": "math/2-function.html",
+    "href": "math/2-function.html",
+    "title": "2-Two Variables Function corss-section",
+    "section": "",
+    "text": "二元函数的分解理解\n\n\n\n二元函数可以从两个变量的方向分解开来研究\n固定一个变量, 改变另一个变量,得到一组一元函数\n在下列函数图里:\n\n第一列固定 y值(取一组离散值),改变 x值(连续变量)\n第二列x,y 都是连续值,二元函数自身\n第三列固定 x值(取一组离散值),改变 y值(连续变量)\n\n这里的方法和概率概念的边缘概率(marginal probability)一样, 意思是给定一个条件(固定一个值), 改变另一个变量的取值. 二元分布的概率密度函数就是二元函数,只不过曲线下积分等于 1\nCode\nusing GLMakie\nxs = ys = -3:0.1:3\nxs2 = ys2 = -2:1:2\nlen = length(xs)\nf1(x, y) = x^2 - y^2\nf2(x, y) = ℯ^(−(x^2) − (y^2))\nf3(x, y) = y^2\nf4(x, y) = 2 + 2x - y\nf5(x, y) = x + 2y + 3\nf6(x, y) = x^2 + y^2\nf7(x, y) = -x^2 - y^2\nf8(x, y) = x^2 \n\nfunc_arr = [f1,f2,f3,f4,f5,f6,f7,f8]\nlatexstr_arr=[L\"f(x, y) = x^2 - y^2\",L\"f(x,y)=ℯ^{−x^2 −y^2}\",L\"f(x,y)=y^2\",\nL\"f(x,y)=2 + 2x - y\",L\"f(x,y)=x + 2y + 3\",L\"f(x,y)=x^2 + y^2\",L\"f(x,y)=-(x^2+y^2)\",L\"f(x,y)=x^2\"]\n\n\"\"\"\n make_z(index::Int)\n 根据函数索引返回 julia 函数表达式和\n 函数 latex string\n\"\"\"\nfunction make_z(index::Int)\n    return ( (x,y)-&gt;func_arr[index](x,y),latexstr_arr[index])\nend\n\n\nmake_z\nCode\nfunction plot_func(func_z,latexstr)\n    f = Figure(resolution=(1800, 1000))\n    ax1 = Axis3(f[1, 1], title=L\"fixed y\", azimuth=0.3pi)\n    ax2 = Axis3(f[1, 2], title=L\"surface\", azimuth=0.3pi)\n    ax3 = Axis3(f[1, 3], title=L\"fixed x\", azimuth=0.3pi)\n    ax4 = Axis(f[2, 1])\n    ax5 = Axis(f[2, 3])\n    ax6 = Axis3(f[2, 2], azimuth=0.3pi)\n    Label(f[0, :], latexstr, fontsize=40)\n    zs = [func_z(x, y) for x in xs, y in ys]\n    surface!(ax2, xs, ys, zs, color=:lightblue)\n    for y in ys2\n        yspan = fill(y, len)\n        lines!(ax1, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n        lines!(ax4, xs, func_z.(xs, y), color=:black, lw=3)\n        lines!(ax6, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n    end\n    for x in xs2\n        xspan = fill(x, len)\n        lines!(ax3, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n        lines!(ax5, ys, func_z.(x, ys), color=:red, lw=3)\n        lines!(ax6, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n\n    end\n\n    surface!(ax6, xs, ys, zs, color=:lightblue)\n\n\n    return f\nend\n\n\nplot_func (generic function with 1 method)\nCode\nlet \nmake_z(1)|&gt;d-&gt;plot_func(d[1],d[2]) \nend",
     "crumbs": [
-      "Data Viz",
-      "Irish Whiskey Sales"
+      "Math",
+      "2-Two Variables Function corss-section"
+    ]
+  },
+  {
+    "objectID": "math/2-function.html#section",
+    "href": "math/2-function.html#section",
+    "title": "2-Two Variables Function corss-section",
+    "section": "",
+    "text": "Figure 1: 1\n\n\n\n\n\n\n\n\n\n\nFigure 2: 3\n\n\n\n\n\n\n\n\n\n\nFigure 3: 4\n\n\n\n\n\n\n\n\n\n\nFigure 4: 5\n\n\n\n\n\n\n\n\n\n\nFigure 5: 6\n\n\n\n\n\n\n\n\n\n\nFigure 6: 7\n\n\n\n\n\n\n\n\n\n\nFigure 7: 8\n\n\n\n\n\n\n\n\n\n\nFigure 8: 9\n\n\n\n\n\n\n\n\n\n\nFigure 9: 10",
+    "crumbs": [
+      "Math",
+      "2-Two Variables Function corss-section"
     ]
   },
   {
@@ -999,36 +943,113 @@
     ]
   },
   {
-    "objectID": "math/2-function.html",
-    "href": "math/2-function.html",
-    "title": "2-Two Variables Function corss-section",
+    "objectID": "math/6-vector-fields.html",
+    "href": "math/6-vector-fields.html",
+    "title": "6-gradient-vector-fields",
     "section": "",
-    "text": "二元函数的分解理解\n\n\n\n二元函数可以从两个变量的方向分解开来研究\n固定一个变量, 改变另一个变量,得到一组一元函数\n在下列函数图里:\n\n第一列固定 y值(取一组离散值),改变 x值(连续变量)\n第二列x,y 都是连续值,二元函数自身\n第三列固定 x值(取一组离散值),改变 y值(连续变量)\n\n这里的方法和概率概念的边缘概率(marginal probability)一样, 意思是给定一个条件(固定一个值), 改变另一个变量的取值. 二元分布的概率密度函数就是二元函数,只不过曲线下积分等于 1\nCode\nusing GLMakie\nxs = ys = -3:0.1:3\nxs2 = ys2 = -2:1:2\nlen = length(xs)\nf1(x, y) = x^2 - y^2\nf2(x, y) = ℯ^(−(x^2) − (y^2))\nf3(x, y) = y^2\nf4(x, y) = 2 + 2x - y\nf5(x, y) = x + 2y + 3\nf6(x, y) = x^2 + y^2\nf7(x, y) = -x^2 - y^2\nf8(x, y) = x^2 \n\nfunc_arr = [f1,f2,f3,f4,f5,f6,f7,f8]\nlatexstr_arr=[L\"f(x, y) = x^2 - y^2\",L\"f(x,y)=ℯ^{−x^2 −y^2}\",L\"f(x,y)=y^2\",\nL\"f(x,y)=2 + 2x - y\",L\"f(x,y)=x + 2y + 3\",L\"f(x,y)=x^2 + y^2\",L\"f(x,y)=-(x^2+y^2)\",L\"f(x,y)=x^2\"]\n\n\"\"\"\n make_z(index::Int)\n 根据函数索引返回 julia 函数表达式和\n 函数 latex string\n\"\"\"\nfunction make_z(index::Int)\n    return ( (x,y)-&gt;func_arr[index](x,y),latexstr_arr[index])\nend\n\n\nmake_z\nCode\nfunction plot_func(func_z,latexstr)\n    f = Figure(resolution=(1800, 1000))\n    ax1 = Axis3(f[1, 1], title=L\"fixed y\", azimuth=0.3pi)\n    ax2 = Axis3(f[1, 2], title=L\"surface\", azimuth=0.3pi)\n    ax3 = Axis3(f[1, 3], title=L\"fixed x\", azimuth=0.3pi)\n    ax4 = Axis(f[2, 1])\n    ax5 = Axis(f[2, 3])\n    ax6 = Axis3(f[2, 2], azimuth=0.3pi)\n    Label(f[0, :], latexstr, fontsize=40)\n    zs = [func_z(x, y) for x in xs, y in ys]\n    surface!(ax2, xs, ys, zs, color=:lightblue)\n    for y in ys2\n        yspan = fill(y, len)\n        lines!(ax1, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n        lines!(ax4, xs, func_z.(xs, y), color=:black, lw=3)\n        lines!(ax6, xs, yspan, func_z.(xs, yspan), color=:black, lw=3)\n    end\n    for x in xs2\n        xspan = fill(x, len)\n        lines!(ax3, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n        lines!(ax5, ys, func_z.(x, ys), color=:red, lw=3)\n        lines!(ax6, xspan, ys, func_z.(xspan, ys), color=:red, lw=3)\n\n    end\n\n    surface!(ax6, xs, ys, zs, color=:lightblue)\n\n\n    return f\nend\n\n\nplot_func (generic function with 1 method)\nCode\nlet \nmake_z(1)|&gt;d-&gt;plot_func(d[1],d[2]) \nend",
+    "text": "using GLMakie,Symbolics",
     "crumbs": [
       "Math",
-      "2-Two Variables Function corss-section"
+      "6-gradient-vector-fields"
     ]
   },
   {
-    "objectID": "math/2-function.html#section",
-    "href": "math/2-function.html#section",
-    "title": "2-Two Variables Function corss-section",
+    "objectID": "math/6-vector-fields.html#load-pacages",
+    "href": "math/6-vector-fields.html#load-pacages",
+    "title": "6-gradient-vector-fields",
     "section": "",
-    "text": "Figure 1: 1\n\n\n\n\n\n\n\n\n\n\nFigure 2: 3\n\n\n\n\n\n\n\n\n\n\nFigure 3: 4\n\n\n\n\n\n\n\n\n\n\nFigure 4: 5\n\n\n\n\n\n\n\n\n\n\nFigure 5: 6\n\n\n\n\n\n\n\n\n\n\nFigure 6: 7\n\n\n\n\n\n\n\n\n\n\nFigure 7: 8\n\n\n\n\n\n\n\n\n\n\nFigure 8: 9\n\n\n\n\n\n\n\n\n\n\nFigure 9: 10",
+    "text": "using GLMakie,Symbolics",
     "crumbs": [
       "Math",
-      "2-Two Variables Function corss-section"
+      "6-gradient-vector-fields"
     ]
   },
   {
-    "objectID": "vis/use-ggplot-map.html",
-    "href": "vis/use-ggplot-map.html",
-    "title": "use ggplot2 map",
+    "objectID": "math/6-vector-fields.html#define-symbolics-variables",
+    "href": "math/6-vector-fields.html#define-symbolics-variables",
+    "title": "6-gradient-vector-fields",
+    "section": "2.define symbolics variables",
+    "text": "2.define symbolics variables\n\n@variables x, y\nDx=Differential(x)\nDy=Differential(y)\n\n(::Differential) (generic function with 3 methods)",
+    "crumbs": [
+      "Math",
+      "6-gradient-vector-fields"
+    ]
+  },
+  {
+    "objectID": "math/6-vector-fields.html#make-data",
+    "href": "math/6-vector-fields.html#make-data",
+    "title": "6-gradient-vector-fields",
+    "section": "3. make data",
+    "text": "3. make data\n使用Symbolics.jl 方法构建求导函数.\n\nof 表示原函数\nfx 沿 x 轴的导函数\nfy 沿 y轴方向的导函数\n\n\nf=x^2+2y^2\ng=5-x^2-2y^2\nh=x+2y+3\nfuncs=[f,g,h]\ndf=[]\nfor fun in funcs\n    local of=build_function(fun, x,y)|&gt;eval\n    local fx=fun|&gt;Dx|&gt;expand_derivatives|&gt;expr-&gt;build_function(expr, x,y)|&gt;eval\n    local fy=fun|&gt;Dy|&gt;expand_derivatives|&gt;expr-&gt;build_function(expr, x,y)|&gt;eval\n    push!(df,[of,fx,fy])\n\nend",
+    "crumbs": [
+      "Math",
+      "6-gradient-vector-fields"
+    ]
+  },
+  {
+    "objectID": "math/6-vector-fields.html#plot",
+    "href": "math/6-vector-fields.html#plot",
+    "title": "6-gradient-vector-fields",
+    "section": "4. plot",
+    "text": "4. plot\n\nfig=Figure(resolution=(900,600))\nxs=ys=range(-3,3,10)\nfor  i in 1:3\n     local ax1=Axis(fig[1,i],title=L\"%$(funcs[i])\")\n     local ax2=Axis(fig[2,i])\n     local zs=[df[i][1](x,y) for x in xs, y in ys]\n     local us=[df[i][2](x,y) for x in xs, y in ys]\n     local vs=[df[i][3](x,y) for x in xs, y in ys]\n     contour!(ax1,xs,ys,zs)\n     arrows!( ax2,xs, ys, us, vs,lengthscale=i==3 ? 0.2 : 0.05,color=(:purple,0.8))\n\nend\nfig",
+    "crumbs": [
+      "Math",
+      "6-gradient-vector-fields"
+    ]
+  },
+  {
+    "objectID": "vis/irish-whiskey-sales.html",
+    "href": "vis/irish-whiskey-sales.html",
+    "title": "Irish Whiskey Sales",
     "section": "",
-    "text": "Code\nusing RCall \n\nR\"\"\"\nlibrary(ggplot2)\nlibrary(maps)\n\n# Import the data with coordinates\nworld &lt;- map_data(\"world\")\n\n# Plot the map. group = group connects the points in the correct order\nggplot(data = world, aes(x = long, y = lat, group = group)) + \n  geom_polygon() \n\n# Equivalent to:\nggplot(world, aes(map_id = region)) +\n  geom_map(data = world, map = world,\n    aes(x = long, y = lat, map_id = region))\n\"\"\"\n\n\n┌ Warning: RCall.jl: Warning: package ‘maps’ was built under R version 4.2.3\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Warning in geom_map(data = world, map = world, aes(x = long, y = lat, map_id = region)) :\n│   Ignoring unknown aesthetics: x and y\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\nRObject{VecSxp}",
+    "text": "info\n\n\n\n\nref:Saint Patricks Irish Whiskey Sales\nsource :/Users/lunarcheung/Downloads/The Twisted Nature of Irish Whiskey Sales.png\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "use ggplot2  map"
+      "Irish Whiskey Sales"
+    ]
+  },
+  {
+    "objectID": "vis/irish-whiskey-sales.html#load-data-dataframe",
+    "href": "vis/irish-whiskey-sales.html#load-data-dataframe",
+    "title": "Irish Whiskey Sales",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/irish.csv\")|&gt;DataFrame|&gt;dropmissing\n   first(df,5)\n\n\n5×5 DataFrame\n\n\n\nRow\ncategory\nquality\ncountry\nyear\ncases\n\n\n\nString15\nString15\nString\nInt64\nInt64\n\n\n\n\n1\nIrish Whiskey\nStandard\nUnited States\n1990\n243000\n\n\n2\nIrish Whiskey\nStandard\nUnited States\n1991\n214000\n\n\n3\nIrish Whiskey\nStandard\nUnited States\n1992\n219500\n\n\n4\nIrish Whiskey\nStandard\nUnited States\n1993\n225000\n\n\n5\nIrish Whiskey\nStandard\nUnited States\n1994\n239500",
+    "crumbs": [
+      "Data Viz",
+      "Irish Whiskey Sales"
+    ]
+  },
+  {
+    "objectID": "vis/irish-whiskey-sales.html#data-preprocessing",
+    "href": "vis/irish-whiskey-sales.html#data-preprocessing",
+    "title": "Irish Whiskey Sales",
+    "section": "3. data preprocessing",
+    "text": "3. data preprocessing\n\n\nCode\n df1=@chain df begin\n    @select(country,year, cases)\n    #@filter(country in [\"Ireland\",\"Germany\",\"Russia\",\"France\"])\n    @group_by(country,year)\n    @summarize(country,year,sales=sum(cases)/1000)\n    @ungroup\n    #@mutate(cases=cases/1000)\n    # @filter(country in [\"Ireland\",\"Germany\",\"Russia\"])\n    # @group_by(country)\n    # #@arrange(year)\n    # @mutate(cases =cases.-cases[1])\n    # @ungroup\n    unique!(_)\n    @group_by(country)\n    @arrange(year)\n    @mutate(sales =sales.-sales[1])\n    @ungroup\n\n end\n all_country_data=@chain df1 begin @filter(country ∉ [\"Ireland\",\"Germany\",\"Russia\",\"France\"])\n end\n Ireland_data=@chain df1 begin @filter(country == \"Ireland\")\n end\n four_country_data=@chain df1 begin @filter(country ∈ [\"Ireland\",\"Germany\",\"Russia\",\"France\",\"Spain\"])\n end\n\n\n134×3 DataFrame109 rows omitted\n\n\n\nRow\ncountry\nyear\nsales\n\n\n\nString\nInt64\nFloat64\n\n\n\n\n1\nIreland\n1990\n0.0\n\n\n2\nIreland\n1991\n9.5\n\n\n3\nIreland\n1992\n-26.5\n\n\n4\nIreland\n1993\n-13.0\n\n\n5\nIreland\n1994\n-12.5\n\n\n6\nIreland\n1995\n-22.5\n\n\n7\nIreland\n1996\n-2.4\n\n\n8\nIreland\n1997\n7.8\n\n\n9\nIreland\n1998\n9.25\n\n\n10\nIreland\n1999\n49.15\n\n\n11\nIreland\n2000\n52.1\n\n\n12\nIreland\n2001\n53.35\n\n\n13\nIreland\n2002\n32.8\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n123\nRussia\n2005\n39.75\n\n\n124\nRussia\n2006\n63.25\n\n\n125\nRussia\n2007\n102.75\n\n\n126\nRussia\n2008\n146.75\n\n\n127\nRussia\n2009\n132.0\n\n\n128\nRussia\n2010\n182.0\n\n\n129\nRussia\n2011\n307.25\n\n\n130\nRussia\n2012\n365.25\n\n\n131\nRussia\n2013\n387.25\n\n\n132\nRussia\n2014\n445.75\n\n\n133\nRussia\n2015\n290.5\n\n\n134\nRussia\n2016\n293.5\n\n\n\n\n\n\n\n\nCode\nran=-100:50:350\naxis = (width = 500, height =500,xticks=(ran,[\"$(i)k\" for i in ran]),       xticklabelrotation = pi/8,\ntitlealign = :center,titlesize=24,\ntitle=\"The Twisted Nature of Irish Whiskey Sales\",\n subtitle = rich(\n    \"Within Europe sales have increased 225% since 1990. While\" , rich(\"Ireland's\",color =:blue), \"sales have decreased\",rich(\"Russia, France \\n and Germany\", color =:green),\"sales to   have than made up the difference.\")\n\n)\n\ndata_layer1=data(four_country_data)\ndata_layer2=data(Ireland_data)\n#data_layer3=data(all_country_data)\nmapping_layer1=mapping(:sales,:year,color=:country)\nmapping_layer2=mapping(:sales,:year)\nvisual_layer1 = visual(Lines,linewidth=3)\nvisual_layer2 = visual(Lines, linewidth=8,color=:blue)\n#visual_layer3 = visual(Lines, linewidth=1,color=(:gray,0.3))\nfour_lines=data_layer1* mapping_layer1 * visual_layer1\nireland_line=data_layer2* mapping_layer2 * visual_layer2\n#all_lines=data_layer3* mapping_layer2 * visual_layer3\ndraw(four_lines+ ireland_line ,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "crumbs": [
+      "Data Viz",
+      "Irish Whiskey Sales"
+    ]
+  },
+  {
+    "objectID": "vis/usa-household-use-technology.html",
+    "href": "vis/usa-household-use-technology.html",
+    "title": "Share of United States households using specific technologies",
+    "section": "",
+    "text": "info\n\n\n\n\nref:Share of United States households using specific technologies\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "crumbs": [
+      "Data Viz",
+      "Share of United States households using specific technologies"
+    ]
+  },
+  {
+    "objectID": "vis/usa-household-use-technology.html#load-data-dataframe",
+    "href": "vis/usa-household-use-technology.html#load-data-dataframe",
+    "title": "Share of United States households using specific technologies",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/technology-adoption-by-households-in-the-united-states.csv\")|&gt;DataFrame|&gt;rename(_,\"Technology Diffusion (Comin and Hobijn (2004) and others)\"=&gt;:Tech_Diffusion)|&gt;select(_,Not(:Code))\n\n# gdf=groupby(df,:Entity)\n# cats= @pipe keys(gdf) .|&gt; values(_)[1]\ngdf=@chain df begin \n   @group_by(Entity)\n   @arrange(Year)\n   @ungroup\n   @group_by(Entity)\nend\ncats= @pipe keys(gdf) .|&gt; values(_)[1]\ngroup_size=keys(gdf)|&gt;length;\n\n\n\n\nCode\naxs=[]\nfig=Figure(resolution=(1200,2000))\nfunction plot_diffusion(df,ax,title,c)\n    ax.title=title\n    ax.xticks=([1900,1930,1960,1980,2019],[\"1900\",\"30\",\"60\",\"80\",\"2019\"])\n    ax.yticks=([0,50,100],[\"0%\",\"50%\",\"100%\"])\n    ax.yticklabelsvisible= c==1 ? true :  false\n    xs,ys=df.Year,df.Tech_Diffusion\n    lines!(ax,xs,ys,color=(:red,0.8))\nend\n\nfor idx in 1:45\n    r,c=fldmod1(idx,4)\n    ax=Axis(fig[r,c])\n    push!(axs,ax)\n    df=gdf[idx]\n    title=cats[idx]\n    plot_diffusion(df,ax,title,c)\nend\nlinkyaxes!(axs...)\nlinkxaxes!(axs...)\nfig",
+    "crumbs": [
+      "Data Viz",
+      "Share of United States households using specific technologies"
     ]
   },
   {
@@ -1036,32 +1057,54 @@
     "href": "vis/dumbbell-plot.html",
     "title": "Dumbbell Plot",
     "section": "",
-    "text": "ref\n\n\n\nDumbbell plot in ggplot2\n\n\n\n\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success\n\n\n\n\nCode\nR\"\"\"\n# Seed\nset.seed(1)\n\n# Data\ncustomers &lt;- sample(50:150, 10)\npotential_customers &lt;- sample(150:500, 10)\ncompany &lt;- LETTERS[1:10]\n\n# Data frame\ndf &lt;- data.frame(company = company,\n                 x = customers,\n                 y = potential_customers)\n\"\"\"\ndf=@rget df\nrename!(df,:x=&gt;:customers,:y=&gt;:potential_customers)\nsort(df,:company)\n#df2=@pivot_longer(df, customers:potential_customers)\n\n\n10×3 DataFrame\n\n\n\nRow\ncompany\ncustomers\npotential_customers\n\n\n\nString\nInt64\nInt64\n\n\n\n\n1\nA\n117\n234\n\n\n2\nB\n88\n426\n\n\n3\nC\n50\n479\n\n\n4\nD\n83\n412\n\n\n5\nE\n136\n478\n\n\n6\nF\n92\n228\n\n\n7\nG\n63\n362\n\n\n8\nH\n131\n186\n\n\n9\nI\n108\n254\n\n\n10\nJ\n100\n366\n\n\n\n\n\n\n\n\n\nCode\n   fig=Figure()\n   ax=Axis(fig[1,1])\n#    for (idx,row) in enumerate(eachrow(df))\n\n#         hlines!(ax,[idx]; xmin =[row.customers], xmax = [row.potential_customers])\n\n#    end\n#    hlines!(ax, 1:10;xmin=[df.customers...], xmax =[df.potential_customers...], color = :blue)\n   fig",
+    "text": "ref\n\n\n\nDumbbell plot in ggplot2\n\n\n\n\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success\n\n\n\n\nCode\nR\"\"\"\n# Seed\nset.seed(1)\n\n# Data\ncustomers &lt;- sample(50:150, 10)\npotential_customers &lt;- sample(150:500, 10)\ncompany &lt;- LETTERS[1:10]\n\n# Data frame\ndf &lt;- data.frame(company = company,\n                 x = customers,\n                 y = potential_customers)\n\"\"\"\ndf=@rget df\nrename!(df,:x=&gt;:customers,:y=&gt;:potential_customers)\nsort(df,:company)\n#df2=@pivot_longer(df, customers:potential_customers)\n\n\n10×3 DataFrame\n\n\n\nRow\ncompany\ncustomers\npotential_customers\n\n\n\nString\nInt64\nInt64\n\n\n\n\n1\nA\n117\n234\n\n\n2\nB\n88\n426\n\n\n3\nC\n50\n479\n\n\n4\nD\n83\n412\n\n\n5\nE\n136\n478\n\n\n6\nF\n92\n228\n\n\n7\nG\n63\n362\n\n\n8\nH\n131\n186\n\n\n9\nI\n108\n254\n\n\n10\nJ\n100\n366\n\n\n\n\n\n\n\n\n\nCode\n   fig=Figure()\n   ax=Axis(fig[1,1])\n#    for (idx,row) in enumerate(eachrow(df))\n\n#         hlines!(ax,[idx]; xmin =[row.customers], xmax = [row.potential_customers])\n\n#    end\n#    hlines!(ax, 1:10;xmin=[df.customers...], xmax =[df.potential_customers...], color = :blue)\n   fig\n\n\n\n\n\n\n\n\n\n\n\nCode\n@doc(@select)\n\n\n@select(df, exprs...)\nSelect variables in a DataFrame.\n\nArguments\n\ndf: A DataFrame.\nexprs...: One or more unquoted variable names separated by commas. Variable names can also be used as their positions in the data, like x:y, to select a range of variables.\n\n\n\nExamples\njulia&gt; df = DataFrame(a = repeat('a':'e'), b = 1:5, c = 11:15);\n\njulia&gt; @chain df begin\n       @select(a, b, c)\n       end\n5×3 DataFrame\n Row │ a     b      c     \n     │ Char  Int64  Int64 \n─────┼────────────────────\n   1 │ a         1     11\n   2 │ b         2     12\n   3 │ c         3     13\n   4 │ d         4     14\n   5 │ e         5     15\n\njulia&gt; @chain df begin\n       @select(a:b)\n       end\n5×2 DataFrame\n Row │ a     b     \n     │ Char  Int64 \n─────┼─────────────\n   1 │ a         1\n   2 │ b         2\n   3 │ c         3\n   4 │ d         4\n   5 │ e         5\n\njulia&gt; @chain df begin\n       @select(1:2)\n       end\n5×2 DataFrame\n Row │ a     b     \n     │ Char  Int64 \n─────┼─────────────\n   1 │ a         1\n   2 │ b         2\n   3 │ c         3\n   4 │ d         4\n   5 │ e         5\n\njulia&gt; @chain df begin\n       @select(-(a:b))\n       end\n5×1 DataFrame\n Row │ c     \n     │ Int64 \n─────┼───────\n   1 │    11\n   2 │    12\n   3 │    13\n   4 │    14\n   5 │    15\n\njulia&gt; @chain df begin\n       @select(!(a:b))\n       end\n5×1 DataFrame\n Row │ c     \n     │ Int64 \n─────┼───────\n   1 │    11\n   2 │    12\n   3 │    13\n   4 │    14\n   5 │    15\n\njulia&gt; @chain df begin\n       @select(contains(\"b\"), starts_with(\"c\"))\n       end\n5×2 DataFrame\n Row │ b      c     \n     │ Int64  Int64 \n─────┼──────────────\n   1 │     1     11\n   2 │     2     12\n   3 │     3     13\n   4 │     4     14\n   5 │     5     15\n\njulia&gt; @chain df begin\n       @select(-(1:2))\n       end\n5×1 DataFrame\n Row │ c     \n     │ Int64 \n─────┼───────\n   1 │    11\n   2 │    12\n   3 │    13\n   4 │    14\n   5 │    15\n\njulia&gt; @chain df begin\n       @select(!(1:2))\n       end\n5×1 DataFrame\n Row │ c     \n     │ Int64 \n─────┼───────\n   1 │    11\n   2 │    12\n   3 │    13\n   4 │    14\n   5 │    15\n\njulia&gt; @chain df begin\n       @select(-c)\n       end\n5×2 DataFrame\n Row │ a     b     \n     │ Char  Int64 \n─────┼─────────────\n   1 │ a         1\n   2 │ b         2\n   3 │ c         3\n   4 │ d         4\n   5 │ e         5\n\njulia&gt; @chain df begin\n       @select(-contains(\"a\"))\n       end\n5×2 DataFrame\n Row │ b      c     \n     │ Int64  Int64 \n─────┼──────────────\n   1 │     1     11\n   2 │     2     12\n   3 │     3     13\n   4 │     4     14\n   5 │     5     15\n   \njulia&gt; @chain df begin\n       @select(!contains(\"a\"))\n       end\n5×2 DataFrame\n Row │ b      c     \n     │ Int64  Int64 \n─────┼──────────────\n   1 │     1     11\n   2 │     2     12\n   3 │     3     13\n   4 │     4     14\n   5 │     5     15",
     "crumbs": [
       "Data Viz",
       "Dumbbell Plot"
     ]
   },
   {
-    "objectID": "vis/annual-death-rate-in-diff-age.html",
-    "href": "vis/annual-death-rate-in-diff-age.html",
-    "title": "Annual death rates in people of different ages",
+    "objectID": "vis/annual-industrial-robots-installed.html",
+    "href": "vis/annual-industrial-robots-installed.html",
+    "title": "Annual industrial robots installed",
     "section": "",
-    "text": "ref\n\n\n\n\nref :Annual death rates in people of different ages\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "text": "info\n\n\n\n\nref:Annual industrial robots installed\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "Annual death rates in people of different ages"
+      "Annual industrial robots installed"
     ]
   },
   {
-    "objectID": "vis/annual-death-rate-in-diff-age.html#load-data-dataframe",
-    "href": "vis/annual-death-rate-in-diff-age.html#load-data-dataframe",
-    "title": "Annual death rates in people of different ages",
+    "objectID": "vis/annual-industrial-robots-installed.html#load-data-dataframe",
+    "href": "vis/annual-industrial-robots-installed.html#load-data-dataframe",
+    "title": "Annual industrial robots installed",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/annual-death-rates-in-different-age-groups.csv\")|&gt;DataFrame\ncats=names(df)\nrename!(df,  \"Central death rate - Type: period - Sex: both - Age: 0\"=&gt;:age0,\n              \"Central death rate - Type: period - Sex: both - Age: 10\"=&gt;:age10,\n              \"Central death rate - Type: period - Sex: both - Age: 25\"=&gt;:age25,\n              \"Central death rate - Type: period - Sex: both - Age: 45\"=&gt;:age45,\n              \"Central death rate - Type: period - Sex: both - Age: 65\"=&gt;:age65,\n              \"Central death rate - Type: period - Sex: both - Age: 80\"=&gt;:age80    \n)\nfirst(df,10)\n\n\n10×9 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nage0\nage10\nage25\nage45\nage65\nage80\n\n\n\nString\nString15?\nInt64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nAfghanistan\nAFG\n1950\n353.469\n7.10599\n14.9553\n24.7113\n72.9251\n219.856\n\n\n2\nAfghanistan\nAFG\n1951\n350.066\n7.04221\n14.8208\n24.475\n72.3925\n218.43\n\n\n3\nAfghanistan\nAFG\n1952\n342.826\n6.91651\n14.5584\n24.0431\n71.3978\n215.819\n\n\n4\nAfghanistan\nAFG\n1953\n335.489\n6.79443\n14.3049\n23.6353\n70.4698\n213.431\n\n\n5\nAfghanistan\nAFG\n1954\n328.739\n6.88345\n14.2338\n23.4879\n70.0566\n211.938\n\n\n6\nAfghanistan\nAFG\n1955\n320.919\n6.55437\n13.8029\n22.8619\n68.6513\n208.779\n\n\n7\nAfghanistan\nAFG\n1956\n313.825\n6.44994\n13.5662\n22.4995\n67.7879\n206.572\n\n\n8\nAfghanistan\nAFG\n1957\n306.734\n6.31585\n13.2953\n22.0842\n66.7916\n204.067\n\n\n9\nAfghanistan\nAFG\n1958\n299.564\n6.1871\n13.0174\n21.6528\n65.7387\n201.421\n\n\n10\nAfghanistan\nAFG\n1959\n292.941\n6.06023\n12.7585\n21.249\n64.7374\n198.98\n\n\n\n\n\n\n\n\nCode\nmake_title(\"Part 2: Plot\")\n\n\n    \n       Part 2: Plot\n    \n\n\n\n\nCode\nfrance=@chain df begin \n   @filter(Entity==\"France\")\n   @select(3:9)\n   @pivot_longer(_, 2:7, names_to = age_group, values_to =rate)\n   #@group_by(age_group)\nend\n\ntwo_country=@chain df begin \n   @select(1,3:9)\n   @pivot_longer(_, 3:8, names_to = age_group, values_to =rate)\n   @filter(Entity ∈ [\"France\",\"South Africa\"])\n   @group_by(Entity)\n   @arrange(Year)\n   @ungroup\nend\n\n\n1668×4 DataFrame1643 rows omitted\n\n\n\nRow\nEntity\nYear\nage_group\nrate\n\n\n\nString\nInt64\nString\nFloat64\n\n\n\n\n1\nFrance\n1816\nage0\n205.34\n\n\n2\nFrance\n1816\nage10\n6.15\n\n\n3\nFrance\n1816\nage25\n10.25\n\n\n4\nFrance\n1816\nage45\n14.52\n\n\n5\nFrance\n1816\nage65\n46.12\n\n\n6\nFrance\n1816\nage80\n163.13\n\n\n7\nFrance\n1817\nage0\n200.27\n\n\n8\nFrance\n1817\nage10\n6.42\n\n\n9\nFrance\n1817\nage25\n9.64\n\n\n10\nFrance\n1817\nage45\n14.81\n\n\n11\nFrance\n1817\nage65\n48.33\n\n\n12\nFrance\n1817\nage80\n159.54\n\n\n13\nFrance\n1818\nage0\n201.52\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n1657\nSouth Africa\n2020\nage0\n21.4911\n\n\n1658\nSouth Africa\n2020\nage10\n0.40998\n\n\n1659\nSouth Africa\n2020\nage25\n3.14994\n\n\n1660\nSouth Africa\n2020\nage45\n9.43341\n\n\n1661\nSouth Africa\n2020\nage65\n35.0478\n\n\n1662\nSouth Africa\n2020\nage80\n86.7938\n\n\n1663\nSouth Africa\n2021\nage0\n27.3008\n\n\n1664\nSouth Africa\n2021\nage10\n0.46976\n\n\n1665\nSouth Africa\n2021\nage25\n3.63036\n\n\n1666\nSouth Africa\n2021\nage45\n10.8592\n\n\n1667\nSouth Africa\n2021\nage65\n41.6478\n\n\n1668\nSouth Africa\n2021\nage80\n109.58\n\n\n\n\n\n\n\n\n\nCode\n  data_layer=data(two_country)\n  map_layer=mapping(:Year,:rate,layout=:age_group,color=:Entity)\n  visual_layer = visual(Lines,linewidth=2)\n  \n  plt=data_layer*map_layer*visual_layer\n  draw(plt,facet = (;linkyaxes = :none),legend=(position=:bottom, titleposition=:left, framevisible=true, padding=2))\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/annual-industrial-robots-installed.csv\")|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\"Total number of industrial robots installed by contry, 2021\"=&gt;:total)|&gt;sort(_,:total)\n\nfirst(df,5)\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\ntotal\n\n\n\nString15\nString3\nInt64\nInt64\n\n\n\n\n1\nPoland\nPOL\n2021\n3300\n\n\n2\nSpain\nESP\n2021\n3400\n\n\n3\nSingapore\nSGP\n2021\n3500\n\n\n4\nThailand\nTHA\n2021\n3900\n\n\n5\nCanada\nCAN\n2021\n4300",
     "crumbs": [
       "Data Viz",
-      "Annual death rates in people of different ages"
+      "Annual industrial robots installed"
+    ]
+  },
+  {
+    "objectID": "vis/annual-industrial-robots-installed.html#plot",
+    "href": "vis/annual-industrial-robots-installed.html#plot",
+    "title": "Annual industrial robots installed",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\n   row,col=size(df)\n   fig=Figure()\n   ax=Axis(fig[1,1])\n   ax.title=\"Annual industrial robots installed\"\n   ax.subtitle=\"2021\"\n   ax.yticks=(1:row,df.Entity)\n   ax.xgridvisible=false\n   ax.ygridvisible=false\n   xs=df.Entity\n   ys=round.(Int,df.total)\n   barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,#flip_labels_at=20,\n     #color_over_background=:dodgerblue3,\n     #color_over_bar=:white,\n   )\n   \n   fig",
+    "crumbs": [
+      "Data Viz",
+      "Annual industrial robots installed"
+    ]
+  },
+  {
+    "objectID": "vis/vtree-r.html",
+    "href": "vis/vtree-r.html",
+    "title": "Data exploration with vtree",
+    "section": "",
+    "text": "info\n\n\n\nData exploration with vtree: diabetes dataset\n\n\n\nlibrary(vtree)\nlibrary(Hmisc)\n\n\nAttaching package: 'Hmisc'\n\n\nThe following objects are masked from 'package:base':\n\n    format.pval, units\n\n\n\ngetHdata(diabetes)\n\n\nhead(diabetes)\n\n    id chol stab.glu hdl ratio glyhb   location age gender height weight  frame\n1 1000  203       82  56   3.6  4.31 Buckingham  46 female     62    121 medium\n2 1001  165       97  24   6.9  4.44 Buckingham  29 female     64    218  large\n3 1002  228       92  37   6.2  4.64 Buckingham  58 female     61    256  large\n4 1003   78       93  12   6.5  4.63 Buckingham  67   male     67    119  large\n5 1005  249       90  28   8.9  7.72 Buckingham  64   male     68    183 medium\n6 1008  248       94  69   3.6  4.81 Buckingham  34   male     71    190  large\n  bp.1s bp.1d bp.2s bp.2d waist hip time.ppn\n1   118    59    NA    NA    29  38      720\n2   112    68    NA    NA    46  48      360\n3   190    92   185    92    49  57      180\n4   110    50    NA    NA    33  38      480\n5   138    80    NA    NA    44  41      300\n6   132    86    NA    NA    36  42      195\n\n\n\nvtree(diabetes,\"frame\",horiz=FALSE,height=250,width=850)\n\n\n\n\n\n\n\n\n\nvtree(diabetes,\"frame location\",horiz=FALSE,height=250,width=850)",
+    "crumbs": [
+      "Data Viz",
+      "Data exploration with vtree"
     ]
   },
   {
@@ -1087,25 +1130,157 @@
     ]
   },
   {
-    "objectID": "vis/choropleth-maps-in-R.html",
-    "href": "vis/choropleth-maps-in-R.html",
-    "title": "Choropleth maps in R",
+    "objectID": "vis/fishing-with-net-type.html",
+    "href": "vis/fishing-with-net-type.html",
+    "title": "Wild fish catch by gear type, World",
     "section": "",
-    "text": "ref\n\n\n\n\nref :Choropleth maps in R\n\n\n\n\n\nCode\n # install.packages(\"sf\")\nlibrary(sf)\n\n\nWarning: package 'sf' was built under R version 4.2.3\n\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE\n\n\nCode\n# install.packages(\"dplyr\")\nlibrary(dplyr)\n\n\nWarning: package 'dplyr' was built under R version 4.2.3\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n# install.packages(\"giscoR\")\nlibrary(giscoR)\n\nyear_ref &lt;- 2013\n\nnuts2_IT &lt;- gisco_get_nuts(\n  year = year_ref,\n  resolution = 20, \n  nuts_level = 2,\n  country = \"Italy\") %&gt;%\n  select(NUTS_ID, NAME_LATN)\n\n# Transform the shape\nnuts2_IT_32632 &lt;- st_transform(nuts2_IT, 32632)\n\n# Filter to select data from 2013\ndisp_income &lt;- giscoR::tgs00026 %&gt;%\n  filter(time == year_ref) %&gt;%\n  select(-time)\n\nnuts2_IT_32632_data &lt;- nuts2_IT_32632 %&gt;%\n  left_join(disp_income, by = c(\"NUTS_ID\" = \"geo\"))\n\nplot(nuts2_IT_32632_data[, \"values\"],\n     breaks = \"jenks\",\n     main = \"Choropleth map\")",
+    "text": "info\n\n\n\n\nref:Wild fish catch by gear type, World\nfishing gear type : Fish and Overfishing - Our World in Data\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "Choropleth maps in R"
+      "Wild fish catch by gear type, World"
     ]
   },
   {
-    "objectID": "vis/ai-performance-with-datasize.html",
-    "href": "vis/ai-performance-with-datasize.html",
-    "title": "Artificial intelligence: Performance on knowledge tests vs. training computation",
-    "section": "",
-    "text": "info\n\n\n\n\nref:Artificial intelligence: Performance on knowledge tests vs. training computation\n\n\n\nload pacakge\n\n\nCode\nusing CSV,DataFrames,Pipe,Tidier\nusing CairoMakie,AlgebraOfGraphics,MakieThemes\nMakie.set_theme!(ggthemr(:dust))",
+    "objectID": "vis/fishing-with-net-type.html#load-data-dataframe",
+    "href": "vis/fishing-with-net-type.html#load-data-dataframe",
+    "title": "Wild fish catch by gear type, World",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/fish-catch-gear-type.csv\")|&gt;DataFrame|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\"pelagic trawl\"=&gt;:pelagic_trawl)\n\n\n13730×11 DataFrame13705 rows omitted\n\n\n\nRow\nEntity\nCode\nYear\nunknown_gear\nother_gear\nlongline\ngillnet\nsmall_scale\npurse_seine\npelagic_trawl\nbottom_trawl\n\n\n\nString\nAny\nInt64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nAlbania\nALB\n1995\n1.21382\n135.643\n0.0\n0.0\n39.7734\n54.0707\n104.631\n1120.05\n\n\n2\nAlbania\nALB\n1996\n16.5429\n209.023\n0.0\n0.0\n50.4084\n84.432\n163.963\n1804.86\n\n\n3\nAlbania\nALB\n1997\n14.2151\n113.616\n0.0\n0.0\n13.3192\n38.8843\n75.6516\n810.648\n\n\n4\nAlbania\nALB\n1998\n14.2151\n219.064\n0.0\n0.0\n10.9106\n88.8256\n173.728\n1897.43\n\n\n5\nAlbania\nALB\n1999\n14.2151\n227.661\n0.0\n0.0\n11.3388\n92.3117\n180.907\n1972.6\n\n\n6\nAlbania\nALB\n2011\n634.994\n0.0\n0.0\n0.0\n21.7128\n143.804\n0.0\n3144.62\n\n\n7\nAlbania\nALB\n2012\n1499.1\n0.0\n0.0\n0.0\n45.1773\n339.495\n0.0\n7423.87\n\n\n8\nAlbania\nALB\n2013\n1561.1\n0.0\n0.0\n0.0\n47.0043\n353.535\n0.0\n7730.9\n\n\n9\nAlbania\nALB\n2014\n1869.72\n0.0\n0.0\n0.0\n71.146\n282.188\n0.0\n6170.72\n\n\n10\nAlbania\nALB\n2015\n1149.99\n0.0\n0.0\n0.0\n33.2955\n273.578\n0.0\n5982.43\n\n\n11\nAlbania\nALB\n2016\n1447.69\n0.0\n0.0\n0.0\n51.6242\n251.592\n0.0\n5501.66\n\n\n12\nAlbania\nALB\n2017\n1566.67\n0.0\n0.0\n0.0\n58.2399\n249.588\n0.0\n5457.85\n\n\n13\nAlbania\nALB\n2018\n899.878\n0.0\n0.0\n0.0\n17.0815\n299.842\n0.0\n6556.76\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n13719\nYemen\nYEM\n1999\n0.0\n10150.0\n0.0\n0.0\n1.73005e5\n0.0\n0.0\n89861.3\n\n\n13720\nYemen\nYEM\n2000\n0.0\n11239.5\n0.0\n0.0\n1.47774e5\n0.0\n0.0\n89681.5\n\n\n13721\nYemen\nYEM\n2001\n0.0\n10217.8\n0.0\n0.0\n1.85588e5\n0.0\n0.0\n1.02895e5\n\n\n13722\nYemen\nYEM\n2002\n0.0\n9503.93\n0.0\n0.0\n2.49449e5\n0.0\n0.0\n1.14498e5\n\n\n13723\nYemen\nYEM\n2003\n0.0\n26166.0\n0.0\n0.0\n3.29698e5\n0.0\n0.0\n1.03919e5\n\n\n13724\nYemen\nYEM\n2004\n0.0\n32574.7\n0.0\n0.0\n372192.0\n0.0\n0.0\n1.0894e5\n\n\n13725\nYemen\nYEM\n2005\n0.0\n30072.7\n0.0\n0.0\n351902.0\n0.0\n0.0\n95306.5\n\n\n13726\nYemen\nYEM\n2006\n0.0\n30707.2\n0.0\n0.0\n3.45725e5\n0.0\n0.0\n86286.5\n\n\n13727\nYemen\nYEM\n2007\n0.0\n27540.5\n0.0\n0.0\n2.61181e5\n0.0\n0.0\n74653.9\n\n\n13728\nYemen\nYEM\n2008\n0.0\n20552.1\n0.0\n0.0\n1.80339e5\n0.0\n0.0\n43331.4\n\n\n13729\nYemen\nYEM\n2009\n0.0\n24330.6\n0.0\n0.0\n2.29675e5\n0.0\n0.0\n57511.8\n\n\n13730\nYemen\nYEM\n2010\n0.0\n28806.0\n0.0\n0.0\n2.64376e5\n0.0\n0.0\n93367.3",
     "crumbs": [
       "Data Viz",
-      "Artificial intelligence: Performance on knowledge tests vs. training computation"
+      "Wild fish catch by gear type, World"
+    ]
+  },
+  {
+    "objectID": "vis/fishing-with-net-type.html#data-processing",
+    "href": "vis/fishing-with-net-type.html#data-processing",
+    "title": "Wild fish catch by gear type, World",
+    "section": "3. data processing",
+    "text": "3. data processing\n\n\nCode\ndf=@chain df begin\n   @group_by(Year)\n   @summarize(unknown_gear=sum(unknown_gear),\n              other_gear=sum(other_gear),\n              longline=sum(other_gear),\n              gillnet=sum(gillnet),\n              small_scale=sum(small_scale),\n              purse_seine=sum(purse_seine),\n              pelagic_trawl=sum(pelagic_trawl),\n              bottom_trawl=sum(bottom_trawl)\n    )\n   @ungroup\n   @pivot_longer(_, unknown_gear:bottom_trawl,names_to = gear_type, values_to =weight)\nend\n\n\n552×3 DataFrame527 rows omitted\n\n\n\nRow\nYear\ngear_type\nweight\n\n\n\nInt64\nString\nFloat64\n\n\n\n\n1\n1995\nunknown_gear\n1.06338e7\n\n\n2\n1996\nunknown_gear\n1.0397e7\n\n\n3\n1997\nunknown_gear\n1.1286e7\n\n\n4\n1998\nunknown_gear\n1.08899e7\n\n\n5\n1999\nunknown_gear\n1.15815e7\n\n\n6\n2011\nunknown_gear\n1.05883e7\n\n\n7\n2012\nunknown_gear\n1.07134e7\n\n\n8\n2013\nunknown_gear\n1.0431e7\n\n\n9\n2014\nunknown_gear\n1.19992e7\n\n\n10\n2015\nunknown_gear\n1.54834e7\n\n\n11\n2016\nunknown_gear\n1.20867e7\n\n\n12\n2017\nunknown_gear\n1.6716e7\n\n\n13\n2018\nunknown_gear\n1.57526e7\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n541\n1994\nbottom_trawl\n5.43778e7\n\n\n542\n2000\nbottom_trawl\n5.18786e7\n\n\n543\n2001\nbottom_trawl\n5.23496e7\n\n\n544\n2002\nbottom_trawl\n5.20457e7\n\n\n545\n2003\nbottom_trawl\n5.00434e7\n\n\n546\n2004\nbottom_trawl\n5.05469e7\n\n\n547\n2005\nbottom_trawl\n4.82271e7\n\n\n548\n2006\nbottom_trawl\n4.84797e7\n\n\n549\n2007\nbottom_trawl\n4.7881e7\n\n\n550\n2008\nbottom_trawl\n4.76333e7\n\n\n551\n2009\nbottom_trawl\n4.80774e7\n\n\n552\n2010\nbottom_trawl\n4.89898e7",
+    "crumbs": [
+      "Data Viz",
+      "Wild fish catch by gear type, World"
+    ]
+  },
+  {
+    "objectID": "vis/fishing-with-net-type.html#plot",
+    "href": "vis/fishing-with-net-type.html#plot",
+    "title": "Wild fish catch by gear type, World",
+    "section": "4. plot",
+    "text": "4. plot\n\n\nCode\n@rput df\nfunction plot_arestack_r()\n R\"\"\"\n    library(ggplot2)\n    library(ggthemes)\n    library(viridis)\n    ggplot(df, aes(x=Year, y=weight, fill=gear_type)) + \n    geom_area(alpha=0.6 , size=.5, colour=\"white\")+scale_fill_viridis(discrete = T)+theme_wsj()\n \"\"\"\nend\nplot_arestack_r()\n\n\n┌ Warning: RCall.jl: Warning: package ‘ggthemes’ was built under R version 4.2.3\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Loading required package: viridisLite\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n┌ Warning: RCall.jl: Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\n│ ℹ Please use `linewidth` instead.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\n\n\n(a) different gear fihsing amount\n\n\n\n\n\n\n\nRObject{VecSxp}\n\n\n(b)\n\n\n\n\n\nFigure 1",
+    "crumbs": [
+      "Data Viz",
+      "Wild fish catch by gear type, World"
+    ]
+  },
+  {
+    "objectID": "vis/2016-summer-olympic.html",
+    "href": "vis/2016-summer-olympic.html",
+    "title": "2016 summer olympic games athlete statistics",
+    "section": "",
+    "text": "Code\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,AlgebraOfGraphics",
+    "crumbs": [
+      "Data Viz",
+      "2016 summer olympic games athlete statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2016-summer-olympic.html#load-pacakge",
+    "href": "vis/2016-summer-olympic.html#load-pacakge",
+    "title": "2016 summer olympic games athlete statistics",
+    "section": "",
+    "text": "Code\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,AlgebraOfGraphics",
+    "crumbs": [
+      "Data Viz",
+      "2016 summer olympic games athlete statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2016-summer-olympic.html#load-data-dataframe",
+    "href": "vis/2016-summer-olympic.html#load-data-dataframe",
+    "title": "2016 summer olympic games athlete statistics",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/penguins.csv\")|&gt;DataFrame\nfirst(df,10)\n\n\n10×7 DataFrame\n\n\n\nRow\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\nString15\nString15\nString7\nString7\nString3\nString7\nString7\n\n\n\n\n1\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\n2\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\n3\nAdelie\nTorgersen\n40.3\n18\n195\n3250\nfemale\n\n\n4\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\n5\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\n6\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale\n\n\n7\nAdelie\nTorgersen\n38.9\n17.8\n181\n3625\nfemale\n\n\n8\nAdelie\nTorgersen\n39.2\n19.6\n195\n4675\nmale\n\n\n9\nAdelie\nTorgersen\n34.1\n18.1\n193\n3475\nNA\n\n\n10\nAdelie\nTorgersen\n42\n20.2\n190\n4250\nNA\n\n\n\n\n\n\n\n\nCode\ndescribe(df)\n\n\n7×7 DataFrame\n\n\n\nRow\nvariable\nmean\nmin\nmedian\nmax\nnmissing\neltype\n\n\n\nSymbol\nNothing\nInlineSt…\nNothing\nInlineSt…\nInt64\nDataType\n\n\n\n\n1\nspecies\n\nAdelie\n\nGentoo\n0\nString15\n\n\n2\nisland\n\nBiscoe\n\nTorgersen\n0\nString15\n\n\n3\nbill_length_mm\n\n32.1\n\nNA\n0\nString7\n\n\n4\nbill_depth_mm\n\n13.1\n\nNA\n0\nString7\n\n\n5\nflipper_length_mm\n\n172\n\nNA\n0\nString3\n\n\n6\nbody_mass_g\n\n2700\n\nNA\n0\nString7\n\n\n7\nsex\n\nNA\n\nmale\n0\nString7\n\n\n\n\n\n\n#penguins = dropmissing(DataFrame(PalmerPenguins.load()))",
+    "crumbs": [
+      "Data Viz",
+      "2016 summer olympic games athlete statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html",
+    "href": "vis/2019-f1-statistics.html",
+    "title": "f1 2019 drivers statistics",
+    "section": "",
+    "text": "feature :[\"Drivers\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\"]",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html#load-pacakge",
+    "href": "vis/2019-f1-statistics.html#load-pacakge",
+    "title": "f1 2019 drivers statistics",
+    "section": "1. load pacakge",
+    "text": "1. load pacakge\n\n\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html#load-data-dataframe",
+    "href": "vis/2019-f1-statistics.html#load-data-dataframe",
+    "title": "f1 2019 drivers statistics",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\nfeature=[\"Height\",\"Weight\",\"Bodyfat\"]\ndf=@pipe CSV.File(\"./data/f1_2019_drivers_data.csv\")|&gt;DataFrame|&gt;dropmissing\nrow,cor=size(df)\nname=df.Drivers\nscore=df[:,2:end]\nfirst(df,10)\n\n\n10×22 DataFrame\n\n\n\nRow\nDrivers\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n\n\n\nString31\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\nInt64\n\n\n\n\n1\nLewis Hamilton\n18\n25\n25\n18\n26\n25\n25\n25\n10\n26\n2\n25\n18\n16\n12\n26\n16\n25\n18\n6\n26\n\n\n2\nValtteri Bottas\n26\n18\n18\n25\n18\n15\n13\n18\n15\n18\n0\n4\n15\n18\n10\n18\n25\n15\n25\n0\n12\n\n\n3\nMax Verstappen\n15\n12\n12\n12\n15\n12\n10\n12\n26\n10\n26\n19\n0\n4\n15\n12\n0\n8\n15\n25\n18\n\n\n4\nCharles Leclerc\n10\n16\n10\n11\n10\n0\n15\n15\n18\n15\n0\n12\n25\n25\n18\n15\n8\n13\n13\n0\n15\n\n\n5\nSebastian Vettel\n12\n10\n15\n15\n12\n18\n18\n11\n12\n0\n18\n15\n13\n0\n25\n0\n18\n18\n0\n0\n10\n\n\n6\nCarlos Sainz Jnr\n0\n0\n0\n6\n4\n8\n0\n8\n4\n8\n10\n10\n0\n0\n0\n8\n10\n0\n4\n15\n1\n\n\n7\nPierre Gasly\n0\n4\n9\n0\n8\n11\n4\n1\n6\n12\n0\n8\n2\n0\n4\n0\n6\n2\n0\n18\n0\n\n\n8\nAlexander Albon\n0\n2\n1\n0\n0\n4\n0\n0\n0\n0\n8\n1\n10\n8\n8\n10\n12\n10\n10\n0\n8\n\n\n9\nDaniel Ricciardo\n0\n0\n6\n0\n0\n2\n8\n0\n0\n6\n0\n0\n0\n12\n0\n0\n0\n4\n8\n8\n0\n\n\n10\nSergio Perez\n0\n1\n4\n8\n0\n0\n0\n0\n0\n0\n0\n0\n8\n6\n0\n6\n4\n6\n1\n2\n6",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/2019-f1-statistics.html#plot",
+    "href": "vis/2019-f1-statistics.html#plot",
+    "title": "f1 2019 drivers statistics",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\nf1 = ByRow(hidedecorations!)\nf2 =ByRow(hidedecorations!)\nwith_theme(theme_black()) do\n fig=Figure(resolution=(600,900))\n supertitle = Label(fig[0, :], \"Formula One Drivers 2019 Season Points\", fontsize = 24)\n grids =[fig[idx, 1] = GridLayout() for idx in 1:row]\n \n for idx  in eachindex(grids)\n     name=df[idx,:].Drivers\n     score=Vector(df[idx,2:end])\n     sum_score=sum(score)\n     al=Axis(grids[idx][1,1])\n     ac=Axis(grids[idx][1,2])\n     ar=Axis(grids[idx][1,3])\n     text!(al,0,0;text=name,align=(:center,:center),fontsize = 16)\n     barplot!(ac, 1:21,score;color=:red,strokewidth=0.3,strokecolor=(:white))\n     text!(ar,0,0,text=\"$(sum_score)\",align=(:center,:center),fontsize = 16)\n     f1([al,ac,ar])\n     hidespines!(al)\n     hidespines!(ar)\n     hidespines!(ac, :t, :r,:l)\n end\n fig\nend",
+    "crumbs": [
+      "Data Viz",
+      "f1 2019 drivers  statistics"
+    ]
+  },
+  {
+    "objectID": "vis/average-temperature-anomaly-world.html",
+    "href": "vis/average-temperature-anomaly-world.html",
+    "title": "Average temperature anomaly, Global",
+    "section": "",
+    "text": "info\n\n\n\n\nref:Average temperature anomaly, Global\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
+    "crumbs": [
+      "Data Viz",
+      "Average temperature anomaly, Global"
+    ]
+  },
+  {
+    "objectID": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
+    "href": "vis/average-temperature-anomaly-world.html#load-data-dataframe",
+    "title": "Average temperature anomaly, Global",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/temperature-anomaly.csv\")|&gt;DataFrame|&gt;DataFrame|&gt;coalesce.(_, 0.0)|&gt;rename!(_,\n\"Global average temperature anomaly relative to 1961-1990\"=&gt;:mean, \"Upper bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:upper, \"Lower bound of the annual temperature anomaly (95% confidence interval)\"=&gt;:lower\n)\n\ngdf=groupby(df,:Entity)\ncats= @pipe keys(gdf) .|&gt; values(_)[1]\n\n\n3-element Vector{String31}:\n \"Global\"\n \"Northern hemisphere\"\n \"Southern hemisphere\"",
+    "crumbs": [
+      "Data Viz",
+      "Average temperature anomaly, Global"
+    ]
+  },
+  {
+    "objectID": "vis/average-temperature-anomaly-world.html#plots",
+    "href": "vis/average-temperature-anomaly-world.html#plots",
+    "title": "Average temperature anomaly, Global",
+    "section": "plots",
+    "text": "plots\n\n\nCode\n fig=Figure()\n axs=[Axis(fig[i,1]) for i in 1:3]\n function plot_ci(df,ax,title)\n      ax.title=title\n      xs,mean,lower,upper=df.Year,df.mean,df.lower,df.upper\n      hlines!(ax,[0],linestyle=:dot,color=(:red,0.8))\n      lines!(ax,xs,mean,color=:blue)\n      band!(ax,xs,lower,upper,color=(:lightgreen,0.5))\n      \n      \n end\n\n #plot_ci(gdf[1],axs[1],title=\"blank\")\n\n for (idx, df) in enumerate(gdf)\n      plot_ci(df,axs[idx],cats[idx])\n end\n fig",
+    "crumbs": [
+      "Data Viz",
+      "Average temperature anomaly, Global"
     ]
   },
   {
@@ -1175,6 +1350,17 @@
     ]
   },
   {
+    "objectID": "vis/tidierplot-1.html",
+    "href": "vis/tidierplot-1.html",
+    "title": "TidierPlot demo",
+    "section": "",
+    "text": "Code\nusing Tidier,TidierPlots\nusing DataFrames,CSV,Pipe\n\npenguins =@pipe CSV.File(\"./data/penguine_data.csv\")|&gt;DataFrame|&gt;dropmissing\n@show penguins\nggplot(data = penguins) + \n    geom_bar(aes(x = :species,color=:species))+labs(x = \"Species\")\n\n\npenguins = 344×7 DataFrame\n Row │ species    island     bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g  sex\n     │ String15   String15   String7         String7        String3            String7      String7\n─────┼──────────────────────────────────────────────────────────────────────────────────────────────\n   1 │ Adelie     Torgersen  39.1            18.7           181                3750         male\n   2 │ Adelie     Torgersen  39.5            17.4           186                3800         female\n   3 │ Adelie     Torgersen  40.3            18             195                3250         female\n   4 │ Adelie     Torgersen  NA              NA             NA                 NA           NA\n   5 │ Adelie     Torgersen  36.7            19.3           193                3450         female\n   6 │ Adelie     Torgersen  39.3            20.6           190                3650         male\n   7 │ Adelie     Torgersen  38.9            17.8           181                3625         female\n   8 │ Adelie     Torgersen  39.2            19.6           195                4675         male\n   9 │ Adelie     Torgersen  34.1            18.1           193                3475         NA\n  10 │ Adelie     Torgersen  42              20.2           190                4250         NA\n  11 │ Adelie     Torgersen  37.8            17.1           186                3300         NA\n  12 │ Adelie     Torgersen  37.8            17.3           180                3700         NA\n  13 │ Adelie     Torgersen  41.1            17.6           182                3200         female\n  14 │ Adelie     Torgersen  38.6            21.2           191                3800         male\n  15 │ Adelie     Torgersen  34.6            21.1           198                4400         male\n  16 │ Adelie     Torgersen  36.6            17.8           185                3700         female\n  17 │ Adelie     Torgersen  38.7            19             195                3450         female\n  18 │ Adelie     Torgersen  42.5            20.7           197                4500         male\n  19 │ Adelie     Torgersen  34.4            18.4           184                3325         female\n  20 │ Adelie     Torgersen  46              21.5           194                4200         male\n  21 │ Adelie     Biscoe     37.8            18.3           174                3400         female\n  22 │ Adelie     Biscoe     37.7            18.7           180                3600         male\n  23 │ Adelie     Biscoe     35.9            19.2           189                3800         female\n  24 │ Adelie     Biscoe     38.2            18.1           185                3950         male\n  25 │ Adelie     Biscoe     38.8            17.2           180                3800         male\n  26 │ Adelie     Biscoe     35.3            18.9           187                3800         female\n  27 │ Adelie     Biscoe     40.6            18.6           183                3550         male\n  28 │ Adelie     Biscoe     40.5            17.9           187                3200         female\n  29 │ Adelie     Biscoe     37.9            18.6           172                3150         female\n  30 │ Adelie     Biscoe     40.5            18.9           180                3950         male\n  31 │ Adelie     Dream      39.5            16.7           178                3250         female\n  32 │ Adelie     Dream      37.2            18.1           178                3900         male\n  33 │ Adelie     Dream      39.5            17.8           188                3300         female\n  34 │ Adelie     Dream      40.9            18.9           184                3900         male\n  35 │ Adelie     Dream      36.4            17             195                3325         female\n  36 │ Adelie     Dream      39.2            21.1           196                4150         male\n  37 │ Adelie     Dream      38.8            20             190                3950         male\n  38 │ Adelie     Dream      42.2            18.5           180                3550         female\n  39 │ Adelie     Dream      37.6            19.3           181                3300         female\n  40 │ Adelie     Dream      39.8            19.1           184                4650         male\n  41 │ Adelie     Dream      36.5            18             182                3150         female\n  42 │ Adelie     Dream      40.8            18.4           195                3900         male\n  43 │ Adelie     Dream      36              18.5           186                3100         female\n  44 │ Adelie     Dream      44.1            19.7           196                4400         male\n  45 │ Adelie     Dream      37              16.9           185                3000         female\n  46 │ Adelie     Dream      39.6            18.8           190                4600         male\n  47 │ Adelie     Dream      41.1            19             182                3425         male\n  48 │ Adelie     Dream      37.5            18.9           179                2975         NA\n  49 │ Adelie     Dream      36              17.9           190                3450         female\n  50 │ Adelie     Dream      42.3            21.2           191                4150         male\n  51 │ Adelie     Biscoe     39.6            17.7           186                3500         female\n  52 │ Adelie     Biscoe     40.1            18.9           188                4300         male\n  53 │ Adelie     Biscoe     35              17.9           190                3450         female\n  54 │ Adelie     Biscoe     42              19.5           200                4050         male\n  55 │ Adelie     Biscoe     34.5            18.1           187                2900         female\n  56 │ Adelie     Biscoe     41.4            18.6           191                3700         male\n  57 │ Adelie     Biscoe     39              17.5           186                3550         female\n  58 │ Adelie     Biscoe     40.6            18.8           193                3800         male\n  59 │ Adelie     Biscoe     36.5            16.6           181                2850         female\n  60 │ Adelie     Biscoe     37.6            19.1           194                3750         male\n  61 │ Adelie     Biscoe     35.7            16.9           185                3150         female\n  62 │ Adelie     Biscoe     41.3            21.1           195                4400         male\n  63 │ Adelie     Biscoe     37.6            17             185                3600         female\n  64 │ Adelie     Biscoe     41.1            18.2           192                4050         male\n  65 │ Adelie     Biscoe     36.4            17.1           184                2850         female\n  66 │ Adelie     Biscoe     41.6            18             192                3950         male\n  67 │ Adelie     Biscoe     35.5            16.2           195                3350         female\n  68 │ Adelie     Biscoe     41.1            19.1           188                4100         male\n  69 │ Adelie     Torgersen  35.9            16.6           190                3050         female\n  70 │ Adelie     Torgersen  41.8            19.4           198                4450         male\n  71 │ Adelie     Torgersen  33.5            19             190                3600         female\n  72 │ Adelie     Torgersen  39.7            18.4           190                3900         male\n  73 │ Adelie     Torgersen  39.6            17.2           196                3550         female\n  74 │ Adelie     Torgersen  45.8            18.9           197                4150         male\n  75 │ Adelie     Torgersen  35.5            17.5           190                3700         female\n  76 │ Adelie     Torgersen  42.8            18.5           195                4250         male\n  77 │ Adelie     Torgersen  40.9            16.8           191                3700         female\n  78 │ Adelie     Torgersen  37.2            19.4           184                3900         male\n  79 │ Adelie     Torgersen  36.2            16.1           187                3550         female\n  80 │ Adelie     Torgersen  42.1            19.1           195                4000         male\n  81 │ Adelie     Torgersen  34.6            17.2           189                3200         female\n  82 │ Adelie     Torgersen  42.9            17.6           196                4700         male\n  83 │ Adelie     Torgersen  36.7            18.8           187                3800         female\n  84 │ Adelie     Torgersen  35.1            19.4           193                4200         male\n  85 │ Adelie     Dream      37.3            17.8           191                3350         female\n  86 │ Adelie     Dream      41.3            20.3           194                3550         male\n  87 │ Adelie     Dream      36.3            19.5           190                3800         male\n  88 │ Adelie     Dream      36.9            18.6           189                3500         female\n  89 │ Adelie     Dream      38.3            19.2           189                3950         male\n  90 │ Adelie     Dream      38.9            18.8           190                3600         female\n  91 │ Adelie     Dream      35.7            18             202                3550         female\n  92 │ Adelie     Dream      41.1            18.1           205                4300         male\n  93 │ Adelie     Dream      34              17.1           185                3400         female\n  94 │ Adelie     Dream      39.6            18.1           186                4450         male\n  95 │ Adelie     Dream      36.2            17.3           187                3300         female\n  96 │ Adelie     Dream      40.8            18.9           208                4300         male\n  97 │ Adelie     Dream      38.1            18.6           190                3700         female\n  98 │ Adelie     Dream      40.3            18.5           196                4350         male\n  99 │ Adelie     Dream      33.1            16.1           178                2900         female\n 100 │ Adelie     Dream      43.2            18.5           192                4100         male\n 101 │ Adelie     Biscoe     35              17.9           192                3725         female\n 102 │ Adelie     Biscoe     41              20             203                4725         male\n 103 │ Adelie     Biscoe     37.7            16             183                3075         female\n 104 │ Adelie     Biscoe     37.8            20             190                4250         male\n 105 │ Adelie     Biscoe     37.9            18.6           193                2925         female\n 106 │ Adelie     Biscoe     39.7            18.9           184                3550         male\n 107 │ Adelie     Biscoe     38.6            17.2           199                3750         female\n 108 │ Adelie     Biscoe     38.2            20             190                3900         male\n 109 │ Adelie     Biscoe     38.1            17             181                3175         female\n 110 │ Adelie     Biscoe     43.2            19             197                4775         male\n 111 │ Adelie     Biscoe     38.1            16.5           198                3825         female\n 112 │ Adelie     Biscoe     45.6            20.3           191                4600         male\n 113 │ Adelie     Biscoe     39.7            17.7           193                3200         female\n 114 │ Adelie     Biscoe     42.2            19.5           197                4275         male\n 115 │ Adelie     Biscoe     39.6            20.7           191                3900         female\n 116 │ Adelie     Biscoe     42.7            18.3           196                4075         male\n 117 │ Adelie     Torgersen  38.6            17             188                2900         female\n 118 │ Adelie     Torgersen  37.3            20.5           199                3775         male\n 119 │ Adelie     Torgersen  35.7            17             189                3350         female\n 120 │ Adelie     Torgersen  41.1            18.6           189                3325         male\n 121 │ Adelie     Torgersen  36.2            17.2           187                3150         female\n 122 │ Adelie     Torgersen  37.7            19.8           198                3500         male\n 123 │ Adelie     Torgersen  40.2            17             176                3450         female\n 124 │ Adelie     Torgersen  41.4            18.5           202                3875         male\n 125 │ Adelie     Torgersen  35.2            15.9           186                3050         female\n 126 │ Adelie     Torgersen  40.6            19             199                4000         male\n 127 │ Adelie     Torgersen  38.8            17.6           191                3275         female\n 128 │ Adelie     Torgersen  41.5            18.3           195                4300         male\n 129 │ Adelie     Torgersen  39              17.1           191                3050         female\n 130 │ Adelie     Torgersen  44.1            18             210                4000         male\n 131 │ Adelie     Torgersen  38.5            17.9           190                3325         female\n 132 │ Adelie     Torgersen  43.1            19.2           197                3500         male\n 133 │ Adelie     Dream      36.8            18.5           193                3500         female\n 134 │ Adelie     Dream      37.5            18.5           199                4475         male\n 135 │ Adelie     Dream      38.1            17.6           187                3425         female\n 136 │ Adelie     Dream      41.1            17.5           190                3900         male\n 137 │ Adelie     Dream      35.6            17.5           191                3175         female\n 138 │ Adelie     Dream      40.2            20.1           200                3975         male\n 139 │ Adelie     Dream      37              16.5           185                3400         female\n 140 │ Adelie     Dream      39.7            17.9           193                4250         male\n 141 │ Adelie     Dream      40.2            17.1           193                3400         female\n 142 │ Adelie     Dream      40.6            17.2           187                3475         male\n 143 │ Adelie     Dream      32.1            15.5           188                3050         female\n 144 │ Adelie     Dream      40.7            17             190                3725         male\n 145 │ Adelie     Dream      37.3            16.8           192                3000         female\n 146 │ Adelie     Dream      39              18.7           185                3650         male\n 147 │ Adelie     Dream      39.2            18.6           190                4250         male\n 148 │ Adelie     Dream      36.6            18.4           184                3475         female\n 149 │ Adelie     Dream      36              17.8           195                3450         female\n 150 │ Adelie     Dream      37.8            18.1           193                3750         male\n 151 │ Adelie     Dream      36              17.1           187                3700         female\n 152 │ Adelie     Dream      41.5            18.5           201                4000         male\n 153 │ Gentoo     Biscoe     46.1            13.2           211                4500         female\n 154 │ Gentoo     Biscoe     50              16.3           230                5700         male\n 155 │ Gentoo     Biscoe     48.7            14.1           210                4450         female\n 156 │ Gentoo     Biscoe     50              15.2           218                5700         male\n 157 │ Gentoo     Biscoe     47.6            14.5           215                5400         male\n 158 │ Gentoo     Biscoe     46.5            13.5           210                4550         female\n 159 │ Gentoo     Biscoe     45.4            14.6           211                4800         female\n 160 │ Gentoo     Biscoe     46.7            15.3           219                5200         male\n 161 │ Gentoo     Biscoe     43.3            13.4           209                4400         female\n 162 │ Gentoo     Biscoe     46.8            15.4           215                5150         male\n 163 │ Gentoo     Biscoe     40.9            13.7           214                4650         female\n 164 │ Gentoo     Biscoe     49              16.1           216                5550         male\n 165 │ Gentoo     Biscoe     45.5            13.7           214                4650         female\n 166 │ Gentoo     Biscoe     48.4            14.6           213                5850         male\n 167 │ Gentoo     Biscoe     45.8            14.6           210                4200         female\n 168 │ Gentoo     Biscoe     49.3            15.7           217                5850         male\n 169 │ Gentoo     Biscoe     42              13.5           210                4150         female\n 170 │ Gentoo     Biscoe     49.2            15.2           221                6300         male\n 171 │ Gentoo     Biscoe     46.2            14.5           209                4800         female\n 172 │ Gentoo     Biscoe     48.7            15.1           222                5350         male\n 173 │ Gentoo     Biscoe     50.2            14.3           218                5700         male\n 174 │ Gentoo     Biscoe     45.1            14.5           215                5000         female\n 175 │ Gentoo     Biscoe     46.5            14.5           213                4400         female\n 176 │ Gentoo     Biscoe     46.3            15.8           215                5050         male\n 177 │ Gentoo     Biscoe     42.9            13.1           215                5000         female\n 178 │ Gentoo     Biscoe     46.1            15.1           215                5100         male\n 179 │ Gentoo     Biscoe     44.5            14.3           216                4100         NA\n 180 │ Gentoo     Biscoe     47.8            15             215                5650         male\n 181 │ Gentoo     Biscoe     48.2            14.3           210                4600         female\n 182 │ Gentoo     Biscoe     50              15.3           220                5550         male\n 183 │ Gentoo     Biscoe     47.3            15.3           222                5250         male\n 184 │ Gentoo     Biscoe     42.8            14.2           209                4700         female\n 185 │ Gentoo     Biscoe     45.1            14.5           207                5050         female\n 186 │ Gentoo     Biscoe     59.6            17             230                6050         male\n 187 │ Gentoo     Biscoe     49.1            14.8           220                5150         female\n 188 │ Gentoo     Biscoe     48.4            16.3           220                5400         male\n 189 │ Gentoo     Biscoe     42.6            13.7           213                4950         female\n 190 │ Gentoo     Biscoe     44.4            17.3           219                5250         male\n 191 │ Gentoo     Biscoe     44              13.6           208                4350         female\n 192 │ Gentoo     Biscoe     48.7            15.7           208                5350         male\n 193 │ Gentoo     Biscoe     42.7            13.7           208                3950         female\n 194 │ Gentoo     Biscoe     49.6            16             225                5700         male\n 195 │ Gentoo     Biscoe     45.3            13.7           210                4300         female\n 196 │ Gentoo     Biscoe     49.6            15             216                4750         male\n 197 │ Gentoo     Biscoe     50.5            15.9           222                5550         male\n 198 │ Gentoo     Biscoe     43.6            13.9           217                4900         female\n 199 │ Gentoo     Biscoe     45.5            13.9           210                4200         female\n 200 │ Gentoo     Biscoe     50.5            15.9           225                5400         male\n 201 │ Gentoo     Biscoe     44.9            13.3           213                5100         female\n 202 │ Gentoo     Biscoe     45.2            15.8           215                5300         male\n 203 │ Gentoo     Biscoe     46.6            14.2           210                4850         female\n 204 │ Gentoo     Biscoe     48.5            14.1           220                5300         male\n 205 │ Gentoo     Biscoe     45.1            14.4           210                4400         female\n 206 │ Gentoo     Biscoe     50.1            15             225                5000         male\n 207 │ Gentoo     Biscoe     46.5            14.4           217                4900         female\n 208 │ Gentoo     Biscoe     45              15.4           220                5050         male\n 209 │ Gentoo     Biscoe     43.8            13.9           208                4300         female\n 210 │ Gentoo     Biscoe     45.5            15             220                5000         male\n 211 │ Gentoo     Biscoe     43.2            14.5           208                4450         female\n 212 │ Gentoo     Biscoe     50.4            15.3           224                5550         male\n 213 │ Gentoo     Biscoe     45.3            13.8           208                4200         female\n 214 │ Gentoo     Biscoe     46.2            14.9           221                5300         male\n 215 │ Gentoo     Biscoe     45.7            13.9           214                4400         female\n 216 │ Gentoo     Biscoe     54.3            15.7           231                5650         male\n 217 │ Gentoo     Biscoe     45.8            14.2           219                4700         female\n 218 │ Gentoo     Biscoe     49.8            16.8           230                5700         male\n 219 │ Gentoo     Biscoe     46.2            14.4           214                4650         NA\n 220 │ Gentoo     Biscoe     49.5            16.2           229                5800         male\n 221 │ Gentoo     Biscoe     43.5            14.2           220                4700         female\n 222 │ Gentoo     Biscoe     50.7            15             223                5550         male\n 223 │ Gentoo     Biscoe     47.7            15             216                4750         female\n 224 │ Gentoo     Biscoe     46.4            15.6           221                5000         male\n 225 │ Gentoo     Biscoe     48.2            15.6           221                5100         male\n 226 │ Gentoo     Biscoe     46.5            14.8           217                5200         female\n 227 │ Gentoo     Biscoe     46.4            15             216                4700         female\n 228 │ Gentoo     Biscoe     48.6            16             230                5800         male\n 229 │ Gentoo     Biscoe     47.5            14.2           209                4600         female\n 230 │ Gentoo     Biscoe     51.1            16.3           220                6000         male\n 231 │ Gentoo     Biscoe     45.2            13.8           215                4750         female\n 232 │ Gentoo     Biscoe     45.2            16.4           223                5950         male\n 233 │ Gentoo     Biscoe     49.1            14.5           212                4625         female\n 234 │ Gentoo     Biscoe     52.5            15.6           221                5450         male\n 235 │ Gentoo     Biscoe     47.4            14.6           212                4725         female\n 236 │ Gentoo     Biscoe     50              15.9           224                5350         male\n 237 │ Gentoo     Biscoe     44.9            13.8           212                4750         female\n 238 │ Gentoo     Biscoe     50.8            17.3           228                5600         male\n 239 │ Gentoo     Biscoe     43.4            14.4           218                4600         female\n 240 │ Gentoo     Biscoe     51.3            14.2           218                5300         male\n 241 │ Gentoo     Biscoe     47.5            14             212                4875         female\n 242 │ Gentoo     Biscoe     52.1            17             230                5550         male\n 243 │ Gentoo     Biscoe     47.5            15             218                4950         female\n 244 │ Gentoo     Biscoe     52.2            17.1           228                5400         male\n 245 │ Gentoo     Biscoe     45.5            14.5           212                4750         female\n 246 │ Gentoo     Biscoe     49.5            16.1           224                5650         male\n 247 │ Gentoo     Biscoe     44.5            14.7           214                4850         female\n 248 │ Gentoo     Biscoe     50.8            15.7           226                5200         male\n 249 │ Gentoo     Biscoe     49.4            15.8           216                4925         male\n 250 │ Gentoo     Biscoe     46.9            14.6           222                4875         female\n 251 │ Gentoo     Biscoe     48.4            14.4           203                4625         female\n 252 │ Gentoo     Biscoe     51.1            16.5           225                5250         male\n 253 │ Gentoo     Biscoe     48.5            15             219                4850         female\n 254 │ Gentoo     Biscoe     55.9            17             228                5600         male\n 255 │ Gentoo     Biscoe     47.2            15.5           215                4975         female\n 256 │ Gentoo     Biscoe     49.1            15             228                5500         male\n 257 │ Gentoo     Biscoe     47.3            13.8           216                4725         NA\n 258 │ Gentoo     Biscoe     46.8            16.1           215                5500         male\n 259 │ Gentoo     Biscoe     41.7            14.7           210                4700         female\n 260 │ Gentoo     Biscoe     53.4            15.8           219                5500         male\n 261 │ Gentoo     Biscoe     43.3            14             208                4575         female\n 262 │ Gentoo     Biscoe     48.1            15.1           209                5500         male\n 263 │ Gentoo     Biscoe     50.5            15.2           216                5000         female\n 264 │ Gentoo     Biscoe     49.8            15.9           229                5950         male\n 265 │ Gentoo     Biscoe     43.5            15.2           213                4650         female\n 266 │ Gentoo     Biscoe     51.5            16.3           230                5500         male\n 267 │ Gentoo     Biscoe     46.2            14.1           217                4375         female\n 268 │ Gentoo     Biscoe     55.1            16             230                5850         male\n 269 │ Gentoo     Biscoe     44.5            15.7           217                4875         NA\n 270 │ Gentoo     Biscoe     48.8            16.2           222                6000         male\n 271 │ Gentoo     Biscoe     47.2            13.7           214                4925         female\n 272 │ Gentoo     Biscoe     NA              NA             NA                 NA           NA\n 273 │ Gentoo     Biscoe     46.8            14.3           215                4850         female\n 274 │ Gentoo     Biscoe     50.4            15.7           222                5750         male\n 275 │ Gentoo     Biscoe     45.2            14.8           212                5200         female\n 276 │ Gentoo     Biscoe     49.9            16.1           213                5400         male\n 277 │ Chinstrap  Dream      46.5            17.9           192                3500         female\n 278 │ Chinstrap  Dream      50              19.5           196                3900         male\n 279 │ Chinstrap  Dream      51.3            19.2           193                3650         male\n 280 │ Chinstrap  Dream      45.4            18.7           188                3525         female\n 281 │ Chinstrap  Dream      52.7            19.8           197                3725         male\n 282 │ Chinstrap  Dream      45.2            17.8           198                3950         female\n 283 │ Chinstrap  Dream      46.1            18.2           178                3250         female\n 284 │ Chinstrap  Dream      51.3            18.2           197                3750         male\n 285 │ Chinstrap  Dream      46              18.9           195                4150         female\n 286 │ Chinstrap  Dream      51.3            19.9           198                3700         male\n 287 │ Chinstrap  Dream      46.6            17.8           193                3800         female\n 288 │ Chinstrap  Dream      51.7            20.3           194                3775         male\n 289 │ Chinstrap  Dream      47              17.3           185                3700         female\n 290 │ Chinstrap  Dream      52              18.1           201                4050         male\n 291 │ Chinstrap  Dream      45.9            17.1           190                3575         female\n 292 │ Chinstrap  Dream      50.5            19.6           201                4050         male\n 293 │ Chinstrap  Dream      50.3            20             197                3300         male\n 294 │ Chinstrap  Dream      58              17.8           181                3700         female\n 295 │ Chinstrap  Dream      46.4            18.6           190                3450         female\n 296 │ Chinstrap  Dream      49.2            18.2           195                4400         male\n 297 │ Chinstrap  Dream      42.4            17.3           181                3600         female\n 298 │ Chinstrap  Dream      48.5            17.5           191                3400         male\n 299 │ Chinstrap  Dream      43.2            16.6           187                2900         female\n 300 │ Chinstrap  Dream      50.6            19.4           193                3800         male\n 301 │ Chinstrap  Dream      46.7            17.9           195                3300         female\n 302 │ Chinstrap  Dream      52              19             197                4150         male\n 303 │ Chinstrap  Dream      50.5            18.4           200                3400         female\n 304 │ Chinstrap  Dream      49.5            19             200                3800         male\n 305 │ Chinstrap  Dream      46.4            17.8           191                3700         female\n 306 │ Chinstrap  Dream      52.8            20             205                4550         male\n 307 │ Chinstrap  Dream      40.9            16.6           187                3200         female\n 308 │ Chinstrap  Dream      54.2            20.8           201                4300         male\n 309 │ Chinstrap  Dream      42.5            16.7           187                3350         female\n 310 │ Chinstrap  Dream      51              18.8           203                4100         male\n 311 │ Chinstrap  Dream      49.7            18.6           195                3600         male\n 312 │ Chinstrap  Dream      47.5            16.8           199                3900         female\n 313 │ Chinstrap  Dream      47.6            18.3           195                3850         female\n 314 │ Chinstrap  Dream      52              20.7           210                4800         male\n 315 │ Chinstrap  Dream      46.9            16.6           192                2700         female\n 316 │ Chinstrap  Dream      53.5            19.9           205                4500         male\n 317 │ Chinstrap  Dream      49              19.5           210                3950         male\n 318 │ Chinstrap  Dream      46.2            17.5           187                3650         female\n 319 │ Chinstrap  Dream      50.9            19.1           196                3550         male\n 320 │ Chinstrap  Dream      45.5            17             196                3500         female\n 321 │ Chinstrap  Dream      50.9            17.9           196                3675         female\n 322 │ Chinstrap  Dream      50.8            18.5           201                4450         male\n 323 │ Chinstrap  Dream      50.1            17.9           190                3400         female\n 324 │ Chinstrap  Dream      49              19.6           212                4300         male\n 325 │ Chinstrap  Dream      51.5            18.7           187                3250         male\n 326 │ Chinstrap  Dream      49.8            17.3           198                3675         female\n 327 │ Chinstrap  Dream      48.1            16.4           199                3325         female\n 328 │ Chinstrap  Dream      51.4            19             201                3950         male\n 329 │ Chinstrap  Dream      45.7            17.3           193                3600         female\n 330 │ Chinstrap  Dream      50.7            19.7           203                4050         male\n 331 │ Chinstrap  Dream      42.5            17.3           187                3350         female\n 332 │ Chinstrap  Dream      52.2            18.8           197                3450         male\n 333 │ Chinstrap  Dream      45.2            16.6           191                3250         female\n 334 │ Chinstrap  Dream      49.3            19.9           203                4050         male\n 335 │ Chinstrap  Dream      50.2            18.8           202                3800         male\n 336 │ Chinstrap  Dream      45.6            19.4           194                3525         female\n 337 │ Chinstrap  Dream      51.9            19.5           206                3950         male\n 338 │ Chinstrap  Dream      46.8            16.5           189                3650         female\n 339 │ Chinstrap  Dream      45.7            17             195                3650         female\n 340 │ Chinstrap  Dream      55.8            19.8           207                4000         male\n 341 │ Chinstrap  Dream      43.5            18.1           202                3400         female\n 342 │ Chinstrap  Dream      49.6            18.2           193                3775         male\n 343 │ Chinstrap  Dream      50.8            19             210                4100         male\n 344 │ Chinstrap  Dream      50.2            18.7           198                3775         female\nheight: 400\nx: Species\nwidth: 600\n\ngeom_bar\ndata: inherits from plot\nx: species \nstack: species\ncolor: species\n\n\n\n\n\n\n\n\n\n\n\nggplot options\ndata: A DataFrame (344 rows, 7 columns)",
+    "crumbs": [
+      "Data Viz",
+      "TidierPlot demo"
+    ]
+  },
+  {
     "objectID": "vis/private-investment-on-ai-by-focus.html",
     "href": "vis/private-investment-on-ai-by-focus.html",
     "title": "Private Investment on AI by focus",
@@ -1197,46 +1383,65 @@
     ]
   },
   {
-    "objectID": "vis/market-for-chip-production.html",
-    "href": "vis/market-for-chip-production.html",
-    "title": "Market share for logic chip production, by manufacturing stage, 2021",
+    "objectID": "vis/internet-user-view.html",
+    "href": "vis/internet-user-view.html",
+    "title": "Number of people using the Internet”",
     "section": "",
-    "text": "info\n\n\n\n\nref:Market share for logic chip production, by manufacturing stage, 2021\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nMakie.set_theme!(ggthemr(:dust))",
+    "text": "info\n\n\n\n\nref:Number of people using the Internet\nload pacakge\nCode\ninclude(\"utils.jl\")\n\n\n[ Info: loading success",
     "crumbs": [
       "Data Viz",
-      "Market share for logic chip production, by manufacturing stage, 2021"
+      "Number of people using the Internet\""
     ]
   },
   {
-    "objectID": "vis/market-for-chip-production.html#load-data-dataframe",
-    "href": "vis/market-for-chip-production.html#load-data-dataframe",
-    "title": "Market share for logic chip production, by manufacturing stage, 2021",
+    "objectID": "vis/internet-user-view.html#load-data-dataframe",
+    "href": "vis/internet-user-view.html#load-data-dataframe",
+    "title": "Number of people using the Internet”",
     "section": "2. load data->dataframe",
-    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/market-share-logic-chip-production-manufacturing-stage.csv\")|&gt;DataFrame\ndf=coalesce.(df, 0.0)\n\n\n9×6 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nDesign\nFabrication\nAssembly, testing and packaging\n\n\n\nString15\nAny\nInt64\nFloat64\nFloat64\nFloat64\n\n\n\n\n1\nChina\nCHN\n2021\n9.0\n12.0\n14.0\n\n\n2\nItaly\nITA\n2021\n0.0\n2.0\n0.0\n\n\n3\nJapan\nJPN\n2021\n6.0\n1.0\n7.0\n\n\n4\nMalaysia\nMYS\n2021\n0.0\n0.0\n2.0\n\n\n5\nOthers\n0.0\n2021\n9.0\n0.0\n5.0\n\n\n6\nSingapore\nSGP\n2021\n0.0\n0.0\n2.0\n\n\n7\nSouth Korea\nKOR\n2021\n6.0\n11.0\n13.0\n\n\n8\nTaiwan\nTWN\n2021\n9.0\n47.0\n29.0\n\n\n9\nUnited States\nUSA\n2021\n61.0\n27.0\n28.0",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\n    df=@pipe CSV.File(\"./data/number-of-internet-users.csv\")|&gt;DataFrame|&gt;rename(_,\"Number of Internet users\"=&gt;:num_user)|&gt;coalesce.(_, 0.0)\n\nfirst(df,5)\n\n\n5×4 DataFrame\n\n\n\nRow\nEntity\nCode\nYear\nnum_user\n\n\n\nString\nAny\nInt64\nInt64\n\n\n\n\n1\nAfghanistan\nAFG\n1990\n0\n\n\n2\nAfghanistan\nAFG\n1991\n0\n\n\n3\nAfghanistan\nAFG\n1992\n0\n\n\n4\nAfghanistan\nAFG\n1993\n0\n\n\n5\nAfghanistan\nAFG\n1994\n0\n\n\n\n\n\n\n\n\nCode\nlist=(\"World\",\"Asia\",\"Europe\",\"North America\",\"Africa\",\"Oceania\")\n@eval(Main, myvars =list )\ndf2=@chain df begin\n    @select(Entity,Year,num_user)\n    @filter(Entity in !!myvars)\n    @mutate(num_user=num_user/1_000_000_000)\n    @arrange(desc(num_user))\nend\n\n\n183×3 DataFrame158 rows omitted\n\n\n\nRow\nEntity\nYear\nnum_user\n\n\n\nString\nInt64\nFloat64\n\n\n\n\n1\nWorld\n2020\n4.69989\n\n\n2\nWorld\n2019\n4.19408\n\n\n3\nWorld\n2018\n3.79552\n\n\n4\nWorld\n2017\n3.48375\n\n\n5\nWorld\n2016\n3.25622\n\n\n6\nWorld\n2015\n3.00458\n\n\n7\nWorld\n2014\n2.79366\n\n\n8\nWorld\n2013\n2.59861\n\n\n9\nAsia\n2020\n2.55759\n\n\n10\nWorld\n2012\n2.42685\n\n\n11\nAsia\n2019\n2.22554\n\n\n12\nWorld\n2011\n2.21888\n\n\n13\nWorld\n2010\n2.02115\n\n\n⋮\n⋮\n⋮\n⋮\n\n\n172\nAfrica\n1995\n0.000324226\n\n\n173\nOceania\n1992\n0.000318972\n\n\n174\nAsia\n1992\n0.000247731\n\n\n175\nOceania\n1991\n0.000189499\n\n\n176\nAfrica\n1994\n0.000112387\n\n\n177\nOceania\n1990\n9.9747e-5\n\n\n178\nAsia\n1991\n9.3535e-5\n\n\n179\nAfrica\n1993\n4.897e-5\n\n\n180\nAsia\n1990\n4.0687e-5\n\n\n181\nAfrica\n1992\n1.6232e-5\n\n\n182\nAfrica\n1991\n5.434e-6\n\n\n183\nAfrica\n1990\n0.0",
     "crumbs": [
       "Data Viz",
-      "Market share for logic chip production, by manufacturing stage, 2021"
+      "Number of people using the Internet\""
     ]
   },
   {
-    "objectID": "vis/market-for-chip-production.html#plot-bar-plot",
-    "href": "vis/market-for-chip-production.html#plot-bar-plot",
-    "title": "Market share for logic chip production, by manufacturing stage, 2021",
-    "section": "3. plot bar plot",
-    "text": "3. plot bar plot\n\n\nCode\ncats=names(df)\nrow,_=size(df)\nfunction plot_barplt(df)\n fig=Figure()\n axs=[Axis(fig[1,1]),Axis(fig[1,2]),Axis(fig[2,1])]\n \n for (idx, ax) in enumerate(axs)\n     df=sort(df,cats[3+idx];rev=false)\n     ax.title=\"$(cats[3+idx])\"\n     ax.yticks=(1:row,df.Entity)\n     ax.xgridvisible=false\n     ax.ygridvisible=false\n     xs=df.Entity\n     ys=@pipe select(df,3+idx)|&gt;_[:,1]|&gt;map(x-&gt;(x/sum(_))*100,_)|&gt;round.(_,digits=0)\n     #@info ys\n     barplot!(ax,1:row,ys;direction=:x,color=ys,bar_labels=:y,flip_labels_at=20,\n     color_over_background=:dodgerblue3,\n     color_over_bar=:white,\n     )\n\n end\n\n supertitle = Label(fig[0, :], \"Market share for logic chip production, by manufacturing\nstage, 2021\", fontsize = 20)\n fig\n \nend\nplot_barplt(df)",
+    "objectID": "vis/internet-user-view.html#plot",
+    "href": "vis/internet-user-view.html#plot",
+    "title": "Number of people using the Internet”",
+    "section": "plot",
+    "text": "plot\n\n\nCode\naxis = (width = 1000, height =500,xticklabelrotation = pi/8,title=\"Internet user \",subtitle=\"Measured in billion.\",\nyticks=(1:7,[\"$i billion\" for i in 1:7]))\ndata_layer = data(df2)\nmapping_layer=mapping(:Year,:num_user,color=:Entity)\nvisual_layer = visual(ScatterLines;stroke=1,strokecolor=(:red,0.8),markersize=10,linewidth=3)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
     "crumbs": [
       "Data Viz",
-      "Market share for logic chip production, by manufacturing stage, 2021"
+      "Number of people using the Internet\""
     ]
   },
   {
-    "objectID": "materials.html",
-    "href": "materials.html",
-    "title": "Course Materials",
+    "objectID": "vis/ai-supercomputer-ability.html",
+    "href": "vis/ai-supercomputer-ability.html",
+    "title": "Computation used to train notable artificial intelligence systems”",
     "section": "",
-    "text": "Datasets\nSlides",
+    "text": "info\n\n\n\n\nref:Computation used to train notable artificial intelligence systems\nload pacakge\nCode\nusing CairoMakie,CSV,DataFrames,Pipe,Tidier,HypertextLiteral\nusing MakieThemes\nusing StatsBase\nusing AlgebraOfGraphics\nMakie.set_theme!(ggthemr(:dust))",
     "crumbs": [
-      "Materials"
+      "Data Viz",
+      "Computation used to train notable artificial intelligence systems\""
     ]
+  },
+  {
+    "objectID": "vis/ai-supercomputer-ability.html#load-data-dataframe",
+    "href": "vis/ai-supercomputer-ability.html#load-data-dataframe",
+    "title": "Computation used to train notable artificial intelligence systems”",
+    "section": "2. load data->dataframe",
+    "text": "2. load data-&gt;dataframe\n\n\nCode\ndf=@pipe CSV.File(\"./data/artificial-intelligence-training-computation.csv\")|&gt;DataFrame\ndf=coalesce.(df, 0.0)\nrename!(df,\"Training computation (petaFLOP)\"=&gt;:petaFLOP)\ndf=@pipe sort(df,:petaFLOP;rev=true)|&gt;first(_,40)\n\n\n40×5 DataFrame15 rows omitted\n\n\n\nRow\nEntity\nCode\nDay\npetaFLOP\nDomain\n\n\n\nString\nFloat64\nDate\nFloat64\nString15\n\n\n\n\n1\nGPT-4\n0.0\n2023-03-15\n2.1e10\nMultimodal\n\n\n2\nPaLM 2\n0.0\n2023-05-10\n7.34e9\nLanguage\n\n\n3\nClaude 2\n0.0\n2023-07-11\n3.87e9\nLanguage\n\n\n4\nFalcon 180B\n0.0\n2023-09-06\n3.78e9\nLanguage\n\n\n5\nMinerva (540B)\n0.0\n2022-06-29\n2.74e9\nLanguage\n\n\n6\nGPT-3.5 (text-davinci-003)\n0.0\n2022-11-28\n2.58e9\nLanguage\n\n\n7\nPaLM (540B)\n0.0\n2022-04-04\n2.53e9\nLanguage\n\n\n8\nMegatron-Turing NLG 530B\n0.0\n2021-10-11\n1.17e9\nLanguage\n\n\n9\nERNIE 3.0 Titan\n0.0\n2021-12-23\n1.04e9\nLanguage\n\n\n10\nLlama 2\n0.0\n2023-07-18\n8.1e8\nLanguage\n\n\n11\nGopher (280B)\n0.0\n2021-12-08\n6.31e8\nLanguage\n\n\n12\nMegatron-BERT\n0.0\n2019-09-17\n6.03e8\nLanguage\n\n\n13\nChinchilla\n0.0\n2022-03-29\n5.76e8\nLanguage\n\n\n⋮\n⋮\n⋮\n⋮\n⋮\n⋮\n\n\n29\nBloombergGPT\n0.0\n2023-03-30\n2.36e8\nLanguage\n\n\n30\nALIGN\n0.0\n2021-06-11\n2.15e8\nMultimodal\n\n\n31\nAlexaTM 20B\n0.0\n2022-08-02\n2.04e8\nLanguage\n\n\n32\nAlphaStar\n0.0\n2019-10-30\n2.02e8\nGames\n\n\n33\nBLOOM\n0.0\n2022-11-08\n1.8e8\nLanguage\n\n\n34\nAlphaGo Master\n0.0\n2017-01-01\n1.5e8\nGames\n\n\n35\nHyperClova\n0.0\n2021-09-10\n1.48e8\nLanguage\n\n\n36\nMeena\n0.0\n2020-01-28\n1.12e8\nLanguage\n\n\n37\nStarCoder\n0.0\n2023-05-09\n1.12e8\nLanguage\n\n\n38\nGPT-NeoX-20B\n0.0\n2022-02-09\n9.32e7\nLanguage\n\n\n39\nCoAtNet\n0.0\n2021-06-09\n8.5e7\nVision\n\n\n40\nBASIC-L\n0.0\n2021-11-19\n8.3e7\nVision\n\n\n\n\n\n\n\n\nCode\naxis = (width = 600, height =300,xticklabelrotation = pi/8,title=\"Computation used to train notable artificial intelligence systems\")\ndata_layer = data(df)\nmapping_layer=mapping(:Day,:petaFLOP,color=:Domain)\nvisual_layer = visual(Scatter;stroke=1,strokecolor=(:red,0.8),markersize=18)\ndraw(data_layer * mapping_layer * visual_layer,axis=axis)\n\n\n┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23",
+    "crumbs": [
+      "Data Viz",
+      "Computation used to train notable artificial intelligence systems\""
+    ]
+  },
+  {
+    "objectID": "using-dash.html",
+    "href": "using-dash.html",
+    "title": "Using Dash",
+    "section": "",
+    "text": "Code\nusing Dash\nusing DataFrames, CSV, PlotlyJS, RDatasets\n\niris = RDatasets.dataset(\"datasets\", \"iris\")\n\nPlot(iris, x=:SepalLength, y=:SepalWidth, mode=\"markers\", marker_size=8, group=:Species)"
   }
 ]

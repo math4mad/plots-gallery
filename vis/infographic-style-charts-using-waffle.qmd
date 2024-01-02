@@ -1,0 +1,37 @@
+---
+title: "Infographic-style charts using the R waffle package"
+author: math4mad
+code-fold: true
+---
+
+:::{.callout-note title="ref"}
+-ref :[Infographic-style charts using the R waffle package](https://nsaunders.wordpress.com/2017/09/08/infographic-style-charts-using-the-r-waffle-package/#more-4937)
+:::
+
+
+
+```{r}
+library(waffle)
+library(extrafont)
+```
+
+
+
+```{r}
+font_import()
+fonts()[grep("Awesome5", fonts())]
+loadfonts();
+```
+
+```{r}
+	
+waffle(c(50, 30, 15, 5), rows = 5, title = "Your basic waffle chart")
+```
+
+
+
+
+
+
+
+

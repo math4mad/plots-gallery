@@ -1,0 +1,45 @@
+---
+title: "Golden State Warrior court"
+author: math4mad
+code-fold: true
+---
+
+
+```{julia}
+
+
+using GLMakie,GeometryBasics,Images
+GLMakie.activate!(ssao=true)
+GLMakie.closeall() # close any open screen
+
+#=======Setting  define notice for ssao setting========#
+fig = Figure(resolution = (1000, 1000))
+ssao = Makie.SSAO(radius = 3.0, blur = 2)
+ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)
+ax.scene.ssao.bias[] = 0.025
+#=======================================================#
+
+
+## ===##
+
+
+img = load("./imgs/gs.jpeg")
+xs = range(-250.0, 250.0, length=size(img,1))
+ys = range(-50.0,420.0, length=size(img,2))
+
+
+#=======================================================#
+
+"""
+## define Rect
+rect = Rect(start-x,start-y,height,width)
+"""
+n=6
+rect = Rect(0.0, 0.0,290,200)
+
+mesh!(ax, rect, ssao=true,color=img)
+
+
+
+fig
+```

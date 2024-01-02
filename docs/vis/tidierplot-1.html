@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.533">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="math4mad">
+
+<title>GLMakie Gallery - TidierPlot demo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2016-summer-olympic.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/tidierplot-1.html">TidierPlot demo</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">GLMakie Gallery</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://math4mad.github.io/plots-gallery/" title="Github" class="quarto-navigation-tool px-1" aria-label="Github"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Math</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/1-double-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1-double integral picture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/2-function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2-Two Variables Function corss-section</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/3-oval-spere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3-oval-sphere-params-equation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/4-one-variable-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4-single-variable-integral</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/5-himmelblau-function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5-himmelblau-plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/6-vector-fields.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6-gradient-vector-fields</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Statistics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/1-normaldist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1-normal-distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/10-dirichlet-dist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10-dirichlet-dist</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/12-likelihood-coin-toss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12-likelihood of coin toss</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/13-understand-bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13-understanding-bayes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/14-unicode-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14-unicode-plot-method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/15-bubble-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15-bubble-plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/16-rotate-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16-rotate-plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/2-2d-descison-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2-2dimension decision boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/3-bio-norm-dist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3-biovariate-normal-dist</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/4-pair-plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4-pair-plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/5-2d-decision-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5-2d-decision-boundary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/6-mutli-variable-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6-bio-normal-dist</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/7-mvnormal-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7-mv-normal-sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/8-dotplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8-dotplot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../statistics/9-2d-decision-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9-2d-descision-boundary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../machinelearning/1-classfication-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">classfication models comparison</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Data Viz</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/2016-summer-olympic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2016 summer olympic games athlete statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/2019-f1-statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">f1 2019 drivers statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/ai-performance-with-datasize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Artificial intelligence: Performance on knowledge tests vs.&nbsp;training computation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/ai-supercomputer-ability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computation used to train notable artificial intelligence systems"</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/american-view-on-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Views of Americans about robot vs. human intelligence, All adults"</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/annual-death-rate-by-sex-years.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annual death rates in people of different ages, by sex world</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/annual-death-rate-in-diff-age.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annual death rates in people of different ages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/annual-industrial-robots-installed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Annual industrial robots installed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/average-temperature-anomaly-world.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Average temperature anomaly, Global</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/child-mortality-rate-1960to2021.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Child mortality rate, 1960 to 2021</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/choropleth-maps-in-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Choropleth maps in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/cost-of-space-launch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cost of space launches to low Earth orbit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/dumbbell-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dumbbell Plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/employment-in-ai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Employer of new AI PhDs in the United States and Canada</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/fishing-with-net-type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wild fish catch by gear type, World</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/golden-warriors-court.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Golden State Warrior court</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/infographic-style-charts-using-waffle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Infographic-style charts using the R waffle package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/internet-user-view.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Number of people using the Internet"</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/irish-whiskey-sales.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Irish Whiskey Sales</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/mapsf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">basic example of mapsf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/market-for-chip-production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Market share for logic chip production, by manufacturing stage, 2021</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/nba-short-half-court.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NBA shot chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/private-investment-on-ai-by-focus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Private Investment on AI by focus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/simpson-paradox-on-penguines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simpson’s paradox on penguins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/test-tailwind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Test Tailwind css</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/tidierplot-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TidierPlot demo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/timeseries-aog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Series in Aog</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/usa-household-use-technology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Share of United States households using specific technologies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/use-ggplot-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">use ggplot2 map</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/vtree-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data exploration with vtree</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../vis/world-electricity-generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Total electricity generation"</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Materials</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2016-summer-olympic.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/tidierplot-1.html">TidierPlot demo</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">TidierPlot demo</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>math4mad </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="c017a4c1" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Tidier</span>,<span class="bu">TidierPlots</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>,<span class="bu">CSV</span>,<span class="bu">Pipe</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/penguine_data.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span>dropmissing</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> penguins</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data <span class="op">=</span> penguins) <span class="op">+</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(x <span class="op">=</span> <span class="op">:</span>species,color<span class="op">=:</span>species))<span class="fu">+labs</span>(x <span class="op">=</span> <span class="st">"Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>penguins = 344×7 DataFrame
+ Row │ species    island     bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g  sex
+     │ String15   String15   String7         String7        String3            String7      String7
+─────┼──────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Adelie     Torgersen  39.1            18.7           181                3750         male
+   2 │ Adelie     Torgersen  39.5            17.4           186                3800         female
+   3 │ Adelie     Torgersen  40.3            18             195                3250         female
+   4 │ Adelie     Torgersen  NA              NA             NA                 NA           NA
+   5 │ Adelie     Torgersen  36.7            19.3           193                3450         female
+   6 │ Adelie     Torgersen  39.3            20.6           190                3650         male
+   7 │ Adelie     Torgersen  38.9            17.8           181                3625         female
+   8 │ Adelie     Torgersen  39.2            19.6           195                4675         male
+   9 │ Adelie     Torgersen  34.1            18.1           193                3475         NA
+  10 │ Adelie     Torgersen  42              20.2           190                4250         NA
+  11 │ Adelie     Torgersen  37.8            17.1           186                3300         NA
+  12 │ Adelie     Torgersen  37.8            17.3           180                3700         NA
+  13 │ Adelie     Torgersen  41.1            17.6           182                3200         female
+  14 │ Adelie     Torgersen  38.6            21.2           191                3800         male
+  15 │ Adelie     Torgersen  34.6            21.1           198                4400         male
+  16 │ Adelie     Torgersen  36.6            17.8           185                3700         female
+  17 │ Adelie     Torgersen  38.7            19             195                3450         female
+  18 │ Adelie     Torgersen  42.5            20.7           197                4500         male
+  19 │ Adelie     Torgersen  34.4            18.4           184                3325         female
+  20 │ Adelie     Torgersen  46              21.5           194                4200         male
+  21 │ Adelie     Biscoe     37.8            18.3           174                3400         female
+  22 │ Adelie     Biscoe     37.7            18.7           180                3600         male
+  23 │ Adelie     Biscoe     35.9            19.2           189                3800         female
+  24 │ Adelie     Biscoe     38.2            18.1           185                3950         male
+  25 │ Adelie     Biscoe     38.8            17.2           180                3800         male
+  26 │ Adelie     Biscoe     35.3            18.9           187                3800         female
+  27 │ Adelie     Biscoe     40.6            18.6           183                3550         male
+  28 │ Adelie     Biscoe     40.5            17.9           187                3200         female
+  29 │ Adelie     Biscoe     37.9            18.6           172                3150         female
+  30 │ Adelie     Biscoe     40.5            18.9           180                3950         male
+  31 │ Adelie     Dream      39.5            16.7           178                3250         female
+  32 │ Adelie     Dream      37.2            18.1           178                3900         male
+  33 │ Adelie     Dream      39.5            17.8           188                3300         female
+  34 │ Adelie     Dream      40.9            18.9           184                3900         male
+  35 │ Adelie     Dream      36.4            17             195                3325         female
+  36 │ Adelie     Dream      39.2            21.1           196                4150         male
+  37 │ Adelie     Dream      38.8            20             190                3950         male
+  38 │ Adelie     Dream      42.2            18.5           180                3550         female
+  39 │ Adelie     Dream      37.6            19.3           181                3300         female
+  40 │ Adelie     Dream      39.8            19.1           184                4650         male
+  41 │ Adelie     Dream      36.5            18             182                3150         female
+  42 │ Adelie     Dream      40.8            18.4           195                3900         male
+  43 │ Adelie     Dream      36              18.5           186                3100         female
+  44 │ Adelie     Dream      44.1            19.7           196                4400         male
+  45 │ Adelie     Dream      37              16.9           185                3000         female
+  46 │ Adelie     Dream      39.6            18.8           190                4600         male
+  47 │ Adelie     Dream      41.1            19             182                3425         male
+  48 │ Adelie     Dream      37.5            18.9           179                2975         NA
+  49 │ Adelie     Dream      36              17.9           190                3450         female
+  50 │ Adelie     Dream      42.3            21.2           191                4150         male
+  51 │ Adelie     Biscoe     39.6            17.7           186                3500         female
+  52 │ Adelie     Biscoe     40.1            18.9           188                4300         male
+  53 │ Adelie     Biscoe     35              17.9           190                3450         female
+  54 │ Adelie     Biscoe     42              19.5           200                4050         male
+  55 │ Adelie     Biscoe     34.5            18.1           187                2900         female
+  56 │ Adelie     Biscoe     41.4            18.6           191                3700         male
+  57 │ Adelie     Biscoe     39              17.5           186                3550         female
+  58 │ Adelie     Biscoe     40.6            18.8           193                3800         male
+  59 │ Adelie     Biscoe     36.5            16.6           181                2850         female
+  60 │ Adelie     Biscoe     37.6            19.1           194                3750         male
+  61 │ Adelie     Biscoe     35.7            16.9           185                3150         female
+  62 │ Adelie     Biscoe     41.3            21.1           195                4400         male
+  63 │ Adelie     Biscoe     37.6            17             185                3600         female
+  64 │ Adelie     Biscoe     41.1            18.2           192                4050         male
+  65 │ Adelie     Biscoe     36.4            17.1           184                2850         female
+  66 │ Adelie     Biscoe     41.6            18             192                3950         male
+  67 │ Adelie     Biscoe     35.5            16.2           195                3350         female
+  68 │ Adelie     Biscoe     41.1            19.1           188                4100         male
+  69 │ Adelie     Torgersen  35.9            16.6           190                3050         female
+  70 │ Adelie     Torgersen  41.8            19.4           198                4450         male
+  71 │ Adelie     Torgersen  33.5            19             190                3600         female
+  72 │ Adelie     Torgersen  39.7            18.4           190                3900         male
+  73 │ Adelie     Torgersen  39.6            17.2           196                3550         female
+  74 │ Adelie     Torgersen  45.8            18.9           197                4150         male
+  75 │ Adelie     Torgersen  35.5            17.5           190                3700         female
+  76 │ Adelie     Torgersen  42.8            18.5           195                4250         male
+  77 │ Adelie     Torgersen  40.9            16.8           191                3700         female
+  78 │ Adelie     Torgersen  37.2            19.4           184                3900         male
+  79 │ Adelie     Torgersen  36.2            16.1           187                3550         female
+  80 │ Adelie     Torgersen  42.1            19.1           195                4000         male
+  81 │ Adelie     Torgersen  34.6            17.2           189                3200         female
+  82 │ Adelie     Torgersen  42.9            17.6           196                4700         male
+  83 │ Adelie     Torgersen  36.7            18.8           187                3800         female
+  84 │ Adelie     Torgersen  35.1            19.4           193                4200         male
+  85 │ Adelie     Dream      37.3            17.8           191                3350         female
+  86 │ Adelie     Dream      41.3            20.3           194                3550         male
+  87 │ Adelie     Dream      36.3            19.5           190                3800         male
+  88 │ Adelie     Dream      36.9            18.6           189                3500         female
+  89 │ Adelie     Dream      38.3            19.2           189                3950         male
+  90 │ Adelie     Dream      38.9            18.8           190                3600         female
+  91 │ Adelie     Dream      35.7            18             202                3550         female
+  92 │ Adelie     Dream      41.1            18.1           205                4300         male
+  93 │ Adelie     Dream      34              17.1           185                3400         female
+  94 │ Adelie     Dream      39.6            18.1           186                4450         male
+  95 │ Adelie     Dream      36.2            17.3           187                3300         female
+  96 │ Adelie     Dream      40.8            18.9           208                4300         male
+  97 │ Adelie     Dream      38.1            18.6           190                3700         female
+  98 │ Adelie     Dream      40.3            18.5           196                4350         male
+  99 │ Adelie     Dream      33.1            16.1           178                2900         female
+ 100 │ Adelie     Dream      43.2            18.5           192                4100         male
+ 101 │ Adelie     Biscoe     35              17.9           192                3725         female
+ 102 │ Adelie     Biscoe     41              20             203                4725         male
+ 103 │ Adelie     Biscoe     37.7            16             183                3075         female
+ 104 │ Adelie     Biscoe     37.8            20             190                4250         male
+ 105 │ Adelie     Biscoe     37.9            18.6           193                2925         female
+ 106 │ Adelie     Biscoe     39.7            18.9           184                3550         male
+ 107 │ Adelie     Biscoe     38.6            17.2           199                3750         female
+ 108 │ Adelie     Biscoe     38.2            20             190                3900         male
+ 109 │ Adelie     Biscoe     38.1            17             181                3175         female
+ 110 │ Adelie     Biscoe     43.2            19             197                4775         male
+ 111 │ Adelie     Biscoe     38.1            16.5           198                3825         female
+ 112 │ Adelie     Biscoe     45.6            20.3           191                4600         male
+ 113 │ Adelie     Biscoe     39.7            17.7           193                3200         female
+ 114 │ Adelie     Biscoe     42.2            19.5           197                4275         male
+ 115 │ Adelie     Biscoe     39.6            20.7           191                3900         female
+ 116 │ Adelie     Biscoe     42.7            18.3           196                4075         male
+ 117 │ Adelie     Torgersen  38.6            17             188                2900         female
+ 118 │ Adelie     Torgersen  37.3            20.5           199                3775         male
+ 119 │ Adelie     Torgersen  35.7            17             189                3350         female
+ 120 │ Adelie     Torgersen  41.1            18.6           189                3325         male
+ 121 │ Adelie     Torgersen  36.2            17.2           187                3150         female
+ 122 │ Adelie     Torgersen  37.7            19.8           198                3500         male
+ 123 │ Adelie     Torgersen  40.2            17             176                3450         female
+ 124 │ Adelie     Torgersen  41.4            18.5           202                3875         male
+ 125 │ Adelie     Torgersen  35.2            15.9           186                3050         female
+ 126 │ Adelie     Torgersen  40.6            19             199                4000         male
+ 127 │ Adelie     Torgersen  38.8            17.6           191                3275         female
+ 128 │ Adelie     Torgersen  41.5            18.3           195                4300         male
+ 129 │ Adelie     Torgersen  39              17.1           191                3050         female
+ 130 │ Adelie     Torgersen  44.1            18             210                4000         male
+ 131 │ Adelie     Torgersen  38.5            17.9           190                3325         female
+ 132 │ Adelie     Torgersen  43.1            19.2           197                3500         male
+ 133 │ Adelie     Dream      36.8            18.5           193                3500         female
+ 134 │ Adelie     Dream      37.5            18.5           199                4475         male
+ 135 │ Adelie     Dream      38.1            17.6           187                3425         female
+ 136 │ Adelie     Dream      41.1            17.5           190                3900         male
+ 137 │ Adelie     Dream      35.6            17.5           191                3175         female
+ 138 │ Adelie     Dream      40.2            20.1           200                3975         male
+ 139 │ Adelie     Dream      37              16.5           185                3400         female
+ 140 │ Adelie     Dream      39.7            17.9           193                4250         male
+ 141 │ Adelie     Dream      40.2            17.1           193                3400         female
+ 142 │ Adelie     Dream      40.6            17.2           187                3475         male
+ 143 │ Adelie     Dream      32.1            15.5           188                3050         female
+ 144 │ Adelie     Dream      40.7            17             190                3725         male
+ 145 │ Adelie     Dream      37.3            16.8           192                3000         female
+ 146 │ Adelie     Dream      39              18.7           185                3650         male
+ 147 │ Adelie     Dream      39.2            18.6           190                4250         male
+ 148 │ Adelie     Dream      36.6            18.4           184                3475         female
+ 149 │ Adelie     Dream      36              17.8           195                3450         female
+ 150 │ Adelie     Dream      37.8            18.1           193                3750         male
+ 151 │ Adelie     Dream      36              17.1           187                3700         female
+ 152 │ Adelie     Dream      41.5            18.5           201                4000         male
+ 153 │ Gentoo     Biscoe     46.1            13.2           211                4500         female
+ 154 │ Gentoo     Biscoe     50              16.3           230                5700         male
+ 155 │ Gentoo     Biscoe     48.7            14.1           210                4450         female
+ 156 │ Gentoo     Biscoe     50              15.2           218                5700         male
+ 157 │ Gentoo     Biscoe     47.6            14.5           215                5400         male
+ 158 │ Gentoo     Biscoe     46.5            13.5           210                4550         female
+ 159 │ Gentoo     Biscoe     45.4            14.6           211                4800         female
+ 160 │ Gentoo     Biscoe     46.7            15.3           219                5200         male
+ 161 │ Gentoo     Biscoe     43.3            13.4           209                4400         female
+ 162 │ Gentoo     Biscoe     46.8            15.4           215                5150         male
+ 163 │ Gentoo     Biscoe     40.9            13.7           214                4650         female
+ 164 │ Gentoo     Biscoe     49              16.1           216                5550         male
+ 165 │ Gentoo     Biscoe     45.5            13.7           214                4650         female
+ 166 │ Gentoo     Biscoe     48.4            14.6           213                5850         male
+ 167 │ Gentoo     Biscoe     45.8            14.6           210                4200         female
+ 168 │ Gentoo     Biscoe     49.3            15.7           217                5850         male
+ 169 │ Gentoo     Biscoe     42              13.5           210                4150         female
+ 170 │ Gentoo     Biscoe     49.2            15.2           221                6300         male
+ 171 │ Gentoo     Biscoe     46.2            14.5           209                4800         female
+ 172 │ Gentoo     Biscoe     48.7            15.1           222                5350         male
+ 173 │ Gentoo     Biscoe     50.2            14.3           218                5700         male
+ 174 │ Gentoo     Biscoe     45.1            14.5           215                5000         female
+ 175 │ Gentoo     Biscoe     46.5            14.5           213                4400         female
+ 176 │ Gentoo     Biscoe     46.3            15.8           215                5050         male
+ 177 │ Gentoo     Biscoe     42.9            13.1           215                5000         female
+ 178 │ Gentoo     Biscoe     46.1            15.1           215                5100         male
+ 179 │ Gentoo     Biscoe     44.5            14.3           216                4100         NA
+ 180 │ Gentoo     Biscoe     47.8            15             215                5650         male
+ 181 │ Gentoo     Biscoe     48.2            14.3           210                4600         female
+ 182 │ Gentoo     Biscoe     50              15.3           220                5550         male
+ 183 │ Gentoo     Biscoe     47.3            15.3           222                5250         male
+ 184 │ Gentoo     Biscoe     42.8            14.2           209                4700         female
+ 185 │ Gentoo     Biscoe     45.1            14.5           207                5050         female
+ 186 │ Gentoo     Biscoe     59.6            17             230                6050         male
+ 187 │ Gentoo     Biscoe     49.1            14.8           220                5150         female
+ 188 │ Gentoo     Biscoe     48.4            16.3           220                5400         male
+ 189 │ Gentoo     Biscoe     42.6            13.7           213                4950         female
+ 190 │ Gentoo     Biscoe     44.4            17.3           219                5250         male
+ 191 │ Gentoo     Biscoe     44              13.6           208                4350         female
+ 192 │ Gentoo     Biscoe     48.7            15.7           208                5350         male
+ 193 │ Gentoo     Biscoe     42.7            13.7           208                3950         female
+ 194 │ Gentoo     Biscoe     49.6            16             225                5700         male
+ 195 │ Gentoo     Biscoe     45.3            13.7           210                4300         female
+ 196 │ Gentoo     Biscoe     49.6            15             216                4750         male
+ 197 │ Gentoo     Biscoe     50.5            15.9           222                5550         male
+ 198 │ Gentoo     Biscoe     43.6            13.9           217                4900         female
+ 199 │ Gentoo     Biscoe     45.5            13.9           210                4200         female
+ 200 │ Gentoo     Biscoe     50.5            15.9           225                5400         male
+ 201 │ Gentoo     Biscoe     44.9            13.3           213                5100         female
+ 202 │ Gentoo     Biscoe     45.2            15.8           215                5300         male
+ 203 │ Gentoo     Biscoe     46.6            14.2           210                4850         female
+ 204 │ Gentoo     Biscoe     48.5            14.1           220                5300         male
+ 205 │ Gentoo     Biscoe     45.1            14.4           210                4400         female
+ 206 │ Gentoo     Biscoe     50.1            15             225                5000         male
+ 207 │ Gentoo     Biscoe     46.5            14.4           217                4900         female
+ 208 │ Gentoo     Biscoe     45              15.4           220                5050         male
+ 209 │ Gentoo     Biscoe     43.8            13.9           208                4300         female
+ 210 │ Gentoo     Biscoe     45.5            15             220                5000         male
+ 211 │ Gentoo     Biscoe     43.2            14.5           208                4450         female
+ 212 │ Gentoo     Biscoe     50.4            15.3           224                5550         male
+ 213 │ Gentoo     Biscoe     45.3            13.8           208                4200         female
+ 214 │ Gentoo     Biscoe     46.2            14.9           221                5300         male
+ 215 │ Gentoo     Biscoe     45.7            13.9           214                4400         female
+ 216 │ Gentoo     Biscoe     54.3            15.7           231                5650         male
+ 217 │ Gentoo     Biscoe     45.8            14.2           219                4700         female
+ 218 │ Gentoo     Biscoe     49.8            16.8           230                5700         male
+ 219 │ Gentoo     Biscoe     46.2            14.4           214                4650         NA
+ 220 │ Gentoo     Biscoe     49.5            16.2           229                5800         male
+ 221 │ Gentoo     Biscoe     43.5            14.2           220                4700         female
+ 222 │ Gentoo     Biscoe     50.7            15             223                5550         male
+ 223 │ Gentoo     Biscoe     47.7            15             216                4750         female
+ 224 │ Gentoo     Biscoe     46.4            15.6           221                5000         male
+ 225 │ Gentoo     Biscoe     48.2            15.6           221                5100         male
+ 226 │ Gentoo     Biscoe     46.5            14.8           217                5200         female
+ 227 │ Gentoo     Biscoe     46.4            15             216                4700         female
+ 228 │ Gentoo     Biscoe     48.6            16             230                5800         male
+ 229 │ Gentoo     Biscoe     47.5            14.2           209                4600         female
+ 230 │ Gentoo     Biscoe     51.1            16.3           220                6000         male
+ 231 │ Gentoo     Biscoe     45.2            13.8           215                4750         female
+ 232 │ Gentoo     Biscoe     45.2            16.4           223                5950         male
+ 233 │ Gentoo     Biscoe     49.1            14.5           212                4625         female
+ 234 │ Gentoo     Biscoe     52.5            15.6           221                5450         male
+ 235 │ Gentoo     Biscoe     47.4            14.6           212                4725         female
+ 236 │ Gentoo     Biscoe     50              15.9           224                5350         male
+ 237 │ Gentoo     Biscoe     44.9            13.8           212                4750         female
+ 238 │ Gentoo     Biscoe     50.8            17.3           228                5600         male
+ 239 │ Gentoo     Biscoe     43.4            14.4           218                4600         female
+ 240 │ Gentoo     Biscoe     51.3            14.2           218                5300         male
+ 241 │ Gentoo     Biscoe     47.5            14             212                4875         female
+ 242 │ Gentoo     Biscoe     52.1            17             230                5550         male
+ 243 │ Gentoo     Biscoe     47.5            15             218                4950         female
+ 244 │ Gentoo     Biscoe     52.2            17.1           228                5400         male
+ 245 │ Gentoo     Biscoe     45.5            14.5           212                4750         female
+ 246 │ Gentoo     Biscoe     49.5            16.1           224                5650         male
+ 247 │ Gentoo     Biscoe     44.5            14.7           214                4850         female
+ 248 │ Gentoo     Biscoe     50.8            15.7           226                5200         male
+ 249 │ Gentoo     Biscoe     49.4            15.8           216                4925         male
+ 250 │ Gentoo     Biscoe     46.9            14.6           222                4875         female
+ 251 │ Gentoo     Biscoe     48.4            14.4           203                4625         female
+ 252 │ Gentoo     Biscoe     51.1            16.5           225                5250         male
+ 253 │ Gentoo     Biscoe     48.5            15             219                4850         female
+ 254 │ Gentoo     Biscoe     55.9            17             228                5600         male
+ 255 │ Gentoo     Biscoe     47.2            15.5           215                4975         female
+ 256 │ Gentoo     Biscoe     49.1            15             228                5500         male
+ 257 │ Gentoo     Biscoe     47.3            13.8           216                4725         NA
+ 258 │ Gentoo     Biscoe     46.8            16.1           215                5500         male
+ 259 │ Gentoo     Biscoe     41.7            14.7           210                4700         female
+ 260 │ Gentoo     Biscoe     53.4            15.8           219                5500         male
+ 261 │ Gentoo     Biscoe     43.3            14             208                4575         female
+ 262 │ Gentoo     Biscoe     48.1            15.1           209                5500         male
+ 263 │ Gentoo     Biscoe     50.5            15.2           216                5000         female
+ 264 │ Gentoo     Biscoe     49.8            15.9           229                5950         male
+ 265 │ Gentoo     Biscoe     43.5            15.2           213                4650         female
+ 266 │ Gentoo     Biscoe     51.5            16.3           230                5500         male
+ 267 │ Gentoo     Biscoe     46.2            14.1           217                4375         female
+ 268 │ Gentoo     Biscoe     55.1            16             230                5850         male
+ 269 │ Gentoo     Biscoe     44.5            15.7           217                4875         NA
+ 270 │ Gentoo     Biscoe     48.8            16.2           222                6000         male
+ 271 │ Gentoo     Biscoe     47.2            13.7           214                4925         female
+ 272 │ Gentoo     Biscoe     NA              NA             NA                 NA           NA
+ 273 │ Gentoo     Biscoe     46.8            14.3           215                4850         female
+ 274 │ Gentoo     Biscoe     50.4            15.7           222                5750         male
+ 275 │ Gentoo     Biscoe     45.2            14.8           212                5200         female
+ 276 │ Gentoo     Biscoe     49.9            16.1           213                5400         male
+ 277 │ Chinstrap  Dream      46.5            17.9           192                3500         female
+ 278 │ Chinstrap  Dream      50              19.5           196                3900         male
+ 279 │ Chinstrap  Dream      51.3            19.2           193                3650         male
+ 280 │ Chinstrap  Dream      45.4            18.7           188                3525         female
+ 281 │ Chinstrap  Dream      52.7            19.8           197                3725         male
+ 282 │ Chinstrap  Dream      45.2            17.8           198                3950         female
+ 283 │ Chinstrap  Dream      46.1            18.2           178                3250         female
+ 284 │ Chinstrap  Dream      51.3            18.2           197                3750         male
+ 285 │ Chinstrap  Dream      46              18.9           195                4150         female
+ 286 │ Chinstrap  Dream      51.3            19.9           198                3700         male
+ 287 │ Chinstrap  Dream      46.6            17.8           193                3800         female
+ 288 │ Chinstrap  Dream      51.7            20.3           194                3775         male
+ 289 │ Chinstrap  Dream      47              17.3           185                3700         female
+ 290 │ Chinstrap  Dream      52              18.1           201                4050         male
+ 291 │ Chinstrap  Dream      45.9            17.1           190                3575         female
+ 292 │ Chinstrap  Dream      50.5            19.6           201                4050         male
+ 293 │ Chinstrap  Dream      50.3            20             197                3300         male
+ 294 │ Chinstrap  Dream      58              17.8           181                3700         female
+ 295 │ Chinstrap  Dream      46.4            18.6           190                3450         female
+ 296 │ Chinstrap  Dream      49.2            18.2           195                4400         male
+ 297 │ Chinstrap  Dream      42.4            17.3           181                3600         female
+ 298 │ Chinstrap  Dream      48.5            17.5           191                3400         male
+ 299 │ Chinstrap  Dream      43.2            16.6           187                2900         female
+ 300 │ Chinstrap  Dream      50.6            19.4           193                3800         male
+ 301 │ Chinstrap  Dream      46.7            17.9           195                3300         female
+ 302 │ Chinstrap  Dream      52              19             197                4150         male
+ 303 │ Chinstrap  Dream      50.5            18.4           200                3400         female
+ 304 │ Chinstrap  Dream      49.5            19             200                3800         male
+ 305 │ Chinstrap  Dream      46.4            17.8           191                3700         female
+ 306 │ Chinstrap  Dream      52.8            20             205                4550         male
+ 307 │ Chinstrap  Dream      40.9            16.6           187                3200         female
+ 308 │ Chinstrap  Dream      54.2            20.8           201                4300         male
+ 309 │ Chinstrap  Dream      42.5            16.7           187                3350         female
+ 310 │ Chinstrap  Dream      51              18.8           203                4100         male
+ 311 │ Chinstrap  Dream      49.7            18.6           195                3600         male
+ 312 │ Chinstrap  Dream      47.5            16.8           199                3900         female
+ 313 │ Chinstrap  Dream      47.6            18.3           195                3850         female
+ 314 │ Chinstrap  Dream      52              20.7           210                4800         male
+ 315 │ Chinstrap  Dream      46.9            16.6           192                2700         female
+ 316 │ Chinstrap  Dream      53.5            19.9           205                4500         male
+ 317 │ Chinstrap  Dream      49              19.5           210                3950         male
+ 318 │ Chinstrap  Dream      46.2            17.5           187                3650         female
+ 319 │ Chinstrap  Dream      50.9            19.1           196                3550         male
+ 320 │ Chinstrap  Dream      45.5            17             196                3500         female
+ 321 │ Chinstrap  Dream      50.9            17.9           196                3675         female
+ 322 │ Chinstrap  Dream      50.8            18.5           201                4450         male
+ 323 │ Chinstrap  Dream      50.1            17.9           190                3400         female
+ 324 │ Chinstrap  Dream      49              19.6           212                4300         male
+ 325 │ Chinstrap  Dream      51.5            18.7           187                3250         male
+ 326 │ Chinstrap  Dream      49.8            17.3           198                3675         female
+ 327 │ Chinstrap  Dream      48.1            16.4           199                3325         female
+ 328 │ Chinstrap  Dream      51.4            19             201                3950         male
+ 329 │ Chinstrap  Dream      45.7            17.3           193                3600         female
+ 330 │ Chinstrap  Dream      50.7            19.7           203                4050         male
+ 331 │ Chinstrap  Dream      42.5            17.3           187                3350         female
+ 332 │ Chinstrap  Dream      52.2            18.8           197                3450         male
+ 333 │ Chinstrap  Dream      45.2            16.6           191                3250         female
+ 334 │ Chinstrap  Dream      49.3            19.9           203                4050         male
+ 335 │ Chinstrap  Dream      50.2            18.8           202                3800         male
+ 336 │ Chinstrap  Dream      45.6            19.4           194                3525         female
+ 337 │ Chinstrap  Dream      51.9            19.5           206                3950         male
+ 338 │ Chinstrap  Dream      46.8            16.5           189                3650         female
+ 339 │ Chinstrap  Dream      45.7            17             195                3650         female
+ 340 │ Chinstrap  Dream      55.8            19.8           207                4000         male
+ 341 │ Chinstrap  Dream      43.5            18.1           202                3400         female
+ 342 │ Chinstrap  Dream      49.6            18.2           193                3775         male
+ 343 │ Chinstrap  Dream      50.8            19             210                4100         male
+ 344 │ Chinstrap  Dream      50.2            18.7           198                3775         female
+height: 400
+x: Species
+width: 600
+
+geom_bar
+data: inherits from plot
+x: species 
+stack: species
+color: species
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tidierplot-1_files/figure-html/cell-2-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="ansi-escaped-output">
+<pre><span style="text-decoration:underline">ggplot options</span>
+<span class="ansi-blue-fg">data: A DataFrame (344 rows, 7 columns)</span>
+</pre>
+</div>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

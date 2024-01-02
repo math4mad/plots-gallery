@@ -1,0 +1,21 @@
+---
+title: "Time Series  in Aog"
+author: math4mad
+code-fold: true
+---
+
+```{julia}
+using StateSpaceModels,DataFrames,CSV 
+using AlgebraOfGraphics,CairoMakie
+using Pipe,MakieThemes
+Makie.set_theme!(ggthemr(:dust))
+```
+
+```{julia}
+   axis=(title="Nile River Annual Flow",xlabel="year",ylabel="waer height",xticklabelrotation=pi/8)
+   data_layter=@pipe CSV.File(StateSpaceModels.NILE) |>DataFrame|>data
+   map_layer=mapping(:year, :flow)
+   visual_layer=visual(Lines,color=:lightblue,linewidth=2)
+   draw(data_layter*map_layer*visual_layer,axis=axis)
+
+```

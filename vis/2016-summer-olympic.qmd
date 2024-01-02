@@ -1,0 +1,31 @@
+---
+title: "2016 summer olympic games athlete statistics"
+author: math4mad
+code-fold: true
+---
+
+## 1. load pacakge
+```{julia}
+using CairoMakie,CSV,DataFrames,Pipe,Tidier,AlgebraOfGraphics
+```
+
+## 2. load data->dataframe
+```{julia}
+
+df=@pipe CSV.File("./data/penguins.csv")|>DataFrame
+first(df,10)
+
+```
+
+```{julia}
+describe(df)
+```
+
+
+
+```{julia}
+
+
+
+#penguins = dropmissing(DataFrame(PalmerPenguins.load()))
+

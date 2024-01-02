@@ -1,0 +1,42 @@
+---
+title: "Simpson’s paradox on penguins"
+author: math4mad
+code-fold: true
+
+---
+
+```{julia}
+include("utils.jl")
+```
+
+## load data 
+```{julia}
+df=@pipe CSV.File("./data/palmerpenguins.csv")|>DataFrame|>dropmissing
+first(df,10)
+```
+
+```{julia}
+   describe(df)
+```
+
+
+```{julia}
+#| echo: fenced
+#| label: fig-simpson-paradox
+#| fig-cap: "simpson-paradox on palmerpenguins"
+#| fig-align: center
+#| warning: false  
+axis = (width = 300, height = 300)
+penguin_bill = data(df) * mapping(
+    :bill_length_mm => (t -> t / 10) =>"bill_length",
+    :bill_depth_mm => (t -> t / 10) =>"bill_depth",
+)
+pipeline1=penguin_bill * linear() * mapping(color = :species)
+pipeline2=penguin_bill * mapping(color = :species)*visual(Scatter;strokewidth=1,strokcolor=:black)
+pipeline3=penguin_bill *linear()
+
+plt =(pipeline1+pipeline2+pipeline3)*visual(alpha = 0.5)
+draw(plt; axis = axis)
+```
+
+
