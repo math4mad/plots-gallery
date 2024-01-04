@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
+<meta name="author" content="math4mad">
 
-<title>GLMakie Gallery - 2-2dimension decision boundary</title>
+<title>GLMakie Gallery - normal-noise-data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/2-2d-descison-boundary.html">2-2dimension decision boundary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/17-normal-noise-data.html">normal-noise-data</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -247,13 +247,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/17-normal-noise-data.html" class="sidebar-item-text sidebar-link">
+  <a href="../statistics/17-normal-noise-data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">normal-noise-data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/2-2d-descison-boundary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/2-2d-descison-boundary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2-2dimension decision boundary</span></a>
   </div>
 </li>
@@ -537,17 +537,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">2. load package</a></li>
-  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots">3. plots</a></li>
+  <li><a href="#load-pacakge" id="toc-load-pacakge" class="nav-link active" data-scroll-target="#load-pacakge">1. load pacakge</a></li>
+  <li><a href="#make-noise-data" id="toc-make-noise-data" class="nav-link" data-scroll-target="#make-noise-data">2. make noise data</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">3. plot</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/2-2d-descison-boundary.html">2-2dimension decision boundary</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/17-normal-noise-data.html">normal-noise-data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">2-2dimension decision boundary</h1>
+<h1 class="title">normal-noise-data</h1>
 </div>
 
 
@@ -557,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
+             <p>math4mad </p>
           </div>
   </div>
     
@@ -570,56 +571,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="load-package" class="level2">
-<h2 class="anchored" data-anchor-id="load-package">2. load package</h2>
-<div class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsFuns</span>: logistic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="callout callout-style-default callout-note callout-titled" title="info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ref :Understanding Regression Analysis_ A Conditional Distribution Approah-CRC (2020)</p>
+<p>观点: 数据测量并不是一次性的. 在反复的测量中, 出现的数据点代表了附近邻居的信息, 与数据点性质越接近的邻居 测量值越接近于这个值. 在实际使用中, 数据点和附近邻居点的信息偏差可以用正态分布来建模</p>
+</div>
+</div>
+<section id="load-pacakge" class="level2">
+<h2 class="anchored" data-anchor-id="load-pacakge">1. load pacakge</h2>
+<div id="e6e36e86" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span>, <span class="bu">Distributions</span>, <span class="bu">Random</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">34343</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>TaskLocalRNG()</code></pre>
+</div>
 </div>
 </section>
-<section id="plots" class="level2">
-<h2 class="anchored" data-anchor-id="plots">3. plots</h2>
-<div class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fontsize_theme <span class="op">=</span> <span class="fu">Theme</span>(fontsize<span class="op">=</span><span class="fl">16</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_theme!</span>(fontsize_theme)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">900</span>,<span class="fl">900</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">surface_data</span>(w)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fun</span>(x, y) <span class="op">=</span> <span class="fu">logistic</span>(w<span class="op">'</span> <span class="op">*</span> [x, y])</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    span <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">100</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    zs <span class="op">=</span> [<span class="fu">fun</span>(x, y) for x <span class="kw">in</span> span, y <span class="kw">in</span> span]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> span, span, zs</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ws <span class="op">=</span> [<span class="fl">3</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">3</span>]</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (idx, x) <span class="kw">in</span> <span class="fu">enumerate</span>(ws)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (idy, y) <span class="kw">in</span> <span class="fu">enumerate</span>(ws)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            w <span class="op">=</span> [x, y] <span class="op">==</span> [<span class="fl">0</span>, <span class="fl">0</span>] ? <span class="fu">vec</span>([<span class="fl">0</span>, <span class="fl">0.5</span>]) <span class="op">:</span> <span class="fu">vec</span>([x, y])</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            xs, ys, zs <span class="op">=</span> <span class="fu">surface_data</span>(w)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            ax <span class="op">=</span> <span class="fu">Axis3</span>(fig[idx, idy], title<span class="op">=</span><span class="st">"w=(</span><span class="sc">$</span>(w[<span class="fl">1</span>])<span class="st">,</span><span class="sc">$</span>(w[<span class="fl">2</span>])<span class="st">)"</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">surface!</span>(ax, xs, ys, zs)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div id="fig-2d-decision-boundary" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2d-decision-boundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="2-2d-descison-boundary_files/figure-html/fig-2d-decision-boundary-output-1.png" class="img-fluid figure-img">
+<section id="make-noise-data" class="level2">
+<h2 class="anchored" data-anchor-id="make-noise-data">2. make noise data</h2>
+<div id="3d43aff7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>step<span class="op">=</span><span class="fl">80</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xs<span class="op">=</span>ys<span class="op">=</span><span class="fu">range</span>(<span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,step)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>zs<span class="op">=</span><span class="fu">range</span>(<span class="fl">0</span>,<span class="fl">1</span>,step)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>noise_dist<span class="op">=</span><span class="fu">Normal</span>(<span class="fl">0</span>,<span class="fl">0.4</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)<span class="op">=</span><span class="fl">2</span>(x)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span><span class="fu">f</span>.(xs)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>noise<span class="op">=</span><span class="fu">rand</span>(noise_dist,step)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>noise_data<span class="op">=</span>data<span class="op">+</span>noise</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>zsd<span class="op">=</span><span class="fu">fill</span>(<span class="fl">0</span>,step)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>80-element Vector{Int64}:
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ ⋮
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2d-decision-boundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: 2d-decision-boundary
-</figcaption>
+</div>
+</section>
+<section id="plot" class="level2">
+<h2 class="anchored" data-anchor-id="plot">3. plot</h2>
+<div id="37a9cfaa" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span><span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">600</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span><span class="fu">Axis3</span>(fig[<span class="fl">1</span>,<span class="fl">1</span>],limits<span class="op">=</span>(<span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0</span>,<span class="fl">1</span>),aspect <span class="op">=</span> (<span class="fl">1.5</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">/</span><span class="fl">3</span>),azimuth<span class="op">=-</span><span class="fl">0.2</span>pi)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax, xs, data,zsd, linestyle<span class="op">=:</span>dot, linewidth<span class="op">=</span><span class="fl">8</span>,color<span class="op">=</span>(<span class="op">:</span>red, <span class="fl">0.8</span>),label<span class="op">=</span><span class="st">"real data"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>(ax, xs, noise_data,zsd,marker<span class="op">=:</span>circle,markersize<span class="op">=</span><span class="fl">16</span>,color<span class="op">=</span>(<span class="op">:</span>lightgreen,<span class="fl">0.1</span>),strokewidth<span class="op">=</span><span class="fl">2</span>,strokecolor<span class="op">=:</span>black,label<span class="op">=</span><span class="st">"noise data"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="op">-</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">2</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> dist<span class="op">=</span><span class="fu">Normal</span>(i,<span class="fl">0.4</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> data<span class="op">=</span>[<span class="fu">Point3f</span>(i,y,<span class="fu">pdf</span>(dist,y)) for y <span class="kw">in</span> ys]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines!</span>(ax, data,label<span class="op">=</span><span class="st">"noise dist at </span><span class="sc">$</span>i<span class="st">"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">axislegend</span>(ax)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+<figure class="figure">
+<p><img src="17-normal-noise-data_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

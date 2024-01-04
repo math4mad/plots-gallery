@@ -614,58 +614,25 @@
     ]
   },
   {
-    "objectID": "statistics/4-pair-plots.html",
-    "href": "statistics/4-pair-plots.html",
-    "title": "4-pair-plots",
+    "objectID": "statistics/5-2d-decision-boundary.html",
+    "href": "statistics/5-2d-decision-boundary.html",
+    "title": "5-2d-decision-boundary",
     "section": "",
-    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa",
+    "text": "Code\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nusing MLJ\nLogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n#X, y = make_blobs(centers = 2)\nmach = fit!(machine(LogisticClassifier(), X, y))\npredict(mach, X)\nfitted_params(mach)\nprobs=predict(mach, x_test)|&gt;Array #返回分类概率值\nprobs_res=broadcast(pdf, probs, 1.0).|&gt;(d-&gt;round(d,digits=2))|&gt;d-&gt;reshape(d,nums,nums) #返回概率为1.0(\"virginica\")的概率值\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\nimport MLJLinearModels ✔\n\n\n100×100 Matrix{Float64}:\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n ⋮                             ⋮     ⋱            ⋮                   \n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0",
     "crumbs": [
       "Statistics",
-      "4-pair-plots"
+      "5-2d-decision-boundary"
     ]
   },
   {
-    "objectID": "statistics/8-dotplot.html",
-    "href": "statistics/8-dotplot.html",
-    "title": "8-dotplot",
-    "section": "",
-    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法",
+    "objectID": "statistics/5-2d-decision-boundary.html#plot-results",
+    "href": "statistics/5-2d-decision-boundary.html#plot-results",
+    "title": "5-2d-decision-boundary",
+    "section": "plot results",
+    "text": "plot results\n\n\nCode\n    fig=Figure(resolution=(1600,800))\n\n    function plot_res_contour()\n\n        ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contour\")\n        contour!(ax, tx, ty, probs_res; labels=true)\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    function plot_res_contourf()\n\n        ax = Axis(fig[1, 2], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contourf\")\n        contourf!(ax, tx, ty, probs_res; levels=6, colormap=(:heat, 0.5))\n        #contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1.0 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    plot_res_contourf()\n    plot_res_contour()",
     "crumbs": [
       "Statistics",
-      "8-dotplot"
-    ]
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#load-package",
-    "href": "statistics/8-dotplot.html#load-package",
-    "title": "8-dotplot",
-    "section": "1. load package",
-    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()",
-    "crumbs": [
-      "Statistics",
-      "8-dotplot"
-    ]
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#make-data",
-    "href": "statistics/8-dotplot.html#make-data",
-    "title": "8-dotplot",
-    "section": "2. make data",
-    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted",
-    "crumbs": [
-      "Statistics",
-      "8-dotplot"
-    ]
-  },
-  {
-    "objectID": "statistics/8-dotplot.html#plot",
-    "href": "statistics/8-dotplot.html#plot",
-    "title": "8-dotplot",
-    "section": "3. plot",
-    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\nRObject{VecSxp}",
-    "crumbs": [
-      "Statistics",
-      "8-dotplot"
+      "5-2d-decision-boundary"
     ]
   },
   {
@@ -713,25 +680,102 @@
     ]
   },
   {
-    "objectID": "statistics/5-2d-decision-boundary.html",
-    "href": "statistics/5-2d-decision-boundary.html",
-    "title": "5-2d-decision-boundary",
+    "objectID": "statistics/8-dotplot.html",
+    "href": "statistics/8-dotplot.html",
+    "title": "8-dotplot",
     "section": "",
-    "text": "Code\nimport MLJ:fit!,predict,predict_mode,predict_mean,machine\nusing MLJ,GLMakie,Random,DataFrames\n\niris = load_iris(); \niris =DataFrame(iris);\nnums=100\n\niris[!, :target] = [r.target == \"virginica\" ? 1.0 : 0.0 for r in eachrow(iris)]\niris=coerce(iris, :target=&gt; Multiclass )\ngdf=groupby(iris, :target)\nX,y=iris[:,3:4],iris[:,:target]\n\ncats=levels(y)\n\nfunction boundary_data(df,;n=nums)\n    n1=n2=n\n    xlow,xhigh=extrema(df[:,1])\n    ylow,yhigh=extrema(df[:,2])\n    tx = LinRange(xlow,xhigh,n1)\n    ty = LinRange(ylow,yhigh,n2)\n    x_test = mapreduce(collect, hcat, Iterators.product(tx, ty));\n    x_test=MLJ.table(x_test')\n    return tx,ty,x_test\nend\ntx,ty,x_test=boundary_data(X)\n\n\nusing MLJ\nLogisticClassifier = @load LogisticClassifier pkg=MLJLinearModels\n#X, y = make_blobs(centers = 2)\nmach = fit!(machine(LogisticClassifier(), X, y))\npredict(mach, X)\nfitted_params(mach)\nprobs=predict(mach, x_test)|&gt;Array #返回分类概率值\nprobs_res=broadcast(pdf, probs, 1.0).|&gt;(d-&gt;round(d,digits=2))|&gt;d-&gt;reshape(d,nums,nums) #返回概率为1.0(\"virginica\")的概率值\n\n\n[ Info: For silent loading, specify `verbosity=0`. \n[ Info: Training machine(LogisticClassifier(lambda = 2.220446049250313e-16, …), …).\n┌ Info: Solver: MLJLinearModels.LBFGS{Optim.Options{Float64, Nothing}, NamedTuple{(), Tuple{}}}\n│   optim_options: Optim.Options{Float64, Nothing}\n└   lbfgs_options: NamedTuple{(), Tuple{}} NamedTuple()\n\n\nimport MLJLinearModels ✔\n\n\n100×100 Matrix{Float64}:\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n 0.0   0.0   0.0   0.0   0.0   0.0      0.0  0.0  0.0  0.0  0.0  0.0  0.0\n ⋮                             ⋮     ⋱            ⋮                   \n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0   …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.0   0.0      1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.0   0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.0   0.01  0.01  0.01  …  1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.0   0.0   0.01  0.01  0.01  0.01     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.01  0.01  0.02     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.01  0.02  0.02  0.03     1.0  1.0  1.0  1.0  1.0  1.0  1.0\n 0.01  0.01  0.02  0.02  0.03  0.04     1.0  1.0  1.0  1.0  1.0  1.0  1.0",
+    "text": "简介\n\n\n\n用于单一属性的频数统计\n\nfrom Creating Stacked Dot Plots in R\n使用 RCall.jl,ggplot2\n在 lock5 stat 中会大量使用这个方法",
     "crumbs": [
       "Statistics",
-      "5-2d-decision-boundary"
+      "8-dotplot"
     ]
   },
   {
-    "objectID": "statistics/5-2d-decision-boundary.html#plot-results",
-    "href": "statistics/5-2d-decision-boundary.html#plot-results",
-    "title": "5-2d-decision-boundary",
-    "section": "plot results",
-    "text": "plot results\n\n\nCode\n    fig=Figure(resolution=(1600,800))\n\n    function plot_res_contour()\n\n        ax = Axis(fig[1, 1], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contour\")\n        contour!(ax, tx, ty, probs_res; labels=true)\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    function plot_res_contourf()\n\n        ax = Axis(fig[1, 2], xlabel=\"petal-length\", ylabel=\"petal-width\", title=\"2d2class-contourf\")\n        contourf!(ax, tx, ty, probs_res; levels=6, colormap=(:heat, 0.5))\n        #contourf!(ax,tx,ty,yhat;levels=length(cats),colormap=(:heat,0.5))\n        colors = [:red, :blue]\n        for i in 1:2\n            scatter!(ax, gdf[i][:, 3], gdf[i][:, 4], color=(colors[i], 0.8), marker=:circle, markersize=10, strokewidth=1, strokecolor=:black, label=gdf[i][1, 5] == 1.0 ? \"virginica\" : \"non-virginica\")\n        end\n        axislegend(ax, position=:lt)\n        #save(\"./imgs/iris-logreg-2d-2class-contourf.png\",fig)\n        fig\n    end\n\n    plot_res_contourf()\n    plot_res_contour()",
+    "objectID": "statistics/8-dotplot.html#load-package",
+    "href": "statistics/8-dotplot.html#load-package",
+    "title": "8-dotplot",
+    "section": "1. load package",
+    "text": "1. load package\n\n\nCode\nusing TidierPlots,RCall\nusing DataFrames,Random\nRandom.seed!(121212)\n\n\nTaskLocalRNG()",
     "crumbs": [
       "Statistics",
-      "5-2d-decision-boundary"
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#make-data",
+    "href": "statistics/8-dotplot.html#make-data",
+    "title": "8-dotplot",
+    "section": "2. make data",
+    "text": "2. make data\n\n\nCode\nraw=rand(1:20,100)\ndf=DataFrame(x=raw)\nshow(df)\n\n\n100×1 DataFrame\n Row │ x     \n     │ Int64 \n─────┼───────\n   1 │    19\n   2 │     2\n   3 │    15\n   4 │    16\n   5 │    16\n   6 │    18\n   7 │    15\n   8 │    13\n   9 │    12\n  10 │     2\n  11 │    20\n  ⋮  │   ⋮\n  91 │     3\n  92 │    12\n  93 │     8\n  94 │    16\n  95 │     3\n  96 │     3\n  97 │     8\n  98 │    14\n  99 │    14\n 100 │    12\n79 rows omitted",
+    "crumbs": [
+      "Statistics",
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/8-dotplot.html#plot",
+    "href": "statistics/8-dotplot.html#plot",
+    "title": "8-dotplot",
+    "section": "3. plot",
+    "text": "3. plot\n\n\nCode\n    @rput df\n    R\"\"\"\n    library(ggplot2)\n   ggplot(df, aes(x = x)) + \n  geom_dotplot(dotsize = .75, stackratio = 1.2, \n               fill = \"steelblue\") + \n  scale_y_continuous(NULL, breaks = NULL) + \n  labs(title = \"Stacked Dot Plot\", x = \"Data Values\") +\n  theme_minimal()\n    \"\"\"\n\n\n┌ Warning: RCall.jl: Bin width defaults to 1/30 of the range of the data. Pick better value with\n│ `binwidth`.\n└ @ RCall ~/.julia/packages/RCall/gOwEW/src/io.jl:172\n\n\n\n\n\n\n\n\n\nRObject{VecSxp}",
+    "crumbs": [
+      "Statistics",
+      "8-dotplot"
+    ]
+  },
+  {
+    "objectID": "statistics/4-pair-plots.html",
+    "href": "statistics/4-pair-plots.html",
+    "title": "4-pair-plots",
+    "section": "",
+    "text": "\"\"\"\n probml page 35 fig1.3\n findall(x -&gt; x == c, byCat)  参考 beautiful makie 代码\n\"\"\"\n\n\nCode\nusing MLJ,DataFrames,GLMakie\n    fontsize_theme = Theme(fontsize = 10)\n    set_theme!(fontsize_theme)\n\n    iris = load_iris(); \n    iris = DataFrames.DataFrame(iris);\n    #y, X = unpack(iris, ==(:target); rng=123);\n    byCat = iris.target\n    categ = unique(byCat)\n    label=[\"sepal_length\",\"sepal_width\",\"petal_length\",\"petal_width\"]\n    axs=[]\n    colors1 = [:orange,:lightgreen,:purple]\n   \n\n    fig = Figure(resolution=(1400,1400))\n   \n    function plot_diag(i,j)\n            \n                ax = Axis(fig[i, i])\n                push!(axs,ax)\n                for (j, c) in enumerate(categ)\n                    indc = findall(x -&gt; x == c, byCat)\n                    density!(ax, iris[:,i][indc]; color = (colors1[j], 0.5), label = \"$(c)\",\n                        strokewidth = 1.25, strokecolor = colors1[j])\n                end\n    end\n\n\n\"\"\"\n    plot_cor(i,j)\n    生成非对角列的散点图\nTBW\n\"\"\"\nfunction plot_cor(i,j)\n        ax = Axis(fig[i, j])\n        #push!(axs,ax)\n            for (k, c) in enumerate(categ)\n                indc = findall(x -&gt; x == c, byCat)\n                #@show indc\n                scatter!(ax, iris[:,i][indc],iris[:,j][indc];color=colors1[k])\n            end\n    end\n\n    function plot_pair()\n        [( i==j ? plot_diag(i,j) : plot_cor(i,j)) for i in 1:4,j in 1:4]\n    end\n\n    function add_xy_label()\n        for i in 1:4\n         axx=Axis(fig[4, i], xlabel =label[i],)\n         axy=Axis(fig[i, 1], ylabel =label[i],)\n        end\n    end\n    \n    function  add_legend()\n        Legend(fig[2:3, 5], axs[1],\"Label\";width=100,height=200)\n    end\n    \n    \n    \n     function main()\n       plot_pair()\n       add_xy_label()\n       add_legend()\n       fig\n       #save(\"./imgs/iris-corner-plot2.png\",fig)\n     end\n   #save(\"./imgs/iris-corner-plot.png\",fig)\n\n\nmain (generic function with 1 method)\n\n\n\nPlotData\n\n\n\n\nCode\nwith_theme(fontsize_theme, fontsize = 25) do\n    main()\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\n  first(iris,10)\n\n\n10×5 DataFrame\n\n\n\nRow\nsepal_length\nsepal_width\npetal_length\npetal_width\ntarget\n\n\n\nFloat64\nFloat64\nFloat64\nFloat64\nCat…\n\n\n\n\n1\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n2\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n3\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n5\n5.0\n3.6\n1.4\n0.2\nsetosa\n\n\n6\n5.4\n3.9\n1.7\n0.4\nsetosa\n\n\n7\n4.6\n3.4\n1.4\n0.3\nsetosa\n\n\n8\n5.0\n3.4\n1.5\n0.2\nsetosa\n\n\n9\n4.4\n2.9\n1.4\n0.2\nsetosa\n\n\n10\n4.9\n3.1\n1.5\n0.1\nsetosa",
+    "crumbs": [
+      "Statistics",
+      "4-pair-plots"
+    ]
+  },
+  {
+    "objectID": "statistics/17-normal-noise-data.html",
+    "href": "statistics/17-normal-noise-data.html",
+    "title": "normal-noise-data",
+    "section": "",
+    "text": "info\n\n\n\nref :Understanding Regression Analysis_ A Conditional Distribution Approah-CRC (2020)\n观点: 数据测量并不是一次性的. 在反复的测量中, 出现的数据点代表了附近邻居的信息, 与数据点性质越接近的邻居 测量值越接近于这个值. 在实际使用中, 数据点和附近邻居点的信息偏差可以用正态分布来建模",
+    "crumbs": [
+      "Statistics",
+      "normal-noise-data"
+    ]
+  },
+  {
+    "objectID": "statistics/17-normal-noise-data.html#load-pacakge",
+    "href": "statistics/17-normal-noise-data.html#load-pacakge",
+    "title": "normal-noise-data",
+    "section": "1. load pacakge",
+    "text": "1. load pacakge\n\nusing GLMakie, Distributions, Random \nRandom.seed!(34343)\n\nTaskLocalRNG()",
+    "crumbs": [
+      "Statistics",
+      "normal-noise-data"
+    ]
+  },
+  {
+    "objectID": "statistics/17-normal-noise-data.html#make-noise-data",
+    "href": "statistics/17-normal-noise-data.html#make-noise-data",
+    "title": "normal-noise-data",
+    "section": "2. make noise data",
+    "text": "2. make noise data\n\nstep=80\nxs=ys=range(-4,4,step)\nzs=range(0,1,step)\n\nnoise_dist=Normal(0,0.4)\nf(x)=2(x)\ndata=f.(xs)\nnoise=rand(noise_dist,step)\nnoise_data=data+noise\nzsd=fill(0,step)\n\n80-element Vector{Int64}:\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n ⋮\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0\n 0",
+    "crumbs": [
+      "Statistics",
+      "normal-noise-data"
+    ]
+  },
+  {
+    "objectID": "statistics/17-normal-noise-data.html#plot",
+    "href": "statistics/17-normal-noise-data.html#plot",
+    "title": "normal-noise-data",
+    "section": "3. plot",
+    "text": "3. plot\n\nfig=Figure(resolution=(800,600))\nax=Axis3(fig[1,1],limits=(-4,4,-4,4,0,1),aspect = (1.5, 1, 2/3),azimuth=-0.2pi)\n\nlines!(ax, xs, data,zsd, linestyle=:dot, linewidth=8,color=(:red, 0.8),label=\"real data\")\nscatter!(ax, xs, noise_data,zsd,marker=:circle,markersize=16,color=(:lightgreen,0.1),strokewidth=2,strokecolor=:black,label=\"noise data\")\n\nfor i in [-2,0,2]\n    local dist=Normal(i,0.4)\n    local data=[Point3f(i,y,pdf(dist,y)) for y in ys]\n    lines!(ax, data,label=\"noise dist at $i\")\nend\n\naxislegend(ax)\nfig",
+    "crumbs": [
+      "Statistics",
+      "normal-noise-data"
     ]
   },
   {

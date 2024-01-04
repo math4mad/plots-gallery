@@ -1,0 +1,50 @@
+---
+title: "normal-noise-data"
+author: math4mad
+code-fold: false
+---
+
+:::{.callout-note title="info"}
+ref :Understanding Regression Analysis_ A Conditional Distribution Approah-CRC (2020)
+
+观点: 数据测量并不是一次性的. 在反复的测量中, 出现的数据点代表了附近邻居的信息, 与数据点性质越接近的邻居
+测量值越接近于这个值. 在实际使用中, 数据点和附近邻居点的信息偏差可以用正态分布来建模
+:::
+
+## 1. load pacakge 
+```{julia}
+using GLMakie, Distributions, Random 
+Random.seed!(34343)
+```
+
+## 2. make noise data 
+```{julia}
+step=80
+xs=ys=range(-4,4,step)
+zs=range(0,1,step)
+
+noise_dist=Normal(0,0.4)
+f(x)=2(x)
+data=f.(xs)
+noise=rand(noise_dist,step)
+noise_data=data+noise
+zsd=fill(0,step)
+```
+
+## 3. plot 
+```{julia}
+fig=Figure(resolution=(800,600))
+ax=Axis3(fig[1,1],limits=(-4,4,-4,4,0,1),aspect = (1.5, 1, 2/3),azimuth=-0.2pi)
+
+lines!(ax, xs, data,zsd, linestyle=:dot, linewidth=8,color=(:red, 0.8),label="real data")
+scatter!(ax, xs, noise_data,zsd,marker=:circle,markersize=16,color=(:lightgreen,0.1),strokewidth=2,strokecolor=:black,label="noise data")
+
+for i in [-2,0,2]
+    local dist=Normal(i,0.4)
+    local data=[Point3f(i,y,pdf(dist,y)) for y in ys]
+    lines!(ax, data,label="noise dist at $i")
+end
+
+axislegend(ax)
+fig
+```
