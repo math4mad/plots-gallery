@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "GLMakie Gallery"
+  title: "Makie Gallery"
   sidebar:
     background: primary
     # logo: "images/logo.png"
