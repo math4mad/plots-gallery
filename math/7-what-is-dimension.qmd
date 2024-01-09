@@ -1,0 +1,136 @@
+---
+title: "7-what is dimension in mathematics?"
+format:
+  html: 
+    code-fold: false
+    fontsize: 1.1em
+    linestretch: 1.7
+execute: 
+  cache: true
+  jupyter: julia-1.9
+---
+
+:::{.callout-note title="info"}
+ref: [Understanding Regression Analysis ch06 figure 6.3](https://www.taylorfrancis.com/books/mono/10.1201/9781003025764/understanding-regression-analysis-peter-westfall-andrea-arias)
+
+> What is a dimension? This is a very difficult problem to understand. The most basic problem in mathematics is the measurement of the physical properties of reality. The most commonly used tool for measuring is a ruler. We can turn the dimension problem into another problem, and to measure the differences between different objects in a set, we need several rulers that cannot replace each other
+> 
+> 什么是维度.这是一个非常难理解的问题.数学最基础的问题是对现实实物属性的度量.度量最常用的工具是直尺. 我们可以把维度问题转化为另一个问题,要度量一个集合中不同对象的差异
+> ,需要几把不能相互代替的尺子
+:::
+
+```{julia}
+
+using CairoMakie,Distributions,Turing,LinearAlgebra
+using Plots,StatsPlots
+import CairoMakie:wireframe!,scatter!
+```
+
+## 1 生活在三维空间中平面的维度
+```{julia}
+xs=ys=Vector(1:0.05:2)
+zs1=[-1+6*x+10*y for x in xs ,y in ys]
+zs2=[0 for x in xs, y in ys]
+```
+
+```{julia}
+function plot_wireframe(zs::Matrix)
+    fig=Figure()
+    ax=Axis3(fig[1,1],azimuth=-pi/4)
+    wireframe!(ax,xs,ys,zs)
+    fig
+end
+
+function plot_wireframe(zs1::Matrix,zs2::Matrix)
+    fig=Figure()
+    ax=Axis3(fig[1,1],azimuth=-pi/4)
+    wireframe!(ax,xs,ys,zs1,color=:green)
+    wireframe!(ax,xs,ys,zs2,color=:red)
+    
+    fig
+end
+```
+
+```{julia}
+#| label: fig-plane-in-3d-space
+#| fig-cap: "plane-in-3d-space"
+#| fig-cap-location : margin
+#| fig-align: "center"
+plot_wireframe(zs1)
+```
+
+```{julia}
+#| label: fig-plane-and-projection-in-2d-plane
+#| fig-cap: "plane-and-projection-in 2d plane"
+#| fig-cap-location : margin
+#| fig-align: "center"
+plot_wireframe(zs1,zs2)
+```
+@fig-plane-and-projection-in-2d-plane 中 度量两个平面的工具是一样. 
+我们只考虑平面中点之间的属性的差异,脱离三维空间. 绿色平面和红色平面度量方法相同,
+只需要两种不同的尺子,度量 x,y 方向的属性就可以分开平面里的不同个体. 
+
+## 2. add some noise
+在上面图的基础上,我们可以增加一些噪音
+```{julia}
+d=Normal(0,2)
+zs4=[[x,y,-1+6*x+10*y+rand(d)] for x in xs  for y in ys]
+matrix=hcat(zs4...)
+```
+这时,两个尺子就不够了. 还需要度量噪音,这就是第三位维度
+
+## with different noise 
+
+```{julia}
+σs=[0.0,0.05,0.1,1,1.5,3]
+dists=[Normal(0,σ) for σ in σs ]
+```
+
+在不同噪音情况下的平面变化情况
+```{julia}
+function plot_matrix_arr()
+    fig=Figure(resolution=(1200,800))
+    
+     for  idx in eachindex(dists)
+          zs=[[x,y,-1+6*x+10*y+rand(dists[idx])] for x in xs  for y in ys]
+          matrix=hcat(zs...)
+          ax=Axis3(fig[fldmod1(idx,3)...],title="σ=$(σs[idx])",azimuth=pi/8,elevation=-pi/4)
+          scatter!(ax,matrix,color=(:blue,0.5),strokewidth=0.5, strokecolor=:black)
+     end
+     fig
+end
+plot_matrix_arr()
+```
+![rotation](imgs/screenshot_1765.jpg)
+
+## 3. Bayesian Infrence 
+在上面的的图示中, 我们通过添加噪音获得了数据, 通过添加正态分布的噪音,使得数据
+形成三个维度, 第三个维度是不确定性因素, 因此可以通过贝叶斯方法推断不确定因素
+
+
+### 3.1 生成数据
+```{julia}
+d=Normal(0,3)
+zs=[-1+6*x+10*y+rand(d) for x in xs  for y in ys]
+X=hcat(xs,ys)
+```
+### 3.2 Turing workflow
+```{julia}
+@model  function linear_regression(X,y)
+       n = length(y)
+       mu=[-1+6*x+10*y  for x in X[:,1]  for y in X[:,2]]
+       σ² ~ truncated(Normal(0, 5); lower=0)
+       for i in 1:n
+       y[i] ~ Normal(mu[i], σ²)
+       
+    end
+end
+
+model = linear_regression(X,zs)
+chain = sample(model, NUTS(), 5_000)
+```
+```{julia}
+Plots.plot(chain)
+```
+
+

@@ -40,6 +40,8 @@ format:
     toc: true
     fig-align: "center"
     fig-cap-location : bottom
+    code-block-bg: true
+    code-block-border-left: "#ff0000"
 
 execute:
   freeze: auto
