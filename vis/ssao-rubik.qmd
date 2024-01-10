@@ -1,0 +1,45 @@
+---
+title: "SSAO-Rubik"
+---
+
+:::{.callout-note title="info"}
+using  Makie's SSAO  Lighting system
+:::
+```{julia}
+using GLMakie,FileIO
+GLMakie.activate!(ssao=true)
+GLMakie.closeall() # close any open screen
+
+
+
+"""
+ssao_init()
+
+# ssao 初始化函数
+
+返回值为:`tuple(fig,ax)`
+
+"""
+function ssao_init()
+    fig = Figure(resolution = (800, 800))
+    ssao = Makie.SSAO(radius = 5.0, blur = 2)
+    ax = LScene(fig[1, 1], scenekw = (ssao=ssao,),show_axis=false)
+    # SSAO attributes are per scene
+    ax.scene.ssao.bias[] = 0.025
+    return fig,ax
+end
+
+let
+fig,ax=ssao_init()
+material=load("./imgs/golden.png")
+cubic=Rect3f(Vec3f(0), Vec3f(0.5))  # 0.5 是分离的小方块 1是紧凑的聚积在一起
+x = y = z = 1:10
+positions = vec([(i, j, k) for i in x, j in y, k in z])
+
+meshscatter!(ax,positions; matcap=material,marker = cubic,markersize = 0.98,ssao=true)
+
+fig
+
+end
+
+```

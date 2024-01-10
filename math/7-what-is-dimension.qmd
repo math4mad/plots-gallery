@@ -125,7 +125,9 @@ X=hcat(xs,ys)
        
     end
 end
-
+```
+### 3.3 random sampling
+```{julia}
 model = linear_regression(X,zs)
 chain = sample(model, NUTS(), 5_000)
 ```
@@ -133,4 +135,44 @@ chain = sample(model, NUTS(), 5_000)
 Plots.plot(chain)
 ```
 
+
+### 3.4  bayesian Workflow 
+下面总结一下流程,在贝叶斯统计中,对于使用软件包的人来讲, 理解采样过程
+不是必须的,但是需要理解采样过程在流程中处于什么位置. 使用软件包要关注如何
+使用概率分布构建模型, 贝叶斯采样时如何起作用的
+
+```{mermaid}
+%%| label: fig-bayesian-workflow
+%%| fig-cap: "bayesian-workflow"
+flowchart TD 
+  Init("building model")
+  
+  A["Normal(μ=0,σ=0.05)"] 
+  B["Normal(μ=0,σ=0.1)"] 
+  C["Normal(μ=0,σ=0.5)"] 
+  D["Normal(μ=0,σ=1.5)"] 
+  E["Normal(μ=0,σ=2)"] 
+  F["Normal(μ=0,σ=3)"] 
+  G[(Data)]
+  Init-->A
+  Init-->B 
+  Init-->C
+  Init-->D
+  Init-->E
+  Init-->F
+  A-->G
+  B-->G 
+  C-->G 
+  D-->G
+  E-->G 
+  F-->G
+```
+在 @fig-bayesian-workflow 中 我们可以设定一系列不同参数的
+概率分布, 然后从每个模型中随机采样, 计算最大似然率. 
+
+
+遍历概率模型的参数生成不同的概率分布, 然后从中采样, 生成数据与
+观测数据最为相似的参数就作为模型的最优参数.
+
+抽样方法影响参数精度, 但是不改变工作流程. 
 
