@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Makie Gallery</a> 
         <div class="sidebar-tools-main">
@@ -196,6 +196,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../math/7-what-is-dimension.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7-what is dimension in mathematics?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/8-elliptic-cylinder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8-Elliptic Cylinder</span></a>
   </div>
 </li>
       </ul>
@@ -354,13 +360,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../vis/ai-supercomputer-ability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Computation used to train notable artificial intelligence systems"</span></a>
+ <span class="menu-text">Computation used to train notable artificial intelligence systems”</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../vis/american-view-on-ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Views of Americans about robot vs. human intelligence, All adults"</span></a>
+ <span class="menu-text">Views of Americans about robot vs.&nbsp;human intelligence, All adults”</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -407,6 +413,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../vis/country-heatmap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">country heatmap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../vis/dumbbell-plot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dumbbell Plot</span></a>
   </div>
@@ -438,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../vis/internet-user-view.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Number of people using the Internet"</span></a>
+ <span class="menu-text">Number of people using the Internet”</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -521,8 +533,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../vis/world-drink.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">country heatmap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../vis/world-electricity-generation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Total electricity generation"</span></a>
+ <span class="menu-text">Total electricity generation”</span></a>
   </div>
 </li>
       </ul>
@@ -785,7 +803,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
