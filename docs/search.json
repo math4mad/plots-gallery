@@ -1553,5 +1553,148 @@
     "title": "Using Dash",
     "section": "",
     "text": "Code\nusing Dash\nusing DataFrames, CSV, PlotlyJS, RDatasets\n\niris = RDatasets.dataset(\"datasets\", \"iris\")\n\nPlot(iris, x=:SepalLength, y=:SepalWidth, mode=\"markers\", marker_size=8, group=:Species)"
+  },
+  {
+    "objectID": "vis/country-heatmap.html",
+    "href": "vis/country-heatmap.html",
+    "title": "country heatmap",
+    "section": "",
+    "text": "using Makie, CairoMakie, GeoMakie\nimport Downloads\nusing GeoMakie.GeoJSON\nusing GeometryBasics\nusing GeoMakie.GeoInterface\nusing CSV,DataFrames, Tidier,Pipe\nusing StatsBase",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/country-heatmap.html#load-package",
+    "href": "vis/country-heatmap.html#load-package",
+    "title": "country heatmap",
+    "section": "",
+    "text": "using Makie, CairoMakie, GeoMakie\nimport Downloads\nusing GeoMakie.GeoJSON\nusing GeometryBasics\nusing GeoMakie.GeoInterface\nusing CSV,DataFrames, Tidier,Pipe\nusing StatsBase",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/country-heatmap.html#load-geojson-data",
+    "href": "vis/country-heatmap.html#load-geojson-data",
+    "title": "country heatmap",
+    "section": "2. load geojson data",
+    "text": "2. load geojson data\n\npath=\"./plots-gallery-data/countries.geojson\"\njson_str = read(path, String)\nworldCountries = GeoJSON.read(json_str)\n\nFeatureCollection with 255 Features",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/country-heatmap.html#load-csv",
+    "href": "vis/country-heatmap.html#load-csv",
+    "title": "country heatmap",
+    "section": "3. load csv",
+    "text": "3. load csv\n\ndf=@pipe CSV.File(\"./plots-gallery-data/gdp-per-capita-penn-world-table.csv\")|&gt;DataFrame|&gt;transform(_,\"GDP per capita (output, multiple price benchmarks)\"=&gt;\"gdp\")|&gt;select(_,Not(\"GDP per capita (output, multiple price benchmarks)\"))\nys=2019\ndf=@chain df begin\n   @clean_names\n   @filter(year== !!ys)\n   @rename(ISO_A3=code)\n   #@mutate(gdp=zscore([gdp...]))\nend\nfirst(df,5)\n\n5×4 DataFrame\n\n\n\nRow\nentity\nISO_A3\nyear\ngdp\n\n\n\nString\nString3\nInt64\nFloat64\n\n\n\n\n1\nAlbania\nALB\n2019\n12531.8\n\n\n2\nAlgeria\nDZA\n2019\n11787.5\n\n\n3\nAngola\nAGO\n2019\n7159.58\n\n\n4\nAnguilla\nAIA\n2019\n15177.9\n\n\n5\nArgentina\nARG\n2019\n21826.8",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/country-heatmap.html#aggregate-data",
+    "href": "vis/country-heatmap.html#aggregate-data",
+    "title": "country heatmap",
+    "section": "4. aggregate data",
+    "text": "4. aggregate data\n\ngeo_df = @chain DataFrame(worldCountries) @select(ISO_A3)\ndf=@left_join(geo_df, df,\"ISO_A3\")\ndf.gdp=@pipe df.gdp|&gt;coalesce.(_, 0)\nlons = -180:180\nlats = -90:90\nfield = [exp(cosd(l)) + 3(y/90) for l in lons, y in lats]\nn,_=size(df)\n\n(255, 4)",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/country-heatmap.html#plot-map",
+    "href": "vis/country-heatmap.html#plot-map",
+    "title": "country heatmap",
+    "section": "5. plot map",
+    "text": "5. plot map\n\nfunction plot_map()\n    fig = Figure(size = (200,200), fontsize = 16)\n\nax = GeoAxis(\n    fig[1,1];\n    dest=\"+proj=wintri\",\n    title = \"World GDP\",\n    tellheight = true,\n)\n\nhm1 = surface!(ax, lons, lats, field)\ntranslate!(hm1, 0, 0, -10)\n\nhm2 = poly!(\n    ax, worldCountries;\n    color=df.gdp,\n    colormap = Reverse(:plasma),\n    strokecolor = :black,\n    strokewidth = 0.25\n)\ncb = Colorbar(fig[1,2]; colorrange = (1, n), colormap = Reverse(:plasma), label = \"variable, color code\", height = Relative(0.65))\nfig\nend\nplot_map()\n\n┌ Warning: Could not find font regular, using TeX Gyre Heros Makie\n└ @ Makie ~/.julia/packages/Makie/RgxaV/src/conversions.jl:1119",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/world-drink.html",
+    "href": "vis/world-drink.html",
+    "title": "country heatmap",
+    "section": "",
+    "text": "“+proj=bacon”",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/world-drink.html#load-package",
+    "href": "vis/world-drink.html#load-package",
+    "title": "country heatmap",
+    "section": "1. load package",
+    "text": "1. load package\n\nusing Makie, CairoMakie, GeoMakie\nimport Downloads\nusing GeoMakie.GeoJSON\nusing GeometryBasics\nusing GeoMakie.GeoInterface\nusing CSV,DataFrames, Tidier,Pipe\nusing StatsBase",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/world-drink.html#load-geojson-data",
+    "href": "vis/world-drink.html#load-geojson-data",
+    "title": "country heatmap",
+    "section": "2. load geojson data",
+    "text": "2. load geojson data\n\npath=\"./data/countries.geojson\"\njson_str = read(path, String)\nworldCountries = GeoJSON.read(json_str)\n\nFeatureCollection with 255 Features",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/world-drink.html#load-csv",
+    "href": "vis/world-drink.html#load-csv",
+    "title": "country heatmap",
+    "section": "3. load csv",
+    "text": "3. load csv\n\ndf=@pipe CSV.File(\"./data/drinkers-had-a-heavy-session-in-past-30-days.csv\")|&gt;DataFrame|&gt;transform(_,\"Indicator:Alcohol, heavy episodic drinking (15+), drinkers only, past 30 days (%) - Sex:Both sexes\"=&gt;\"drink\")|&gt;select(_,Not(\"Indicator:Alcohol, heavy episodic drinking (15+), drinkers only, past 30 days (%) - Sex:Both sexes\"))\n\n#size(df) # (189,4);\nys=2016\ndf=@chain df begin\n   @clean_names\n   @filter(year== !!ys)\n   @rename(ISO_A3=code)\n   #@mutate(gdp=zscore([gdp...]))\nend\nfirst(df,5)\n\n5×4 DataFrame\n\n\n\nRow\nentity\nISO_A3\nyear\ndrink\n\n\n\nString\nString3\nInt64\nFloat64\n\n\n\n\n1\nAfghanistan\nAFG\n2016\n2.0\n\n\n2\nAlbania\nALB\n2016\n44.7\n\n\n3\nAlgeria\nDZA\n2016\n19.3\n\n\n4\nAndorra\nAND\n2016\n40.5\n\n\n5\nAngola\nAGO\n2016\n81.6",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/world-drink.html#aggregate-data",
+    "href": "vis/world-drink.html#aggregate-data",
+    "title": "country heatmap",
+    "section": "4. aggregate data",
+    "text": "4. aggregate data\n\ngeo_df = @chain DataFrame(worldCountries) @select(ISO_A3)\ndf=@left_join(geo_df, df,\"ISO_A3\")\ndf.drink=@pipe df.drink|&gt;coalesce.(_, 0)\nlons = -180:180\nlats = -90:90\nfield = [exp(cosd(l)) + 3(y/90) for l in lons, y in lats]\nn,_=size(df)\n\n(255, 4)",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "vis/world-drink.html#plot-map",
+    "href": "vis/world-drink.html#plot-map",
+    "title": "country heatmap",
+    "section": "5. plot map",
+    "text": "5. plot map\n\nsource = \"+proj=longlat +datum=WGS84\"\ndest = \"+proj=natearth2\"\nfunction plot_map()\n    fig = Figure(size = (200,200), fontsize = 16)\n\nax = GeoAxis(\n    fig[1,1];\n    source=source,\n    dest=dest,\n    title = \"World GDP\",\n    tellheight = true,\n)\n\n# hm1 = surface!(ax, lons, lats, field)\n# translate!(hm1, 0, 0, -10)\n\nhm2= poly!(\n    ax, worldCountries;\n    color=df.drink,\n    colormap = Reverse(:plasma),\n    strokecolor = :black,\n    strokewidth = 0.25\n)\ncb = Colorbar(fig[1,2]; colorrange = (1, n), colormap =(:plasma), label = \"variable, color code\", height = Relative(0.65))\nfig\nend\nplot_map()",
+    "crumbs": [
+      "Data Viz",
+      "country heatmap"
+    ]
+  },
+  {
+    "objectID": "math/8-elliptic-cylinder.html",
+    "href": "math/8-elliptic-cylinder.html",
+    "title": "8-Elliptic Cylinder",
+    "section": "",
+    "text": "intro\n\n\n\nelliptic cylinder parametric equations\n\n\n\nusing GLMakie,DataFrames,LinearAlgebra\n\nfig = Figure(resolution=(600,300))\nax = Axis3(fig[1, 1];azimuth=0.1pi,elevation=0.2pi)\nheight=5\nμs=range(0,2pi,100)\nhs=range(0,height,100)\n \nfunction plot_surface(μs,hs,a=4,b=1)\n    \n    xs=[a*cos(μ) for μ in μs , h in hs]\n    ys=[b*sin(μ) for μ in μs , h in hs]\n    zs=[h for μ in μs , h in hs]\n    surface!(ax,xs,ys,zs;color=(:lightgreen,0.8))\nend\n\nfunction plot_scatter(μs,hs,a=4,b=1)\n    \n    xs=[a*cos(μ) for μ in μs for  h in hs]\n    ys=[b*sin(μ) for μ in μs for  h in hs]\n    zs=[h for μ in μs for  h in hs]\n    scatter!(ax,xs,ys,zs)\nend\nplot_surface(μs,hs)\nfig",
+    "crumbs": [
+      "Math",
+      "8-Elliptic Cylinder"
+    ]
   }
 ]

@@ -1,0 +1,43 @@
+---
+title: "8-Elliptic Cylinder"
+format:
+  html: 
+    code-fold: false
+    fontsize: 1.1em
+    linestretch: 1.7
+execute: 
+  cache: true
+  jupyter: julia-1.9
+---
+
+:::{.callout-note title="intro"}
+ [elliptic cylinder  parametric equations](https://mathworld.wolfram.com/EllipticCylinder.html)
+:::
+
+```{julia}
+using GLMakie,DataFrames,LinearAlgebra
+
+fig = Figure(resolution=(600,300))
+ax = Axis3(fig[1, 1];azimuth=0.1pi,elevation=0.2pi)
+height=5
+μs=range(0,2pi,100)
+hs=range(0,height,100)
+ 
+function plot_surface(μs,hs,a=4,b=1)
+    
+    xs=[a*cos(μ) for μ in μs , h in hs]
+    ys=[b*sin(μ) for μ in μs , h in hs]
+    zs=[h for μ in μs , h in hs]
+    surface!(ax,xs,ys,zs;color=(:lightgreen,0.8))
+end
+
+function plot_scatter(μs,hs,a=4,b=1)
+    
+    xs=[a*cos(μ) for μ in μs for  h in hs]
+    ys=[b*sin(μ) for μ in μs for  h in hs]
+    zs=[h for μ in μs for  h in hs]
+    scatter!(ax,xs,ys,zs)
+end
+plot_surface(μs,hs)
+fig
+```

@@ -1,3 +1,10 @@
+---
+title: "country heatmap "
+---
+
+
+## 1. load package 
+```{julia}
 using Makie, CairoMakie, GeoMakie
 import Downloads
 using GeoMakie.GeoJSON
@@ -5,12 +12,19 @@ using GeometryBasics
 using GeoMakie.GeoInterface
 using CSV,DataFrames, Tidier,Pipe
 using StatsBase
-path="./vis/plots-gallery-data/countries.geojson"
+```
+
+## 2.  load geojson data
+```{julia}
+path="./plots-gallery-data/countries.geojson"
 json_str = read(path, String)
 worldCountries = GeoJSON.read(json_str)
-n = length(worldCountries)
 
-df=@pipe CSV.File("./vis/plots-gallery-data/gdp-per-capita-penn-world-table.csv")|>DataFrame|>transform(_,"GDP per capita (output, multiple price benchmarks)"=>"gdp")|>select(_,Not("GDP per capita (output, multiple price benchmarks)"))
+```
+
+## 3. load  csv
+```{julia}
+df=@pipe CSV.File("./plots-gallery-data/gdp-per-capita-penn-world-table.csv")|>DataFrame|>transform(_,"GDP per capita (output, multiple price benchmarks)"=>"gdp")|>select(_,Not("GDP per capita (output, multiple price benchmarks)"))
 ys=2019
 df=@chain df begin
    @clean_names
@@ -18,15 +32,22 @@ df=@chain df begin
    @rename(ISO_A3=code)
    #@mutate(gdp=zscore([gdp...]))
 end
-geo_df = @chain DataFrame(worldCountries) @select(ISO_A3)
+first(df,5)
+```
 
+## 4. aggregate data 
+```{julia}
+geo_df = @chain DataFrame(worldCountries) @select(ISO_A3)
 df=@left_join(geo_df, df,"ISO_A3")
 df.gdp=@pipe df.gdp|>coalesce.(_, 0)
 lons = -180:180
 lats = -90:90
 field = [exp(cosd(l)) + 3(y/90) for l in lons, y in lats]
 n,_=size(df)
+```
 
+## 5. plot map
+```{julia}
 function plot_map()
     fig = Figure(size = (200,200), fontsize = 16)
 
@@ -51,4 +72,4 @@ cb = Colorbar(fig[1,2]; colorrange = (1, n), colormap = Reverse(:plasma), label 
 fig
 end
 plot_map()
-
+```

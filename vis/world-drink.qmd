@@ -1,0 +1,85 @@
+---
+title: "country heatmap "
+---
+
+"+proj=bacon"
+
+## 1. load package 
+```{julia}
+using Makie, CairoMakie, GeoMakie
+import Downloads
+using GeoMakie.GeoJSON
+using GeometryBasics
+using GeoMakie.GeoInterface
+using CSV,DataFrames, Tidier,Pipe
+using StatsBase
+```
+
+## 2.  load geojson data
+```{julia}
+path="./data/countries.geojson"
+json_str = read(path, String)
+worldCountries = GeoJSON.read(json_str)
+```
+
+## 3. load  csv
+```{julia}
+df=@pipe CSV.File("./data/drinkers-had-a-heavy-session-in-past-30-days.csv")|>DataFrame|>transform(_,"Indicator:Alcohol, heavy episodic drinking (15+), drinkers only, past 30 days (%) - Sex:Both sexes"=>"drink")|>select(_,Not("Indicator:Alcohol, heavy episodic drinking (15+), drinkers only, past 30 days (%) - Sex:Both sexes"))
+
+#size(df) # (189,4);
+ys=2016
+df=@chain df begin
+   @clean_names
+   @filter(year== !!ys)
+   @rename(ISO_A3=code)
+   #@mutate(gdp=zscore([gdp...]))
+end
+first(df,5)
+```
+
+## 4. aggregate data 
+```{julia}
+geo_df = @chain DataFrame(worldCountries) @select(ISO_A3)
+df=@left_join(geo_df, df,"ISO_A3")
+df.drink=@pipe df.drink|>coalesce.(_, 0)
+lons = -180:180
+lats = -90:90
+field = [exp(cosd(l)) + 3(y/90) for l in lons, y in lats]
+n,_=size(df)
+```
+
+## 5. plot map
+```{julia}
+source = "+proj=longlat +datum=WGS84"
+dest = "+proj=natearth2"
+function plot_map()
+    fig = Figure(size = (200,200), fontsize = 16)
+
+ax = GeoAxis(
+    fig[1,1];
+    source=source,
+    dest=dest,
+    title = "World GDP",
+    tellheight = true,
+)
+
+# hm1 = surface!(ax, lons, lats, field)
+# translate!(hm1, 0, 0, -10)
+
+hm2= poly!(
+    ax, worldCountries;
+    color=df.drink,
+    colormap = Reverse(:plasma),
+    strokecolor = :black,
+    strokewidth = 0.25
+)
+cb = Colorbar(fig[1,2]; colorrange = (1, n), colormap =(:plasma), label = "variable, color code", height = Relative(0.65))
+fig
+end
+plot_map()
+```
+
+
+
+
+

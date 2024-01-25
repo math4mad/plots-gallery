@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mad">
 
-<title>Makie Gallery - Irish Whiskey Sales</title>
+<title>Makie Gallery - country heatmap</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2016-summer-olympic.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/irish-whiskey-sales.html">Irish Whiskey Sales</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2016-summer-olympic.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/country-heatmap.html">country heatmap</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -199,6 +198,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../math/7-what-is-dimension.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7-what is dimension in mathematics?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../math/8-elliptic-cylinder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8-Elliptic Cylinder</span></a>
   </div>
 </li>
       </ul>
@@ -410,6 +415,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../vis/country-heatmap.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">country heatmap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../vis/dumbbell-plot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dumbbell Plot</span></a>
   </div>
@@ -446,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../vis/irish-whiskey-sales.html" class="sidebar-item-text sidebar-link active">
+  <a href="../vis/irish-whiskey-sales.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Irish Whiskey Sales</span></a>
   </div>
 </li>
@@ -524,6 +535,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../vis/world-drink.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">country heatmap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../vis/world-electricity-generation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Total electricity generation”</span></a>
   </div>
@@ -552,29 +569,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#load-data-dataframe" id="toc-load-data-dataframe" class="nav-link active" data-scroll-target="#load-data-dataframe">2. load data-&gt;dataframe</a></li>
-  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">3. data preprocessing</a></li>
+  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
+  <li><a href="#load-geojson-data" id="toc-load-geojson-data" class="nav-link" data-scroll-target="#load-geojson-data">2. load geojson data</a></li>
+  <li><a href="#load-csv" id="toc-load-csv" class="nav-link" data-scroll-target="#load-csv">3. load csv</a></li>
+  <li><a href="#aggregate-data" id="toc-aggregate-data" class="nav-link" data-scroll-target="#aggregate-data">4. aggregate data</a></li>
+  <li><a href="#plot-map" id="toc-plot-map" class="nav-link" data-scroll-target="#plot-map">5. plot map</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2016-summer-olympic.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/irish-whiskey-sales.html">Irish Whiskey Sales</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../vis/2016-summer-olympic.html">Data Viz</a></li><li class="breadcrumb-item"><a href="../vis/country-heatmap.html">country heatmap</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Irish Whiskey Sales</h1>
+<h1 class="title">country heatmap</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>math4mad </p>
-          </div>
-  </div>
     
   
     
@@ -585,151 +599,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="info">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="load-package" class="level2">
+<h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
+<div id="f7a220f5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Makie</span>, <span class="bu">CairoMakie</span>, <span class="bu">GeoMakie</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Downloads</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GeoMakie.GeoJSON</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GeometryBasics</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GeoMakie.GeoInterface</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>,<span class="bu">DataFrames</span>, <span class="bu">Tidier</span>,<span class="bu">Pipe</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">StatsBase</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-info
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>ref:<a href="https://www.kaggle.com/code/mpwolke/saint-patricks-irish-whiskey-sales">Saint Patricks Irish Whiskey Sales</a></li>
-<li>source :/Users/lunarcheung/Downloads/The Twisted Nature of Irish Whiskey Sales.png</li>
-</ul>
-</div>
-</div>
-<div id="cf3a04ea" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"utils.jl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>[ Info: loading success</code></pre>
-</div>
-</div>
-<section id="load-data-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="load-data-dataframe">2. load data-&gt;dataframe</h2>
-<div id="a3cb89d0" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./data/irish.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span>dropmissing</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">first</span>(df,<span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div><div style="float: left;"><span>5×5 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
-<table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">category</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">quality</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">cases</th>
-</tr>
-<tr class="odd subheader headerLastRow">
-<th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="String15">String15</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="String15">String15</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: left;">Irish Whiskey</td>
-<td style="text-align: left;">Standard</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">1990</td>
-<td style="text-align: right;">243000</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: left;">Irish Whiskey</td>
-<td style="text-align: left;">Standard</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">1991</td>
-<td style="text-align: right;">214000</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: left;">Irish Whiskey</td>
-<td style="text-align: left;">Standard</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">1992</td>
-<td style="text-align: right;">219500</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: left;">Irish Whiskey</td>
-<td style="text-align: left;">Standard</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">1993</td>
-<td style="text-align: right;">225000</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: left;">Irish Whiskey</td>
-<td style="text-align: left;">Standard</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">1994</td>
-<td style="text-align: right;">239500</td>
-</tr>
-</tbody>
-</table>
-</div>
+</section>
+<section id="load-geojson-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-geojson-data">2. load geojson data</h2>
+<div id="072b6a1e" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path<span class="op">=</span><span class="st">"./plots-gallery-data/countries.geojson"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>json_str <span class="op">=</span> <span class="fu">read</span>(path, <span class="dt">String</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>worldCountries <span class="op">=</span> GeoJSON.<span class="fu">read</span>(json_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>FeatureCollection with 255 Features</code></pre>
 </div>
 </div>
 </section>
-<section id="data-preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="data-preprocessing">3. data preprocessing</h2>
-<div id="57995f33" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> df1<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@select</span>(country,year, cases)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#@filter(country in ["Ireland","Germany","Russia","France"])</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@group_by</span>(country,year)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@summarize</span>(country,year,sales<span class="op">=</span><span class="fu">sum</span>(cases)<span class="op">/</span><span class="fl">1000</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@ungroup</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#@mutate(cases=cases/1000)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># @filter(country in ["Ireland","Germany","Russia"])</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># @group_by(country)</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># #@arrange(year)</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># @mutate(cases =cases.-cases[1])</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># @ungroup</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique!</span>(_)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@group_by</span>(country)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@arrange</span>(year)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@mutate</span>(sales <span class="op">=</span>sales<span class="op">.-</span>sales[<span class="fl">1</span>])</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@ungroup</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a> <span class="cf">end</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a> all_country_data<span class="op">=</span><span class="pp">@chain</span> df1 <span class="cf">begin</span> <span class="pp">@filter</span>(country <span class="op">∉</span> [<span class="st">"Ireland"</span>,<span class="st">"Germany"</span>,<span class="st">"Russia"</span>,<span class="st">"France"</span>])</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a> <span class="cf">end</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a> Ireland_data<span class="op">=</span><span class="pp">@chain</span> df1 <span class="cf">begin</span> <span class="pp">@filter</span>(country <span class="op">==</span> <span class="st">"Ireland"</span>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a> <span class="cf">end</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a> four_country_data<span class="op">=</span><span class="pp">@chain</span> df1 <span class="cf">begin</span> <span class="pp">@filter</span>(country <span class="op">∈</span> [<span class="st">"Ireland"</span>,<span class="st">"Germany"</span>,<span class="st">"Russia"</span>,<span class="st">"France"</span>,<span class="st">"Spain"</span>])</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a> <span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div><div style="float: left;"><span>134×3 DataFrame</span></div><div style="float: right;"><span style="font-style: italic;">109 rows omitted</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
+<section id="load-csv" class="level2">
+<h2 class="anchored" data-anchor-id="load-csv">3. load csv</h2>
+<div id="9ef73548" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@pipe</span> CSV.<span class="fu">File</span>(<span class="st">"./plots-gallery-data/gdp-per-capita-penn-world-table.csv"</span>)<span class="op">|&gt;</span>DataFrame<span class="op">|&gt;</span><span class="fu">transform</span>(_,<span class="st">"GDP per capita (output, multiple price benchmarks)"</span><span class="op">=&gt;</span><span class="st">"gdp"</span>)<span class="op">|&gt;</span><span class="fu">select</span>(_,<span class="fu">Not</span>(<span class="st">"GDP per capita (output, multiple price benchmarks)"</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ys<span class="op">=</span><span class="fl">2019</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@chain</span> df <span class="cf">begin</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@clean_names</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@filter</span>(year<span class="op">==</span> !!ys)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>   <span class="pp">@rename</span>(ISO_A3<span class="op">=</span>code)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>   <span class="co">#@mutate(gdp=zscore([gdp...]))</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(df,<span class="fl">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div><div style="float: left;"><span>5×4 DataFrame</span></div><div style="clear: both;"></div></div><div class="data-frame" style="overflow-x: scroll;">
 <table class="data-frame table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Row</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">country</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ISO_A3</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">sales</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gdp</th>
 </tr>
 <tr class="odd subheader headerLastRow">
 <th class="rowNumber" data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;"></th>
 <th style="text-align: left;" data-quarto-table-cell-role="th" title="String">String</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th" title="String3">String3</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th" title="Int64">Int64</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th" title="Float64">Float64</th>
 </tr>
@@ -737,198 +656,95 @@ info
 <tbody>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">1</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1990</td>
-<td style="text-align: right;">0.0</td>
+<td style="text-align: left;">Albania</td>
+<td style="text-align: left;">ALB</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">12531.8</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">2</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1991</td>
-<td style="text-align: right;">9.5</td>
+<td style="text-align: left;">Algeria</td>
+<td style="text-align: left;">DZA</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">11787.5</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">3</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1992</td>
-<td style="text-align: right;">-26.5</td>
+<td style="text-align: left;">Angola</td>
+<td style="text-align: left;">AGO</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">7159.58</td>
 </tr>
 <tr class="even">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">4</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1993</td>
-<td style="text-align: right;">-13.0</td>
+<td style="text-align: left;">Anguilla</td>
+<td style="text-align: left;">AIA</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">15177.9</td>
 </tr>
 <tr class="odd">
 <td class="rowNumber" style="text-align: right; font-weight: bold;">5</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1994</td>
-<td style="text-align: right;">-12.5</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">6</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1995</td>
-<td style="text-align: right;">-22.5</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">7</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1996</td>
-<td style="text-align: right;">-2.4</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">8</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1997</td>
-<td style="text-align: right;">7.8</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">9</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1998</td>
-<td style="text-align: right;">9.25</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">10</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">1999</td>
-<td style="text-align: right;">49.15</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">11</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">2000</td>
-<td style="text-align: right;">52.1</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">12</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">2001</td>
-<td style="text-align: right;">53.35</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">13</td>
-<td style="text-align: left;">Ireland</td>
-<td style="text-align: right;">2002</td>
-<td style="text-align: right;">32.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-<td style="text-align: right;">⋮</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">123</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2005</td>
-<td style="text-align: right;">39.75</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">124</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2006</td>
-<td style="text-align: right;">63.25</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">125</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2007</td>
-<td style="text-align: right;">102.75</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">126</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2008</td>
-<td style="text-align: right;">146.75</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">127</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2009</td>
-<td style="text-align: right;">132.0</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">128</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2010</td>
-<td style="text-align: right;">182.0</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">129</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2011</td>
-<td style="text-align: right;">307.25</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">130</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2012</td>
-<td style="text-align: right;">365.25</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">131</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">387.25</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">132</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2014</td>
-<td style="text-align: right;">445.75</td>
-</tr>
-<tr class="odd">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">133</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2015</td>
-<td style="text-align: right;">290.5</td>
-</tr>
-<tr class="even">
-<td class="rowNumber" style="text-align: right; font-weight: bold;">134</td>
-<td style="text-align: left;">Russia</td>
-<td style="text-align: right;">2016</td>
-<td style="text-align: right;">293.5</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">ARG</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">21826.8</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div id="051290e7" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ran<span class="op">=-</span><span class="fl">100</span><span class="op">:</span><span class="fl">50</span><span class="op">:</span><span class="fl">350</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>axis <span class="op">=</span> (width <span class="op">=</span> <span class="fl">500</span>, height <span class="op">=</span><span class="fl">500</span>,xticks<span class="op">=</span>(ran,[<span class="st">"</span><span class="sc">$</span>(i)<span class="st">k"</span> for i <span class="kw">in</span> ran]),       xticklabelrotation <span class="op">=</span> <span class="cn">pi</span><span class="op">/</span><span class="fl">8</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>titlealign <span class="op">=</span> <span class="op">:</span>center,titlesize<span class="op">=</span><span class="fl">24</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>title<span class="op">=</span><span class="st">"The Twisted Nature of Irish Whiskey Sales"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> subtitle <span class="op">=</span> <span class="fu">rich</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Within Europe sales have increased 225% since 1990. While"</span> , <span class="fu">rich</span>(<span class="st">"Ireland's"</span>,color <span class="op">=:</span>blue), <span class="st">"sales have decreased"</span>,<span class="fu">rich</span>(<span class="st">"Russia, France </span><span class="sc">\n</span><span class="st"> and Germany"</span>, color <span class="op">=:</span>green),<span class="st">"sales to   have than made up the difference."</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>data_layer1<span class="op">=</span><span class="fu">data</span>(four_country_data)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>data_layer2<span class="op">=</span><span class="fu">data</span>(Ireland_data)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#data_layer3=data(all_country_data)</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>mapping_layer1<span class="op">=</span><span class="fu">mapping</span>(<span class="op">:</span>sales,<span class="op">:</span>year,color<span class="op">=:</span>country)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>mapping_layer2<span class="op">=</span><span class="fu">mapping</span>(<span class="op">:</span>sales,<span class="op">:</span>year)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>visual_layer1 <span class="op">=</span> <span class="fu">visual</span>(Lines,linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>visual_layer2 <span class="op">=</span> <span class="fu">visual</span>(Lines, linewidth<span class="op">=</span><span class="fl">8</span>,color<span class="op">=:</span>blue)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#visual_layer3 = visual(Lines, linewidth=1,color=(:gray,0.3))</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>four_lines<span class="op">=</span>data_layer1<span class="op">*</span> mapping_layer1 <span class="op">*</span> visual_layer1</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ireland_line<span class="op">=</span>data_layer2<span class="op">*</span> mapping_layer2 <span class="op">*</span> visual_layer2</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#all_lines=data_layer3* mapping_layer2 * visual_layer3</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(four_lines<span class="op">+</span> ireland_line ,axis<span class="op">=</span>axis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>┌ Warning: Keyword argument `bgcolor` is deprecated, use `backgroundcolor` instead.
-└ @ Makie ~/.julia/packages/Makie/RgxaV/src/makielayout/blocks/legend.jl:23</code></pre>
+</section>
+<section id="aggregate-data" class="level2">
+<h2 class="anchored" data-anchor-id="aggregate-data">4. aggregate data</h2>
+<div id="5189bffb" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>geo_df <span class="op">=</span> <span class="pp">@chain</span> <span class="fu">DataFrame</span>(worldCountries) <span class="pp">@select</span>(ISO_A3)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span><span class="pp">@left_join</span>(geo_df, df,<span class="st">"ISO_A3"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df.gdp<span class="op">=</span><span class="pp">@pipe</span> df.gdp<span class="op">|&gt;</span><span class="fu">coalesce</span>.(_, <span class="fl">0</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>lons <span class="op">=</span> <span class="op">-</span><span class="fl">180</span><span class="op">:</span><span class="fl">180</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>lats <span class="op">=</span> <span class="op">-</span><span class="fl">90</span><span class="op">:</span><span class="fl">90</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>field <span class="op">=</span> [<span class="fu">exp</span>(<span class="fu">cosd</span>(l)) <span class="op">+</span> <span class="fl">3</span>(y<span class="op">/</span><span class="fl">90</span>) for l <span class="kw">in</span> lons, y <span class="kw">in</span> lats]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>n,_<span class="op">=</span><span class="fu">size</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>(255, 4)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+</div>
+</section>
+<section id="plot-map" class="level2">
+<h2 class="anchored" data-anchor-id="plot-map">5. plot map</h2>
+<div id="3356b1cd" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_map</span>()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(size <span class="op">=</span> (<span class="fl">200</span>,<span class="fl">200</span>), fontsize <span class="op">=</span> <span class="fl">16</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> <span class="fu">GeoAxis</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    fig[<span class="fl">1</span>,<span class="fl">1</span>];</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    dest<span class="op">=</span><span class="st">"+proj=wintri"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"World GDP"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    tellheight <span class="op">=</span> <span class="cn">true</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>hm1 <span class="op">=</span> <span class="fu">surface!</span>(ax, lons, lats, field)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">translate!</span>(hm1, <span class="fl">0</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">10</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>hm2 <span class="op">=</span> <span class="fu">poly!</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ax, worldCountries;</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>df.gdp,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    colormap <span class="op">=</span> <span class="fu">Reverse</span>(<span class="op">:</span>plasma),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    strokecolor <span class="op">=</span> <span class="op">:</span>black,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    strokewidth <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> <span class="fu">Colorbar</span>(fig[<span class="fl">1</span>,<span class="fl">2</span>]; colorrange <span class="op">=</span> (<span class="fl">1</span>, n), colormap <span class="op">=</span> <span class="fu">Reverse</span>(<span class="op">:</span>plasma), label <span class="op">=</span> <span class="st">"variable, color code"</span>, height <span class="op">=</span> <span class="fu">Relative</span>(<span class="fl">0.65</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>fig</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>┌ Warning: Could not find font regular, using TeX Gyre Heros Makie
+└ @ Makie ~/.julia/packages/Makie/RgxaV/src/conversions.jl:1119</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 <figure class="figure">
-<p><img src="irish-whiskey-sales_files/figure-html/cell-5-output-2.svg" class="img-fluid figure-img"></p>
+<p><img src="country-heatmap_files/figure-html/cell-6-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
