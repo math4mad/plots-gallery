@@ -5,12 +5,12 @@ using GeometryBasics
 using GeoMakie.GeoInterface
 using CSV,DataFrames, Tidier,Pipe
 using StatsBase
-path="./vis/plots-gallery-data/countries.geojson"
+path="./vis/data/countries.geojson"
 json_str = read(path, String)
 worldCountries = GeoJSON.read(json_str)
 n = length(worldCountries)
 
-df=@pipe CSV.File("./vis/plots-gallery-data/gdp-per-capita-penn-world-table.csv")|>DataFrame|>transform(_,"GDP per capita (output, multiple price benchmarks)"=>"gdp")|>select(_,Not("GDP per capita (output, multiple price benchmarks)"))
+df=@pipe CSV.File("./vis/data/gdp-per-capita-penn-world-table.csv")|>DataFrame|>transform(_,"GDP per capita (output, multiple price benchmarks)"=>"gdp")|>select(_,Not("GDP per capita (output, multiple price benchmarks)"))
 ys=2019
 df=@chain df begin
    @clean_names
@@ -32,13 +32,13 @@ function plot_map()
 
 ax = GeoAxis(
     fig[1,1];
-    dest="+proj=wintri",
+    dest="+proj=eqc",
     title = "World GDP",
     tellheight = true,
 )
 
-hm1 = surface!(ax, lons, lats, field)
-translate!(hm1, 0, 0, -10)
+# hm1 = surface!(ax, lons, lats, field)
+# translate!(hm1, 0, 0, -10)
 
 hm2 = poly!(
     ax, worldCountries;

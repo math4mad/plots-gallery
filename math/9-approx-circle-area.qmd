@@ -1,0 +1,30 @@
+---
+title: "8-Elliptic Cylinder"
+format:
+  html: 
+    code-fold: false
+    fontsize: 1.1em
+    linestretch: 1.7
+execute: 
+  cache: true
+  jupyter: julia-1.10
+---
+
+```{julia}
+using GLMakie,AlgebraOfGraphics
+using DataFrames  
+ran=range(0,2pi,200)
+rans=[range(0,2pi,s) for s in 3:10]
+r=1
+fig=Figure(resolution = (600, 760))
+for  (idx,side) in enumerate(4:15)
+    ax=Axis(fig[fldmod1(idx,3)...])
+    lran=range(0,2pi,side)
+    points=[Point2f(cos(i),sin(i)) for i in lran]
+    lines!(ax,r*cos.(ran),r*sin.(ran))
+    poly!(ax,points,color=(:green,0.2))
+    text!(0, 0, text = rich("A", subscript("$(side-1)")), align = (:center, :center))
+    hidedecorations!(ax)
+end
+fig
+```

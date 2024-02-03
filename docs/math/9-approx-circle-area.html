@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="math4mads">
 
-<title>Makie Gallery - 3-biovariate-normal-dist</title>
+<title>Makie Gallery - 8-Elliptic Cylinder</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/3-bio-norm-dist.html">3-biovariate-normal-dist</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../math/1-double-integral.html">Math</a></li><li class="breadcrumb-item"><a href="../math/9-approx-circle-area.html">8-Elliptic Cylinder</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -206,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../math/9-approx-circle-area.html" class="sidebar-item-text sidebar-link">
+  <a href="../math/9-approx-circle-area.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">8-Elliptic Cylinder</span></a>
   </div>
 </li>
@@ -277,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../statistics/3-bio-norm-dist.html" class="sidebar-item-text sidebar-link active">
+  <a href="../statistics/3-bio-norm-dist.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3-biovariate-normal-dist</span></a>
   </div>
 </li>
@@ -569,33 +568,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load-package" id="toc-load-package" class="nav-link active" data-scroll-target="#load-package">1. load package</a></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">2. plot</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../statistics/1-normaldist.html">Statistics</a></li><li class="breadcrumb-item"><a href="../statistics/3-bio-norm-dist.html">3-biovariate-normal-dist</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../math/1-double-integral.html">Math</a></li><li class="breadcrumb-item"><a href="../math/9-approx-circle-area.html">8-Elliptic Cylinder</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">3-biovariate-normal-dist</h1>
+<h1 class="title">8-Elliptic Cylinder</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>math4mads </p>
-          </div>
-  </div>
     
   
     
@@ -606,65 +592,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="load-package" class="level2">
-<h2 class="anchored" data-anchor-id="load-package">1. load package</h2>
-<div class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">GLMakie</span>, <span class="bu">Distributions</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">using</span> <span class="bu">FileIO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="plot" class="level2">
-<h2 class="anchored" data-anchor-id="plot">2. plot</h2>
-<div class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    μ <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">0</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Σ₁ <span class="op">=</span> [<span class="fl">2</span> <span class="fl">1.8</span>; <span class="fl">1.8</span> <span class="fl">2</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Σ₂ <span class="op">=</span> [<span class="fl">1</span> <span class="fl">0</span>; <span class="fl">0</span> <span class="fl">3</span>]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Σ₃ <span class="op">=</span> [<span class="fl">1</span> <span class="fl">0</span>; <span class="fl">0</span> <span class="fl">1</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    simga_dict <span class="op">=</span> <span class="fu">Dict</span>(<span class="st">"full"</span> <span class="op">=&gt;</span> Σ₁, <span class="st">"diagonal"</span> <span class="op">=&gt;</span> Σ₂, <span class="st">"spherical"</span> <span class="op">=&gt;</span> Σ₃)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> <span class="fu">Figure</span>(resolution<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">load_img</span>(src)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">load</span>(<span class="st">"./imgs/</span><span class="sc">$</span>(src)<span class="st">.png"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">function</span> <span class="fu">binormal_plot</span>(; μ<span class="op">=</span>[<span class="fl">0</span>, <span class="fl">0</span>], Σmatrix<span class="op">::</span><span class="dt">Dict</span>=simga_dict, up<span class="op">::</span><span class="dt">Int</span>=<span class="fl">4</span>, n<span class="op">::</span><span class="dt">Int</span>=<span class="fl">100</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        xs <span class="op">=</span> ys <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span>up, up, n)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        simga_keys <span class="op">=</span> <span class="fu">keys</span>(Σmatrix)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> (idx, val) <span class="kw">in</span> <span class="fu">enumerate</span>(simga_keys)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> cormatrix <span class="op">=</span> Σmatrix[val]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> img<span class="op">=</span><span class="fu">load_img</span>(val)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> d <span class="op">=</span> <span class="fu">MvNormal</span>(μ, cormatrix)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> zs <span class="op">=</span> [<span class="fu">pdf</span>(d, [x, y]) for x <span class="kw">in</span> xs, y <span class="kw">in</span> ys]</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ax1 <span class="op">=</span> <span class="fu">Axis3</span>(fig[<span class="fl">1</span>, idx], title<span class="op">=</span><span class="st">"</span><span class="sc">$</span>(val)<span class="st">"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ax2<span class="op">=</span>  <span class="fu">Axis</span>(fig[<span class="fl">2</span>, idx],aspect <span class="op">=</span> <span class="fu">DataAspect</span>(),height<span class="op">=</span><span class="fl">60</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ax3 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">3</span>, idx];)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="fu">hidedecorations!</span>(ax2)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="fu">hidespines!</span>(ax2)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                <span class="fu">surface!</span>(ax1, xs, ys, zs)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                <span class="fu">image!</span>(ax2, <span class="fu">rotr90</span>(img))</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="fu">contour!</span>(ax3, xs, ys, zs, levels<span class="op">=</span><span class="fl">10</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">binormal_plot</span>()</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div id="c1ae4bbf" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">GLMakie</span>,<span class="bu">AlgebraOfGraphics</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>  </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ran<span class="op">=</span><span class="fu">range</span>(<span class="fl">0</span>,<span class="fl">2</span>pi,<span class="fl">200</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rans<span class="op">=</span>[<span class="fu">range</span>(<span class="fl">0</span>,<span class="fl">2</span>pi,s) for s <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="fl">10</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>r<span class="op">=</span><span class="fl">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span><span class="fu">Figure</span>(resolution <span class="op">=</span> (<span class="fl">600</span>, <span class="fl">760</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>  (idx,side) <span class="kw">in</span> <span class="fu">enumerate</span>(<span class="fl">4</span><span class="op">:</span><span class="fl">15</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span><span class="fu">Axis</span>(fig[<span class="fu">fldmod1</span>(idx,<span class="fl">3</span>)<span class="op">...</span>])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    lran<span class="op">=</span><span class="fu">range</span>(<span class="fl">0</span>,<span class="fl">2</span>pi,side)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    points<span class="op">=</span>[<span class="fu">Point2f</span>(<span class="fu">cos</span>(i),<span class="fu">sin</span>(i)) for i <span class="kw">in</span> lran]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines!</span>(ax,<span class="fu">r*cos</span>.(ran),<span class="fu">r*sin</span>.(ran))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">poly!</span>(ax,points,color<span class="op">=</span>(<span class="op">:</span>green,<span class="fl">0.2</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text!</span>(<span class="fl">0</span>, <span class="fl">0</span>, text <span class="op">=</span> <span class="fu">rich</span>(<span class="st">"A"</span>, <span class="fu">subscript</span>(<span class="st">"</span><span class="sc">$</span>(side<span class="op">-</span><span class="fl">1</span>)<span class="st">"</span>)), align <span class="op">=</span> (<span class="op">:</span>center, <span class="op">:</span>center))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hidedecorations!</span>(ax)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <figure class="figure">
-<p><img src="3-bio-norm-dist_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="9-approx-circle-area_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

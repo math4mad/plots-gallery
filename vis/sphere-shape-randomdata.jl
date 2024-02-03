@@ -14,7 +14,7 @@ end
 
 
 
-data=DataFrame(xs=Float64[],ys=Float64[],zs=Float64[])
+data=DataFrame(;xs=Float64[],ys=Float64[],zs=Float64[])
 
 function make_sphere_data(r)
     θ = LinRange(0, π, 16)

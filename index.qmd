@@ -1,11 +1,15 @@
 ---
-title: "内容简介"
+title: "Makie Gallery "
 ---
 :::{.callout-note title="介绍"}
   
-  GLMakie 方法
+  Makie 方法
+  包括 :
+  GLMakie.jl
+  AlgebraOfGraphic.jl
+  TiderPlots.jl
 :::
 
-Course info & details here
-
-commit  chage  gh-pages
+- GLMakie.jl
+- AlgebraOfGraphic.jl
+- TiderPlots.jl
