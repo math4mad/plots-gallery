@@ -1231,12 +1231,12 @@
   {
     "objectID": "math/9-approx-circle-area.html",
     "href": "math/9-approx-circle-area.html",
-    "title": "8-Elliptic Cylinder",
+    "title": "9-Approxmiate of circle area",
     "section": "",
     "text": "using GLMakie,AlgebraOfGraphics\nusing DataFrames  \nran=range(0,2pi,200)\nrans=[range(0,2pi,s) for s in 3:10]\nr=1\nfig=Figure(resolution = (600, 760))\nfor  (idx,side) in enumerate(4:15)\n    ax=Axis(fig[fldmod1(idx,3)...])\n    lran=range(0,2pi,side)\n    points=[Point2f(cos(i),sin(i)) for i in lran]\n    lines!(ax,r*cos.(ran),r*sin.(ran))\n    poly!(ax,points,color=(:green,0.2))\n    text!(0, 0, text = rich(\"A\", subscript(\"$(side-1)\")), align = (:center, :center))\n    hidedecorations!(ax)\nend\nfig",
     "crumbs": [
       "Math",
-      "8-Elliptic Cylinder"
+      "9-Approxmiate of circle area"
     ]
   },
   {
